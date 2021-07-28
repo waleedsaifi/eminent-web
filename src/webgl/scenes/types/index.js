@@ -1,0 +1,6 @@
+export * from './chess.scene'
+export * from './flex.scene'
+export * from './hands.scene'
+export * from './loader.scene'
+export * from './plague.scene'
+export * from './transparency.scene'

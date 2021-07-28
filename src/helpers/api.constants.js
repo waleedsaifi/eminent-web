@@ -1,0 +1,1 @@
+export const SERVER_API = process.env.NODE_ENV === "development" ? "http://localhost:5000/api" : "http://185.233.119.26:5000/api";
