@@ -10,7 +10,7 @@ import CareersPopup from '../CareersPopup/CareersPopup'
 import ServicesPopup from '../ServicesPopup/ServicesPopup'
 import { isMobileOnly } from 'react-device-detect'
 import { useDispatch, useSelector } from "react-redux";
-import { screens, work } from '../../constants/constants';
+import { screens } from '../../constants/constants';
 import { getFadeOutFormTen, getFadeOutProgressSvg, stopChooseStoryTitleAnimation, stopCustomAnimationSvg, stopFormTenAnimation, stopMainTextAnimation } from "../../helpers/animations";
 import { ReactComponent as PlugLogo } from '../../assets/images/logo.svg';
 import { getStandardNextStep, getNextStepFromForm } from "../../helpers/next_step";
@@ -172,6 +172,14 @@ export default () => {
     setPopupOpen(true);
   }
 
+  const closeApproachPopup = () => {
+    mainContainer.current.style.overflowY = 'auto';
+    const menu = document.querySelector('.menu');
+    menu.removeAttribute('style');
+    setPopupOpen(false);
+    setActivePopup(null);
+  }
+
   const showCareersPopup = () => {
     mainContainer.current.style.overflowY = 'hidden';
   }
@@ -269,8 +277,8 @@ export default () => {
         return <SchedulePopup closeHandler={closeSchedulePopup} />
       case 'careers':
         return <CareersPopup closeHandler={closeSchedulePopup} />
-      case 'services':
-        return <ServicesPopup closeHandler={closeSchedulePopup} />
+      case 'approach':
+        return <ServicesPopup closeHandler={closeApproachPopup} />
       default:
         break;
     }

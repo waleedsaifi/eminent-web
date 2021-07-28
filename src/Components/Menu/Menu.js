@@ -232,7 +232,14 @@ export default ({
         if (window.innerWidth <= BREAKPOINTS.tablet) {
             setMenuOpen(false);
         }
-        showPopup();
+        showPopup('schedule');
+    }
+
+    const onApproachClickHandler = () => {
+        if (window.innerWidth <= BREAKPOINTS.tablet){
+            setMenuOpen(false);
+        }
+        showPopup('approach');
     }
 
     const getMenuBlur = () => {
@@ -256,7 +263,7 @@ export default ({
             }
             $color = {
                 screens[currentStep].textColor
-            } >Eminent IT presents:
+            } >Eminent presents:
                 </IntroText>
         } <Menu $open = {
             isMenuOpen
@@ -300,6 +307,10 @@ export default ({
             isLogoBtnsShow.second
         } >
         <span className = "menu_item"
+
+         onClick = {
+            onApproachClickHandler
+        }
         onMouseOver = {
             menuLabelHandler
         } > APPROACH </span> <span className = "menu_label" > READ OUR STORY </span> </
@@ -315,7 +326,8 @@ export default ({
         }
         $show = {
             isLogoBtnsShow.first
-        } >
+        } 
+       >
         <span className = "menu_item"
         onMouseOver = {
             menuLabelHandler
