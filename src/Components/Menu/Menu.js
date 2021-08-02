@@ -1,412 +1,388 @@
+import { useEffect, useRef, useState } from "react";
+import styled, { keyframes } from "styled-components";
+import anime from "animejs/lib/anime.es.js";
+import { useSelector } from "react-redux";
+import { BREAKPOINTS } from "../../constants/constants";
+import { ReactComponent as Logo } from "../../assets/images/logo.svg";
+import { ReactComponent as RightBtnSvg } from "../../assets/images/rightBtn.svg";
 import {
-    useEffect,
-    useRef,
-    useState
-} from "react";
-import styled, {
-    keyframes
-} from "styled-components";
-import anime from 'animejs/lib/anime.es.js';
-import {
-    useSelector
-} from 'react-redux';
-import {
-    screens,
-    BREAKPOINTS
-} from '../../constants/constants';
-import {
-    ReactComponent as Logo
-} from '../../assets/images/logo.svg';
-import {
-    ReactComponent as RightBtnSvg
-} from '../../assets/images/rightBtn.svg';
-import {
-    desktopMenuLabelAnimation,
-    getLogoToMobPosition,
-    logoTimeline,
-    mobBurgerCloseAnimation,
-    mobBurgerOpenAnimation,
-    mobLogoCloseAnimation,
-    mobLogoOpenAnimation,
-    mobMenuCloseAnimation,
-    mobMenuOpenAnimation,
-    removeInlineStyles,
-    rightMenuBtnHoverInAnimation,
-    rightMenuBtnHoverOutAnimation,
-    rightMenuBtnMouseDownAnimation,
-    rightMenuBtnMouseUpAnimation
+  desktopMenuLabelAnimation,
+  getLogoToMobPosition,
+  logoTimeline,
+  mobBurgerCloseAnimation,
+  mobBurgerOpenAnimation,
+  mobLogoCloseAnimation,
+  mobLogoOpenAnimation,
+  mobMenuCloseAnimation,
+  mobMenuOpenAnimation,
+  removeInlineStyles,
+  rightMenuBtnHoverInAnimation,
+  rightMenuBtnHoverOutAnimation,
+  rightMenuBtnMouseDownAnimation,
+  rightMenuBtnMouseUpAnimation,
 } from "../../helpers/animations";
+import {
+  getStandardNextStep,
+  getNextStepFromForm,
+} from "../../helpers/next_step";
 
-export default ({
-    showPopup,
-    menuHandler
-}) => {
-    const {
-        currentStep, menuData
-    } = useSelector(state => state.state);
-    const [isMenuOpen, setMenuOpen] = useState(true);
-    const [isLogoBtnsShow, setLogoBtnsShow] = useState({
-        logo: false,
-        first: false,
-        second: false
-    });
-    const logoSvg = useRef(null);
-    const burgerBox = useRef(null);
-    const menu = useRef(null);
-    const menuRightBtn = useRef(null);
-    const rightBorderBtn = useRef(null);
-    const introText = useRef(null);
 
-    const menuResizer = () => {
-        if (window.innerWidth > BREAKPOINTS.tablet) {
-            setMenuOpen(true);
-            menu.current && removeInlineStyles([menu.current]);
-        }
-        if (window.innerWidth <= BREAKPOINTS.tablet) {
-            setMenuOpen(false)
-                //correct mob logo position
-            anime({
-                targets: '.logo',
-                translateX: -window.innerWidth / 2 + 80,
-                easing: 'linear',
-                duration: 50,
-            });
-        }
+export default ({ showPopup, menuHandler }) => {
+  const { currentStep, menuData, stepsTextData, currentTheme, currentSection } = useSelector((state) => state.state);
+  const [isMenuOpen, setMenuOpen] = useState(true);
+  const [isLogoBtnsShow, setLogoBtnsShow] = useState({
+    logo: false,
+    first: false,
+    second: false,
+  });
+  const logoSvg = useRef(null);
+  const burgerBox = useRef(null);
+  const menu = useRef(null);
+  const menuRightBtn = useRef(null);
+  const rightBorderBtn = useRef(null);
+  const introText = useRef(null);
+
+  const menuResizer = () => {
+    if (window.innerWidth > BREAKPOINTS.tablet) {
+      setMenuOpen(true);
+      menu.current && removeInlineStyles([menu.current]);
     }
-
-    const getIntroFontSize = () => {
-        return window.innerWidth < 768 ? 18 : window.innerWidth < 901 ? 21 : 28;
+    if (window.innerWidth <= BREAKPOINTS.tablet) {
+      setMenuOpen(false);
+      //correct mob logo position
+      anime({
+        targets: ".logo",
+        translateX: -window.innerWidth / 2 + 80,
+        easing: "linear",
+        duration: 50,
+      });
     }
+  };
 
-    useEffect(() => {
-        switch (currentStep) {
-            case 0:
-                {
-                    setLogoBtnsShow({
-                        logo: false,
-                        first: false,
-                        second: false,
-                    });
-                    logoTimeline(screens[currentStep].logoColor, getIntroFontSize(), () => {
-                        window.gradient.setStep(0)
-                        setLogoBtnsShow(state => {
-                            return {
-                                ...state,
-                                logo: true
-                            }
-                        });
-                        removeInlineStyles([logoSvg.current, menuRightBtn.current]);
-                        setLogoBtnsShow(state => {
-                            return {
-                                ...state,
-                                first: true
-                            }
-                        });
-                        setTimeout(() => {
-                            setLogoBtnsShow(state => {
-                                return {
-                                    ...state,
-                                    second: true
-                                }
-                            });
-                        }, 200)
+  const getIntroFontSize = () => {
+    return window.innerWidth < 768 ? 18 : window.innerWidth < 901 ? 21 : 28;
+  };
 
-                        if (window.innerWidth <= BREAKPOINTS.tablet) {
-                            getLogoToMobPosition();
-                        }
-
-                        window.innerWidth <= BREAKPOINTS.tablet ? setMenuOpen(false) : setMenuOpen(true);
-                        window.addEventListener('resize', menuResizer);
-                    })
-                    return;
-                }
-            default:
-                {
-                    if (window.logoAnimation && !window.logoAnimation.completed) {
-                        window.logoAnimation.pause();
-                    }
-                    setLogoBtnsShow({
-                        logo: true,
-                        first: true,
-                        second: true,
-                    });
-                    removeInlineStyles([logoSvg.current, menuRightBtn.current]);
-
-                    if (window.innerWidth <= BREAKPOINTS.tablet) {
-                        getLogoToMobPosition();
-                    }
-                    window.innerWidth <= BREAKPOINTS.tablet ? setMenuOpen(false) : setMenuOpen(true);
-                    window.addEventListener('resize', menuResizer);
-                }
-        }
-
-        return () => window.removeEventListener('resize', menuResizer);
-    }, [currentStep])
-
-    useEffect(() => {
-        const burgerChildren = [...burgerBox.current.children];
-        const menuButtons = [...menu.current.children];
-
-        if (!isMenuOpen) {
-            burgerChildren[0].classList.remove('open');
-            mobBurgerCloseAnimation(burgerChildren);
-
-            menuButtons.forEach((btn, index) => {
-                if (index !== 0 && index !== 3) {
-                    mobMenuCloseAnimation(btn);
-                }
-            })
-
-            mobLogoCloseAnimation('.logo');
-
-        } else if (isMenuOpen) {
-            burgerChildren[0].classList.add('open');
-            mobBurgerOpenAnimation(burgerChildren);
-
-            menuButtons.forEach((btn, index) => {
-                if (index !== 0 && index !== 3) {
-                    mobMenuOpenAnimation(btn);
-                }
-            })
-
-            mobLogoOpenAnimation('.logo');
-        }
-    }, [isMenuOpen])
-
-    const menuLabelHandler = e => {
-        e.preventDefault();
-        if (window.innerWidth <= BREAKPOINTS.tablet) return;
-
-        const textWrapper = e.target.parentElement.querySelector('.menu_label');
-        if (textWrapper) {
-            textWrapper.innerHTML = textWrapper.textContent
-                .replace(/\S/g, "<span class='letter'>$&</span>");
-
-            const letters = [...textWrapper.children];
-            desktopMenuLabelAnimation(letters, textWrapper);
-        }
-    }
-
-    const burgerClickHandler = (e) => {
-        e.preventDefault();
-        const mainContainer = document.querySelector('.mainContainer');
-        if (mainContainer) {
-            mainContainer.scrollTop = 0;
-        }
-        menuHandler(!isMenuOpen);
-        setMenuOpen(state => {
-            if (state) {
-                menu.current.style.gridTemplateRows = `73px 0 0 0 0`;
-            } else {
-                menu.current.style.gridTemplateRows = `93px 64px 64px 64px 94px`;
-            }
-            return !state
+  useEffect(() => {
+    switch (currentStep) {
+      case 0: {
+        setLogoBtnsShow({
+          logo: false,
+          first: false,
+          second: false,
         });
-    }
+        logoTimeline(currentTheme.logoColor, getIntroFontSize(), () => {
+          window.gradient.setStep(0);
+          setLogoBtnsShow((state) => {
+            return {
+              ...state,
+              logo: true,
+            };
+          });
+          removeInlineStyles([logoSvg.current, menuRightBtn.current]);
+          setLogoBtnsShow((state) => {
+            return {
+              ...state,
+              first: true,
+            };
+          });
+          setTimeout(() => {
+            setLogoBtnsShow((state) => {
+              return {
+                ...state,
+                second: true,
+              };
+            });
+          }, 200);
 
-    const rightMenuBtnHoverIn = () => {
-        if (!rightBorderBtn || window.innerWidth <= BREAKPOINTS.tablet) return;
-        rightMenuBtnHoverInAnimation(menuRightBtn.current, rightBorderBtn.current, screens[currentStep].bgScheduleBtn);
-    }
+          if (window.innerWidth <= BREAKPOINTS.tablet) {
+            getLogoToMobPosition();
+          }
 
-    const rightMenuBtnHoverOut = () => {
-        if (!rightBorderBtn || window.innerWidth <= BREAKPOINTS.tablet) return;
-        rightMenuBtnHoverOutAnimation(rightBorderBtn.current, menuRightBtn.current, screens[currentStep].bgScheduleBtn, () => {
-            setTimeout(() => removeInlineStyles([rightBorderBtn.current, menuRightBtn.current]), 300);
-        })
-    }
+          window.innerWidth <= BREAKPOINTS.tablet
+            ? setMenuOpen(false)
+            : setMenuOpen(true);
+          window.addEventListener("resize", menuResizer);
+        });
+        return;
+      }
+      default: {
+        if (window.logoAnimation && !window.logoAnimation.completed) {
+          window.logoAnimation.pause();
+        }
+        setLogoBtnsShow({
+          logo: true,
+          first: true,
+          second: true,
+        });
+        removeInlineStyles([logoSvg.current, menuRightBtn.current]);
 
-    const onMouseDownScheduleHandler = (e) => {
-        if (!rightBorderBtn || window.innerWidth <= BREAKPOINTS.tablet) return;
-        rightMenuBtnMouseDownAnimation(menuRightBtn.current, screens[currentStep].bgScheduleBtn)
-    }
-
-    const onMouseUpScheduleHandler = (e) => {
-        if (!rightBorderBtn || window.innerWidth <= BREAKPOINTS.tablet) return;
-        rightMenuBtnMouseUpAnimation(menuRightBtn.current, screens[currentStep].bgScheduleBtn, () => {
-            setTimeout(() => removeInlineStyles([menuRightBtn.current]), 300);
-        })
-    }
-
-    const onScheduleClickHandler = () => {
         if (window.innerWidth <= BREAKPOINTS.tablet) {
-            setMenuOpen(false);
+          getLogoToMobPosition();
         }
-        showPopup('schedule');
+        window.innerWidth <= BREAKPOINTS.tablet
+          ? setMenuOpen(false)
+          : setMenuOpen(true);
+        window.addEventListener("resize", menuResizer);
+      }
     }
 
-    const onApproachClickHandler = () => {
-        if (window.innerWidth <= BREAKPOINTS.tablet){
-            setMenuOpen(false);
-        }
-        showPopup('approach');
-    }
+    return () => window.removeEventListener("resize", menuResizer);
+  }, [currentStep]);
 
-    const getMenuBlur = () => {
-        switch (currentStep) {
-            case 11:
-            case 12:
-                return 10;
-            default:
-                return 0
-        }
-    }
+  useEffect(() => {
+    const burgerChildren = [...burgerBox.current.children];
+    const menuButtons = [...menu.current.children];
 
-//console.log(menuData)
-    return ( <>
-        {
-            currentStep === 0 &&
-            <IntroText
-            className = "introText"
-            ref = {
-                introText
+    if (!isMenuOpen) {
+      burgerChildren[0].classList.remove("open");
+      mobBurgerCloseAnimation(burgerChildren);
+
+      menuButtons.forEach((btn, index) => {
+        if (index !== 0 && index !== 3) {
+          mobMenuCloseAnimation(btn);
+        }
+      });
+
+      mobLogoCloseAnimation(".logo");
+    } else if (isMenuOpen) {
+      burgerChildren[0].classList.add("open");
+      mobBurgerOpenAnimation(burgerChildren);
+
+      menuButtons.forEach((btn, index) => {
+        if (index !== 0 && index !== 3) {
+          mobMenuOpenAnimation(btn);
+        }
+      });
+
+      mobLogoOpenAnimation(".logo");
+    }
+  }, [isMenuOpen]);
+
+  const menuLabelHandler = (e) => {
+    e.preventDefault();
+    if (window.innerWidth <= BREAKPOINTS.tablet) return;
+
+    const textWrapper = e.target.parentElement.querySelector(".menu_label");
+    if (textWrapper) {
+      textWrapper.innerHTML = textWrapper.textContent.replace(
+        /\S/g,
+        "<span class='letter'>$&</span>"
+      );
+
+      const letters = [...textWrapper.children];
+      desktopMenuLabelAnimation(letters, textWrapper);
+    }
+  };
+
+  const burgerClickHandler = (e) => {
+    e.preventDefault();
+    const mainContainer = document.querySelector(".mainContainer");
+    if (mainContainer) {
+      mainContainer.scrollTop = 0;
+    }
+    menuHandler(!isMenuOpen);
+    setMenuOpen((state) => {
+      if (state) {
+        menu.current.style.gridTemplateRows = `73px 0 0 0 0`;
+      } else {
+        menu.current.style.gridTemplateRows = `93px 64px 64px 64px 94px`;
+      }
+      return !state;
+    });
+  };
+
+  const rightMenuBtnHoverIn = () => {
+    if (!rightBorderBtn || window.innerWidth <= BREAKPOINTS.tablet) return;
+    rightMenuBtnHoverInAnimation(
+      menuRightBtn.current,
+      rightBorderBtn.current,
+      currentTheme.bgScheduleBtn
+    );
+  };
+
+  const rightMenuBtnHoverOut = () => {
+    if (!rightBorderBtn || window.innerWidth <= BREAKPOINTS.tablet) return;
+    rightMenuBtnHoverOutAnimation(
+      rightBorderBtn.current,
+      menuRightBtn.current,
+      currentTheme.bgScheduleBtn,
+      () => {
+        setTimeout(
+          () =>
+            removeInlineStyles([rightBorderBtn.current, menuRightBtn.current]),
+          300
+        );
+      }
+    );
+  };
+
+  const onMouseDownScheduleHandler = (e) => {
+    if (!rightBorderBtn || window.innerWidth <= BREAKPOINTS.tablet) return;
+    rightMenuBtnMouseDownAnimation(
+      menuRightBtn.current,
+      currentTheme.bgScheduleBtn
+    );
+  };
+
+  const onMouseUpScheduleHandler = (e) => {
+    if (!rightBorderBtn || window.innerWidth <= BREAKPOINTS.tablet) return;
+    rightMenuBtnMouseUpAnimation(
+      menuRightBtn.current,
+      currentTheme.bgScheduleBtn,
+      () => {
+        setTimeout(() => removeInlineStyles([menuRightBtn.current]), 300);
+      }
+    );
+  };
+
+  const onScheduleClickHandler = () => {
+    if (window.innerWidth <= BREAKPOINTS.tablet) {
+      setMenuOpen(false);
+    }
+    showPopup("schedule");
+  };
+
+  const onApproachClickHandler = () => {
+    if (window.innerWidth <= BREAKPOINTS.tablet) {
+      setMenuOpen(false);
+    }
+    //showPopup("approach");
+
+    const progressSvgArray = document.querySelectorAll(
+      `.styledProgress_${currentStep}`
+    );
+    getNextStepFromForm(currentSection.steps, currentStep, progressSvgArray);
+  };
+
+  const getMenuBlur = () => {
+      switch (currentSection.title){
+          case "work": 
+            switch (currentStep) {
+                case "Slide 1":
+                case "Slide 2":
+                    return 10;
+                default:
+                    return 0;
             }
-            $color = {
-                screens[currentStep].textColor
-            } >Eminent presents:
-                </IntroText>
-        } <Menu $open = {
-            isMenuOpen
-        }
-        ref = {
-            menu
-        }
-        className = "menu"
-        $blur = {
-            getMenuBlur()
-        } >
-        <MenuBurger $open = {
-            isMenuOpen
-        }
-        $color = {
-            screens[currentStep].logoColor
-        }
-        onClick = {
-            burgerClickHandler
-        }
-        ref = {
-            burgerBox
-        }
-        $show = {
-            isLogoBtnsShow.first
-        } >
-        <span />
-        <span />
-        <span />
+            default:
+                return 0;
+    }
+      
+  };
+
+  //console.log(menuData)
+  return (
+    <>
+      {currentStep === 0 && (
+        <IntroText
+          className="introText"
+          ref={introText}
+          $color={currentTheme.textColor}
+        >
+          Eminent presents:
+        </IntroText>
+      )}{" "}
+      <Menu
+        $open={isMenuOpen}
+        ref={menu}
+        className="menu"
+        $blur={getMenuBlur()}
+      >
+        <MenuBurger
+          $open={isMenuOpen}
+          $color={currentTheme.logoColor}
+          onClick={burgerClickHandler}
+          ref={burgerBox}
+          $show={isLogoBtnsShow.first}
+        >
+          <span />
+          <span />
+          <span />
         </MenuBurger>
-        <MenuBtn $open = {
-            isMenuOpen
-        }
-        $color = {
-            screens[currentStep].menuBtnColor
-        }
-        $lineBg = {
-            screens[currentStep].bgScheduleBtn
-        }
-        $show = {
-            isLogoBtnsShow.second
-        } >
-        <span className = "menu_item"
+        <MenuBtn
+          $open={isMenuOpen}
+          $color={currentTheme.menuBtnColor}
+          $lineBg={currentTheme.bgScheduleBtn}
+          $show={isLogoBtnsShow.second}
+        >
+          <span
+            className="menu_item"
+            onClick={onApproachClickHandler}
+            onMouseOver={menuLabelHandler}
+          >
+            {" "}
+            APPROACH{" "}
+          </span>{" "}
+          <span className="menu_label"> READ OUR STORY </span>{" "}
+        </MenuBtn>
+        <MenuBtn
+          $open={isMenuOpen}
+          $color={currentTheme.menuBtnColor}
+          $lineBg={currentTheme.bgScheduleBtn}
+          $show={isLogoBtnsShow.first}
+        >
+          <span className="menu_item" onMouseOver={menuLabelHandler}>
+            {" "}
+            WORK{" "}
+          </span>{" "}
+          <span className="menu_label"> DISCOVER OUR SERVICES </span>{" "}
+        </MenuBtn>
+        <MenuLogoBtn className="logo" $open={isMenuOpen}>
+          <LogoSvg
+            className="menuLogoSvg"
+            ref={logoSvg}
+            $color={currentTheme.textColor}
+            $show={isLogoBtnsShow.logo}
+          />{" "}
+        </MenuLogoBtn>{" "}
+        <MenuBtn
+          $open={isMenuOpen}
+          $color={currentTheme.menuBtnColor}
+          $lineBg={currentTheme.bgScheduleBtn}
+          $show={isLogoBtnsShow.first}
+        >
+          <span className="menu_item" onMouseOver={menuLabelHandler}>
+            {" "}
+            CAREERS{" "}
+          </span>{" "}
+          <span className="menu_label"> JOIN OUR TEAM </span>
+        </MenuBtn>
+        <MenuRightBtn
+          ref={menuRightBtn}
+          $open={isMenuOpen}
+          $bg={currentTheme.bgScheduleBtn}
+          $color={currentTheme.menuBtnColor}
+          id="ScheduleBtn"
+          // onMouseOver={rightMenuBtnHoverIn}
+          // onMouseLeave={rightMenuBtnHoverOut}
+          // onMouseDown={onMouseDownScheduleHandler}
+          // onMouseUp={onMouseUpScheduleHandler}
+          onClick={onScheduleClickHandler}
+          $show={isLogoBtnsShow.second}
+        >
+          <RightBtnBorder
+            ref={rightBorderBtn}
+            $color={currentTheme.bgScheduleBtn}
+          />{" "}
+          <span> SCHEDULE A CALL </span>{" "}
+        </MenuRightBtn>{" "}
+      </Menu>
+    </>
+  );
+};
 
-         onClick = {
-            onApproachClickHandler
-        }
-        onMouseOver = {
-            menuLabelHandler
-        } > APPROACH </span> <span className = "menu_label" > READ OUR STORY </span> </
-        MenuBtn > 
-        <MenuBtn $open = {
-            isMenuOpen
-        }
-        $color = {
-            screens[currentStep].menuBtnColor
-        }
-        $lineBg = {
-            screens[currentStep].bgScheduleBtn
-        }
-        $show = {
-            isLogoBtnsShow.first
-        } 
-       >
-        <span className = "menu_item"
-        onMouseOver = {
-            menuLabelHandler
-        } > WORK </span> <span className = "menu_label" > DISCOVER OUR SERVICES </span> </MenuBtn> 
-        <MenuLogoBtn className = "logo"
-        $open = {
-            isMenuOpen
-        } >
-        <LogoSvg className = "menuLogoSvg"
-        ref = {
-            logoSvg
-        }
-        $color = {
-            screens[currentStep].textColor
-        }
-        $show = {
-            isLogoBtnsShow.logo
-        }
-        /> </MenuLogoBtn> <MenuBtn $open = {
-            isMenuOpen
-        }
-        $color = {
-            screens[currentStep].menuBtnColor
-        }
-        $lineBg = {
-            screens[currentStep].bgScheduleBtn
-        }
-        $show = {
-            isLogoBtnsShow.first
-        } >
-        <span className = "menu_item"
-        onMouseOver = {
-            menuLabelHandler
-        } > CAREERS </span> <span className = "menu_label" > JOIN OUR TEAM </span> 
-        </MenuBtn> 
-        <MenuRightBtn ref = {
-            menuRightBtn
-        }
-        $open = {
-            isMenuOpen
-        }
-        $bg = {
-            screens[currentStep].bgScheduleBtn
-        }
-        $color = {
-            screens[currentStep].menuBtnColor
-        }
-        // onMouseOver={rightMenuBtnHoverIn}
-        // onMouseLeave={rightMenuBtnHoverOut}
-        // onMouseDown={onMouseDownScheduleHandler}
-        // onMouseUp={onMouseUpScheduleHandler}
-        onClick = {
-            onScheduleClickHandler
-        }
-        $show = {
-            isLogoBtnsShow.second
-        } >
-        <RightBtnBorder ref = {
-            rightBorderBtn
-        }
-        $color = {
-            screens[currentStep].bgScheduleBtn
-        }
-        /> <span> SCHEDULE A CALL </span> </MenuRightBtn> </Menu> 
-        </>
-    )
-}
-
-const IntroText = styled.div `
+const IntroText = styled.div`
   opacity: 0;
   position: absolute;
-  color: ${({$color}) => $color};
+  color: ${({ $color }) => $color};
   top: 35vh;
   font-size: 28px;
-  line-height:45px;
+  line-height: 45px;
   text-align: center;
   letter-spacing: 0.1em;
   z-index: 20;
-  
+
   @media (max-width: ${BREAKPOINTS.tablet}px) {
     top: 38vh;
   }
@@ -414,26 +390,26 @@ const IntroText = styled.div `
   @media (max-width: ${BREAKPOINTS.mob}px) {
     top: 36vh;
   }
-`
+`;
 
-const MenuBurger = styled.div `
+const MenuBurger = styled.div`
   position: absolute;
   display: none;
   width: 0;
   height: 0;
 
-  @media (max-width: ${BREAKPOINTS.tablet}px)  {
+  @media (max-width: ${BREAKPOINTS.tablet}px) {
     position: absolute;
     right: 20px;
     top: 19px;
-    content: '';
+    content: "";
     width: 30px;
     height: 30px;
-    display: ${({$show}) => $show ? 'grid' : 'none'};
+    display: ${({ $show }) => ($show ? "grid" : "none")};
     cursor: pointer;
 
     > span {
-      background: ${({$color}) => $color};
+      background: ${({ $color }) => $color};
       width: 26px;
       height: 2px;
       border-radius: 8px;
@@ -445,9 +421,9 @@ const MenuBurger = styled.div `
       }
     }
   }
-`
+`;
 
-const Menu = styled.div `
+const Menu = styled.div`
   position: fixed;
   top: 0;
   left: 55vmax;
@@ -457,7 +433,7 @@ const Menu = styled.div `
   grid-template-rows: 75px;
   align-items: center;
   z-index: 10;
-  backdrop-filter: blur(${({$blur}) => $blur}px);
+  backdrop-filter: blur(${({ $blur }) => $blur}px);
 
   @media (max-width: 1650px) {
     left: 55.5vmax;
@@ -472,35 +448,41 @@ const Menu = styled.div `
   @media (max-width: ${BREAKPOINTS.tablet}px) {
     grid-template-columns: 1fr;
     grid-template-rows: 73px 0 0 0 0;
-    //grid-template-rows: ${({$open}) => $open ? `
-93 px 64 px 64 px 64 px 94 px ` : `
+    //grid-template-rows: ${({ $open }) =>
+      $open
+        ? `
+93 px 64 px 64 px 64 px 94 px `
+        : `
 73 px 0 0 0 0 `};
     width: 100%;
     top: 0;
     left: 0;
     transform: none;
-    backdrop-filter: ${({$open}) => $open ? `
+    backdrop-filter: ${({ $open }) =>
+      $open
+        ? `
 blur(10 px) opacity(0.8)
-` : `
+`
+        : `
 `};
     transition: 0.3s ease;
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       left: 0;
       top: 0;
       width: 100%;
       background: var(--block1-bg2);
       transition: 0.3s ease;
-      height: ${({$open}) => $open ? '100vh' : '0px'};
-      opacity: ${({$open}) => $open ? '0.9' : '0'};
+      height: ${({ $open }) => ($open ? "100vh" : "0px")};
+      opacity: ${({ $open }) => ($open ? "0.9" : "0")};
       z-index: -1;
     }
   }
-`
+`;
 
-const MenuLogoBtn = styled.a `
+const MenuLogoBtn = styled.a`
   width: 175px;
   height: 34px;
   justify-self: center;
@@ -510,19 +492,18 @@ const MenuLogoBtn = styled.a `
     width: 124px;
     height: 24px;
     margin-top: 20px;
-    margin-left: ${({$open}) => $open ? '20px' : '0'};
+    margin-left: ${({ $open }) => ($open ? "20px" : "0")};
     align-self: start;
     transition: 0.3s ease;
   }
-`
-const LogoSvg = styled(Logo)
-`
+`;
+const LogoSvg = styled(Logo)`
   stroke-width: 0.9px;
-  fill: ${({$color}) => $color};
-  opacity: ${({$show}) => $show ? 1 : 0};
-`
-const MenuBtn = styled.a `
-  color: ${({$color}) => $color};
+  fill: ${({ $color }) => $color};
+  opacity: ${({ $show }) => ($show ? 1 : 0)};
+`;
+const MenuBtn = styled.a`
+  color: ${({ $color }) => $color};
   font-size: 15px;
   letter-spacing: 3px;
   text-decoration: none;
@@ -531,21 +512,20 @@ const MenuBtn = styled.a `
   display: block;
   outline: none;
   cursor: pointer;
-  opacity: ${({$show}) => $show ? 1 : 0}!important;
+  opacity: ${({ $show }) => ($show ? 1 : 0)}!important;
   transition: 0.3s ease;
 
   .menu_item {
     z-index: 1;
-
     &::before {
       position: absolute;
-      content: '';
+      content: "";
       display: block;
       top: 12px;
       left: -6%;
       width: 110%;
       height: 10px;
-      background: ${({$lineBg}) => $lineBg};
+      background: ${({ $lineBg }) => $lineBg};
       opacity: 0;
       transition: 0.4s ease-in;
       z-index: -1;
@@ -571,7 +551,7 @@ const MenuBtn = styled.a `
     display: block;
     top: 30px;
     left: 0;
-    color: ${({$color}) => $color};
+    color: ${({ $color }) => $color};
     width: 200px;
     font-size: 15px;
     letter-spacing: 0;
@@ -587,7 +567,7 @@ const MenuBtn = styled.a `
     }
   }
 
-  @media (max-width:${BREAKPOINTS.tablet}px) {
+  @media (max-width: ${BREAKPOINTS.tablet}px) {
     transition: 0.3s ease;
     text-align: left;
     width: 100%;
@@ -596,7 +576,7 @@ const MenuBtn = styled.a `
 
     &:nth-of-type(4) {
       &::after {
-        content: '';
+        content: "";
         position: absolute;
         display: block;
         left: 5%;
@@ -633,14 +613,13 @@ const MenuBtn = styled.a `
       display: none;
     }
   }
-`
-const rightBtnBorderAnimation = keyframes `
+`;
+const rightBtnBorderAnimation = keyframes`
 	0%   { stroke-dashoffset: 520;}
 	100% {stroke-dashoffset: 0;}
-`
-const RightBtnBorder = styled(RightBtnSvg)
-`
-  content: '';
+`;
+const RightBtnBorder = styled(RightBtnSvg)`
+  content: "";
   display: block;
   position: absolute;
   left: 0;
@@ -648,7 +627,7 @@ const RightBtnBorder = styled(RightBtnSvg)
   width: 100%;
   height: 100%;
   opacity: 1;
-  stroke: ${({$color}) => $color};
+  stroke: ${({ $color }) => $color};
   stroke-dashoffset: 520;
   stroke-dasharray: 520;
   stroke-width: 2px;
@@ -656,45 +635,50 @@ const RightBtnBorder = styled(RightBtnSvg)
   @media (max-width: ${BREAKPOINTS.tablet}px) {
     stroke: transparent;
   }
-`
-const MenuRightBtn = styled(MenuBtn)
-`
-  background: ${({$bg}) => $bg};
+`;
+const MenuRightBtn = styled(MenuBtn)`
+  background: ${({ $bg }) => $bg};
   padding: 13px 30px;
   border-radius: 67px;
   white-space: nowrap;
   border: 1px solid transparent;
   position: relative;
   transition: 0.2s ease-in-out;
-  
+
   @media (min-width: ${BREAKPOINTS.tablet + 1}px) {
     &:hover {
       background: none;
-      
+
       ${RightBtnBorder} {
         animation: ${rightBtnBorderAnimation} 0.5s ease-in;
         animation-direction: normal;
-        stroke: ${({$bg}) => $bg};
+        stroke: ${({ $bg }) => $bg};
         stroke-dashoffset: 0;
       }
     }
     &:active {
-      background: ${({$bg}) => $bg};
+      background: ${({ $bg }) => $bg};
     }
   }
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {
-    opacity: ${({$open}) => $open ? 1 : 0};
-    height: ${({$open}) => $open ? `
-auto ` : `
+    opacity: ${({ $open }) => ($open ? 1 : 0)};
+    height: ${({ $open }) =>
+      $open
+        ? `
+auto `
+        : `
 0 px `};
-    display: ${({$show, $open}) => $open && $show ? `
-grid ` : `
+    display: ${({ $show, $open }) =>
+      $open && $show
+        ? `
+grid `
+        : `
 none `};
     align-self: stretch;
     align-items: center;
     transition: 0.3s ease;
-    background: none!important;
+    background: none !important;
     color: var(--block1-text-primary);
     font-size: 21px;
     border-radius: 0 0 45px 45px;
@@ -704,4 +688,4 @@ none `};
       padding-left: 21px;
     }
   }
-`
+`;

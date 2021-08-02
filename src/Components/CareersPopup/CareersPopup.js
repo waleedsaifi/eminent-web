@@ -1,15 +1,17 @@
 import styled from "styled-components";
 import React, {useCallback, useEffect, useRef, useState} from "react";
 import {ReactComponent as CrossSvg} from "../../assets/images/cross.svg";
-import {BREAKPOINTS, screens} from "../../constants/constants";
+import {BREAKPOINTS} from "../../constants/constants";
 import {useSelector} from "react-redux";
 import ScheduleForm from "../SchedulePopup/ScheduleForm";
+
 
 export default ({closeHandler}) => {
   const wrapper = useRef(null);
   const header = useRef(null);
   const [isHeaderSmall, setIsHeaderSmall] = useState(false);
-  const { currentStep } = useSelector(state => state.state);
+  const { currentStep, currentTheme, currentSection } = useSelector(state => state.state);
+
 
   useEffect(() => {
     window.addEventListener('wheel', popupWheelHandler);
@@ -29,27 +31,27 @@ export default ({closeHandler}) => {
   return (
     <Wrapper
       ref={wrapper}
-      $bg={screens[currentStep].schedulePopupBg[0]}
+      $bg={currentTheme.schedulePopupBg[0]}
     >
       <PopupContainer
-        $border={screens[currentStep].schedulePopupTextColor}>
+        $border={currentTheme.schedulePopupTextColor}>
         <Header
           ref={header}
           $isSmall={isHeaderSmall}
-          $color={screens[currentStep].schedulePopupTextColor}
-          $bg={screens[currentStep].schedulePopupBg[0]}
+          $color={currentTheme.schedulePopupTextColor}
+          $bg={currentTheme.schedulePopupBg[0]}
         >
           <h2>This page is coming soon! </h2>
-            <h3 style={{color: screens[currentStep].schedulePopupTextColor}}>Please contact us to get full information</h3>
+            <h3 style={{color: currentTheme.schedulePopupTextColor}}>Please contact us to get full information</h3>
           <CloseCross
             onClick={closeHandlerPopup}
           >
-            <Cross $color={screens[currentStep].schedulePopupTextColor}/>
+            <Cross $color={currentTheme.schedulePopupTextColor}/>
           </CloseCross>
         </Header>
         <ScheduleForm
-          background={screens[currentStep].schedulePopupBg}
-          color={screens[currentStep].schedulePopupTextColor}
+          background={currentTheme.schedulePopupBg}
+          color={currentTheme.schedulePopupTextColor}
           closeHandlerPopup={closeHandlerPopup}
         />
       </PopupContainer>

@@ -42,3 +42,24 @@ export const setMenuData = menuData => {
         menuData
     }
 }
+
+export const setLightThemeData = lightThemeData => {
+    return {
+        type: ACTIONS.SET_LIGHT_THEME_DATA,
+        lightThemeData
+    }
+} 
+
+export const setDarkThemeData = darkThemeData => {
+    return {
+        type: ACTIONS.SET_DARK_THEME_DATA,
+        darkThemeData
+    }
+} 
+
+export const setCurrentSection = currentSection => {
+    return {
+        type: ACTIONS.SET_SECTION,
+        currentSection
+    }
+}
