@@ -30,7 +30,9 @@ import {
   setScheduleData,
   setLightThemeData,
   setDarkThemeData,
+  setHomeSection,
   setCurrentSection,
+  setCurrentSectionTitle,
 } from "../../store/actions/actionCreator";
 import { lightTheme, darkTheme } from "../../constants/constants";
 
@@ -43,11 +45,13 @@ export default () => {
   const [isBgBlur, setBgBlur] = useState(false);
   const [touchStart, setTouchStart] = useState({ x1: null, y1: null });
   const {
+    currentSectionTitle,
     currentSection,
     currentTheme,
     currentStep,
     darkThemeData,
     lightThemeData,
+    homeSection,
   } = useSelector((state) => state.state);
   const blurredBackground = useRef(null);
   const mainContainer = useRef(null);
@@ -93,28 +97,28 @@ export default () => {
       });
 
     //Get Home Section and Steps
-    _instance.client
-      .getEntries({
-        links_to_entry: "1eYjwaTrLeIGNNHo6UWMDO",
-        select: "fields",
-      })
-      //.getEntries({  'content_type': 'homePage', 'fields.section.fields.title[all]': "home"})
-      //'select':'fields', include: 2 })
-      .then((entries) => {
-        // sectionItems = entries.items.reduce((acc2, prev2) => {
-        // acc2 = {
-        //   ...acc2
-        // };
-
-        console.log(entries);
-        const sectionItems = entries.items;
-        if (sectionItems) {
-          dispatch(setCurrentSection(sectionItems));
-        }
-      })
-      .catch(console.error);
-
-    console.log("end get sections");
+  _instance.client
+   .getEntries({
+     links_to_entry: "1eYjwaTrLeIGNNHo6UWMDO",
+     select: "fields",
+     order: "fields.id",
+     content_type: "homePage"
+    })
+    .then((entries) => {
+      console.log(entries);
+      const sectionItems = {
+        steps: entries.items,
+       title: "home",
+       theme: "dark",
+      };
+    console.log(sectionItems);
+      //sectionItems.title = entries
+      if (sectionItems) {
+        dispatch(setCurrentSection(sectionItems));
+        //dispatch(setCurrentSectionTitle("home"));
+      }
+    })
+    .catch(console.error);
 
     //stepsTextData.steps = stepsTextData.fields;
     //dispatch(setStepsTextData(sectionItems));
@@ -148,7 +152,7 @@ export default () => {
       });
       if (!isAllowed) return;
       if (currentSection) {
-        switch (currentSection.title) {
+        switch (currentSectionTitle) {
           case "home": {
             switch (currentStep) {
               case 0:
@@ -221,7 +225,7 @@ export default () => {
 
     window.stoppedAnimation = false;
 
-    if (currentSection.steps[currentStep].fields.blurBackground) {
+    if (currentSection?.steps[currentStep].fields.blurBackground) {
       setBgBlur(true);
     } else {
       setBgBlur(false);
@@ -265,7 +269,7 @@ export default () => {
   };
 
   const getBlur = () => {
-    switch (currentSection.title) {
+    switch (currentSectionTitle) {
       case "home": {
         switch (currentStep) {
           case 5:
@@ -374,7 +378,7 @@ export default () => {
 
   const getOverflow = () => {
     if (currentSection) {
-      switch (currentSection.title) {
+      switch (currentSectionTitle) {
         case "approach": {
           switch (currentStep) {
             case 0:
@@ -437,6 +441,7 @@ export default () => {
   }
 
   return (
+   
     <Container
       id="app"
       ref={mainContainer}
@@ -464,7 +469,9 @@ export default () => {
       )}
       <HotspotsContainer />
     </Container>
+    
   );
+    
 };
 
 /*overflow-y: ${({ $isMenuOpen, $overflow }) =>

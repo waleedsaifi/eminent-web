@@ -1,12 +1,27 @@
 import React, { useEffect, useRef } from "react";
 import Viewer from "webgl/viewer/viewer";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import TweenMax from "gsap";
+import Contentful from "../../helpers/contentful";
+import {
+  setMenuData,
+  setStepsTextData,
+  setScheduleData,
+  setLightThemeData,
+  setDarkThemeData,
+  setHomeSection,
+  setCurrentSection,
+  setCurrentSectionTitle,
+} from "../../store/actions/actionCreator";
+import { lightTheme, darkTheme } from "../../constants/constants";
 
 const App = () => {
   const node = useRef(null);
-  const { currentStep, currentSection } = useSelector((state) => state.state);
+  const { currentStep, currentSection, currentSectionTitle } = useSelector(
+    (state) => state.state
+  );
+
 
   useEffect(() => {
     new Viewer({
@@ -19,10 +34,9 @@ const App = () => {
       id="glContainer"
       ref={node}
       $step={currentStep}
-      $section={currentSection}
+      $section={currentSectionTitle}
     >
-      {//currentStep.match(/^(Slide 1|Slide 2|Slide 3|Slide 4)$/) &&
-      currentStep <= 3 && currentSection === "home" ? (
+      {currentStep <= 3 && currentSectionTitle === "home" ? (
         <GradientWrapper></GradientWrapper>
       ) : null}
     </Container>
@@ -54,6 +68,6 @@ const Container = styled.div`
   transition: all 0.5s;
   filter: blur(
     ${({ $step, $section }) =>
-      $step === "Slide 6" && $section === "home" ? "10px" : "none"}
+      $step === 5 && $section === "home" ? "10px" : "none"}
   );
 `;

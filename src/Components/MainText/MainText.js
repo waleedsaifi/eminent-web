@@ -41,6 +41,7 @@ export default () => {
     stepsTextData,
     currentTheme,
     currentSection,
+    currentSectionTitle,
   } = useSelector((state) => state.state);
   const svgWatch = useRef(null);
   const strategySvg = useRef(null);
@@ -653,7 +654,7 @@ export default () => {
       case 0:
         return (
           <>
-            {currentSection.steps[currentStep].fields.mainText && (
+            {currentSection?.steps[currentStep].fields.mainText && (
               <MainText
                 className="anime"
                 $color={currentTheme.textColor}
@@ -664,7 +665,7 @@ export default () => {
                 $letterSpacing={getLetterSpacing()}
                 $boxMaxWidth={getBoxMaxWidth()}
               >
-                {currentSection.steps[currentStep].fields.mainText}
+                {currentSection?.steps[currentStep].fields.mainText}
               </MainText>
             )}
             <Continue
@@ -1099,7 +1100,7 @@ export default () => {
     }
   };
 
-  switch (currentSection.title) {
+  switch (currentSectionTitle) {
     case "home": {
       return getHomeContent();
     }

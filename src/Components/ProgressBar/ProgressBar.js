@@ -28,9 +28,12 @@ export default () => {
 
   useEffect(() => {
     dispatch(setProgress(currentStep));
+
     currentSection.steps.forEach((i) => (i.active = false));
     currentSection.steps[currentStep].active = true;
+    
   }, [currentStep, _root]);
+
 
   const progressHoverIn = (e) => {
     const box = e.target.classList.contains("progressBtn")

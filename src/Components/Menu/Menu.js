@@ -28,7 +28,7 @@ import {
 
 
 export default ({ showPopup, menuHandler }) => {
-  const { currentStep, menuData, stepsTextData, currentTheme, currentSection } = useSelector((state) => state.state);
+  const { currentStep, menuData, stepsTextData, currentTheme, currentSection,currentSectionTitle } = useSelector((state) => state.state);
   const [isMenuOpen, setMenuOpen] = useState(true);
   const [isLogoBtnsShow, setLogoBtnsShow] = useState({
     logo: false,
@@ -252,11 +252,11 @@ export default ({ showPopup, menuHandler }) => {
     const progressSvgArray = document.querySelectorAll(
       `.styledProgress_${currentStep}`
     );
-    getNextStepFromForm(currentSection.steps, currentStep, progressSvgArray);
+    getNextStepFromForm(currentSection?.steps, currentStep, progressSvgArray);
   };
 
   const getMenuBlur = () => {
-      switch (currentSection.title){
+      switch (currentSectionTitle){
           case "work": 
             switch (currentStep) {
                 case "Slide 1":

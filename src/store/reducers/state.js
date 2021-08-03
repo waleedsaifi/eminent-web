@@ -2,310 +2,356 @@ import { isDev } from "../../helpers/dev.helpers";
 import { ACTIONS } from "../constants/constants";
 import { darkTheme } from "../../constants/constants";
 
-const currentStep = isDev ? 1 : 0;
 
+const currentStep = isDev ? 1 : 0;
 
 const initState = {
   loader: true,
   currentStep: 0,
   currentTheme: darkTheme,
-  currentSection: {
-    title: "home",
-    theme: "dark",
-    steps: [
-      {
-        fields: {
-          id: 0,
-          active: "1",
-          title: "Slide 1",
-          mainText: "We are a product and innovation company",
-          isFooterShow: true,
-          footerTextDesktop: {
-            data: {},
-            content: [
-              {
-                data: {},
-                content: [
-                  {
-                    data: {},
-                    marks: [],
-                    value: "Scroll and don't look back to the past",
-                    nodeType: "text",
-                  },
-                ],
-                nodeType: "paragraph",
-              },
-            ],
-            nodeType: "document",
-          },
-          footerTextMobile: "Scroll right and don't look back into the past",
-          locked: false,
-          blurBackground: false,
-          section: {
-            sys: {
-              type: "Link",
-              linkType: "Entry",
-              id: "1eYjwaTrLeIGNNHo6UWMDO",
+  currentSection: {"steps": [
+        {
+            "fields": {
+                "id": 4,
+                "active": "0",
+                "title": "Slide 5",
+                "mainText": "Pioneering creative and powerful experiences with energy, passion, and enthusiasm",
+                "subText": "No matter how complex or high-pressure the environment",
+                "isFooterShow": true,
+                "locked": false,
+                "blurBackground": true,
+                "section": {
+                    "metadata": {
+                        "tags": []
+                    },
+                    "sys": {
+                        "space": {
+                            "sys": {
+                                "type": "Link",
+                                "linkType": "Space",
+                                "id": "1cn68t2wnpi8"
+                            }
+                        },
+                        "id": "1eYjwaTrLeIGNNHo6UWMDO",
+                        "type": "Entry",
+                        "createdAt": "2021-07-30T14:42:25.006Z",
+                        "updatedAt": "2021-07-30T14:51:52.103Z",
+                        "environment": {
+                            "sys": {
+                                "id": "master",
+                                "type": "Link",
+                                "linkType": "Environment"
+                            }
+                        },
+                        "revision": 2,
+                        "contentType": {
+                            "sys": {
+                                "type": "Link",
+                                "linkType": "ContentType",
+                                "id": "sections"
+                            }
+                        },
+                        "locale": "en-US"
+                    },
+                    "fields": {
+                        "title": "Home",
+                        "theme": "Dark"
+                    }
+                }
             },
-          },
+            "sys": {
+                "id": "5ridaRwAafgUDnjZ0sHq5T",
+                "type": "Entry"
+            }
         },
-      },
-      {
-        metadata: {
-          tags: [],
+        {
+            "fields": {
+                "id": 0,
+                "active": "1",
+                "title": "Slide 1",
+                "mainText": "We are a product and innovation company",
+                "isFooterShow": true,
+                "footerTextDesktop": {
+                    "data": {},
+                    "content": [
+                        {
+                            "data": {},
+                            "content": [
+                                {
+                                    "data": {},
+                                    "marks": [],
+                                    "value": "Scroll and don't look back to the past",
+                                    "nodeType": "text"
+                                }
+                            ],
+                            "nodeType": "paragraph"
+                        }
+                    ],
+                    "nodeType": "document"
+                },
+                "footerTextMobile": "Scroll right and don't look back into the past",
+                "locked": false,
+                "blurBackground": false,
+                "section": {
+                    "metadata": {
+                        "tags": []
+                    },
+                    "sys": {
+                        "space": {
+                            "sys": {
+                                "type": "Link",
+                                "linkType": "Space",
+                                "id": "1cn68t2wnpi8"
+                            }
+                        },
+                        "id": "1eYjwaTrLeIGNNHo6UWMDO",
+                        "type": "Entry",
+                        "createdAt": "2021-07-30T14:42:25.006Z",
+                        "updatedAt": "2021-07-30T14:51:52.103Z",
+                        "environment": {
+                            "sys": {
+                                "id": "master",
+                                "type": "Link",
+                                "linkType": "Environment"
+                            }
+                        },
+                        "revision": 2,
+                        "contentType": {
+                            "sys": {
+                                "type": "Link",
+                                "linkType": "ContentType",
+                                "id": "sections"
+                            }
+                        },
+                        "locale": "en-US"
+                    },
+                    "fields": {
+                        "title": "Home",
+                        "theme": "Dark"
+                    }
+                }
+            },
+            "sys": {
+                "id": "UjKR6VpJg5baltMzekveI",
+                "type": "Entry"
+            }
         },
-        sys: {
-          space: {
-            sys: {
-              type: "Link",
-              linkType: "Space",
-              id: "1cn68t2wnpi8",
+        {
+            "fields": {
+                "id": 1,
+                "active": "0",
+                "title": "Slide 2",
+                "mainText": "We drive government innovation and societal change ",
+                "isFooterShow": true,
+                "locked": true,
+                "blurBackground": false,
+                "section": {
+                    "metadata": {
+                        "tags": []
+                    },
+                    "sys": {
+                        "space": {
+                            "sys": {
+                                "type": "Link",
+                                "linkType": "Space",
+                                "id": "1cn68t2wnpi8"
+                            }
+                        },
+                        "id": "1eYjwaTrLeIGNNHo6UWMDO",
+                        "type": "Entry",
+                        "createdAt": "2021-07-30T14:42:25.006Z",
+                        "updatedAt": "2021-07-30T14:51:52.103Z",
+                        "environment": {
+                            "sys": {
+                                "id": "master",
+                                "type": "Link",
+                                "linkType": "Environment"
+                            }
+                        },
+                        "revision": 2,
+                        "contentType": {
+                            "sys": {
+                                "type": "Link",
+                                "linkType": "ContentType",
+                                "id": "sections"
+                            }
+                        },
+                        "locale": "en-US"
+                    },
+                    "fields": {
+                        "title": "Home",
+                        "theme": "Dark"
+                    }
+                }
             },
-          },
-          id: "jSrucrywU8hKFYwWu012q",
-          type: "Entry",
-          createdAt: "2021-07-26T23:13:02.025Z",
-          updatedAt: "2021-07-30T16:54:39.951Z",
-          environment: {
-            sys: {
-              id: "master",
-              type: "Link",
-              linkType: "Environment",
-            },
-          },
-          revision: 10,
-          contentType: {
-            sys: {
-              type: "Link",
-              linkType: "ContentType",
-              id: "homePage",
-            },
-          },
-          locale: "en-US",
+            "sys": {
+                "id": "jSrucrywU8hKFYwWu012q",
+                "type": "Entry"
+            }
         },
-        fields: {
-          id: 1,
-          active: "0",
-          title: "Slide 2",
-          mainText: "We drive government innovation and societal change ",
-          isFooterShow: true,
-          locked: true,
-          blurBackground: false,
-          section: {
-            sys: {
-              type: "Link",
-              linkType: "Entry",
-              id: "1eYjwaTrLeIGNNHo6UWMDO",
+        {
+            "fields": {
+                "id": 3,
+                "active": "0",
+                "title": "Slide 4",
+                "mainText": "We use human-centered strategy and design",
+                "subText": "To deliver compliant yet disruptive innovation",
+                "isFooterShow": true,
+                "locked": false,
+                "blurBackground": false,
+                "section": {
+                    "metadata": {
+                        "tags": []
+                    },
+                    "sys": {
+                        "space": {
+                            "sys": {
+                                "type": "Link",
+                                "linkType": "Space",
+                                "id": "1cn68t2wnpi8"
+                            }
+                        },
+                        "id": "1eYjwaTrLeIGNNHo6UWMDO",
+                        "type": "Entry",
+                        "createdAt": "2021-07-30T14:42:25.006Z",
+                        "updatedAt": "2021-07-30T14:51:52.103Z",
+                        "environment": {
+                            "sys": {
+                                "id": "master",
+                                "type": "Link",
+                                "linkType": "Environment"
+                            }
+                        },
+                        "revision": 2,
+                        "contentType": {
+                            "sys": {
+                                "type": "Link",
+                                "linkType": "ContentType",
+                                "id": "sections"
+                            }
+                        },
+                        "locale": "en-US"
+                    },
+                    "fields": {
+                        "title": "Home",
+                        "theme": "Dark"
+                    }
+                }
             },
-          },
+            "sys": {
+                "id": "73rcFp2TBUa3WwC5dRuPJL",
+                "type": "Entry"
+            }
         },
-      },
-      {
-        metadata: {
-          tags: [],
+        {
+            "fields": {
+                "id": 2,
+                "active": "0",
+                "title": "Slide 3",
+                "mainText": "Connecting the dots in ways others miss",
+                "isFooterShow": true,
+                "locked": false,
+                "blurBackground": false,
+                "section": {
+                    "metadata": {
+                        "tags": []
+                    },
+                    "sys": {
+                        "space": {
+                            "sys": {
+                                "type": "Link",
+                                "linkType": "Space",
+                                "id": "1cn68t2wnpi8"
+                            }
+                        },
+                        "id": "1eYjwaTrLeIGNNHo6UWMDO",
+                        "type": "Entry",
+                        "createdAt": "2021-07-30T14:42:25.006Z",
+                        "updatedAt": "2021-07-30T14:51:52.103Z",
+                        "environment": {
+                            "sys": {
+                                "id": "master",
+                                "type": "Link",
+                                "linkType": "Environment"
+                            }
+                        },
+                        "revision": 2,
+                        "contentType": {
+                            "sys": {
+                                "type": "Link",
+                                "linkType": "ContentType",
+                                "id": "sections"
+                            }
+                        },
+                        "locale": "en-US"
+                    },
+                    "fields": {
+                        "title": "Home",
+                        "theme": "Dark"
+                    }
+                }
+            },
+            "sys": {
+                "id": "7n867WyVrCvNaNyHTGwnPo",
+                "type": "Entry"
+            }
         },
-        sys: {
-          space: {
-            sys: {
-              type: "Link",
-              linkType: "Space",
-              id: "1cn68t2wnpi8",
+        {
+            "fields": {
+                "id": 5,
+                "active": "0",
+                "title": "Slide 6",
+                "mainText": "Let's enhance the way you deliver services",
+                "isFooterShow": true,
+                "locked": false,
+                "blurBackground": true,
+                "section": {
+                    "metadata": {
+                        "tags": []
+                    },
+                    "sys": {
+                        "space": {
+                            "sys": {
+                                "type": "Link",
+                                "linkType": "Space",
+                                "id": "1cn68t2wnpi8"
+                            }
+                        },
+                        "id": "1eYjwaTrLeIGNNHo6UWMDO",
+                        "type": "Entry",
+                        "createdAt": "2021-07-30T14:42:25.006Z",
+                        "updatedAt": "2021-07-30T14:51:52.103Z",
+                        "environment": {
+                            "sys": {
+                                "id": "master",
+                                "type": "Link",
+                                "linkType": "Environment"
+                            }
+                        },
+                        "revision": 2,
+                        "contentType": {
+                            "sys": {
+                                "type": "Link",
+                                "linkType": "ContentType",
+                                "id": "sections"
+                            }
+                        },
+                        "locale": "en-US"
+                    },
+                    "fields": {
+                        "title": "Home",
+                        "theme": "Dark"
+                    }
+                }
             },
-          },
-          id: "73rcFp2TBUa3WwC5dRuPJL",
-          type: "Entry",
-          createdAt: "2021-07-26T23:14:29.489Z",
-          updatedAt: "2021-07-30T16:54:28.396Z",
-          environment: {
-            sys: {
-              id: "master",
-              type: "Link",
-              linkType: "Environment",
-            },
-          },
-          revision: 12,
-          contentType: {
-            sys: {
-              type: "Link",
-              linkType: "ContentType",
-              id: "homePage",
-            },
-          },
-          locale: "en-US",
-        },
-        fields: {
-          id: 3,
-          active: "0",
-          title: "Slide 4",
-          mainText: "We use human-centered strategy and design",
-          subText: "To deliver compliant yet disruptive innovation",
-          isFooterShow: true,
-          locked: false,
-          blurBackground: false,
-          section: {
-            sys: {
-              type: "Link",
-              linkType: "Entry",
-              id: "1eYjwaTrLeIGNNHo6UWMDO",
-            },
-          },
-        },
-      },
-      {
-        metadata: {
-          tags: [],
-        },
-        sys: {
-          space: {
-            sys: {
-              type: "Link",
-              linkType: "Space",
-              id: "1cn68t2wnpi8",
-            },
-          },
-          id: "7n867WyVrCvNaNyHTGwnPo",
-          type: "Entry",
-          createdAt: "2021-07-26T23:13:46.672Z",
-          updatedAt: "2021-07-30T16:54:14.649Z",
-          environment: {
-            sys: {
-              id: "master",
-              type: "Link",
-              linkType: "Environment",
-            },
-          },
-          revision: 9,
-          contentType: {
-            sys: {
-              type: "Link",
-              linkType: "ContentType",
-              id: "homePage",
-            },
-          },
-          locale: "en-US",
-        },
-        fields: {
-          id: 2,
-          active: "0",
-          title: "Slide 3",
-          mainText: "Connecting the dots in ways others miss",
-          isFooterShow: true,
-          locked: false,
-          blurBackground: false,
-          section: {
-            sys: {
-              type: "Link",
-              linkType: "Entry",
-              id: "1eYjwaTrLeIGNNHo6UWMDO",
-            },
-          },
-        },
-      },
-      {
-        metadata: {
-          tags: [],
-        },
-        sys: {
-          space: {
-            sys: {
-              type: "Link",
-              linkType: "Space",
-              id: "1cn68t2wnpi8",
-            },
-          },
-          id: "5ridaRwAafgUDnjZ0sHq5T",
-          type: "Entry",
-          createdAt: "2021-07-26T23:17:29.460Z",
-          updatedAt: "2021-07-30T16:53:56.054Z",
-          environment: {
-            sys: {
-              id: "master",
-              type: "Link",
-              linkType: "Environment",
-            },
-          },
-          revision: 9,
-          contentType: {
-            sys: {
-              type: "Link",
-              linkType: "ContentType",
-              id: "homePage",
-            },
-          },
-          locale: "en-US",
-        },
-        fields: {
-          id: 4,
-          active: "0",
-          title: "Slide 5",
-          mainText:
-            "Pioneering creative and powerful experiences with energy, passion, and enthusiasm",
-          subText: "No matter how complex or high-pressure the environment",
-          isFooterShow: true,
-          locked: false,
-          blurBackground: false,
-          section: {
-            sys: {
-              type: "Link",
-              linkType: "Entry",
-              id: "1eYjwaTrLeIGNNHo6UWMDO",
-            },
-          },
-        },
-      },
-      {
-        metadata: {
-          tags: [],
-        },
-        sys: {
-          space: {
-            sys: {
-              type: "Link",
-              linkType: "Space",
-              id: "1cn68t2wnpi8",
-            },
-          },
-          id: "7tJDK64wtWPJLuEU3ozpkb",
-          type: "Entry",
-          createdAt: "2021-07-26T23:17:58.240Z",
-          updatedAt: "2021-07-30T16:53:43.338Z",
-          environment: {
-            sys: {
-              id: "master",
-              type: "Link",
-              linkType: "Environment",
-            },
-          },
-          revision: 9,
-          contentType: {
-            sys: {
-              type: "Link",
-              linkType: "ContentType",
-              id: "homePage",
-            },
-          },
-          locale: "en-US",
-        },
-        fields: {
-          id: 5,
-          active: "0",
-          title: "Slide 6",
-          mainText: "Let's enhance the way you deliver services",
-          isFooterShow: true,
-          locked: false,
-          blurBackground: true,
-          section: {
-            sys: {
-              type: "Link",
-              linkType: "Entry",
-              id: "1eYjwaTrLeIGNNHo6UWMDO",
-            },
-          },
-        },
-      },
-      
+            "sys": {
+                "id": "7tJDK64wtWPJLuEU3ozpkb",
+                "type": "Entry"
+            }
+        }
     ],
-  },
+  "title": "home", "theme": "dark"},
+  currentSectionTitle: "home",
   locked: true,
   name: null,
   scheduleFormData: null,
@@ -313,6 +359,9 @@ const initState = {
   menuData: null,
   lightThemeData: null,
   darkThemeData: null,
+  homeSection: null,
+  approachSection: null,
+  workSection: null,
 };
 
 const state = (state = initState, action) => {
@@ -327,8 +376,12 @@ const state = (state = initState, action) => {
     menuData,
     currentTheme,
     currentSection,
+    currentSectionTitle,
     lightThemeData,
     darkThemeData,
+    homeSection,
+    approachSection,
+    workSection,
   } = action;
 
   switch (type) {
@@ -392,6 +445,26 @@ const state = (state = initState, action) => {
       return {
         ...state,
         currentSection,
+      };
+    case ACTIONS.SET_CURRENT_SECTION_TITLE:
+      return {
+        ...state,
+        currentSectionTitle,
+      };
+    case ACTIONS.SET_HOME_SECTION:
+      return {
+        ...state,
+        homeSection,
+      };
+    case ACTIONS.SET_APPROACH_SECTION:
+      return {
+        ...state,
+        approachSection,
+      };
+    case ACTIONS.SET_WORK_SECTION:
+      return {
+        ...state,
+        workSection,
       };
     default:
       return state;

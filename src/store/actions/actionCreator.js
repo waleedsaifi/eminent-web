@@ -59,7 +59,34 @@ export const setDarkThemeData = darkThemeData => {
 
 export const setCurrentSection = currentSection => {
     return {
-        type: ACTIONS.SET_SECTION,
+        type: ACTIONS.SET_CURRENT_SECTION,
         currentSection
+    }
+}
+export const setCurrentSectionTitle = currentSectionTitle => {
+    return {
+        type: ACTIONS.SET_CURRENT_SECTION_TITLE,
+        currentSectionTitle
+    }
+}
+
+export const setHomeSection = homeSection => {
+    return {
+        type: ACTIONS.SET_HOME_SECTION,
+        homeSection
+    }
+}
+
+export const setApproachSection = approachSection => {
+    return {
+        type: ACTIONS.SET_APPROACH_SECTION,
+        approachSection
+    }
+}
+
+export const setWorkSection = workSection => {
+    return {
+        type: ACTIONS.SET_WORK_SECTION,
+        workSection
     }
 }

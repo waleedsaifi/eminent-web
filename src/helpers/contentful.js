@@ -5,6 +5,7 @@ const config = {
   accessToken: "V-x4N7tTEt44WpLjhL5nDY4RSCxbafNr7ZBCVQjU70w"
 };
 
+
 export default class Contentful  {
   client = createClient(config);
   static _instance = new Contentful();
