@@ -43,12 +43,21 @@ export const setMenuData = menuData => {
     }
 }
 
+export const setCurrentThemeData = themeData => {
+    return {
+        type: ACTIONS.SET_CURRENT_THEME_DATA,
+        themeData
+    }
+} 
+
 export const setLightThemeData = lightThemeData => {
     return {
         type: ACTIONS.SET_LIGHT_THEME_DATA,
         lightThemeData
     }
 } 
+
+
 
 export const setDarkThemeData = darkThemeData => {
     return {

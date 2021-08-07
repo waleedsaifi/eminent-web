@@ -1,260 +1,239 @@
 import anime from "animejs";
-import {
-    wait
-} from "helpers/dev.helpers";
-import {
-    Noise
-} from "../noise";
-import {
-    Scene
-} from "../scene";
+import { wait } from "helpers/dev.helpers";
+import { Noise } from "../noise";
+import { Scene } from "../scene";
 
 class PlagueScene extends Scene {
-    static _name = 'plague'
-    perlinEnabled = true
+  static _name = "plague";
+  perlinEnabled = true;
+  _type = "Plague";
 
-    setScale(dir, noAnim = false) {
-        const scale = dir === 1 ? this.data.particlesMinSize : this.data.particlesMaxSize
+  setScale(dir, noAnim = false) {
+    const scale =
+      dir === 1 ? this.data.particlesMinSize : this.data.particlesMaxSize;
 
-        if (noAnim) {
-            this.noise.particlesSize = scale
-        }
-
-        anime({
-            targets: this.noise,
-            particlesSize: scale,
-            duration: 500,
-            easing: 'linear'
-        })
+    if (noAnim) {
+      this.noise.particlesSize = scale;
     }
 
-    setPerlin(value, animate = true) {
+    anime({
+      targets: this.noise,
+      particlesSize: scale,
+      duration: 500,
+      easing: "linear",
+    });
+  }
 
-        if (this.perlinAnim) {
-            this.perlinAnim.pause()
-        }
-
-        if (animate) {
-            this.perlinAnim = anime({
-                targets: this.noise,
-                duration: 3500,
-                easing: 'linear',
-                noiseTransAlpha: value,
-                // timeAlpha: data.timeAlpha,
-                // noiseRangeLow: data.noiseRangeLow,
-                // noiseRangeHigh: data.noiseRangeHigh,
-                complete: () => {
-                    this.perlinAnim = null
-                }
-            })
-        } else {
-            this.noise.noiseTransAlpha = value
-        }
+  setPerlin(value, animate = true) {
+    if (this.perlinAnim) {
+      this.perlinAnim.pause();
     }
 
-    async transition(from, to) {
-        const changeColor = async (key) => {
+    if (animate) {
+      this.perlinAnim = anime({
+        targets: this.noise,
+        duration: 3500,
+        easing: "linear",
+        noiseTransAlpha: value,
+        // timeAlpha: data.timeAlpha,
+        // noiseRangeLow: data.noiseRangeLow,
+        // noiseRangeHigh: data.noiseRangeHigh,
+        complete: () => {
+          this.perlinAnim = null;
+        },
+      });
+    } else {
+      this.noise.noiseTransAlpha = value;
+    }
+  }
 
-            this.objects.forEach(object => {
-                const {
-                    shader
-                } = object.userData
+  async transition(from, to, currentSectionTitle) {
+    const changeColor = async (key) => {
+      this.objects.forEach((object) => {
+        const { shader } = object.userData;
 
-                shader.setColors(object.userData[key][0].colors)
-            })
-        }
+        shader.setColors(object.userData[key][0].colors);
+      });
+    };
 
-        const open = async (fast = false) => {
-            this.toggleFloating(true)
-            this.setPerlin(0, false)
+    const open = async (fast = false) => {
+      this.toggleFloating(true);
+      this.setPerlin(0, false);
 
-            this.active = true
-            this.updateCamera()
+      this.active = true;
+      this.updateCamera();
 
-            this.fadeOut(true)
-            this.setScale(-1, true)
-            this.startAnimation(-1, true)
-            this.fadeIn()
+      this.fadeOut(true);
+      this.setScale(-1, true);
+      this.startAnimation(-1, true);
+      this.fadeIn();
 
-            if (!fast) {
-                await wait(this.fade_config.scale_duration)
-            }
+      if (!fast) {
+        await wait(this.fade_config.scale_duration);
+      }
 
-            this.startAnimation(1, fast)
-            this.setScale(1, fast)
-        }
+      this.startAnimation(1, fast);
+      this.setScale(1, fast);
+    };
 
-        const close = () => {
-            this.startAnimation(-1)
+    const close = () => {
+      this.startAnimation(-1);
 
-            this.toggleFloating(false)
+      this.toggleFloating(false);
 
-            this.setScale(-1)
-        }
+      this.setScale(-1);
+    };
 
-        const sphread = async (fast = false) => {
-            this.toggleFloating(false)
+    const sphread = async (fast = false) => {
+      this.toggleFloating(false);
 
-            this.active = true
-            this.setPerlin(0, false)
-            this.startAnimation(-1, fast)
+      this.active = true;
+      this.setPerlin(0, false);
+      this.startAnimation(-1, fast);
 
-            if (!fast) {
-                await wait(fast ? 0 : 500)
-            }
+      if (!fast) {
+        await wait(fast ? 0 : 500);
+      }
 
-            this.setScale(-1, fast)
-        }
+      this.setScale(-1, fast);
+    };
 
-        const turbo = (fast) => {
-            this.active = true
+    const turbo = (fast) => {
+      this.active = true;
 
-            this.setPerlin(1, !fast)
-        }
+      this.setPerlin(1, !fast);
+    };
 
+    const out = () => {
+      if (this.active) {
+        this.fadeOut();
+        this.active = false;
+      }
+    };
 
-        const out = () => {
-            if (this.active) {
-                this.fadeOut()
-                this.active = false
-            }
-        }
-
-        // const steps = [10, 2, 13, 3, 4, 11, 12, 5]
-
-        // const fromPrevStep = steps
-
+    // const steps = [10, 2, 13, 3, 4, 11, 12, 5]
+    switch (currentSectionTitle) {
+      case "approach":
         switch (to) {
+          // eslint-disable-next-line no-fallthrough
+          case 2: {
+            await wait(this.fade_config.scale_duration);
 
-            // eslint-disable-next-line no-fallthrough
-            case 2:
-                {
-                    await wait(this.fade_config.scale_duration)
+            changeColor("main");
+            await open();
 
-                    changeColor('main')
-                    await open()
+            break;
+          }
 
-                    break
-                }
+          case 3: {
+            const friendly = [2, 4, 5];
+            const fromFriendly = friendly.includes(from);
 
+            if (!fromFriendly) {
+              await wait(this.fade_config.scale_duration);
 
+              changeColor("main");
+              open(true);
+            }
 
-            case 3:
-                {
-                    const friendly = [2, 4, 5]
-                    const fromFriendly = friendly.includes(from)
+            await sphread(!fromFriendly);
 
-                    if (!fromFriendly) {
-                        await wait(this.fade_config.scale_duration)
+            break;
+          }
 
-                        changeColor('main')
-                        open(true)
-                    }
+          case 4: {
+            const friendly = [3, 5];
+            const fromFriendly = friendly.includes(from);
 
-                    await sphread(!fromFriendly)
+            if (!fromFriendly) {
+              await wait(this.fade_config.scale_duration);
+              changeColor("main");
+              open(true);
+              await sphread(true);
+              turbo(true);
+            } else {
+              turbo();
+            }
 
-                    break
-                }
+            break;
+          }
 
-            case 4:
-                {
-                    const friendly = [3, 5]
-                    const fromFriendly = friendly.includes(from)
+          case 5: {
+            const friendly = [4];
+            const fromFriendly = friendly.includes(from);
 
-                    if (!fromFriendly) {
-                        await wait(this.fade_config.scale_duration)
-                        changeColor('main')
-                        open(true)
-                        await sphread(true)
-                        turbo(true)
-                    } else {
-                        turbo()
-                    }
+            if (!fromFriendly) {
+              await wait(this.fade_config.scale_duration);
 
-                    break
-                }
+              changeColor("main");
+              open(true);
+              await sphread(true);
+              turbo(true);
+            } else {
+              this.active = true;
+            }
 
-            case 5:
-                {
-                    const friendly = [4]
-                    const fromFriendly = friendly.includes(from)
+            break;
+          }
+        }
+      case "approach":
+        switch (to) {
+          case 0:
+          case 1:
+          case 2: {
+            const friendly = [0, 1, 2];
+            const fromFriendly = friendly.includes(from);
+            changeColor("extra");
 
-                    if (!fromFriendly) {
-                        await wait(this.fade_config.scale_duration)
+            if (!fromFriendly) {
+              await wait(this.fade_config.scale_duration);
 
-                        changeColor('main')
-                        open(true)
-                        await sphread(true)
-                        turbo(true)
-                    } else {
-                        this.active = true
-                    }
+              await open(true);
+            }
 
+            break;
+          }
+        }
+      case "careers":
+        switch (to) {
+          case 13: {
+            const friendly = [10, 11, 12];
+            const fromFriendly = friendly.includes(from);
 
-                    break
-                }
+            if (fromFriendly) {
+              close();
+            } else {
+              changeColor("extra");
+              open(true);
+              close();
+            }
 
+            break;
+          }
 
-            case 11:
-            case 12:
-            case 10:
-                {
-                    const friendly = [10, 11, 12]
-                    const fromFriendly = friendly.includes(from)
-                    changeColor('extra')
-
-                    if (!fromFriendly) {
-                        await wait(this.fade_config.scale_duration)
-
-                        await open(true)
-                    }
-
-                    break
-                }
-
-            case 13:
-                {
-                    const friendly = [10, 11, 12]
-                    const fromFriendly = friendly.includes(from)
-
-                    if (fromFriendly) {
-                        close()
-
-                    } else {
-                        changeColor('extra')
-                        open(true)
-                        close()
-                    }
-
-
-                    break
-                }
-
-            default:
-                {
-                    out()
-                }
+          default: {
+            out();
+          }
         }
     }
+  }
 
-    onLoad() {
-        this.initNoise()
+  onLoad() {
+    this.initNoise();
 
-        this.noise.perlin1 = this.data.perlin_data.rest
-        this.noise.perlin2 = this.data.perlin_data.turbo
-    }
+    this.noise.perlin1 = this.data.perlin_data.rest;
+    this.noise.perlin2 = this.data.perlin_data.turbo;
+  }
 
-    toggleFloating(floating) {
-        this.objects.forEach(object => {
-            object.userData.shader.setRandomFloating(floating)
-        })
-    }
+  toggleFloating(floating) {
+    this.objects.forEach((object) => {
+      object.userData.shader.setRandomFloating(floating);
+    });
+  }
 
-    update(_, time) {
-        this.noise.update(_, time)
-    }
+  update(_, time) {
+    this.noise.update(_, time);
+  }
 }
 
-export {
-    PlagueScene
-}
+export { PlagueScene };

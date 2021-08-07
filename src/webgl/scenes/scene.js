@@ -45,7 +45,7 @@ class Scene {
     enabled = false
     objects = []
     positionWatch = true
-
+    _type = "Scene"
     _active = false
     get active() {
         return this._active
@@ -69,7 +69,7 @@ class Scene {
         this._init()
     }
 
-    transition(from, to) {
+    transition(from, to, currentSectionTitle) {
         console.log(from, to)
     }
 

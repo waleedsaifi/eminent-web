@@ -11,10 +11,17 @@ import { createScene } from "../../webgl/scenes/createScene";
 import { TexturesLoader } from "./textures.loader";
 import { isMobile } from "react-device-detect";
 import HdrFile from "../models/env.hdr";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setCurrentSectionTitle,
+} from "../../store/actions/actionCreator";
 
 class WebglEngine {
+    
+
   constructor(props) {
     this.container = props.container;
+    this.currentSectionTitle = props.currentSectionTitle;
     this.init();
     this.currentStep = 0;
     this.clips = [];
@@ -32,7 +39,6 @@ class WebglEngine {
     this.mouseMoveListen();
     this.initRaycaster();
     this.initScenes();
-
     this.updateOrientation();
     this.initOrientation();
   }
@@ -169,7 +175,7 @@ class WebglEngine {
     ]);
 
     this.ready = true;
-
+    store.dispatch(setCurrentSectionTitle(this.currentSectionTitle));
     store.dispatch(toggleLoader(false));
 
     this.start();
@@ -180,20 +186,23 @@ class WebglEngine {
   };
 
   start() {
-    this.setCurrentStep(0);
+    console.log("Current Section:" + this.currentSectionTitle);
+    this.setCurrentStep(0, this.currentSectionTitle);
   }
 
-  setCurrentStep(step) {
+  setCurrentStep(step, currentSectionTitle) {
     const prevStep = this.currentStep;
     this.currentStep = step;
-
     this.scenes.forEach((scene) => {
-      scene.transition(prevStep, step);
+      if(scene._type === "Plague")
+      scene.transition(prevStep, step, "home");
+      else 
+      scene.transition(prevStep, step, "approach");
     });
   }
 
   setCurrentSection(section) {
-    const prevSection = this.currentSection;
+    const prevSection = this.section;
   }
 
   initAnimationProcessor = () => {
@@ -246,13 +255,12 @@ class WebglEngine {
 
 const DEV_TEST_FUNCTIONS = {
   "GO PREV": () => {
-    const state = store.getState().state.currentStep;
-    store.dispatch(setProgress(state - 1));
+    const state = store.getState().state;
+    store.dispatch(setProgress(state.currentStep - 1));
   },
   "GO NEXT": () => {
-    const state = store.getState().state.currentStep;
-
-    store.dispatch(setProgress(state + 1));
+    const state = store.getState().state;
+    store.dispatch(setProgress(state.currentStep + 1));
   },
 
   "HIDE INTERFACE": () => {

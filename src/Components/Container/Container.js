@@ -7,7 +7,6 @@ import Footer from "./../Footer/Footer";
 import HotspotsContainer from "../Hotspots/HotspotsContainer";
 import SchedulePopup from "../SchedulePopup/SchedulePopup";
 import CareersPopup from "../CareersPopup/CareersPopup";
-import ApproachPopup from "../ApproachPopup/ApproachPopup";
 import { isMobileOnly } from "react-device-detect";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -33,10 +32,11 @@ import {
   setHomeSection,
   setCurrentSection,
   setCurrentSectionTitle,
+  setCurrentThemeData,
 } from "../../store/actions/actionCreator";
 import { lightTheme, darkTheme } from "../../constants/constants";
 
-export default () => {
+export default (currentData) => {
   const [isLandscape, setLandscape] = useState(
     window.matchMedia("(orientation: landscape)").matches
   );
@@ -45,14 +45,14 @@ export default () => {
   const [isBgBlur, setBgBlur] = useState(false);
   const [touchStart, setTouchStart] = useState({ x1: null, y1: null });
   const {
-    currentSectionTitle,
     currentSection,
-    currentTheme,
     currentStep,
     darkThemeData,
     lightThemeData,
     homeSection,
   } = useSelector((state) => state.state);
+  const currentSectionTitle = currentData.currentSectionTitle;
+  const currentTheme = currentData.currentTheme;
   const blurredBackground = useRef(null);
   const mainContainer = useRef(null);
   const dispatch = useDispatch();
@@ -96,33 +96,62 @@ export default () => {
         }
       });
 
-    //Get Home Section and Steps
-  _instance.client
-   .getEntries({
-     links_to_entry: "1eYjwaTrLeIGNNHo6UWMDO",
-     select: "fields",
-     order: "fields.id",
-     content_type: "homePage"
-    })
-    .then((entries) => {
-      console.log(entries);
-      const sectionItems = {
-        steps: entries.items,
-       title: "home",
-       theme: "dark",
-      };
-    console.log(sectionItems);
-      //sectionItems.title = entries
-      if (sectionItems) {
-        dispatch(setCurrentSection(sectionItems));
-        //dispatch(setCurrentSectionTitle("home"));
+    switch (currentSectionTitle) {
+      case "home": {
+        //Get Home Section and Steps
+        _instance.client
+          .getEntries({
+            links_to_entry: "1eYjwaTrLeIGNNHo6UWMDO",
+            select: "fields",
+            order: "fields.id",
+            content_type: "homePage",
+          })
+          .then((entries) => {
+            //console.log(entries);
+            const sectionItems = {
+              fields: entries.items,
+              title: "home",
+              theme: "dark",
+            };
+            //console.log(sectionItems);
+            //sectionItems.title = entries
+            if (sectionItems) {
+              dispatch(setCurrentSection(sectionItems));
+              dispatch(setCurrentSectionTitle(currentSectionTitle));
+            }
+          })
+          .catch(console.error);
       }
-    })
-    .catch(console.error);
-
-    //stepsTextData.steps = stepsTextData.fields;
-    //dispatch(setStepsTextData(sectionItems));
-
+      case "approach": {
+        //Get Approach Section and Steps
+        _instance.client
+          .getEntries({
+            links_to_entry: "64tnedEEonSg9Qt1CPaBql",
+            select: "fields",
+            order: "fields.id",
+            content_type: "homePage",
+          })
+          .then((entries) => {
+            // console.log(entries);
+            const sectionItems = {
+              fields: entries.items,
+              title: "home",
+              theme: "dark",
+            };
+            console.log("approach");
+            console.log(sectionItems);
+            //sectionItems.title = entries
+            if (currentSectionTitle == "approach" && sectionItems) {
+              dispatch(setCurrentSection(sectionItems));
+              dispatch(setCurrentSectionTitle(currentSectionTitle));
+              dispatch(setCurrentThemeData(lightTheme));
+            }
+          })
+          .catch(console.error);
+      }
+      default:
+        return;
+    }
     //Set themes
     dispatch(setDarkThemeData(darkTheme));
     dispatch(setLightThemeData(lightTheme));
@@ -225,7 +254,7 @@ export default () => {
 
     window.stoppedAnimation = false;
 
-    if (currentSection?.steps[currentStep].fields.blurBackground) {
+    if (currentSection?.fields[currentStep].fields.blurBackground) {
       setBgBlur(true);
     } else {
       setBgBlur(false);
@@ -298,24 +327,28 @@ export default () => {
   const getNextStep = (nextStep) => {
     if (isPopupOpen) return;
     if (
-      (currentSection.steps[currentStep].locked && nextStep > currentStep) ||
+      (currentSection.fields[currentStep].locked && nextStep > currentStep) ||
       (window.animation && !window.animation.completed)
     ) {
       return;
     }
-    if (nextStep === currentSection.steps.length && nextStep > currentStep)
+    if (nextStep === currentSection.fields.length && nextStep > currentStep)
       return;
     if (nextStep < currentStep && currentStep === 0) return;
 
-    if (currentStep === 12 && nextStep < currentStep) {
+    if (
+      currentSectionTitle === "work" &&
+      currentStep === 1 &&
+      nextStep < currentStep
+    ) {
       const progressSvgArray = document.querySelectorAll(
         `.styledProgress_${currentStep}`
       );
-      getNextStepFromForm(nextStep, currentStep, progressSvgArray);
+      getNextStepFromForm(nextStep, progressSvgArray);
     }
 
     window.animation.way = "back";
-    currentSection.steps[currentStep].isFooterShow &&
+    currentSection.fields[currentStep].isFooterShow &&
       getFadeOutFormTen(".footer", 0, () => null);
     const progressSvgArray = document.querySelectorAll(
       `.styledProgress_${currentStep}`
@@ -377,31 +410,29 @@ export default () => {
   };
 
   const getOverflow = () => {
-    if (currentSection) {
-      switch (currentSectionTitle) {
-        case "approach": {
-          switch (currentStep) {
-            case 0:
-            case 1:
-            case 2:
-            case 3:
-              return "auto";
-            default:
-              return "hidden";
-          }
+    switch (currentSectionTitle) {
+      case "approach": {
+        switch (currentStep) {
+          case 0:
+          case 1:
+          case 2:
+          case 3:
+            return "auto";
+          default:
+            return "hidden";
         }
-        case "work": {
-          switch (currentStep) {
-            case 0:
-            case 1:
-              return "auto";
-            default:
-              return "hidden";
-          }
-        }
-        default:
-          return "hidden";
       }
+      case "work": {
+        switch (currentStep) {
+          case 0:
+          case 1:
+            return "auto";
+          default:
+            return "hidden";
+        }
+      }
+      default:
+        return "hidden";
     }
   };
 
@@ -411,8 +442,8 @@ export default () => {
         return <SchedulePopup closeHandler={closeSchedulePopup} />;
       case "careers":
         return <CareersPopup closeHandler={closeSchedulePopup} />;
-      case "approach":
-        return <ApproachPopup closeHandler={closeApproachPopup} />;
+      //  case "approach":
+      // return <ApproachPopup closeHandler={closeApproachPopup} />;
       default:
         break;
     }
@@ -441,7 +472,6 @@ export default () => {
   }
 
   return (
-   
     <Container
       id="app"
       ref={mainContainer}
@@ -456,10 +486,38 @@ export default () => {
       $overflow={getOverflow()}
     >
       {activePopup && popupManager()}
-      <Menu showPopup={setActivePopup} menuHandler={menuHandler} />
-      <ProgressBar />
-      <MainText />
-      <Footer />
+      <Menu
+        showPopup={setActivePopup}
+        menuHandler={menuHandler}
+        currentStep={currentStep}
+        currentSectionTitle={currentSectionTitle}
+        currentSection={currentSection}
+        currentTheme={currentTheme}
+      />
+      {currentSection && (
+        <ProgressBar
+          currentSectionTitle={currentSectionTitle}
+          currentStep={currentStep}
+          currentSection={currentSection}
+          currentTheme={currentTheme}
+        />
+      )}
+      {currentSection && (
+        <MainText
+          currentSectionTitle={currentSectionTitle}
+          currentStep={currentStep}
+          currentSection={currentSection}
+          currentTheme={currentTheme}
+        />
+      )}
+      {currentSection && (
+        <Footer
+          currentSectionTitle={currentSectionTitle}
+          currentStep={currentStep}
+          currentSection={currentSection}
+          currentTheme={currentTheme}
+        />
+      )}
       {isBgBlur && (
         <BlurredBackground
           ref={blurredBackground}
@@ -469,9 +527,7 @@ export default () => {
       )}
       <HotspotsContainer />
     </Container>
-    
   );
-    
 };
 
 /*overflow-y: ${({ $isMenuOpen, $overflow }) =>

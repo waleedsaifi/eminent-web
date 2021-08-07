@@ -7,24 +7,36 @@ import {
   getFadeInFormTen,
 } from "../../helpers/animations";
 
-export default () => {
-   const { currentStep, currentTheme, currentSection } = useSelector(state => state.state);
+export default ({ showPopup, menuHandler, currentSectionTitle, currentStep, currentSection, currentTheme }) => {
+
 
   useEffect(() => {
     getContent(currentStep) &&
-      getFadeInFormTen(".footer", getAnimationTimeout(currentStep), () =>
+      getFadeInFormTen(".footer", getAnimationTimeout(currentStep, currentSectionTitle), () =>
         setTimeout(() => (window.stoppedAnimation = true), 1000)
       );
   }, [currentStep]);
 
   const getBottom = () => {
-    switch (currentStep) {
-      case 13:
-        return {
-          desk: "14%",
-          tablet: "160px",
-          mob: "133px",
-        };
+    switch (currentSectionTitle) {
+      case "work": {
+        switch (currentStep) {
+          case 3:
+            return {
+              desk: "14%",
+              tablet: "160px",
+              mob: "133px",
+            };
+          default:
+            return {
+              desk: "3%",
+              tablet: "65px",
+              mob: "65px",
+            };
+        }
+      }
+      case "home":
+      case "approach":
       default:
         return {
           desk: "3%",
@@ -35,57 +47,99 @@ export default () => {
   };
 
   const getFooterText = () => {
-    switch (currentStep) {
-      case 0:
-      case 1:
-        return window.innerWidth < BREAKPOINTS.tablet
-          ? `Scroll right and don't look back into the past`
-          : `Scroll and don't look back to the past`;
+    switch (currentSectionTitle) {
+      case "home": {
+        switch (currentStep) {
+          case 0:
+          case 1:
+            return window.innerWidth < BREAKPOINTS.tablet
+              ? `Scroll right and don't look back into the past`
+              : `Scroll and don't look back to the past`;
+        }
+      }
     }
   };
 
   const getDisplayBlurredBlock = () => {
-    switch (currentStep) {
-      case 11:
-      case 12:
-        return "block";
-      default:
-        return "none";
+    switch (currentSectionTitle) {
+      case "work": {
+        switch (currentStep) {
+          case 0:
+          case 1:
+            return "block";
+          default:
+            return "none";
+        }
+      }
+      case "home":
+      case "approach": {
+        switch (currentStep) {
+          default:
+            return "none";
+        }
+      }
     }
   };
 
   const getDisplayBlurredBlockHeight = () => {
-    switch (currentStep) {
-      case 11:
-        return "100px";
-      case 12:
-        return "70px";
-      default:
-        return "0px";
+    switch (currentSectionTitle) {
+      case "work": {
+        switch (currentStep) {
+          case 0:
+            return "100px";
+          case 1:
+            return "70px";
+          default:
+            return "0px";
+        }
+      }
+      case "home":
+      case "approach": {
+        switch (currentStep) {
+          default:
+            return "none";
+        }
+      }
     }
   };
 
   const getContent = () => {
-    switch (currentStep) {
-      case 0:
-      case 1:
-        return <FooterText> {getFooterText()} </FooterText>;
-      case 11:
-        return <FooterText>Click on the correct answer </FooterText>;
-      case 13:
-        return (
-          <>
-            <FooterFollowText>Follow us:</FooterFollowText>{" "}
-            <FooterLinks>
-              <FooterLink href="#"> Telegram </FooterLink>{" "}
-              <FooterLink href="#"> Instagram </FooterLink>{" "}
-              <FooterLink href="#"> Twitter </FooterLink>{" "}
-              <FooterLink href="#"> Facebook </FooterLink>{" "}
-            </FooterLinks>{" "}
-          </>
-        );
-      default:
-        return null;
+    switch (currentSectionTitle) {
+      case "home": {
+        switch (currentStep) {
+          case 0:
+          case 1:
+            return <FooterText> {getFooterText()} </FooterText>;
+          default:
+            return null;
+        }
+      }
+      case "work": {
+        switch (currentStep) {
+          case 0:
+            return <FooterText>Click on the correct answer </FooterText>;
+          case 2:
+            return (
+              <>
+                <FooterFollowText>Follow us:</FooterFollowText>{" "}
+                <FooterLinks>
+                  <FooterLink href="#"> Telegram </FooterLink>{" "}
+                  <FooterLink href="#"> Instagram </FooterLink>{" "}
+                  <FooterLink href="#"> Twitter </FooterLink>{" "}
+                  <FooterLink href="#"> Facebook </FooterLink>{" "}
+                </FooterLinks>{" "}
+              </>
+            );
+          default:
+            return null;
+        }
+      }
+      case "approach": {
+        switch (currentStep) {
+          default:
+            return null;
+        }
+      }
     }
   };
 
@@ -93,7 +147,7 @@ export default () => {
     <>
       <Footer
         className="footer"
-        $color={currentTheme.footerTextColor}
+        $color={currentTheme?.footerTextColor}
         $bottom={getBottom()}
       >
         {getContent()}{" "}

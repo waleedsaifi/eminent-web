@@ -11,10 +11,51 @@ import {
   setHomeSection,
 } from "../store/actions/actionCreator";
 
+const useFetchThemeContent = () => {
+  useEffect(() => {
+    const _instance = Contentful.getInstance();
+    
+    //Get Menu
+    _instance.client.getEntries({ content_type: "menu" }).then((res) => {
+      const menu = res.items.reduce((acc, prev) => {
+        acc = {
+          ...acc,
+          [prev.fields.title]: prev.fields,
+        };
 
-const Content = () => {
+        return acc;
+      }, {});
 
-}
+      if (menu) {
+        dispatch(setMenuData(menu));
+      }
+    });
+  
+    //console.log(menuData);
 
-export default Content;
+    //Get Schedule Form
+    _instance.client
+      .getEntries({ content_type: "scheduleForm" })
+      .then((res) => {
+        const scheduleForm = res.items.reduce((acc1, prev1) => {
+          acc1 = {
+            ...acc1,
+            [prev1.fields.title]: prev1.fields,
+          };
 
+          return acc1;
+        }, {});
+        if (scheduleForm) {
+          dispatch(setScheduleData(scheduleForm));
+        }
+      });
+
+  
+    //Set themes
+    dispatch(setDarkThemeData(darkTheme));
+    dispatch(setLightThemeData(lightTheme));
+  }, []);
+};
+
+
+export default useFetchThemeContent;

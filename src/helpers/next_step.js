@@ -3,7 +3,7 @@ import {setProgress} from "../store/actions/actionCreator";
 import store from "../store/store";
 
 
-export const getNextStepFromForm = (nextStep, currentStep, progressSvgArray) => {
+export const getNextStepFromForm = (nextStep, progressSvgArray) => {
     getFadeOutProgressSvg(progressSvgArray, () => {
         getFadeOutFormTen(['.footer'], 0, () => null);
         getFadeOutFormTen(['.formTen'], 100, () => {

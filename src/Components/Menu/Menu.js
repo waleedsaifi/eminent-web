@@ -20,15 +20,24 @@ import {
   rightMenuBtnHoverOutAnimation,
   rightMenuBtnMouseDownAnimation,
   rightMenuBtnMouseUpAnimation,
+  getFadeOutFormTen,
+  getFadeOutProgressSvg,
 } from "../../helpers/animations";
 import {
   getStandardNextStep,
   getNextStepFromForm,
 } from "../../helpers/next_step";
+import { Link } from "react-router-dom";
 
-
-export default ({ showPopup, menuHandler }) => {
-  const { currentStep, menuData, stepsTextData, currentTheme, currentSection,currentSectionTitle } = useSelector((state) => state.state);
+export default ({
+  showPopup,
+  menuHandler,
+  currentSectionTitle,
+  currentStep,
+  currentSection,
+  currentTheme,
+}) => {
+  const { menuData, stepsTextData } = useSelector((state) => state.state);
   const [isMenuOpen, setMenuOpen] = useState(true);
   const [isLogoBtnsShow, setLogoBtnsShow] = useState({
     logo: false,
@@ -64,47 +73,70 @@ export default ({ showPopup, menuHandler }) => {
   };
 
   useEffect(() => {
-    switch (currentStep) {
-      case 0: {
-        setLogoBtnsShow({
-          logo: false,
-          first: false,
-          second: false,
-        });
-        logoTimeline(currentTheme.logoColor, getIntroFontSize(), () => {
-          window.gradient.setStep(0);
-          setLogoBtnsShow((state) => {
-            return {
-              ...state,
-              logo: true,
-            };
-          });
-          removeInlineStyles([logoSvg.current, menuRightBtn.current]);
-          setLogoBtnsShow((state) => {
-            return {
-              ...state,
-              first: true,
-            };
-          });
-          setTimeout(() => {
-            setLogoBtnsShow((state) => {
-              return {
-                ...state,
-                second: true,
-              };
+    switch (currentSectionTitle) {
+      case "home": {
+        switch (currentStep) {
+          case 0: {
+            setLogoBtnsShow({
+              logo: false,
+              first: false,
+              second: false,
             });
-          }, 200);
+            logoTimeline(currentTheme?.logoColor, getIntroFontSize(), () => {
+              window.gradient.setStep(0, currentSectionTitle);
+              setLogoBtnsShow((state) => {
+                return {
+                  ...state,
+                  logo: true,
+                };
+              });
+              removeInlineStyles([logoSvg.current, menuRightBtn.current]);
+              setLogoBtnsShow((state) => {
+                return {
+                  ...state,
+                  first: true,
+                };
+              });
+              setTimeout(() => {
+                setLogoBtnsShow((state) => {
+                  return {
+                    ...state,
+                    second: true,
+                  };
+                });
+              }, 200);
 
-          if (window.innerWidth <= BREAKPOINTS.tablet) {
-            getLogoToMobPosition();
+              if (window.innerWidth <= BREAKPOINTS.tablet) {
+                getLogoToMobPosition();
+              }
+
+              window.innerWidth <= BREAKPOINTS.tablet
+                ? setMenuOpen(false)
+                : setMenuOpen(true);
+              window.addEventListener("resize", menuResizer);
+            });
+            return;
           }
+          default: {
+            if (window.logoAnimation && !window.logoAnimation.completed) {
+              window.logoAnimation.pause();
+            }
+            setLogoBtnsShow({
+              logo: true,
+              first: true,
+              second: true,
+            });
+            removeInlineStyles([logoSvg.current, menuRightBtn.current]);
 
-          window.innerWidth <= BREAKPOINTS.tablet
-            ? setMenuOpen(false)
-            : setMenuOpen(true);
-          window.addEventListener("resize", menuResizer);
-        });
-        return;
+            if (window.innerWidth <= BREAKPOINTS.tablet) {
+              getLogoToMobPosition();
+            }
+            window.innerWidth <= BREAKPOINTS.tablet
+              ? setMenuOpen(false)
+              : setMenuOpen(true);
+            window.addEventListener("resize", menuResizer);
+          }
+        }
       }
       default: {
         if (window.logoAnimation && !window.logoAnimation.completed) {
@@ -128,7 +160,7 @@ export default ({ showPopup, menuHandler }) => {
     }
 
     return () => window.removeEventListener("resize", menuResizer);
-  }, [currentStep]);
+  }, [currentSectionTitle, currentStep]);
 
   useEffect(() => {
     const burgerChildren = [...burgerBox.current.children];
@@ -197,7 +229,7 @@ export default ({ showPopup, menuHandler }) => {
     rightMenuBtnHoverInAnimation(
       menuRightBtn.current,
       rightBorderBtn.current,
-      currentTheme.bgScheduleBtn
+      currentTheme?.bgScheduleBtn
     );
   };
 
@@ -206,7 +238,7 @@ export default ({ showPopup, menuHandler }) => {
     rightMenuBtnHoverOutAnimation(
       rightBorderBtn.current,
       menuRightBtn.current,
-      currentTheme.bgScheduleBtn,
+      currentTheme?.bgScheduleBtn,
       () => {
         setTimeout(
           () =>
@@ -221,7 +253,7 @@ export default ({ showPopup, menuHandler }) => {
     if (!rightBorderBtn || window.innerWidth <= BREAKPOINTS.tablet) return;
     rightMenuBtnMouseDownAnimation(
       menuRightBtn.current,
-      currentTheme.bgScheduleBtn
+      currentTheme?.bgScheduleBtn
     );
   };
 
@@ -229,7 +261,7 @@ export default ({ showPopup, menuHandler }) => {
     if (!rightBorderBtn || window.innerWidth <= BREAKPOINTS.tablet) return;
     rightMenuBtnMouseUpAnimation(
       menuRightBtn.current,
-      currentTheme.bgScheduleBtn,
+      currentTheme?.bgScheduleBtn,
       () => {
         setTimeout(() => removeInlineStyles([menuRightBtn.current]), 300);
       }
@@ -247,38 +279,46 @@ export default ({ showPopup, menuHandler }) => {
     if (window.innerWidth <= BREAKPOINTS.tablet) {
       setMenuOpen(false);
     }
-    //showPopup("approach");
 
+    window.animation.way = "back";
+    currentSection.fields[currentStep].isFooterShow &&
+      getFadeOutFormTen(".footer", 0, () => null);
     const progressSvgArray = document.querySelectorAll(
       `.styledProgress_${currentStep}`
     );
-    getNextStepFromForm(currentSection?.steps, currentStep, progressSvgArray);
+    const progressBorderDefault = document.querySelector(
+      `.progressBorderDefault__${currentStep}`
+    );
+    getFadeOutProgressSvg(
+      [...progressSvgArray, progressBorderDefault],
+      () => {}
+    );
+    getStandardNextStep(0);
   };
 
   const getMenuBlur = () => {
-      switch (currentSectionTitle){
-          case "work": 
-            switch (currentStep) {
-                case "Slide 1":
-                case "Slide 2":
-                    return 10;
-                default:
-                    return 0;
-            }
-            default:
-                return 0;
+    switch (currentSectionTitle) {
+      case "work":
+        switch (currentStep) {
+          case "Slide 1":
+          case "Slide 2":
+            return 10;
+          default:
+            return 0;
+        }
+      default:
+        return 0;
     }
-      
   };
 
   //console.log(menuData)
   return (
     <>
-      {currentStep === 0 && (
+      {currentSectionTitle === "home" && currentStep === 0 && (
         <IntroText
           className="introText"
           ref={introText}
-          $color={currentTheme.textColor}
+          $color={currentTheme?.textColor}
         >
           Eminent presents:
         </IntroText>
@@ -291,7 +331,7 @@ export default ({ showPopup, menuHandler }) => {
       >
         <MenuBurger
           $open={isMenuOpen}
-          $color={currentTheme.logoColor}
+          $color={currentTheme?.logoColor}
           onClick={burgerClickHandler}
           ref={burgerBox}
           $show={isLogoBtnsShow.first}
@@ -302,8 +342,8 @@ export default ({ showPopup, menuHandler }) => {
         </MenuBurger>
         <MenuBtn
           $open={isMenuOpen}
-          $color={currentTheme.menuBtnColor}
-          $lineBg={currentTheme.bgScheduleBtn}
+          $color={currentTheme?.menuBtnColor}
+          $lineBg={currentTheme?.bgScheduleBtn}
           $show={isLogoBtnsShow.second}
         >
           <span
@@ -311,15 +351,14 @@ export default ({ showPopup, menuHandler }) => {
             onClick={onApproachClickHandler}
             onMouseOver={menuLabelHandler}
           >
-            {" "}
-            APPROACH{" "}
+            <Link to="/approach"> APPROACH </Link>
           </span>{" "}
           <span className="menu_label"> READ OUR STORY </span>{" "}
         </MenuBtn>
         <MenuBtn
           $open={isMenuOpen}
-          $color={currentTheme.menuBtnColor}
-          $lineBg={currentTheme.bgScheduleBtn}
+          $color={currentTheme?.menuBtnColor}
+          $lineBg={currentTheme?.bgScheduleBtn}
           $show={isLogoBtnsShow.first}
         >
           <span className="menu_item" onMouseOver={menuLabelHandler}>
@@ -329,17 +368,20 @@ export default ({ showPopup, menuHandler }) => {
           <span className="menu_label"> DISCOVER OUR SERVICES </span>{" "}
         </MenuBtn>
         <MenuLogoBtn className="logo" $open={isMenuOpen}>
-          <LogoSvg
-            className="menuLogoSvg"
-            ref={logoSvg}
-            $color={currentTheme.textColor}
-            $show={isLogoBtnsShow.logo}
-          />{" "}
+          <Link to="/">
+            {" "}
+            <LogoSvg
+              className="menuLogoSvg"
+              ref={logoSvg}
+              $color={currentTheme?.textColor}
+              $show={isLogoBtnsShow.logo}
+            />
+          </Link>{" "}
         </MenuLogoBtn>{" "}
         <MenuBtn
           $open={isMenuOpen}
-          $color={currentTheme.menuBtnColor}
-          $lineBg={currentTheme.bgScheduleBtn}
+          $color={currentTheme?.menuBtnColor}
+          $lineBg={currentTheme?.bgScheduleBtn}
           $show={isLogoBtnsShow.first}
         >
           <span className="menu_item" onMouseOver={menuLabelHandler}>
@@ -351,8 +393,8 @@ export default ({ showPopup, menuHandler }) => {
         <MenuRightBtn
           ref={menuRightBtn}
           $open={isMenuOpen}
-          $bg={currentTheme.bgScheduleBtn}
-          $color={currentTheme.menuBtnColor}
+          $bg={currentTheme?.bgScheduleBtn}
+          $color={currentTheme?.menuBtnColor}
           id="ScheduleBtn"
           // onMouseOver={rightMenuBtnHoverIn}
           // onMouseLeave={rightMenuBtnHoverOut}
@@ -363,7 +405,7 @@ export default ({ showPopup, menuHandler }) => {
         >
           <RightBtnBorder
             ref={rightBorderBtn}
-            $color={currentTheme.bgScheduleBtn}
+            $color={currentTheme?.bgScheduleBtn}
           />{" "}
           <span> SCHEDULE A CALL </span>{" "}
         </MenuRightBtn>{" "}
@@ -482,7 +524,7 @@ blur(10 px) opacity(0.8)
   }
 `;
 
-const MenuLogoBtn = styled.a`
+const MenuLogoBtn = styled.div`
   width: 175px;
   height: 34px;
   justify-self: center;
@@ -502,7 +544,7 @@ const LogoSvg = styled(Logo)`
   fill: ${({ $color }) => $color};
   opacity: ${({ $show }) => ($show ? 1 : 0)};
 `;
-const MenuBtn = styled.a`
+const MenuBtn = styled.div`
   color: ${({ $color }) => $color};
   font-size: 15px;
   letter-spacing: 3px;
@@ -514,6 +556,11 @@ const MenuBtn = styled.a`
   cursor: pointer;
   opacity: ${({ $show }) => ($show ? 1 : 0)}!important;
   transition: 0.3s ease;
+
+  .menu_item a {
+    color: ${({ $color }) => $color};
+    text-decoration: none;
+  }
 
   .menu_item {
     z-index: 1;

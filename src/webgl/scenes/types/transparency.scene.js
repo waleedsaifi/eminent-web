@@ -1,61 +1,54 @@
-import {
-    Noise
-} from "../noise";
-import {
-    Scene
-} from "../scene";
-import * as THREE from 'three'
-import {
-    wait
-} from "helpers/dev.helpers";
+import { Noise } from "../noise";
+import { Scene } from "../scene";
+import * as THREE from "three";
+import { wait } from "helpers/dev.helpers";
 
 class Transparency extends Scene {
-    static _name = 'transparency'
+  static _name = "transparency";
 
-    async transition(from, to) {
+  async transition(from, to, currentSectionTitle) {
+    switch (currentSectionTitle) {
+      case "approach":
         switch (to) {
-            case 7:
-                {
-                    this.active = true
-                    await wait(this.fade_config.scale_duration)
-                    this.updateCamera()
+          case 1: {
+            this.active = true;
+            await wait(this.fade_config.scale_duration);
+            this.updateCamera();
 
-                    // this.enabled = true
-                    // this.positionWatch = true
-                    this.startAnimation(1, true)
+            // this.enabled = true
+            // this.positionWatch = true
+            this.startAnimation(1, true);
 
-                    await this.fadeOut(true)
-                    await this.fadeIn()
+            await this.fadeOut(true);
+            await this.fadeIn();
 
-                    this.startAnimation(1)
-                    // console.log(this.object)
+            this.startAnimation(1);
+            // console.log(this.object)
 
-                    break
-                }
+            break;
+          }
 
-            default:
-                {
-                    this.active = false
-                    this.fadeOut()
+          default: {
+            this.active = false;
+            this.fadeOut();
 
-                    break
-                }
+            break;
+          }
         }
     }
+  }
 
-    onLoad() {
-        this.initNoise()
+  onLoad() {
+    this.initNoise();
 
-        this.clips.forEach(clip => {
-            clip.loop = THREE.LoopRepeat
+    this.clips.forEach((clip) => {
+      clip.loop = THREE.LoopRepeat;
 
-            clip.clampWhenFinished = false
-        })
-    }
+      clip.clampWhenFinished = false;
+    });
+  }
 
-    update(_, time) {}
+  update(_, time) {}
 }
 
-export {
-    Transparency
-}
+export { Transparency };

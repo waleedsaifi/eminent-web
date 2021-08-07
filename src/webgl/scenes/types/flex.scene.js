@@ -1,57 +1,50 @@
 import anime from "animejs";
-import {
-    wait
-} from "helpers/dev.helpers";
-import {
-    Noise
-} from "../noise";
-import {
-    Scene
-} from "../scene";
-import * as THREE from 'three'
+import { wait } from "helpers/dev.helpers";
+import { Noise } from "../noise";
+import { Scene } from "../scene";
+import * as THREE from "three";
 
 class FlexScene extends Scene {
-    static _name = 'flex'
+  static _name = "flex";
 
-    async transition(from, to) {
+  async transition(from, to, currentSectionTitle) {
+    switch (currentSectionTitle) {
+      case "approach":
         switch (to) {
-            case 8:
-                {
-                    await wait(this.fade_config.scale_duration)
+          case 2: {
+            await wait(this.fade_config.scale_duration);
 
-                    this.updateCamera()
-                    this.active = true
-                    await this.fadeOut()
-                    await this.fadeIn()
-                    this.startAnimation(1)
+            this.updateCamera();
+            this.active = true;
+            await this.fadeOut();
+            await this.fadeIn();
+            this.startAnimation(1);
 
-                    break
-                }
+            break;
+          }
 
-            default:
-                {
-                    if (this.active) {
-                        await this.fadeOut()
-                        this.active = false
-                    }
-                }
+          default: {
+            if (this.active) {
+              await this.fadeOut();
+              this.active = false;
+            }
+          }
         }
     }
+  }
 
-    onLoad() {
-        this.initNoise()
+  onLoad() {
+    this.initNoise();
 
-        this.clips.forEach(clip => {
-            clip.clampWhenFinished = false
-            clip.loop = THREE.LoopRepeat
-        })
-    }
+    this.clips.forEach((clip) => {
+      clip.clampWhenFinished = false;
+      clip.loop = THREE.LoopRepeat;
+    });
+  }
 
-    update(_, time) {
-        this.noise.update(_, time)
-    }
+  update(_, time) {
+    this.noise.update(_, time);
+  }
 }
 
-export {
-    FlexScene
-}
+export { FlexScene };

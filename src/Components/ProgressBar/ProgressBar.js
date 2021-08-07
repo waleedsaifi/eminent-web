@@ -16,24 +16,22 @@ import {
   getStandardNextStep,
 } from "../../helpers/next_step";
 
-export default () => {
+export default ({
+  currentSectionTitle,
+  currentStep,
+  currentSection,
+  currentTheme,
+}) => {
   const dispatch = useDispatch();
-  const {
-    currentStep,
-    currentSection,
-    currentTheme,
-    stepsTextData,
-  } = useSelector((state) => state.state);
+  const { stepsTextData } = useSelector((state) => state.state);
   const _root = React.useRef(null);
-
+  currentSection = currentSection;
   useEffect(() => {
     dispatch(setProgress(currentStep));
 
-    currentSection.steps.forEach((i) => (i.active = false));
-    currentSection.steps[currentStep].active = true;
-    
+    currentSection.fields.forEach((i) => (i.active = false));
+    currentSection.fields[currentStep].active = true;
   }, [currentStep, _root]);
-
 
   const progressHoverIn = (e) => {
     const box = e.target.classList.contains("progressBtn")
@@ -85,17 +83,37 @@ export default () => {
     if (window.animation && !window.animation.completed) {
       return;
     }
-    switch (currentStep) {
-      case 12: {
-        const progressSvgArray = document.querySelectorAll(
-          `.styledProgress_${currentStep}`
-        );
-        getNextStepFromForm(nextStep, currentStep, progressSvgArray);
-        return;
+    switch (currentSectionTitle) {
+      case "work": {
+        switch (currentStep) {
+          case 1: {
+            const progressSvgArray = document.querySelectorAll(
+              `.styledProgress_${currentStep}`
+            );
+            getNextStepFromForm(nextStep, progressSvgArray);
+            return;
+          }
+          default: {
+            window.animation.way = "back";
+            currentSection.fields[currentStep].isFooterShow &&
+              getFadeOutFormTen(".footer", 0, () => null);
+            const progressSvgArray = document.querySelectorAll(
+              `.styledProgress_${currentStep}`
+            );
+            const progressBorderDefault = document.querySelector(
+              `.progressBorderDefault__${currentStep}`
+            );
+            getFadeOutProgressSvg(
+              [...progressSvgArray, progressBorderDefault],
+              () => {}
+            );
+            getStandardNextStep(nextStep);
+          }
+        }
       }
       default: {
         window.animation.way = "back";
-        currentSection.steps[currentStep].isFooterShow &&
+        currentSection.fields[currentStep].isFooterShow &&
           getFadeOutFormTen(".footer", 0, () => null);
         const progressSvgArray = document.querySelectorAll(
           `.styledProgress_${currentStep}`
@@ -126,46 +144,51 @@ export default () => {
       className="progressBar"
       ref={_root}
       $step={currentStep}
-      $numSteps={currentSection.steps != null ? currentSection.steps.length : 0}
+      $numSteps={
+        currentSection && currentSection?.fields != null
+          ? currentSection?.fields.length
+          : 0
+      }
     >
       {" "}
-      {currentSection.steps.map((item, index) => (
-        <ProgressBtn
-          className="progressBtn"
-          key={item.fields.title}
-          onMouseOver={progressHoverIn}
-          onMouseLeave={progressHoverOut}
-          onClick={progressClickHandler}
-          data-id={item.fields.id}
-        >
-          <ProgressBorderDefault
-            className={`progressBorderDefault__${index}`}
-            $borderColor={currentTheme.progressBorder}
-            $active={item.active}
-            $color={currentTheme.textColor}
-          />{" "}
-          <ProgressBorderDefault2
-            $borderColor={currentTheme.progressBorder}
-            $active={item.active}
-            $color={currentTheme.textColor}
-          />{" "}
-          <ProgressBorder
-            className="progressBorder"
-            $active={item.active}
-            $color={currentTheme.textColor}
-          />{" "}
-          <StyledProgress1
-            className={`styledProgress_${index}`}
-            $active={item.active}
-            $color={currentTheme.textColor}
-          />{" "}
-          <StyledProgress2
-            className={`styledProgress_${index}`}
-            $active={item.active}
-            $color={currentTheme.textColor}
-          />{" "}
-        </ProgressBtn>
-      ))}{" "}
+      {currentSection?.fields.map &&
+        currentSection?.fields.map((item, index) => (
+          <ProgressBtn
+            className="progressBtn"
+            key={item.fields.title}
+            onMouseOver={progressHoverIn}
+            onMouseLeave={progressHoverOut}
+            onClick={progressClickHandler}
+            data-id={item.fields.id}
+          >
+            <ProgressBorderDefault
+              className={`progressBorderDefault__${index}`}
+              $borderColor={currentTheme?.progressBorder}
+              $active={item.active}
+              $color={currentTheme?.textColor}
+            />{" "}
+            <ProgressBorderDefault2
+              $borderColor={currentTheme?.progressBorder}
+              $active={item.active}
+              $color={currentTheme?.textColor}
+            />{" "}
+            <ProgressBorder
+              className="progressBorder"
+              $active={item.active}
+              $color={currentTheme?.textColor}
+            />{" "}
+            <StyledProgress1
+              className={`styledProgress_${index}`}
+              $active={item.active}
+              $color={currentTheme?.textColor}
+            />{" "}
+            <StyledProgress2
+              className={`styledProgress_${index}`}
+              $active={item.active}
+              $color={currentTheme?.textColor}
+            />{" "}
+          </ProgressBtn>
+        ))}{" "}
     </ProgressBar>
   );
 };

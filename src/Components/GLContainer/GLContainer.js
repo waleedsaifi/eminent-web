@@ -1,9 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Viewer from "webgl/viewer/viewer";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import TweenMax from "gsap";
 import Contentful from "../../helpers/contentful";
+import { useParams, withRouter } from "react-router-dom";
+
 import {
   setMenuData,
   setStepsTextData,
@@ -15,19 +17,22 @@ import {
   setCurrentSectionTitle,
 } from "../../store/actions/actionCreator";
 import { lightTheme, darkTheme } from "../../constants/constants";
+import store from "../../store/store";
 
-const App = () => {
+const App = (props) => {
   const node = useRef(null);
   const { currentStep, currentSection, currentSectionTitle } = useSelector(
     (state) => state.state
   );
 
-
   useEffect(() => {
     new Viewer({
       container: node.current,
+      currentSectionTitle: props.currentSectionTitle,
     });
-  }, []);
+
+    console.log(props.currentSectionTitle);
+  }, [props.currentSectionTitle]);
 
   return (
     <Container
@@ -36,7 +41,7 @@ const App = () => {
       $step={currentStep}
       $section={currentSectionTitle}
     >
-      {currentStep <= 3 && currentSectionTitle === "home" ? (
+      {currentStep <= 3 && props.currentSectionTitle === "home" ? (
         <GradientWrapper></GradientWrapper>
       ) : null}
     </Container>
