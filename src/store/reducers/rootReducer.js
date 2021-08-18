@@ -1,10 +1,11 @@
-import {
-    combineReducers
-} from 'redux';
-import state from './state'
+import { combineReducers } from "redux";
+import { connectRouter } from "connected-react-router";
+import state from "./state";
 
-const rootReducer = combineReducers({
-    state
-})
+const rootReducer = (history) =>
+  combineReducers({
+    router: connectRouter(history),
+    state,
+  });
 
 export default rootReducer;

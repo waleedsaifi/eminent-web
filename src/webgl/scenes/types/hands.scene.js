@@ -31,7 +31,7 @@ class HandsScene extends Scene {
 
   async transition(from, to, currentSectionTitle) {
     switch (currentSectionTitle) {
-      case "approach":
+      case "approach": {
         switch (to) {
           case 3: {
             await wait(this.fade_config.scale_duration);
@@ -60,8 +60,11 @@ class HandsScene extends Scene {
               await this.fadeOut();
               this.active = false;
             }
+            break;
           }
         }
+        return;
+      }
     }
   }
 

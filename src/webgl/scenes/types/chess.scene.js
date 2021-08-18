@@ -8,7 +8,7 @@ class ChessScene extends Scene {
 
   async transition(from, to, currentSectionTitle) {
     switch (currentSectionTitle) {
-      case "approach":
+      case "approach": {
         switch (to) {
           case 0: {
             await wait(this.fade_config.scale_duration);
@@ -31,6 +31,8 @@ class ChessScene extends Scene {
             }
           }
         }
+        return;
+      }
     }
   }
 

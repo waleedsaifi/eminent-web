@@ -2,9 +2,9 @@ import { isDev } from "../../helpers/dev.helpers";
 import { ACTIONS } from "../constants/constants";
 import { darkTheme, lightTheme } from "../../constants/constants";
 
-const currentStep = isDev ? 1 : 0;
-const currentSectionTitle = "home";
-
+//const currentStep = isDev ? 1 : 0;
+//const currentSectionTitle = "home";
+let count = 0;
 
 const initState = {
   loader: true,
@@ -390,27 +390,27 @@ const state = (state = initState, action) => {
     workSection,
   } = action;
 
-  
   switch (type) {
-    case ACTIONS.SET_PROGRESS:
-      if (window.engine?.ready) {
-        if (
-          currentStep !== state.currentStep &&
-          currentSectionTitle === "home"
-        ) {
-          window.engine.setCurrentStep(currentStep);
-          window.gradient.setStep(
-            currentStep === 0 ? -1 : currentStep,
-            currentSectionTitle
-          );
-        } else {
-          window.engine.setCurrentStep(currentStep,currentSectionTitle );
-          window.gradient.setStep(0,currentSectionTitle );
-        }
-      }
+    case ACTIONS.SET_PROGRESS: {
+      handleProgress();
       return {
         ...state,
         currentStep,
+      };
+    }
+    case ACTIONS.STEP_BACK:
+      handleProgress(currentSectionTitle);
+      count = state.currentStep - 1;
+      return {
+        ...state,
+        currentStep: count > -1 ? count : 0,
+      };
+    case ACTIONS.STEP_FORWARD:
+      handleProgress(currentSectionTitle);
+      count = state.currentStep + 1;
+      return {
+        ...state,
+        currentStep: count < state.currentSection.fields.length ? count : 0,
       };
     case ACTIONS.TOGGLE_LOADER:
       return {
@@ -484,6 +484,28 @@ const state = (state = initState, action) => {
       };
     default:
       return state;
+  }
+
+  function handleProgress() {
+    if (window.engine?.ready) {
+      if (
+       state.currentStep < state.currentSection.fields.length &&
+        currentSectionTitle === "home"
+      ) {
+        window.engine.setCurrentStep(state.currentStep);
+        window.gradient.setStep(state.currentStep === 0 ? -1 : state.currentStep, "home");
+      } else if (
+        state.currentStep < state.currentSection.fields.length &&
+        currentSectionTitle === "approach"
+      ) {
+        window.engine.setCurrentStep(state.currentStep);
+        window.gradient.setStep(0, "approach");
+      } else {
+        window.engine.setCurrentStep(0);
+        window.gradient.setStep(0, state.currentSectionTitle);
+      }
+    }
+    return;
   }
 };
 

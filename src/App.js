@@ -11,13 +11,13 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/">
-            <ParticleBackground currentTheme={lightTheme} />
-            <GLContainer currentSectionTitle="home"/>
+            <ParticleBackground currentTheme={darkTheme} />
+            <GLContainer currentSectionTitle="home" />
             <Container currentSectionTitle="home" currentTheme={darkTheme} />
           </Route>
           <Route exact path="/approach">
             <ParticleBackground currentTheme={lightTheme} />
-            <GLContainer currentSectionTitle="approach"/>
+            <GLContainer currentSectionTitle="approach" />
             <Container
               currentSectionTitle="approach"
               currentTheme={lightTheme}

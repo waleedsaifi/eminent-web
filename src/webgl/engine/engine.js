@@ -3,27 +3,21 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import AnimationProcessor from "./engine.animation";
 import gsap from "gsap";
 import { addDevGUIConfig, isDev, wait } from "../../helpers/dev.helpers";
-import store from "../../store/store";
-import { setProgress, toggleLoader } from "../../store/actions/actionCreator";
 import { RaycasterEvents } from "../lib/raycasterEvents";
 import { loaderScene, scenes } from "../../constants/constants";
 import { createScene } from "../../webgl/scenes/createScene";
 import { TexturesLoader } from "./textures.loader";
 import { isMobile } from "react-device-detect";
 import HdrFile from "../models/env.hdr";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  setCurrentSectionTitle,
-} from "../../store/actions/actionCreator";
+import { useDispatch, useSelector, useStore } from "react-redux";
+import { setCurrentSectionTitle } from "../../store/actions/actionCreator";
 
 class WebglEngine {
-    
-
   constructor(props) {
     this.container = props.container;
     this.currentSectionTitle = props.currentSectionTitle;
+    this.currentStep = props.currentStep;
     this.init();
-    this.currentStep = 0;
     this.clips = [];
     window.engine = this;
   }
@@ -175,8 +169,6 @@ class WebglEngine {
     ]);
 
     this.ready = true;
-    store.dispatch(setCurrentSectionTitle(this.currentSectionTitle));
-    store.dispatch(toggleLoader(false));
 
     this.start();
   }
@@ -186,23 +178,15 @@ class WebglEngine {
   };
 
   start() {
-    console.log("Current Section:" + this.currentSectionTitle);
-    this.setCurrentStep(0, this.currentSectionTitle);
+    this.setCurrentStep(this.currentStep);
   }
 
-  setCurrentStep(step, currentSectionTitle) {
+  setCurrentStep(step) {
     const prevStep = this.currentStep;
-    this.currentStep = step;
-    this.scenes.forEach((scene) => {
-      if(scene._type === "Plague")
-      scene.transition(prevStep, step, "home");
-      else 
-      scene.transition(prevStep, step, "approach");
-    });
-  }
-
-  setCurrentSection(section) {
-    const prevSection = this.section;
+      this.currentStep = step;
+      this.scenes.forEach((scene) => {
+        scene.transition(prevStep, step, this.currentSectionTitle);
+      });
   }
 
   initAnimationProcessor = () => {
@@ -252,41 +236,5 @@ class WebglEngine {
     gsap.to(this.scene.rotation, { y: y });
   };
 }
-
-const DEV_TEST_FUNCTIONS = {
-  "GO PREV": () => {
-    const state = store.getState().state;
-    store.dispatch(setProgress(state.currentStep - 1));
-  },
-  "GO NEXT": () => {
-    const state = store.getState().state;
-    store.dispatch(setProgress(state.currentStep + 1));
-  },
-
-  "HIDE INTERFACE": () => {
-    const [a, b, c] = [
-      document.querySelector("#app"),
-      document.querySelector("#particles"),
-      document.querySelector("#glContainer"),
-    ];
-
-    const display = a.style.display === "none" ? "block" : "none";
-
-    a.style.display = display;
-    b.style.display = display;
-    c.style.pointerEvents = "auto";
-  },
-};
-
-window.DEV_TEST_FUNCTIONS = DEV_TEST_FUNCTIONS;
-
-const DEV_GUI_CONFIG = [
-  {
-    name: "engine",
-    object: DEV_TEST_FUNCTIONS,
-  },
-];
-
-addDevGUIConfig(DEV_GUI_CONFIG);
 
 export default WebglEngine;

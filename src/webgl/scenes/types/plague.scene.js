@@ -113,7 +113,8 @@ class PlagueScene extends Scene {
 
     // const steps = [10, 2, 13, 3, 4, 11, 12, 5]
     switch (currentSectionTitle) {
-      case "approach":
+      case "home": {
+        //console.log(" currentSectionTitle:" + currentSectionTitle + " to:" + to);
         switch (to) {
           // eslint-disable-next-line no-fallthrough
           case 2: {
@@ -175,46 +176,56 @@ class PlagueScene extends Scene {
 
             break;
           }
-        }
-      case "approach":
-        switch (to) {
-          case 0:
-          case 1:
-          case 2: {
-            const friendly = [0, 1, 2];
-            const fromFriendly = friendly.includes(from);
-            changeColor("extra");
-
-            if (!fromFriendly) {
-              await wait(this.fade_config.scale_duration);
-
-              await open(true);
-            }
-
-            break;
-          }
-        }
-      case "careers":
-        switch (to) {
-          case 13: {
-            const friendly = [10, 11, 12];
-            const fromFriendly = friendly.includes(from);
-
-            if (fromFriendly) {
-              close();
-            } else {
-              changeColor("extra");
-              open(true);
-              close();
-            }
-
-            break;
-          }
-
           default: {
-            out();
+            //out();
           }
         }
+        return;
+      }
+      //   case "approach":{
+      //     switch (to) {
+      //       case 0:
+      //       case 1:
+      //       case 2: {
+      //         const friendly = [0, 1, 2];
+      //         const fromFriendly = friendly.includes(from);
+      //         changeColor("extra");
+
+      //         if (!fromFriendly) {
+      //           await wait(this.fade_config.scale_duration);
+
+      //           await open(true);
+      //         }
+
+      //         break;
+      //       }
+      //        default: {
+      //         out();
+      //       }
+      //     }
+      //   }
+      //   case "careers":{
+      //     switch (to) {
+      //       case 13: {
+      //         const friendly = [10, 11, 12];
+      //         const fromFriendly = friendly.includes(from);
+
+      //         if (fromFriendly) {
+      //           close();
+      //         } else {
+      //           changeColor("extra");
+      //           open(true);
+      //           close();
+      //         }
+
+      //         break;
+      //       }
+
+      //       default: {
+      //         out();
+      //       }
+      //     }
+      //   }
     }
   }
 

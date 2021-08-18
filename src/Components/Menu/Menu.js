@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import anime from "animejs/lib/anime.es.js";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { BREAKPOINTS } from "../../constants/constants";
 import { ReactComponent as Logo } from "../../assets/images/logo.svg";
 import { ReactComponent as RightBtnSvg } from "../../assets/images/rightBtn.svg";
@@ -23,11 +23,23 @@ import {
   getFadeOutFormTen,
   getFadeOutProgressSvg,
 } from "../../helpers/animations";
+import { getStandardNextStep } from "../../helpers/next_step";
+import { Link, useParams } from "react-router-dom";
+import Contentful from "../../helpers/contentful";
 import {
-  getStandardNextStep,
-  getNextStepFromForm,
-} from "../../helpers/next_step";
-import { Link } from "react-router-dom";
+  setMenuData,
+  setStepsTextData,
+  setScheduleData,
+  setLightThemeData,
+  setDarkThemeData,
+  setHomeSection,
+  setCurrentSection,
+  setCurrentSectionTitle,
+  setCurrentThemeData,
+  setProgress,
+} from "../../store/actions/actionCreator";
+import { lightTheme, darkTheme } from "../../constants/constants";
+import { getThemeContent, getSectionContent } from "../../helpers/content";
 
 export default ({
   showPopup,
@@ -50,6 +62,7 @@ export default ({
   const menuRightBtn = useRef(null);
   const rightBorderBtn = useRef(null);
   const introText = useRef(null);
+  const dispatch = useDispatch();
 
   const menuResizer = () => {
     if (window.innerWidth > BREAKPOINTS.tablet) {
@@ -137,6 +150,7 @@ export default ({
             window.addEventListener("resize", menuResizer);
           }
         }
+        return;
       }
       default: {
         if (window.logoAnimation && !window.logoAnimation.completed) {
@@ -275,25 +289,53 @@ export default ({
     showPopup("schedule");
   };
 
-  const onApproachClickHandler = () => {
+  //const onApproachClickHandler = () => {
+
+  const { sectionTitle } = useParams();
+  useEffect(() => {
+    dispatch(setCurrentSectionTitle(sectionTitle));
     if (window.innerWidth <= BREAKPOINTS.tablet) {
       setMenuOpen(false);
     }
+    if (sectionTitle == "approach") {
+      getSectionContent("approach", dispatch);
+      dispatch(setProgress(0, "approach"));
+      window.engine.currentSectionTitle = sectionTitle;
+    }
+    
+    if (window.animation) {
+      
+      window.engine.setCurrentStep(0);
 
+      window.animation.way = "back";
+      currentSection.fields[currentStep].isFooterShow &&
+        getFadeOutFormTen(".footer", 0, () => null);
+      const progressSvgArray = document.querySelectorAll(
+        `.styledProgress_${currentStep}`
+      );
+      const progressBorderDefault = document.querySelector(
+        `.progressBorderDefault__${currentStep}`
+      );
+      getFadeOutProgressSvg(
+        [...progressSvgArray, progressBorderDefault],
+        () => {}
+      );
+      getStandardNextStep(0, "approach", dispatch);
+    }
+    return () => {
+      console.error("Error updating");
+    };
+  }, [sectionTitle]);
+  //};
+
+  const onHomeClickHandler = () => {
+    if (window.innerWidth <= BREAKPOINTS.tablet) {
+      setMenuOpen(false);
+    }
+    getSectionContent("home", dispatch);
+    window.engine.setCurrentStep(currentStep);
     window.animation.way = "back";
-    currentSection.fields[currentStep].isFooterShow &&
-      getFadeOutFormTen(".footer", 0, () => null);
-    const progressSvgArray = document.querySelectorAll(
-      `.styledProgress_${currentStep}`
-    );
-    const progressBorderDefault = document.querySelector(
-      `.progressBorderDefault__${currentStep}`
-    );
-    getFadeOutProgressSvg(
-      [...progressSvgArray, progressBorderDefault],
-      () => {}
-    );
-    getStandardNextStep(0);
+    getStandardNextStep(0, "home", dispatch);
   };
 
   const getMenuBlur = () => {
@@ -346,11 +388,7 @@ export default ({
           $lineBg={currentTheme?.bgScheduleBtn}
           $show={isLogoBtnsShow.second}
         >
-          <span
-            className="menu_item"
-            onClick={onApproachClickHandler}
-            onMouseOver={menuLabelHandler}
-          >
+          <span className="menu_item" onMouseOver={menuLabelHandler}>
             <Link to="/approach"> APPROACH </Link>
           </span>{" "}
           <span className="menu_label"> READ OUR STORY </span>{" "}
@@ -368,15 +406,17 @@ export default ({
           <span className="menu_label"> DISCOVER OUR SERVICES </span>{" "}
         </MenuBtn>
         <MenuLogoBtn className="logo" $open={isMenuOpen}>
-          <Link to="/">
-            {" "}
-            <LogoSvg
-              className="menuLogoSvg"
-              ref={logoSvg}
-              $color={currentTheme?.textColor}
-              $show={isLogoBtnsShow.logo}
-            />
-          </Link>{" "}
+          <span onClick={onHomeClickHandler}>
+            <Link to="/">
+              {" "}
+              <LogoSvg
+                className="menuLogoSvg"
+                ref={logoSvg}
+                $color={currentTheme?.textColor}
+                $show={isLogoBtnsShow.logo}
+              />
+            </Link>
+          </span>{" "}
         </MenuLogoBtn>{" "}
         <MenuBtn
           $open={isMenuOpen}

@@ -22,7 +22,12 @@ import {
   getStandardNextStep,
   getNextStepFromForm,
 } from "../../helpers/next_step";
+
 import Contentful from "../../helpers/contentful";
+import {
+  getThemeContent,
+  getSectionContent,
+} from "../../helpers/content";
 import {
   setMenuData,
   setStepsTextData,
@@ -59,103 +64,13 @@ export default (currentData) => {
   const [activePopup, setActivePopup] = useState(null);
 
   useEffect(() => {
-    const _instance = Contentful.getInstance();
 
-    //Get Menu
-    _instance.client.getEntries({ content_type: "menu" }).then((res) => {
-      const menu = res.items.reduce((acc, prev) => {
-        acc = {
-          ...acc,
-          [prev.fields.title]: prev.fields,
-        };
-
-        return acc;
-      }, {});
-
-      if (menu) {
-        dispatch(setMenuData(menu));
-      }
-    });
-
-    //console.log(menuData);
-
-    //Get Schedule Form
-    _instance.client
-      .getEntries({ content_type: "scheduleForm" })
-      .then((res) => {
-        const scheduleForm = res.items.reduce((acc1, prev1) => {
-          acc1 = {
-            ...acc1,
-            [prev1.fields.title]: prev1.fields,
-          };
-
-          return acc1;
-        }, {});
-        if (scheduleForm) {
-          dispatch(setScheduleData(scheduleForm));
-        }
-      });
-
-    switch (currentSectionTitle) {
-      case "home": {
-        //Get Home Section and Steps
-        _instance.client
-          .getEntries({
-            links_to_entry: "1eYjwaTrLeIGNNHo6UWMDO",
-            select: "fields",
-            order: "fields.id",
-            content_type: "homePage",
-          })
-          .then((entries) => {
-            //console.log(entries);
-            const sectionItems = {
-              fields: entries.items,
-              title: "home",
-              theme: "dark",
-            };
-            //console.log(sectionItems);
-            //sectionItems.title = entries
-            if (sectionItems) {
-              dispatch(setCurrentSection(sectionItems));
-              dispatch(setCurrentSectionTitle(currentSectionTitle));
-            }
-          })
-          .catch(console.error);
-      }
-      case "approach": {
-        //Get Approach Section and Steps
-        _instance.client
-          .getEntries({
-            links_to_entry: "64tnedEEonSg9Qt1CPaBql",
-            select: "fields",
-            order: "fields.id",
-            content_type: "homePage",
-          })
-          .then((entries) => {
-            // console.log(entries);
-            const sectionItems = {
-              fields: entries.items,
-              title: "home",
-              theme: "dark",
-            };
-            console.log("approach");
-            console.log(sectionItems);
-            //sectionItems.title = entries
-            if (currentSectionTitle == "approach" && sectionItems) {
-              dispatch(setCurrentSection(sectionItems));
-              dispatch(setCurrentSectionTitle(currentSectionTitle));
-              dispatch(setCurrentThemeData(lightTheme));
-            }
-          })
-          .catch(console.error);
-      }
-      default:
-        return;
-    }
-    //Set themes
-    dispatch(setDarkThemeData(darkTheme));
-    dispatch(setLightThemeData(lightTheme));
-  }, []);
+    getThemeContent(dispatch);
+    //First load it will show the home page
+    
+    getSectionContent(currentData.currentSectionTitle, dispatch);
+    
+  }, [currentData.currentSectionTitle]);
 
   const stopAnimation = useCallback(
     (e) => {
@@ -193,6 +108,7 @@ export default (currentData) => {
                 window.stoppedAnimation = true;
               }
             }
+            return;
           }
           case "approach": {
             switch (currentStep) {
@@ -215,6 +131,7 @@ export default (currentData) => {
                 window.stoppedAnimation = true;
               }
             }
+            return;
           }
           case "work": {
             switch (currentStep) {
@@ -233,6 +150,7 @@ export default (currentData) => {
                 window.stoppedAnimation = true;
               }
             }
+            return;
           }
         }
       }
@@ -306,6 +224,7 @@ export default (currentData) => {
           default:
             return 15;
         }
+        return;
       }
       case "approach": {
         switch (currentStep) {
@@ -316,6 +235,7 @@ export default (currentData) => {
           default:
             return 15;
         }
+        return;
       }
       default:
         return 15;
@@ -344,7 +264,7 @@ export default (currentData) => {
       const progressSvgArray = document.querySelectorAll(
         `.styledProgress_${currentStep}`
       );
-      getNextStepFromForm(nextStep, progressSvgArray);
+      getNextStepFromForm(nextStep, progressSvgArray, dispatch);
     }
 
     window.animation.way = "back";
@@ -360,7 +280,7 @@ export default (currentData) => {
       [...progressSvgArray, progressBorderDefault],
       () => {}
     );
-    getStandardNextStep(nextStep);
+    getStandardNextStep(nextStep, currentSection.title, dispatch);
   };
 
   const touchstartHandler = (e) => {
@@ -421,6 +341,7 @@ export default (currentData) => {
           default:
             return "hidden";
         }
+        return;
       }
       case "work": {
         switch (currentStep) {
@@ -430,6 +351,7 @@ export default (currentData) => {
           default:
             return "hidden";
         }
+        return;
       }
       default:
         return "hidden";

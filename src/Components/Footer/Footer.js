@@ -34,6 +34,7 @@ export default ({ showPopup, menuHandler, currentSectionTitle, currentStep, curr
               mob: "65px",
             };
         }
+        return;
       }
       case "home":
       case "approach":
@@ -57,6 +58,7 @@ export default ({ showPopup, menuHandler, currentSectionTitle, currentStep, curr
               : `Scroll and don't look back to the past`;
         }
       }
+      return;
     }
   };
 
@@ -70,6 +72,7 @@ export default ({ showPopup, menuHandler, currentSectionTitle, currentStep, curr
           default:
             return "none";
         }
+        return;
       }
       case "home":
       case "approach": {
@@ -77,6 +80,7 @@ export default ({ showPopup, menuHandler, currentSectionTitle, currentStep, curr
           default:
             return "none";
         }
+        return;
       }
     }
   };
@@ -92,6 +96,7 @@ export default ({ showPopup, menuHandler, currentSectionTitle, currentStep, curr
           default:
             return "0px";
         }
+        return;
       }
       case "home":
       case "approach": {
@@ -99,6 +104,7 @@ export default ({ showPopup, menuHandler, currentSectionTitle, currentStep, curr
           default:
             return "none";
         }
+        return;
       }
     }
   };
@@ -113,6 +119,7 @@ export default ({ showPopup, menuHandler, currentSectionTitle, currentStep, curr
           default:
             return null;
         }
+        return;
       }
       case "work": {
         switch (currentStep) {
@@ -133,12 +140,14 @@ export default ({ showPopup, menuHandler, currentSectionTitle, currentStep, curr
           default:
             return null;
         }
+        return;
       }
       case "approach": {
         switch (currentStep) {
           default:
             return null;
         }
+        return;
       }
     }
   };

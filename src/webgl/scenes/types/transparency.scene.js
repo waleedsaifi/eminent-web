@@ -8,7 +8,7 @@ class Transparency extends Scene {
 
   async transition(from, to, currentSectionTitle) {
     switch (currentSectionTitle) {
-      case "approach":
+      case "approach": {
         switch (to) {
           case 1: {
             this.active = true;
@@ -35,6 +35,7 @@ class Transparency extends Scene {
             break;
           }
         }
+      }
     }
   }
 

@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import Viewer from "webgl/viewer/viewer";
 import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, useStore } from "react-redux";
 import TweenMax from "gsap";
 import Contentful from "../../helpers/contentful";
 import { useParams, withRouter } from "react-router-dom";
-
+import { addDevGUIConfig, isDev, wait } from "../../helpers/dev.helpers";
 import {
   setMenuData,
   setStepsTextData,
@@ -15,24 +15,65 @@ import {
   setHomeSection,
   setCurrentSection,
   setCurrentSectionTitle,
+  setProgress,
+  toggleLoader,
+  stepBack,
+  stepForward,
 } from "../../store/actions/actionCreator";
 import { lightTheme, darkTheme } from "../../constants/constants";
-import store from "../../store/store";
 
-const App = (props) => {
+export default function App(props) {
   const node = useRef(null);
   const { currentStep, currentSection, currentSectionTitle } = useSelector(
     (state) => state.state
   );
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     new Viewer({
       container: node.current,
       currentSectionTitle: props.currentSectionTitle,
+      currentStep: currentStep,
     });
+   
+  }, []);
 
-    console.log(props.currentSectionTitle);
-  }, [props.currentSectionTitle]);
+  useEffect(() => {
+     dispatch(toggleLoader(false));
+    const DEV_TEST_FUNCTIONS = {
+      "GO PREV": () => {
+        dispatch(stepBack(currentSectionTitle));
+      },
+      "GO NEXT": () => {
+        dispatch(stepForward(currentSectionTitle));
+      },
+
+      "HIDE INTERFACE": () => {
+        const [a, b, c] = [
+          document.querySelector("#app"),
+          document.querySelector("#particles"),
+          document.querySelector("#glContainer"),
+        ];
+
+        const display = a.style.display === "none" ? "block" : "none";
+
+        a.style.display = display;
+        b.style.display = display;
+        c.style.pointerEvents = "auto";
+      },
+    };
+    window.DEV_TEST_FUNCTIONS = DEV_TEST_FUNCTIONS;
+
+    const DEV_GUI_CONFIG = [
+      {
+        name: "engine",
+        object: DEV_TEST_FUNCTIONS,
+      },
+    ];
+
+    addDevGUIConfig(DEV_GUI_CONFIG);
+  }, []);
 
   return (
     <Container
@@ -46,8 +87,7 @@ const App = (props) => {
       ) : null}
     </Container>
   );
-};
-export default App;
+}
 
 const GradientWrapper = styled.div`
   background: linear-gradient(

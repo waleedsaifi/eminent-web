@@ -38,7 +38,6 @@ class Gradient {
 
     this.init();
   }
-  
 
   init() {
     this.domElement = document.createElement("div");
@@ -54,7 +53,6 @@ class Gradient {
     });
 
     this.wrapper.appendChild(this.domElement);
-    
   }
 
   render({ x, y }) {
@@ -112,13 +110,13 @@ class GradientController {
     this.render();
   }
 
-
   setStep(step, currentSectionTitle) {
     const particles = document.querySelector("#particles canvas");
 
-    Object.assign(particles.style, {
-      opacity: step === -1 ? 0 : 1,
-    });
+    if (particles)
+      Object.assign(particles.style, {
+        opacity: step === -1 ? 0 : 1,
+      });
 
     // eslint-disable-next-line default-case
     switch (currentSectionTitle) {
@@ -140,6 +138,7 @@ class GradientController {
             this.applyBackground(2);
             break;
         }
+        return;
       }
       case "approach": {
         switch (step) {
@@ -151,6 +150,7 @@ class GradientController {
             this.applyBackground(1);
             break;
         }
+        return;
       }
       case "work": {
         switch (step) {
@@ -160,8 +160,10 @@ class GradientController {
             this.applyBackground(3);
             break;
         }
+        return;
       }
-      default: return this.applyBackground(1);
+      default:
+        return this.applyBackground(1);
     }
   }
 

@@ -16,6 +16,7 @@ export const getAnimationTimeout = (currentStep, currentSectionTitle) => {
         default:
           return 2500;
       }
+      return;
     }
     case "approach": {
       switch (currentStep) {
@@ -27,6 +28,7 @@ export const getAnimationTimeout = (currentStep, currentSectionTitle) => {
         default:
           return 2500;
       }
+      return;
     }
     case "work": {
       switch (currentStep) {
@@ -37,6 +39,7 @@ export const getAnimationTimeout = (currentStep, currentSectionTitle) => {
         default:
           return 2500;
       }
+      return;
     }
   }
 };

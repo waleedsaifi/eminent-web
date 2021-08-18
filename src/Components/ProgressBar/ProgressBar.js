@@ -27,11 +27,11 @@ export default ({
   const _root = React.useRef(null);
   currentSection = currentSection;
   useEffect(() => {
-    dispatch(setProgress(currentStep));
+    dispatch(setProgress(currentStep, currentSectionTitle));
 
     currentSection.fields.forEach((i) => (i.active = false));
     currentSection.fields[currentStep].active = true;
-  }, [currentStep, _root]);
+  }, [currentStep, currentSectionTitle, _root]);
 
   const progressHoverIn = (e) => {
     const box = e.target.classList.contains("progressBtn")
@@ -90,7 +90,7 @@ export default ({
             const progressSvgArray = document.querySelectorAll(
               `.styledProgress_${currentStep}`
             );
-            getNextStepFromForm(nextStep, progressSvgArray);
+            getNextStepFromForm(nextStep, progressSvgArray, dispatch);
             return;
           }
           default: {
@@ -107,7 +107,7 @@ export default ({
               [...progressSvgArray, progressBorderDefault],
               () => {}
             );
-            getStandardNextStep(nextStep);
+            getStandardNextStep(nextStep, currentSectionTitle, dispatch);
           }
         }
       }
@@ -125,7 +125,7 @@ export default ({
           [...progressSvgArray, progressBorderDefault],
           () => {}
         );
-        getStandardNextStep(nextStep);
+        getStandardNextStep(nextStep, currentSectionTitle, dispatch);
       }
     }
   };

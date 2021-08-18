@@ -9,7 +9,7 @@ class FlexScene extends Scene {
 
   async transition(from, to, currentSectionTitle) {
     switch (currentSectionTitle) {
-      case "approach":
+      case "approach": {
         switch (to) {
           case 2: {
             await wait(this.fade_config.scale_duration);
@@ -28,8 +28,11 @@ class FlexScene extends Scene {
               await this.fadeOut();
               this.active = false;
             }
+            break;
           }
         }
+        return;
+      }
     }
   }
 

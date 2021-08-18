@@ -54,6 +54,7 @@ export default ({ showPopup, menuHandler }) => {
           default:
             return 15;
         }
+        return;
       }
       case "approach": {
         switch (currentStep) {
@@ -64,6 +65,7 @@ export default ({ showPopup, menuHandler }) => {
           default:
             return 15;
         }
+        return;
       }
       default:
         return 15;

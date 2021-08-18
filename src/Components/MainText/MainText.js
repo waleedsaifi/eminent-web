@@ -28,7 +28,6 @@ import {
 } from "../../helpers/animations";
 import ScheduleForm from "../SchedulePopup/ScheduleForm";
 import {
-  getStandardNextStep,
   getNextStepFromForm,
 } from "../../helpers/next_step";
 import Menu from "../Menu/Menu";
@@ -141,7 +140,7 @@ export default ({
 
   const getTopMainText = () => {
     switch (currentSectionTitle) {
-      case "home":
+      case "home": {
         switch (currentStep) {
           case 0:
           case 1:
@@ -155,7 +154,9 @@ export default ({
           case 5:
             return ["40%;"];
         }
-      case "approach":
+        return;
+      }
+      case "approach": {
         switch (currentStep) {
           case 0:
             return ["50%;"];
@@ -168,7 +169,9 @@ export default ({
           case 4:
             return ["35%"];
         }
-      case "work":
+        return;
+      }
+      case "work": {
         switch (currentStep) {
           case 0:
             return ["21%", "12%"];
@@ -177,12 +180,14 @@ export default ({
           case 2:
             return ["18%"];
         }
+        return;
+      }
     }
   };
 
   const getTopSecondText = () => {
     switch (currentSectionTitle) {
-      case "home":
+      case "home": {
         switch (currentStep) {
           case 3:
           case 4:
@@ -192,7 +197,9 @@ export default ({
           default:
             return ["40%"];
         }
-      case "approach":
+        return;
+      }
+      case "approach": {
         switch (currentStep) {
           case 0:
             return ["50%;"];
@@ -207,7 +214,9 @@ export default ({
           default:
             return ["40%"];
         }
-      case "work":
+        return;
+      }
+      case "work": {
         switch (currentStep) {
           case 0:
             return ["21%", "12%"];
@@ -218,12 +227,14 @@ export default ({
           default:
             return ["40%"];
         }
+        return;
+      }
     }
   };
 
   const getContinueText = () => {
     switch (currentSectionTitle) {
-      case "home":
+      case "home": {
         switch (currentStep) {
           case 0:
             return ["60%"];
@@ -238,7 +249,9 @@ export default ({
           case 5:
             return ["50%;"];
         }
-      case "approach":
+        return;
+      }
+      case "approach": {
         switch (currentStep) {
           case 0:
             return ["70%;"];
@@ -251,7 +264,10 @@ export default ({
           case 4:
             return ["55%"];
         }
-      case "work":
+
+        return;
+      }
+      case "work": {
         switch (currentStep) {
           case 11:
             return ["41%", "32%"];
@@ -260,12 +276,14 @@ export default ({
           case 13:
             return ["38%"];
         }
+        return;
+      }
     }
   };
 
   const getTopCustomBlock = () => {
     switch (currentSectionTitle) {
-      case "approach":
+      case "approach": {
         switch (currentStep) {
           case 0:
             return ["50%"];
@@ -278,38 +296,46 @@ export default ({
           default:
             return ["50%"];
         }
+        return;
+      }
       default:
         return ["50%"];
     }
   };
   const getLeft = () => {
     switch (currentSectionTitle) {
-      case "approach":
+      case "approach": {
         switch (currentStep) {
           case 0:
           case 2:
             return "15%";
         }
-      case "work":
+        return;
+      }
+      case "work": {
         switch (currentStep) {
           case 0:
             return "15%";
         }
+        return;
+      }
     }
   };
   const getRight = () => {
     switch (currentSectionTitle) {
-      case "approach":
+      case "approach": {
         switch (currentStep) {
           case 1:
           case 3:
             return "15%";
         }
+        return;
+      }
     }
   };
   const getFontSize = () => {
     switch (currentSectionTitle) {
-      case "home":
+      case "home": {
         switch (currentStep) {
           case 0:
           case 1:
@@ -320,7 +346,9 @@ export default ({
           case 4:
             return ["28px", "21px", "18px"];
         }
-      case "approach":
+        return;
+      }
+      case "approach": {
         switch (currentStep) {
           case 0:
           case 1:
@@ -330,7 +358,9 @@ export default ({
           case 4:
             return ["32px", "28px", "18px"];
         }
-      case "work":
+        return;
+      }
+      case "work": {
         switch (currentStep) {
           case 0:
             return {
@@ -344,11 +374,13 @@ export default ({
           case 2:
             return ["32px", "28px", "18px"];
         }
+        return;
+      }
     }
   };
   const getLetterSpacing = () => {
     switch (currentSectionTitle) {
-      case "home":
+      case "home": {
         switch (currentStep) {
           case 0:
           case 1:
@@ -359,16 +391,22 @@ export default ({
           case 5:
             return "0.02em";
         }
-      case "approach":
+        return;
+      }
+      case "approach": {
         switch (currentStep) {
           case 4:
             return "0.04em";
         }
-      case "work":
+        return;
+      }
+      case "work": {
         switch (currentStep) {
           case 1:
             return "0.07em";
         }
+        return;
+      }
     }
   };
   const getBackground = () => {
@@ -389,7 +427,7 @@ export default ({
 
   const getMarginId = () => {
     switch (currentSectionTitle) {
-      case "approach":
+      case "approach": {
         switch (currentStep) {
           case 0:
             return { desk: "25px 0", tablet: "0 0 10px 0" };
@@ -400,6 +438,8 @@ export default ({
           default:
             return { desk: "25px 0", tablet: "25px 0" };
         }
+        return;
+      }
       default:
         return { desk: "25px 0", tablet: "25px 0" };
     }
@@ -407,7 +447,7 @@ export default ({
 
   const getMarginCustomText = () => {
     switch (currentSectionTitle) {
-      case "approach":
+      case "approach": {
         switch (currentStep) {
           case 0:
           case 1:
@@ -417,6 +457,8 @@ export default ({
           default:
             return { desk: "25px 0 10px 0", tablet: "20px 0 0 0" };
         }
+        return;
+      }
       default:
         return { desk: "25px 0 10px 0", tablet: "20px 0 0 0" };
     }
@@ -424,11 +466,13 @@ export default ({
 
   const getTextAlign = () => {
     switch (currentSectionTitle) {
-      case "work":
+      case "work": {
         switch (currentStep) {
           case 0:
             return ["left"];
         }
+        return;
+      }
     }
   };
 
@@ -471,7 +515,7 @@ export default ({
       window.animation.reverse();
       window.animation.play();
       window.animation.complete = () => {
-        setTimeout(() => dispatch(setProgress(currentStep + 1), 500));
+        setTimeout(() => dispatch(setProgress(currentStep + 1, currentSectionTitle), 500));
       };
     });
   };
@@ -485,7 +529,7 @@ export default ({
     getFadeOutProgressSvg(progressSvgArray, () => {
       getFadeOutFormTen([".footer"], 0, () => null);
       getFadeOutFormTen([".formTen"], 100, () => {
-        setTimeout(() => dispatch(setProgress(currentStep + 1), 500));
+        setTimeout(() => dispatch(setProgress(currentStep + 1, currentSectionTitle), 500));
       });
     });
   };
@@ -610,7 +654,7 @@ export default ({
       })
       .finished.then(() => {
         // window.engine.setCurrentStep(0);
-        dispatch(setProgress(0));
+        dispatch(setProgress(0,currentSectionTitle));
       });
   };
 
@@ -618,7 +662,7 @@ export default ({
     const progressSvgArray = document.querySelectorAll(
       `.styledProgress_${currentStep}`
     );
-    getNextStepFromForm(currentStep + 1, progressSvgArray);
+    getNextStepFromForm(currentStep + 1, progressSvgArray, dispatch);
   };
 
   const getBoxMaxWidth = () => {
@@ -667,7 +711,9 @@ export default ({
               tablet: { t1: "570px" },
               mob: { t1: "314px" },
             };
-        }
+        
+      }
+        return;
       }
       case "approach": {
         switch (currentStep) {
@@ -679,6 +725,8 @@ export default ({
               mob: { t1: "314px", t2: "314px" },
             };
         }
+        return;
+      
       }
       case "work": {
         switch (currentStep) {
@@ -697,6 +745,7 @@ export default ({
               mob: { t1: "325px", t2: "325px" },
             };
         }
+        return;
       }
     }
   };
@@ -714,6 +763,7 @@ export default ({
           case 3:
             return { tablet: "470px" };
         }
+        return;
       }
     }
   };
@@ -731,6 +781,7 @@ export default ({
           case 3:
             return "453px";
         }
+        return;
       }
     }
   };
@@ -874,6 +925,10 @@ export default ({
                   $margin={getMarginCustomText()}
                 >
                   {currentSection.fields[currentStep].fields.description1}
+                  {console.log(
+                    "made it to description 1:" +
+                      currentSection.fields[currentStep].fields.description1
+                  )}
                 </CustomText>
                 <CustomText
                   className="custom_anime"
@@ -1067,6 +1122,9 @@ export default ({
                 $boxMaxWidth={getBoxMaxWidth()}
               >
                 {currentSection.fields[currentStep].fields.mainText}
+                {console.log(
+                  "made it" + currentSection.fields[currentStep].fields.mainText
+                )}
               </MainText>
             )}
             {currentSection.fields[currentStep].fields.subText && (
@@ -1110,7 +1168,6 @@ export default ({
   };
 
   const getWorkContent = () => {
-
     switch (currentStep) {
       case 0:
         return (
@@ -1343,7 +1400,7 @@ const AnimatedStrategyText = styled(StrategySvg)`
   height: 100px;
   transform-origin: left;
   ${AnimatedSVG};
- 
+
   @media (max-width: ${BREAKPOINTS.tablet}px) {
     grid-row-start: 2;
     width: 324px;
