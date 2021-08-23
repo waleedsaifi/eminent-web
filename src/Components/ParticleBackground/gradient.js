@@ -157,7 +157,7 @@ class GradientController {
           case 0:
           case 1:
           case 2:
-            this.applyBackground(3);
+            this.applyBackground(1);
             break;
         }
         return;

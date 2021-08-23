@@ -21,7 +21,7 @@ export default ({ showPopup, menuHandler, currentSectionTitle, currentStep, curr
     switch (currentSectionTitle) {
       case "work": {
         switch (currentStep) {
-          case 3:
+          case 2:
             return {
               desk: "14%",
               tablet: "160px",

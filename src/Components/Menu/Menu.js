@@ -295,11 +295,15 @@ export default ({
   useEffect(() => {
     switch (location.pathname) {
       case "/": {
-        GoHomeHandler();
+        GoSectionHandler("home");
         return;
       }
       case "/approach": {
-        GoApproachHandler();
+        GoSectionHandler("approach");
+        return;
+      }
+      case "/work": {
+        GoSectionHandler("work");
         return;
       }
       default:
@@ -310,45 +314,28 @@ export default ({
     };
   }, [currentSection]);
 
-  function GoApproachHandler() {
+  function GoSectionHandler(type) {
+
     if (window.innerWidth <= BREAKPOINTS.tablet) {
       setMenuOpen(false);
     }
     if (window.engine) {
-      dispatch(setCurrentSectionTitle("approach"));
+      dispatch(setCurrentSectionTitle(type));
       dispatch(setCurrentStep(0));
-      window.engine.currentSectionTitle = "approach";
-      window.gradient.setStep(0, "approach");
+      window.engine.currentSectionTitle = type;
+      window.gradient.setStep(0, type);
       window.engine.setCurrentStep(0);
     }
     if (window.animation) {
       window.animation.way = "back";
-      getStandardNextStep(0, "approach", dispatch);
+      getStandardNextStep(0, type, dispatch);
     }
     return () => {
-      console.error("Error updating");
+      console.error("Error going to" + type);
     };
   }
 
-  function GoHomeHandler() {
-    if (window.innerWidth <= BREAKPOINTS.tablet) {
-      setMenuOpen(false);
-    }
-    if (window.engine) {
-      dispatch(setCurrentSectionTitle("home"));
-      dispatch(setCurrentStep(0));
-      window.engine.currentSectionTitle = "home";
-      window.gradient.setStep(0, "approach");
-      window.engine.setCurrentStep(0);
-    }
-    if (window.animation) {
-      window.animation.way = "back";
-      getStandardNextStep(0, "home", dispatch);
-    }
-    return () => {
-      console.error("Error updating");
-    };
-  }
+  
 
   const getMenuBlur = () => {
     switch (currentSectionTitle) {
@@ -412,7 +399,7 @@ export default ({
         >
           <span className="menu_item" onMouseOver={menuLabelHandler}>
             {" "}
-            WORK{" "}
+            <Link to="/work"> WORK </Link>{" "}
           </span>{" "}
           <span className="menu_label"> DISCOVER OUR SERVICES </span>{" "}
         </MenuBtn>

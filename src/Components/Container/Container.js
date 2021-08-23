@@ -238,13 +238,6 @@ export default (currentData) => {
     setPopupOpen(true);
   };
 
-  const closeApproachPopup = () => {
-    mainContainer.current.style.overflowY = "auto";
-    const menu = document.querySelector(".menu");
-    menu.removeAttribute("style");
-    setPopupOpen(false);
-    setActivePopup(null);
-  };
 
   const showCareersPopup = () => {
     mainContainer.current.style.overflowY = "hidden";

@@ -89,7 +89,7 @@ export default ({
             const progressSvgArray = document.querySelectorAll(
               `.styledProgress_${currentStep}`
             );
-            getNextStepFromForm(nextStep, progressSvgArray, dispatch);
+            getNextStepFromForm(nextStep, progressSvgArray, currentSectionTitle, dispatch);
             return;
           }
           default: {

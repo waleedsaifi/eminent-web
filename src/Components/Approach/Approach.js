@@ -35,12 +35,6 @@ export default ({ showPopup, menuHandler }) => {
   } = useSelector((state) => state.state);
   const dispatch = useDispatch();
   const [activePopup, setActivePopup] = useState(null);
-
-  if (currentSectionTitle == "home") {
-    //dispatch(setCurrentSectionTitle("approach"));
-    //dispatch(setProgress("0"));
-    //dispatch(setCurrentThemeData(lightThemeData));
-  }
   console.log(currentSectionTitle);
   console.log(currentTheme);
 

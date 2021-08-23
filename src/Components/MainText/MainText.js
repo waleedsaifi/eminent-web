@@ -71,6 +71,7 @@ export default ({
     }
 
     if (currentSectionTitle === "work" && currentStep === 0) {
+       window.animation = anime;
       window.animation.way = "forward";
       getFadeInFormTen(".chooseStory", 0, () =>
         setTimeout(() => (window.stoppedAnimation = true), 1000)

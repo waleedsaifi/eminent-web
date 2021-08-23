@@ -110,6 +110,34 @@ export const getSectionContent = (currentSectionTitle, dispatch) => {
         .catch(console.error);
       break;
     }
+    case "work": {
+      //Get Work Section and Steps
+      _instance.client
+        .getEntries({
+          links_to_entry: "1AddigZhlHDP6PGJ2pf3Vm",
+          select: "fields",
+          order: "fields.id",
+          content_type: "homePage",
+        })
+        .then((entries) => {
+          const sectionItems = {
+            fields: entries.items,
+            title: "work",
+            theme: "dark",
+            active: "false",
+          };
+          sectionItems.fields[0].active = true;
+          if (currentSectionTitle == "work" && sectionItems) {
+            dispatch(setCurrentSection(sectionItems));
+            dispatch(setCurrentSectionTitle(currentSectionTitle));
+            dispatch(setCurrentThemeData(darkTheme));
+            console.log("Theme Dark");
+          }
+        })
+        .catch(console.error);
+      break;
+    }
+
     default:
       return;
   }

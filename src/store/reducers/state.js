@@ -515,7 +515,14 @@ const state = (state = initState, action) => {
         window.engine.currentSectionTitle = "approach";
         window.engine.setCurrentStep(count > state.currentStep ? count : state.currentStep);
         window.gradient.setStep(count, "approach");
-      } else {
+      }  else if (
+        count < state.currentSection.fields.length &&
+        currentSectionTitle === "work"
+      ) {
+        window.engine.currentSectionTitle = "work";
+        window.engine.setCurrentStep(count > state.currentStep ? count : state.currentStep);
+        window.gradient.setStep(count, "work");
+      }else {
         count = 0;
         window.engine.setCurrentStep(0);
         window.gradient.setStep(0, currentSectionTitle);

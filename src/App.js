@@ -23,6 +23,11 @@ function App() {
               currentTheme={lightTheme}
             />
           </Route>
+          <Route exact path="/work">
+            <ParticleBackground currentTheme={lightTheme} />
+            <GLContainer currentSectionTitle="work" />
+            <Container currentSectionTitle="work" currentTheme={darkTheme} />
+          </Route>
         </Switch>
       </Router>
     </>

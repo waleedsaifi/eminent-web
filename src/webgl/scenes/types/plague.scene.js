@@ -186,6 +186,44 @@ class PlagueScene extends Scene {
         }
         return;
       }
+      case "work": {
+        switch (to) {
+          case 0:
+          case 1: {
+            const friendly = [0, 1];
+            const fromFriendly = friendly.includes(from);
+            changeColor("extra");
+
+            if (!fromFriendly) {
+              await wait(this.fade_config.scale_duration);
+
+              await open(true);
+            }
+
+            break;
+          }
+          case 2: {
+            const friendly = [0, 1];
+            const fromFriendly = friendly.includes(from);
+
+            if (fromFriendly) {
+              close();
+            } else {
+              changeColor("extra");
+              open(true);
+              close();
+            }
+            break;
+          }
+          default: {
+            if (this.active) {
+              out();
+            }
+            break;
+          }
+        }
+        return;
+      }
       default: {
         if (this.active) {
           await this.fadeOut();
@@ -193,28 +231,6 @@ class PlagueScene extends Scene {
         }
         break;
       }
-      //   case "work":{
-      //     switch (to) {
-      //       case 0:
-      //       case 1:
-      //       case 2: {
-      //         const friendly = [0, 1, 2];
-      //         const fromFriendly = friendly.includes(from);
-      //         changeColor("extra");
-
-      //         if (!fromFriendly) {
-      //           await wait(this.fade_config.scale_duration);
-
-      //           await open(true);
-      //         }
-
-      //         break;
-      //       }
-      //        default: {
-      //         out();
-      //       }
-      //     }
-      //   }
       //   case "careers":{
       //     switch (to) {
       //       case 13: {
