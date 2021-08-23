@@ -25,13 +25,12 @@ export default ({
   const dispatch = useDispatch();
   const { stepsTextData } = useSelector((state) => state.state);
   const _root = React.useRef(null);
-  currentSection = currentSection;
-  useEffect(() => {
-    dispatch(setProgress(currentStep, currentSectionTitle));
 
+  useEffect(() => {
+    dispatch(setProgress(currentStep));
     currentSection.fields.forEach((i) => (i.active = false));
     currentSection.fields[currentStep].active = true;
-  }, [currentStep, currentSectionTitle, _root]);
+  }, [currentStep, _root]);
 
   const progressHoverIn = (e) => {
     const box = e.target.classList.contains("progressBtn")
@@ -118,6 +117,7 @@ export default ({
         const progressSvgArray = document.querySelectorAll(
           `.styledProgress_${currentStep}`
         );
+        //console.log(currentStep);
         const progressBorderDefault = document.querySelector(
           `.progressBorderDefault__${currentStep}`
         );

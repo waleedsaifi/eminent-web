@@ -392,22 +392,34 @@ const state = (state = initState, action) => {
 
   switch (type) {
     case ACTIONS.SET_PROGRESS: {
-      handleProgress();
+      if (window.engine.ready) {
+        if (currentStep !== state.currentStep) {
+          window.engine.setCurrentStep(currentStep);
+          window.gradient.setStep(currentStep === 0 ? -1 : currentStep);
+          count = 0;
+        }
+      }
+      return {
+        ...state,
+        currentStep,
+      };
+    }
+    case ACTIONS.SET_CURRENT_STEP: {
       return {
         ...state,
         currentStep,
       };
     }
     case ACTIONS.STEP_BACK:
-      handleProgress(currentSectionTitle);
       count = state.currentStep - 1;
+      handleProgress(currentSectionTitle);
       return {
         ...state,
         currentStep: count > -1 ? count : 0,
       };
     case ACTIONS.STEP_FORWARD:
-      handleProgress(currentSectionTitle);
       count = state.currentStep + 1;
+      handleProgress(currentSectionTitle);
       return {
         ...state,
         currentStep: count < state.currentSection.fields.length ? count : 0,
@@ -486,23 +498,27 @@ const state = (state = initState, action) => {
       return state;
   }
 
-  function handleProgress() {
+  function handleProgress(currentSectionTitle) {
     if (window.engine?.ready) {
       if (
-       state.currentStep < state.currentSection.fields.length &&
+        count < state.currentSection.fields.length &&
         currentSectionTitle === "home"
       ) {
-        window.engine.setCurrentStep(state.currentStep);
-        window.gradient.setStep(state.currentStep === 0 ? -1 : state.currentStep, "home");
+        //console.log(count);
+        window.engine.currentSectionTitle = "home";
+        window.engine.setCurrentStep(count);
+        window.gradient.setStep(count === 0 ? -1 : count, currentSectionTitle);
       } else if (
-        state.currentStep < state.currentSection.fields.length &&
+        count < state.currentSection.fields.length &&
         currentSectionTitle === "approach"
       ) {
-        window.engine.setCurrentStep(state.currentStep);
-        window.gradient.setStep(0, "approach");
+        window.engine.currentSectionTitle = "approach";
+        window.engine.setCurrentStep(count > state.currentStep ? count : state.currentStep);
+        window.gradient.setStep(count, "approach");
       } else {
+        count = 0;
         window.engine.setCurrentStep(0);
-        window.gradient.setStep(0, state.currentSectionTitle);
+        window.gradient.setStep(0, currentSectionTitle);
       }
     }
     return;

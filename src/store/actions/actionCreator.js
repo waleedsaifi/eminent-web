@@ -13,6 +13,13 @@ export const setProgress = (currentStep, currentSectionTitle) => {
     currentSectionTitle,
   };
 };
+export const setCurrentStep = (currentStep) => {
+  return {
+    type: ACTIONS.SET_CURRENT_STEP,
+    currentStep,
+  }
+
+};
 export const stepBack = (currentSectionTitle) => {
   return {
     type: ACTIONS.STEP_BACK,

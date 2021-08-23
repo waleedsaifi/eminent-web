@@ -24,7 +24,7 @@ import {
   getFadeOutProgressSvg,
 } from "../../helpers/animations";
 import { getStandardNextStep } from "../../helpers/next_step";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation, Redirect } from "react-router-dom";
 import Contentful from "../../helpers/contentful";
 import {
   setMenuData,
@@ -34,6 +34,7 @@ import {
   setDarkThemeData,
   setHomeSection,
   setCurrentSection,
+  setCurrentStep,
   setCurrentSectionTitle,
   setCurrentThemeData,
   setProgress,
@@ -50,6 +51,8 @@ export default ({
   currentTheme,
 }) => {
   const { menuData, stepsTextData } = useSelector((state) => state.state);
+  let location = useLocation();
+
   const [isMenuOpen, setMenuOpen] = useState(true);
   const [isLogoBtnsShow, setLogoBtnsShow] = useState({
     logo: false,
@@ -289,54 +292,61 @@ export default ({
     showPopup("schedule");
   };
 
-  //const onApproachClickHandler = () => {
-
-  const { sectionTitle } = useParams();
   useEffect(() => {
-    dispatch(setCurrentSectionTitle(sectionTitle));
+    switch (location.pathname) {
+      case "/": {
+        GoHomeHandler();
+        return;
+      }
+      case "/approach": {
+        GoApproachHandler();
+        return;
+      }
+      default:
+        return;
+    }
+    return () => {
+      console.log(console.error);
+    };
+  }, [currentSection]);
+
+  function GoApproachHandler() {
     if (window.innerWidth <= BREAKPOINTS.tablet) {
       setMenuOpen(false);
     }
-    if (sectionTitle == "approach") {
-      getSectionContent("approach", dispatch);
-      dispatch(setProgress(0, "approach"));
-      window.engine.currentSectionTitle = sectionTitle;
-    }
-    
-    if (window.animation) {
-      
+    if (window.engine) {
+      dispatch(setCurrentSectionTitle("approach"));
+      dispatch(setCurrentStep(0));
+      window.engine.currentSectionTitle = "approach";
       window.engine.setCurrentStep(0);
-
+    }
+    if (window.animation) {
       window.animation.way = "back";
-      currentSection.fields[currentStep].isFooterShow &&
-        getFadeOutFormTen(".footer", 0, () => null);
-      const progressSvgArray = document.querySelectorAll(
-        `.styledProgress_${currentStep}`
-      );
-      const progressBorderDefault = document.querySelector(
-        `.progressBorderDefault__${currentStep}`
-      );
-      getFadeOutProgressSvg(
-        [...progressSvgArray, progressBorderDefault],
-        () => {}
-      );
       getStandardNextStep(0, "approach", dispatch);
     }
     return () => {
       console.error("Error updating");
     };
-  }, [sectionTitle]);
-  //};
+  }
 
-  const onHomeClickHandler = () => {
+  function GoHomeHandler() {
     if (window.innerWidth <= BREAKPOINTS.tablet) {
       setMenuOpen(false);
     }
-    getSectionContent("home", dispatch);
-    window.engine.setCurrentStep(currentStep);
-    window.animation.way = "back";
-    getStandardNextStep(0, "home", dispatch);
-  };
+    if (window.engine) {
+      dispatch(setCurrentSectionTitle("home"));
+      dispatch(setCurrentStep(0));
+      window.engine.currentSectionTitle = "home";
+      window.engine.setCurrentStep(0);
+    }
+    if (window.animation) {
+      window.animation.way = "back";
+      getStandardNextStep(0, "home", dispatch);
+    }
+    return () => {
+      console.error("Error updating");
+    };
+  }
 
   const getMenuBlur = () => {
     switch (currentSectionTitle) {
@@ -353,7 +363,6 @@ export default ({
     }
   };
 
-  //console.log(menuData)
   return (
     <>
       {currentSectionTitle === "home" && currentStep === 0 && (
@@ -406,7 +415,7 @@ export default ({
           <span className="menu_label"> DISCOVER OUR SERVICES </span>{" "}
         </MenuBtn>
         <MenuLogoBtn className="logo" $open={isMenuOpen}>
-          <span onClick={onHomeClickHandler}>
+          <span>
             <Link to="/">
               {" "}
               <LogoSvg

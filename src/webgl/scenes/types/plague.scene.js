@@ -177,10 +177,21 @@ class PlagueScene extends Scene {
             break;
           }
           default: {
-            //out();
+            if (this.active) {
+              await this.fadeOut();
+              this.active = false;
+            }
+            break;
           }
         }
         return;
+      }
+      default: {
+        if (this.active) {
+          await this.fadeOut();
+          this.active = false;
+        }
+        break;
       }
       //   case "approach":{
       //     switch (to) {

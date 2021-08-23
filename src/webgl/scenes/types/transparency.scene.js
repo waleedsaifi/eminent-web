@@ -29,11 +29,22 @@ class Transparency extends Scene {
           }
 
           default: {
-            this.active = false;
-            this.fadeOut();
+            if (this.active) {
+              await this.fadeOut();
+              this.active = false;
 
-            break;
+              break;
+            }
           }
+        }
+        break;
+      }
+      default: {
+        if (this.active) {
+          await this.fadeOut();
+          this.active = false;
+
+          break;
         }
       }
     }

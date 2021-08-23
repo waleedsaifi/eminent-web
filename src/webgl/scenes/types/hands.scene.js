@@ -65,6 +65,13 @@ class HandsScene extends Scene {
         }
         return;
       }
+      default: {
+            if (this.active) {
+              await this.fadeOut();
+              this.active = false;
+            }
+            break;
+          }
     }
   }
 

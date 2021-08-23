@@ -925,10 +925,6 @@ export default ({
                   $margin={getMarginCustomText()}
                 >
                   {currentSection.fields[currentStep].fields.description1}
-                  {console.log(
-                    "made it to description 1:" +
-                      currentSection.fields[currentStep].fields.description1
-                  )}
                 </CustomText>
                 <CustomText
                   className="custom_anime"
@@ -1122,9 +1118,7 @@ export default ({
                 $boxMaxWidth={getBoxMaxWidth()}
               >
                 {currentSection.fields[currentStep].fields.mainText}
-                {console.log(
-                  "made it" + currentSection.fields[currentStep].fields.mainText
-                )}
+              
               </MainText>
             )}
             {currentSection.fields[currentStep].fields.subText && (

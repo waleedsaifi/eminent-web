@@ -9,6 +9,7 @@ import SchedulePopup from "../SchedulePopup/SchedulePopup";
 import CareersPopup from "../CareersPopup/CareersPopup";
 import { isMobileOnly } from "react-device-detect";
 import { useDispatch, useSelector } from "react-redux";
+import { addDevGUIConfig, isDev, wait } from "../../helpers/dev.helpers";
 import {
   getFadeOutFormTen,
   getFadeOutProgressSvg,
@@ -24,10 +25,7 @@ import {
 } from "../../helpers/next_step";
 
 import Contentful from "../../helpers/contentful";
-import {
-  getThemeContent,
-  getSectionContent,
-} from "../../helpers/content";
+import { getThemeContent, getSectionContent } from "../../helpers/content";
 import {
   setMenuData,
   setStepsTextData,
@@ -37,7 +35,10 @@ import {
   setHomeSection,
   setCurrentSection,
   setCurrentSectionTitle,
-  setCurrentThemeData,
+  setProgress,
+  toggleLoader,
+  stepBack,
+  stepForward,
 } from "../../store/actions/actionCreator";
 import { lightTheme, darkTheme } from "../../constants/constants";
 
@@ -64,13 +65,47 @@ export default (currentData) => {
   const [activePopup, setActivePopup] = useState(null);
 
   useEffect(() => {
-
     getThemeContent(dispatch);
     //First load it will show the home page
-    
+
     getSectionContent(currentData.currentSectionTitle, dispatch);
-    
   }, [currentData.currentSectionTitle]);
+
+  useEffect(() => {
+    dispatch(toggleLoader(false));
+    const DEV_TEST_FUNCTIONS = {
+      "GO PREV": () => {
+        dispatch(stepBack(window.engine.currentSectionTitle));
+      },
+      "GO NEXT": () => {
+        dispatch(stepForward(window.engine.currentSectionTitle));
+      },
+
+      "HIDE INTERFACE": () => {
+        const [a, b, c] = [
+          document.querySelector("#app"),
+          document.querySelector("#particles"),
+          document.querySelector("#glContainer"),
+        ];
+
+        const display = a.style.display === "none" ? "block" : "none";
+
+        a.style.display = display;
+        b.style.display = display;
+        c.style.pointerEvents = "auto";
+      },
+    };
+    window.DEV_TEST_FUNCTIONS = DEV_TEST_FUNCTIONS;
+
+    const DEV_GUI_CONFIG = [
+      {
+        name: "engine",
+        object: DEV_TEST_FUNCTIONS,
+      },
+    ];
+
+    addDevGUIConfig(DEV_GUI_CONFIG);
+  }, [currentSectionTitle]);
 
   const stopAnimation = useCallback(
     (e) => {
