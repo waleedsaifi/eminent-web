@@ -318,6 +318,7 @@ export default ({
       dispatch(setCurrentSectionTitle("approach"));
       dispatch(setCurrentStep(0));
       window.engine.currentSectionTitle = "approach";
+      window.gradient.setStep(0, "approach");
       window.engine.setCurrentStep(0);
     }
     if (window.animation) {
@@ -337,6 +338,7 @@ export default ({
       dispatch(setCurrentSectionTitle("home"));
       dispatch(setCurrentStep(0));
       window.engine.currentSectionTitle = "home";
+      window.gradient.setStep(0, "approach");
       window.engine.setCurrentStep(0);
     }
     if (window.animation) {

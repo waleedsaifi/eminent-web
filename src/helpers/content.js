@@ -33,7 +33,6 @@ export const getThemeContent = (dispatch) => {
     }
   });
 
-
   //Get Schedule Form
   _instance.client.getEntries({ content_type: "scheduleForm" }).then((res) => {
     const scheduleForm = res.items.reduce((acc1, prev1) => {
@@ -67,13 +66,13 @@ export const getSectionContent = (currentSectionTitle, dispatch) => {
           content_type: "homePage",
         })
         .then((entries) => {
-    
           const sectionItems = {
             fields: entries.items,
             title: "home",
             theme: "dark",
+            active: "false",
           };
-     
+          sectionItems.fields[0].active = true;
           if (sectionItems) {
             dispatch(setCurrentSection(sectionItems));
             dispatch(setCurrentSectionTitle(currentSectionTitle));
@@ -98,8 +97,9 @@ export const getSectionContent = (currentSectionTitle, dispatch) => {
             fields: entries.items,
             title: "approach",
             theme: "light",
+            active: "false",
           };
-    
+          sectionItems.fields[0].active = true;
           if (currentSectionTitle == "approach" && sectionItems) {
             dispatch(setCurrentSection(sectionItems));
             dispatch(setCurrentSectionTitle(currentSectionTitle));

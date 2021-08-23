@@ -27,9 +27,7 @@ import {
   getFadeOutProgressSvg,
 } from "../../helpers/animations";
 import ScheduleForm from "../SchedulePopup/ScheduleForm";
-import {
-  getNextStepFromForm,
-} from "../../helpers/next_step";
+import { getNextStepFromForm } from "../../helpers/next_step";
 import Menu from "../Menu/Menu";
 
 export default ({
@@ -100,7 +98,11 @@ export default ({
     }
 
     //const customSteps = [6, 7, 8, 9];
-    if (currentSectionTitle === "approach" && window.animation) {
+    if (
+      currentSectionTitle === "approach" &&
+      window.animation &&
+      currentStep < 4
+    ) {
       window.animation.way = "forward";
       getFadeInCustomText(() => {
         window.animation._name = "custom_anime";
@@ -515,7 +517,9 @@ export default ({
       window.animation.reverse();
       window.animation.play();
       window.animation.complete = () => {
-        setTimeout(() => dispatch(setProgress(currentStep + 1, currentSectionTitle), 500));
+        setTimeout(() =>
+          dispatch(setProgress(currentStep + 1, currentSectionTitle), 500)
+        );
       };
     });
   };
@@ -529,7 +533,9 @@ export default ({
     getFadeOutProgressSvg(progressSvgArray, () => {
       getFadeOutFormTen([".footer"], 0, () => null);
       getFadeOutFormTen([".formTen"], 100, () => {
-        setTimeout(() => dispatch(setProgress(currentStep + 1, currentSectionTitle), 500));
+        setTimeout(() =>
+          dispatch(setProgress(currentStep + 1, currentSectionTitle), 500)
+        );
       });
     });
   };
@@ -654,7 +660,7 @@ export default ({
       })
       .finished.then(() => {
         // window.engine.setCurrentStep(0);
-        dispatch(setProgress(0,currentSectionTitle));
+        dispatch(setProgress(0, currentSectionTitle));
       });
   };
 
@@ -711,8 +717,7 @@ export default ({
               tablet: { t1: "570px" },
               mob: { t1: "314px" },
             };
-        
-      }
+        }
         return;
       }
       case "approach": {
@@ -726,7 +731,6 @@ export default ({
             };
         }
         return;
-      
       }
       case "work": {
         switch (currentStep) {
@@ -1118,7 +1122,6 @@ export default ({
                 $boxMaxWidth={getBoxMaxWidth()}
               >
                 {currentSection.fields[currentStep].fields.mainText}
-              
               </MainText>
             )}
             {currentSection.fields[currentStep].fields.subText && (
@@ -1135,16 +1138,7 @@ export default ({
                 {currentSection.fields[currentStep].fields.subText}
               </MainTextSecond>
             )}
-            {currentSection.fields[currentStep].fields.mainText && (
-              <Continue
-                className="anime"
-                onClick={getNextStep}
-                $top={getContinueText()}
-              >
-                Learn More >>
-                <ContinueArrow />
-              </Continue>
-            )}
+
             {currentSection.fields[currentStep].fields.mainText && (
               <ScheduleBtn
                 $bg={currentTheme.bgScheduleBtn}

@@ -193,7 +193,7 @@ class PlagueScene extends Scene {
         }
         break;
       }
-      //   case "approach":{
+      //   case "work":{
       //     switch (to) {
       //       case 0:
       //       case 1:

@@ -395,7 +395,7 @@ const state = (state = initState, action) => {
       if (window.engine.ready) {
         if (currentStep !== state.currentStep) {
           window.engine.setCurrentStep(currentStep);
-          window.gradient.setStep(currentStep === 0 ? -1 : currentStep);
+          window.gradient.setStep(currentStep === 0 ? -1 : currentStep, currentSectionTitle);
           count = 0;
         }
       }
