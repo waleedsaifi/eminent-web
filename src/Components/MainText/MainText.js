@@ -1439,13 +1439,11 @@ const AnimtateOutcomeText = styled(OutcomeSVG)`
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {
     grid-row-start: 2;
-    width: 324px;
-    height: 86px;
+
   }
   @media (max-width: ${BREAKPOINTS.mob}px) {
     grid-row-start: 2;
-    width: 70%;
-    height: 86px;
+
   }
 `;
 const AnimatedPartnersText = styled(PartnersSVG)`
@@ -1456,13 +1454,11 @@ const AnimatedPartnersText = styled(PartnersSVG)`
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {
     grid-row-start: 2;
-    width: 513px;
-    height: 86px;
+
   }
   @media (max-width: ${BREAKPOINTS.mob}px) {
     grid-row-start: 2;
-    width: 100%;
-    height: 86px;
+
   }
 `;
 const AnimatedVisionText = styled(VisionSVG)`
@@ -1473,13 +1469,11 @@ const AnimatedVisionText = styled(VisionSVG)`
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {
     grid-row-start: 2;
-    width: 388px;
-    height: 86px;
+
   }
   @media (max-width: ${BREAKPOINTS.mob}px) {
     grid-row-start: 2;
-    width: 80%;
-    height: 86px;
+
   }
 `;
 const AnimatedVeteransText = styled(VeteransSVG)`
@@ -1490,13 +1484,9 @@ const AnimatedVeteransText = styled(VeteransSVG)`
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {
     grid-row-start: 2;
-    width: 318px;
-    height: 86px;
   }
   @media (max-width: ${BREAKPOINTS.mob}px) {
     grid-row-start: 2;
-    width: 70%;
-    height: 86px;
   }
 `;
 // const AnimatedServiceText = styled(ServiceSvg)`
