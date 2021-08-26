@@ -1,0 +1,5 @@
+﻿{
+  "Description": "Domain ownership verification file for Microsoft 365 - place in the website root",
+  "Domain": "eminentfuture.com",
+  "Id": "3ba9eee8-76a6-44a9-a277-d6f643e8e1c2"
+}
