@@ -1,7 +1,7 @@
 import validator from "validator";
 import _ from "lodash";
 import React, { useRef, useState } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { useDispatch } from "react-redux";
 
 import { CustomSelect } from "../CustomSelect/CustomSelect";
@@ -9,7 +9,7 @@ import { BREAKPOINTS, schedulePopup } from "../../constants/constants";
 import { setScheduleData } from "../../store/actions/actionCreator";
 import { sendEmail } from "../../helpers/http.api";
 
-export default ({
+const ScheduleFormContent = ({
   closeHandlerPopup = null,
   color,
   background,
@@ -341,6 +341,8 @@ export default ({
     </>
   );
 };
+
+export default ScheduleFormContent;
 
 const StyledLabel = styled.label`
   position: relative;

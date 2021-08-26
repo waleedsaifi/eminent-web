@@ -1,4 +1,3 @@
-import anime from "animejs";
 import gsap from "gsap";
 import * as THREE from "three";
 
@@ -137,8 +136,10 @@ class GradientController {
           case 5:
             this.applyBackground(2);
             break;
+          default:
+            return;
         }
-        return;
+        break;
       }
       case "approach": {
         switch (step) {
@@ -149,8 +150,10 @@ class GradientController {
           case 4:
             this.applyBackground(3);
             break;
+          default:
+            return;
         }
-        return;
+        break;
       }
       case "work": {
         switch (step) {
@@ -159,8 +162,10 @@ class GradientController {
           case 2:
             this.applyBackground(1);
             break;
+          default:
+            return;
         }
-        return;
+        break;
       }
       default:
         return this.applyBackground(1);

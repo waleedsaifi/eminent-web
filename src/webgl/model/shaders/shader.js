@@ -30,7 +30,7 @@ class Shader {
 
             const random = () => _.random(.75, 1.1, true)
 
-            const verticesCount = geometry.getAttribute('position').count
+            //const verticesCount = geometry.getAttribute('position').count
             const vertices = geometry.getAttribute('position')
 
             const randomness = vertices.clone()

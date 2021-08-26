@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import anime from "animejs/lib/anime.es.js";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { BREAKPOINTS } from "../../constants/constants";
 import { ReactComponent as Logo } from "../../assets/images/logo.svg";
 import { ReactComponent as RightBtnSvg } from "../../assets/images/rightBtn.svg";
@@ -16,33 +16,15 @@ import {
   mobMenuCloseAnimation,
   mobMenuOpenAnimation,
   removeInlineStyles,
-  rightMenuBtnHoverInAnimation,
-  rightMenuBtnHoverOutAnimation,
-  rightMenuBtnMouseDownAnimation,
-  rightMenuBtnMouseUpAnimation,
-  getFadeOutFormTen,
-  getFadeOutProgressSvg,
 } from "../../helpers/animations";
 import { getStandardNextStep } from "../../helpers/next_step";
-import { Link, useParams, useLocation, Redirect } from "react-router-dom";
-import Contentful from "../../helpers/contentful";
+import { Link, useLocation } from "react-router-dom";
 import {
-  setMenuData,
-  setStepsTextData,
-  setScheduleData,
-  setLightThemeData,
-  setDarkThemeData,
-  setHomeSection,
-  setCurrentSection,
   setCurrentStep,
   setCurrentSectionTitle,
-  setCurrentThemeData,
-  setProgress,
 } from "../../store/actions/actionCreator";
-import { lightTheme, darkTheme } from "../../constants/constants";
-import { getThemeContent, getSectionContent } from "../../helpers/content";
 
-export default ({
+const MenuContent = ({
   showPopup,
   menuHandler,
   currentSectionTitle,
@@ -50,7 +32,6 @@ export default ({
   currentSection,
   currentTheme,
 }) => {
-  const { menuData, stepsTextData } = useSelector((state) => state.state);
   let location = useLocation();
 
   const [isMenuOpen, setMenuOpen] = useState(true);
@@ -241,49 +222,49 @@ export default ({
     });
   };
 
-  const rightMenuBtnHoverIn = () => {
-    if (!rightBorderBtn || window.innerWidth <= BREAKPOINTS.tablet) return;
-    rightMenuBtnHoverInAnimation(
-      menuRightBtn.current,
-      rightBorderBtn.current,
-      currentTheme?.bgScheduleBtn
-    );
-  };
+  // const rightMenuBtnHoverIn = () => {
+  //   if (!rightBorderBtn || window.innerWidth <= BREAKPOINTS.tablet) return;
+  //   rightMenuBtnHoverInAnimation(
+  //     menuRightBtn.current,
+  //     rightBorderBtn.current,
+  //     currentTheme?.bgScheduleBtn
+  //   );
+  // };
 
-  const rightMenuBtnHoverOut = () => {
-    if (!rightBorderBtn || window.innerWidth <= BREAKPOINTS.tablet) return;
-    rightMenuBtnHoverOutAnimation(
-      rightBorderBtn.current,
-      menuRightBtn.current,
-      currentTheme?.bgScheduleBtn,
-      () => {
-        setTimeout(
-          () =>
-            removeInlineStyles([rightBorderBtn.current, menuRightBtn.current]),
-          300
-        );
-      }
-    );
-  };
+  // const rightMenuBtnHoverOut = () => {
+  //   if (!rightBorderBtn || window.innerWidth <= BREAKPOINTS.tablet) return;
+  //   rightMenuBtnHoverOutAnimation(
+  //     rightBorderBtn.current,
+  //     menuRightBtn.current,
+  //     currentTheme?.bgScheduleBtn,
+  //     () => {
+  //       setTimeout(
+  //         () =>
+  //           removeInlineStyles([rightBorderBtn.current, menuRightBtn.current]),
+  //         300
+  //       );
+  //     }
+  //   );
+  // };
 
-  const onMouseDownScheduleHandler = (e) => {
-    if (!rightBorderBtn || window.innerWidth <= BREAKPOINTS.tablet) return;
-    rightMenuBtnMouseDownAnimation(
-      menuRightBtn.current,
-      currentTheme?.bgScheduleBtn
-    );
-  };
+  // const onMouseDownScheduleHandler = (e) => {
+  //   if (!rightBorderBtn || window.innerWidth <= BREAKPOINTS.tablet) return;
+  //   rightMenuBtnMouseDownAnimation(
+  //     menuRightBtn.current,
+  //     currentTheme?.bgScheduleBtn
+  //   );
+  // };
 
-  const onMouseUpScheduleHandler = (e) => {
-    if (!rightBorderBtn || window.innerWidth <= BREAKPOINTS.tablet) return;
-    rightMenuBtnMouseUpAnimation(
-      menuRightBtn.current,
-      currentTheme?.bgScheduleBtn,
-      () => {
-        setTimeout(() => removeInlineStyles([menuRightBtn.current]), 300);
-      }
-    );
-  };
+  // const onMouseUpScheduleHandler = (e) => {
+  //   if (!rightBorderBtn || window.innerWidth <= BREAKPOINTS.tablet) return;
+  //   rightMenuBtnMouseUpAnimation(
+  //     menuRightBtn.current,
+  //     currentTheme?.bgScheduleBtn,
+  //     () => {
+  //       setTimeout(() => removeInlineStyles([menuRightBtn.current]), 300);
+  //     }
+  //   );
+  // };
 
   const onScheduleClickHandler = () => {
     if (window.innerWidth <= BREAKPOINTS.tablet) {
@@ -309,13 +290,9 @@ export default ({
       default:
         return;
     }
-    return () => {
-      console.log(console.error);
-    };
   }, [currentSection]);
 
   function GoSectionHandler(type) {
-
     if (window.innerWidth <= BREAKPOINTS.tablet) {
       setMenuOpen(false);
     }
@@ -334,8 +311,6 @@ export default ({
       console.error("Error going to" + type);
     };
   }
-
-  
 
   const getMenuBlur = () => {
     switch (currentSectionTitle) {
@@ -360,7 +335,7 @@ export default ({
           ref={introText}
           $color={currentTheme?.textColor}
         >
-          Eminent presents:
+          Made By
         </IntroText>
       )}{" "}
       <Menu
@@ -389,7 +364,7 @@ export default ({
           <span className="menu_item" onMouseOver={menuLabelHandler}>
             <Link to="/approach"> APPROACH </Link>
           </span>{" "}
-          <span className="menu_label"> READ OUR STORY </span>{" "}
+          <span className="menu_label"> COMPLIANT YET DISRUPTIVE </span>{" "}
         </MenuBtn>
         <MenuBtn
           $open={isMenuOpen}
@@ -401,7 +376,7 @@ export default ({
             {" "}
             <Link to="/work"> WORK </Link>{" "}
           </span>{" "}
-          <span className="menu_label"> DISCOVER OUR SERVICES </span>{" "}
+          <span className="menu_label"> THINK BETTER </span>{" "}
         </MenuBtn>
         <MenuLogoBtn className="logo" $open={isMenuOpen}>
           <span>
@@ -451,6 +426,8 @@ export default ({
     </>
   );
 };
+
+export default MenuContent;
 
 const IntroText = styled.div`
   opacity: 0;
@@ -637,7 +614,7 @@ const MenuBtn = styled.div`
     top: 30px;
     left: 0;
     color: ${({ $color }) => $color};
-    width: 200px;
+    width: 400px;
     font-size: 15px;
     letter-spacing: 0;
     text-transform: uppercase;

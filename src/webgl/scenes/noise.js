@@ -1,7 +1,5 @@
 import * as THREE from 'three'
 import {
-    FrontSide,
-    MeshBasicMaterial,
     Vector3
 } from 'three'
 import {
@@ -60,8 +58,7 @@ class Noise {
 
         // const meshesToAdd = []
 
-        let i = 0
-
+       
         object.traverse(obj => {
             if (obj.isMesh) {
 
@@ -109,9 +106,9 @@ class Noise {
                 this.scene.engine.animationProcessor
                     .add(this.updateObj(newObj, obj), THREE.MathUtils.generateUUID())
 
-                i += 1
+                //inc += 1
             }
-        })
+        });
 
         if (data.addTransparency) {
 

@@ -1,14 +1,10 @@
-import { lightTheme, darkTheme, BREAKPOINTS } from "../constants/constants";
-import { useSelector, useDispatch } from "react-redux";
-import React, { useEffect, useRef, useState } from "react";
+import { lightTheme, darkTheme } from "../constants/constants";
 import Contentful from "../helpers/contentful";
 import {
   setMenuData,
-  setStepsTextData,
   setScheduleData,
   setLightThemeData,
   setDarkThemeData,
-  setHomeSection,
   setCurrentSection,
   setCurrentSectionTitle,
   setCurrentThemeData,
@@ -100,7 +96,7 @@ export const getSectionContent = (currentSectionTitle, dispatch) => {
             active: "false",
           };
           sectionItems.fields[0].active = true;
-          if (currentSectionTitle == "approach" && sectionItems) {
+          if (currentSectionTitle === "approach" && sectionItems) {
             dispatch(setCurrentSection(sectionItems));
             dispatch(setCurrentSectionTitle(currentSectionTitle));
             dispatch(setCurrentThemeData(lightTheme));
@@ -127,7 +123,7 @@ export const getSectionContent = (currentSectionTitle, dispatch) => {
             active: "false",
           };
           sectionItems.fields[0].active = true;
-          if (currentSectionTitle == "work" && sectionItems) {
+          if (currentSectionTitle === "work" && sectionItems) {
             dispatch(setCurrentSection(sectionItems));
             dispatch(setCurrentSectionTitle(currentSectionTitle));
             dispatch(setCurrentThemeData(darkTheme));

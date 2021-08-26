@@ -3,13 +3,12 @@ import styled from "styled-components";
 import Menu from "./../Menu/Menu";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import MainText from "./../MainText/MainText";
-import Footer from "./../Footer/Footer";
+import FooterContent from "./../Footer/Footer";
 import HotspotsContainer from "../Hotspots/HotspotsContainer";
 import SchedulePopup from "../SchedulePopup/SchedulePopup";
-import CareersPopup from "../CareersPopup/CareersPopup";
 import { isMobileOnly } from "react-device-detect";
 import { useDispatch, useSelector } from "react-redux";
-import { addDevGUIConfig, isDev, wait } from "../../helpers/dev.helpers";
+import { addDevGUIConfig } from "../../helpers/dev.helpers";
 import {
   getFadeOutFormTen,
   getFadeOutProgressSvg,
@@ -23,26 +22,14 @@ import {
   getStandardNextStep,
   getNextStepFromForm,
 } from "../../helpers/next_step";
-
-import Contentful from "../../helpers/contentful";
 import { getThemeContent, getSectionContent } from "../../helpers/content";
 import {
-  setMenuData,
-  setStepsTextData,
-  setScheduleData,
-  setLightThemeData,
-  setDarkThemeData,
-  setHomeSection,
-  setCurrentSection,
-  setCurrentSectionTitle,
-  setProgress,
   toggleLoader,
   stepBack,
   stepForward,
 } from "../../store/actions/actionCreator";
-import { lightTheme, darkTheme } from "../../constants/constants";
 
-export default (currentData) => {
+const ContainerContent = (currentData) => {
   const [isLandscape, setLandscape] = useState(
     window.matchMedia("(orientation: landscape)").matches
   );
@@ -50,13 +37,7 @@ export default (currentData) => {
   const [isPopupOpen, setPopupOpen] = useState(false);
   const [isBgBlur, setBgBlur] = useState(false);
   const [touchStart, setTouchStart] = useState({ x1: null, y1: null });
-  const {
-    currentSection,
-    currentStep,
-    darkThemeData,
-    lightThemeData,
-    homeSection,
-  } = useSelector((state) => state.state);
+  const { currentSection, currentStep } = useSelector((state) => state.state);
   const currentSectionTitle = currentData.currentSectionTitle;
   const currentTheme = currentData.currentTheme;
   const blurredBackground = useRef(null);
@@ -187,10 +168,13 @@ export default (currentData) => {
             }
             return;
           }
+          default: {
+            return;
+          }
         }
       }
     },
-    [currentStep, currentSection]
+    [currentStep, currentSection, currentSectionTitle]
   );
 
   const orientationchangeHandler = (e) => {
@@ -223,7 +207,7 @@ export default (currentData) => {
       window.removeEventListener("orientationchange", orientationchangeHandler);
       setBgBlur(false);
     };
-  }, [currentStep, isLandscape]);
+  }, [currentStep, isLandscape, currentSection?.fields]);
 
   const closeSchedulePopup = () => {
     mainContainer.current.style.overflowY = "auto";
@@ -231,16 +215,6 @@ export default (currentData) => {
     menu.removeAttribute("style");
     setPopupOpen(false);
     setActivePopup(null);
-  };
-
-  const showSchedulePopup = () => {
-    mainContainer.current.style.overflowY = "hidden";
-    setPopupOpen(true);
-  };
-
-
-  const showCareersPopup = () => {
-    mainContainer.current.style.overflowY = "hidden";
   };
 
   const getBlur = () => {
@@ -252,7 +226,6 @@ export default (currentData) => {
           default:
             return 15;
         }
-        return;
       }
       case "approach": {
         switch (currentStep) {
@@ -263,7 +236,6 @@ export default (currentData) => {
           default:
             return 15;
         }
-        return;
       }
       default:
         return 15;
@@ -369,7 +341,6 @@ export default (currentData) => {
           default:
             return "hidden";
         }
-        return;
       }
       case "work": {
         switch (currentStep) {
@@ -379,7 +350,6 @@ export default (currentData) => {
           default:
             return "hidden";
         }
-        return;
       }
       default:
         return "hidden";
@@ -390,10 +360,6 @@ export default (currentData) => {
     switch (activePopup) {
       case "schedule":
         return <SchedulePopup closeHandler={closeSchedulePopup} />;
-      case "careers":
-        return <CareersPopup closeHandler={closeSchedulePopup} />;
-      //  case "approach":
-      // return <ApproachPopup closeHandler={closeApproachPopup} />;
       default:
         break;
     }
@@ -427,7 +393,7 @@ export default (currentData) => {
       ref={mainContainer}
       $section={currentSection}
       $step={currentStep}
-      $isMenuOpen={true} //{isMenuOpen}
+      $isMenuOpen={isMenuOpen}
       className="mainContainer"
       onClick={stopAnimation}
       onTouchStart={touchstartHandler}
@@ -461,7 +427,7 @@ export default (currentData) => {
         />
       )}
       {currentSection && (
-        <Footer
+        <FooterContent
           currentSectionTitle={currentSectionTitle}
           currentStep={currentStep}
           currentSection={currentSection}
@@ -480,6 +446,7 @@ export default (currentData) => {
   );
 };
 
+export default ContainerContent;
 /*overflow-y: ${({ $isMenuOpen, $overflow }) =>
   $isMenuOpen ? "hidden" : $overflow};*/
 
@@ -495,7 +462,8 @@ const Container = styled.div`
   justify-content: center;
   transition: 0.3s ease;
   overflow-x: hidden;
-  overflow-y: hidden;
+  overflow-y: ${({ $isMenuOpen, $overflow }) =>
+    $isMenuOpen ? "hidden" : $overflow};
   touch-action: pan-y;
 `;
 const BlurredBackground = styled.div`

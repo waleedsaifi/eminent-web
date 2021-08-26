@@ -1,4 +1,3 @@
-import { Noise } from "../noise";
 import { Scene } from "../scene";
 import * as THREE from "three";
 import { wait } from "helpers/dev.helpers";

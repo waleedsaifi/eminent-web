@@ -1,12 +1,10 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { GradientController } from "./gradient";
 import { ParticleBg } from "./view";
 
 const ParticleBackground = () => {
   const _canvas = React.useRef(null);
   const _root = React.useRef(null);
-  const { currentStep, currentSection } = useSelector((state) => state.state);
 
   React.useEffect(() => {
     if (_canvas.current) {

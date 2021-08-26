@@ -1,19 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import styled, { css, keyframes } from "styled-components";
 import _ from "lodash";
 import { BREAKPOINTS } from "../../constants/constants";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import anime from "animejs/lib/anime.es.js";
-import {
-  setProgress,
-  setStepsTextData,
-  setThemeData,
-} from "../../store/actions/actionCreator";
-import { ReactComponent as StrategySvg } from "../../assets/images/Strategy.svg";
-import { ReactComponent as TransparencySvg } from "../../assets/images/Transparency.svg";
-import { ReactComponent as FlexibilitySvg } from "../../assets/images/Flexibility.svg";
-import { ReactComponent as SelflessSvg } from "../../assets/images/Selfless.svg";
-import { ReactComponent as ServiceSvg } from "../../assets/images/service.svg";
+import { setProgress } from "../../store/actions/actionCreator";
+import { ReactComponent as OutcomeSVG } from "../../assets/images/Outcome.svg";
+import { ReactComponent as PartnersSVG } from "../../assets/images/Partners.svg";
+import { ReactComponent as VisionSVG } from "../../assets/images/Vision.svg";
+import { ReactComponent as VeteransSVG } from "../../assets/images/Veterans.svg";
+// import { ReactComponent as StrategySvg } from "../../assets/images/Strategy.svg";
+// import { ReactComponent as TransparencySvg } from "../../assets/images/Transparency.svg";
+// import { ReactComponent as FlexibilitySvg } from "../../assets/images/Flexibility.svg";
+// import { ReactComponent as SelflessSvg } from "../../assets/images/Selfless.svg";
+// import { ReactComponent as ServiceSvg } from "../../assets/images/service.svg";
 import { ReactComponent as WatchAgainSvg } from "../../assets/images/watchAgainArrow.svg";
 import { ReactComponent as RightBtnSvg } from "../../assets/images/rightBtn.svg";
 import {
@@ -28,9 +28,8 @@ import {
 } from "../../helpers/animations";
 import ScheduleForm from "../SchedulePopup/ScheduleForm";
 import { getNextStepFromForm } from "../../helpers/next_step";
-import Menu from "../Menu/Menu";
 
-export default ({
+const App = ({
   showPopup,
   menuHandler,
   currentSectionTitle,
@@ -39,18 +38,16 @@ export default ({
   currentTheme,
 }) => {
   const dispatch = useDispatch();
-
-  const { stepsTextData } = useSelector((state) => state.state);
+  // const currentSectionTitle = props.currentSectionTitle;
+  // const currentStep = props.currentStep;
+  // const currentSection = props.currentSection;
+  // const currentTheme = props.currentTheme;
   const svgWatch = useRef(null);
-  const strategySvg = useRef(null);
   const chooseStoryTextContainer = useRef(null);
   const storyItem1 = useRef(null);
   const storyItem2 = useRef(null);
   const storyItem3 = useRef(null);
   const storyItem4 = useRef(null);
-  const scheduleBtnBorder = useRef(null);
-  const [Menu] = useState(false);
-  const mainContainer = useRef(null);
 
   const onScheduleClickHandler = (e) => {
     document.getElementById("ScheduleBtn").click();
@@ -71,7 +68,7 @@ export default ({
     }
 
     if (currentSectionTitle === "work" && currentStep === 0) {
-       window.animation = anime;
+      window.animation = anime;
       window.animation.way = "forward";
       getFadeInFormTen(".chooseStory", 0, () =>
         setTimeout(() => (window.stoppedAnimation = true), 1000)
@@ -135,7 +132,7 @@ export default ({
       () => {
         //   window.engine.start();
         window.animation._name = "anime";
-        setTimeout(() => (window.stoppedAnimation = true), 1000);
+        setTimeout(() => (window.stoppedAnimation = true), 700);
       },
       currentStep === 0 ? 6000 : 0
     );
@@ -156,8 +153,9 @@ export default ({
             return ["15%"];
           case 5:
             return ["40%;"];
+          default:
+            return;
         }
-        return;
       }
       case "approach": {
         switch (currentStep) {
@@ -171,8 +169,9 @@ export default ({
             return ["50%"];
           case 4:
             return ["35%"];
+          default:
+            return;
         }
-        return;
       }
       case "work": {
         switch (currentStep) {
@@ -182,9 +181,12 @@ export default ({
             return ["135px"];
           case 2:
             return ["18%"];
+          default:
+            return;
         }
-        return;
       }
+      default:
+        return;
     }
   };
 
@@ -200,7 +202,6 @@ export default ({
           default:
             return ["40%"];
         }
-        return;
       }
       case "approach": {
         switch (currentStep) {
@@ -217,7 +218,6 @@ export default ({
           default:
             return ["40%"];
         }
-        return;
       }
       case "work": {
         switch (currentStep) {
@@ -230,8 +230,9 @@ export default ({
           default:
             return ["40%"];
         }
-        return;
       }
+      default:
+        return;
     }
   };
 
@@ -251,8 +252,9 @@ export default ({
             return ["85%"];
           case 5:
             return ["50%;"];
+          default:
+            return;
         }
-        return;
       }
       case "approach": {
         switch (currentStep) {
@@ -266,9 +268,9 @@ export default ({
             return ["70%"];
           case 4:
             return ["55%"];
+          default:
+            return;
         }
-
-        return;
       }
       case "work": {
         switch (currentStep) {
@@ -278,9 +280,12 @@ export default ({
             return ["235px"];
           case 13:
             return ["38%"];
+          default:
+            return;
         }
-        return;
       }
+      default:
+        return;
     }
   };
 
@@ -299,7 +304,6 @@ export default ({
           default:
             return ["50%"];
         }
-        return;
       }
       default:
         return ["50%"];
@@ -312,16 +316,20 @@ export default ({
           case 0:
           case 2:
             return "15%";
+          default:
+            return;
         }
-        return;
       }
       case "work": {
         switch (currentStep) {
           case 0:
             return "15%";
+          default:
+            return;
         }
-        return;
       }
+      default:
+        return;
     }
   };
   const getRight = () => {
@@ -331,9 +339,12 @@ export default ({
           case 1:
           case 3:
             return "15%";
+          default:
+            return;
         }
-        return;
       }
+      default:
+        return;
     }
   };
   const getFontSize = () => {
@@ -348,8 +359,9 @@ export default ({
           case 3:
           case 4:
             return ["28px", "21px", "18px"];
+          default:
+            return;
         }
-        return;
       }
       case "approach": {
         switch (currentStep) {
@@ -360,8 +372,9 @@ export default ({
             return ["100px"];
           case 4:
             return ["32px", "28px", "18px"];
+          default:
+            return;
         }
-        return;
       }
       case "work": {
         switch (currentStep) {
@@ -376,9 +389,12 @@ export default ({
             return ["100px"];
           case 2:
             return ["32px", "28px", "18px"];
+          default:
+            return;
         }
-        return;
       }
+      default:
+        return;
     }
   };
   const getLetterSpacing = () => {
@@ -393,23 +409,28 @@ export default ({
             return "0.07em";
           case 5:
             return "0.02em";
+          default:
+            return;
         }
-        return;
       }
       case "approach": {
         switch (currentStep) {
           case 4:
             return "0.04em";
+          default:
+            return;
         }
-        return;
       }
       case "work": {
         switch (currentStep) {
           case 1:
             return "0.07em";
+          default:
+            return;
         }
-        return;
       }
+      default:
+        return;
     }
   };
   const getBackground = () => {
@@ -420,11 +441,16 @@ export default ({
   };
   const getFocus = () => {
     switch (currentSectionTitle) {
-      case "work":
+      case "work": {
         switch (currentStep) {
           case 1:
             return "0 0 23px 2px rgba(255,255,255,0.5)";
+          default:
+            return;
         }
+      }
+      default:
+        return;
     }
   };
 
@@ -441,7 +467,6 @@ export default ({
           default:
             return { desk: "25px 0", tablet: "25px 0" };
         }
-        return;
       }
       default:
         return { desk: "25px 0", tablet: "25px 0" };
@@ -460,7 +485,6 @@ export default ({
           default:
             return { desk: "25px 0 10px 0", tablet: "20px 0 0 0" };
         }
-        return;
       }
       default:
         return { desk: "25px 0 10px 0", tablet: "20px 0 0 0" };
@@ -473,9 +497,12 @@ export default ({
         switch (currentStep) {
           case 0:
             return ["left"];
+          default:
+            return;
         }
-        return;
       }
+      default:
+        return;
     }
   };
 
@@ -497,7 +524,7 @@ export default ({
     if (!target) return;
 
     const allItems = document.querySelectorAll(".storyItem");
-    [...allItems].map((i) => {
+    [...allItems].forEach((i) => {
       if (i !== target) {
         const context = i.querySelector(".storyItem-context");
         context.style.opacity = "0.5";
@@ -560,38 +587,38 @@ export default ({
     });
   };
 
-  const mouseOverStoryItem = (e) => {
-    if (window.innerWidth < 900) return;
-    const el = e.target.classList.contains("storyItem")
-      ? e.target
-      : e.target.parentElement.classList.contains("storyItem")
-      ? e.target.parentElement
-      : null;
+  // const mouseOverStoryItem = (e) => {
+  //   if (window.innerWidth < 900) return;
+  //   const el = e.target.classList.contains("storyItem")
+  //     ? e.target
+  //     : e.target.parentElement.classList.contains("storyItem")
+  //     ? e.target.parentElement
+  //     : null;
 
-    if (!el) return;
+  //   if (!el) return;
 
-    const blurTextEl = chooseStoryTextContainer.current.querySelector(
-      ".storyBlur"
-    );
-    // chooseStoryTextContainer.current.style.opacity = 0.2;
-    blurTextEl.style.opacity = 1;
-    const storyItems = [
-      storyItem1.current,
-      storyItem2.current,
-      storyItem3.current,
-      storyItem4.current,
-    ];
-    _.each(storyItems, (item) => {
-      const blurEl = item.querySelector(".storyBlur");
-      if (item !== el) {
-        // item.style.opacity = 0.2;
-        blurEl.style.opacity = 1;
-      } else {
-        // item.style.opacity = 1;
-        blurEl.style.opacity = 0;
-      }
-    });
-  };
+  //   const blurTextEl = chooseStoryTextContainer.current.querySelector(
+  //     ".storyBlur"
+  //   );
+  //   // chooseStoryTextContainer.current.style.opacity = 0.2;
+  //   blurTextEl.style.opacity = 1;
+  //   const storyItems = [
+  //     storyItem1.current,
+  //     storyItem2.current,
+  //     storyItem3.current,
+  //     storyItem4.current,
+  //   ];
+  //   _.each(storyItems, (item) => {
+  //     const blurEl = item.querySelector(".storyBlur");
+  //     if (item !== el) {
+  //       // item.style.opacity = 0.2;
+  //       blurEl.style.opacity = 1;
+  //     } else {
+  //       // item.style.opacity = 1;
+  //       blurEl.style.opacity = 0;
+  //     }
+  //   });
+  // };
 
   // const mouseOverStoryItemThrottle = _.throttle((e) => mouseOverStoryItem(e), 1);
 
@@ -718,8 +745,9 @@ export default ({
               tablet: { t1: "570px" },
               mob: { t1: "314px" },
             };
+          default:
+            return;
         }
-        return;
       }
       case "approach": {
         switch (currentStep) {
@@ -730,8 +758,9 @@ export default ({
               tablet: { t1: "490px", t2: "510px" },
               mob: { t1: "314px", t2: "314px" },
             };
+          default:
+            return;
         }
-        return;
       }
       case "work": {
         switch (currentStep) {
@@ -750,8 +779,9 @@ export default ({
               mob: { t1: "325px", t2: "325px" },
             };
         }
-        return;
       }
+      default:
+        return;
     }
   };
 
@@ -767,9 +797,12 @@ export default ({
             return { tablet: "555px" };
           case 3:
             return { tablet: "470px" };
+          default:
+            return;
         }
-        return;
       }
+      default:
+        return;
     }
   };
 
@@ -780,14 +813,17 @@ export default ({
           case 0:
             return "500px";
           case 1:
-            return "471px";
+            return "500px";
           case 2:
             return "500px";
           case 3:
-            return "453px";
+            return "500px";
+          default:
+            return;
         }
-        return;
       }
+      default:
+        return;
     }
   };
 
@@ -883,7 +919,7 @@ export default ({
               </MainTextSecond>
             )}
             {currentSection.fields[currentStep].fields.mainText &&
-              currentStep != 5 && (
+              currentStep !== 5 && (
                 <Continue
                   className="anime"
                   onClick={getNextStep}
@@ -900,6 +936,7 @@ export default ({
                   $color={currentTheme.menuBtnColor}
                   onClick={onScheduleClickHandler}
                   $lineBg={currentTheme.bgScheduleBtn}
+               
                 >
                   <ScheduleBtnBorder $color={currentTheme.bgScheduleBtn} />
                   <span> SCHEDULE A CALL </span>
@@ -907,6 +944,8 @@ export default ({
               )}
           </>
         );
+      default:
+        return;
     }
   };
 
@@ -925,24 +964,23 @@ export default ({
                 $align={"flex-start"}
                 $mobGridCols={getMobGridColumns()}
               >
-                <CustomText
-                  className="custom_anime"
-                  $margin={getMarginCustomText()}
-                >
-                  {currentSection.fields[currentStep].fields.description1}
-                </CustomText>
-                <CustomText
+                {/* <CustomText
                   className="custom_anime"
                   $margin={getMarginCustomText()}
                 >
                   {currentSection.fields[currentStep].fields.description2}
-                </CustomText>
+                </CustomText> */}
                 <CustomID $margin={getMarginId()} className="custom_anime">
                   {currentSection.fields[currentStep].fields.customNumber}
                 </CustomID>
 
-                <AnimatedStrategyText
+                {/* <AnimatedStrategyText
                   ref={strategySvg}
+                  className="svgText"
+                  $color={currentTheme.textColor}
+                /> */}
+
+                <AnimtateOutcomeText
                   className="svgText"
                   $color={currentTheme.textColor}
                 />
@@ -951,14 +989,14 @@ export default ({
                   className="custom_anime"
                   $margin={getMarginCustomText()}
                 >
-                  {currentSection.fields[currentStep].fields.description3}
+                  {currentSection.fields[currentStep].fields.description1}
                 </CustomText>
-                <CustomText
+                {/* <CustomText
                   className="custom_anime"
                   $margin={getMarginCustomText()}
                 >
                   {currentSection.fields[currentStep].fields.description4}
-                </CustomText>
+                </CustomText> */}
               </CustomBlock>
             </CustomBlockWrapper>
             <CustomBlockMobGradient />
@@ -987,7 +1025,7 @@ export default ({
                   {currentSection.fields[currentStep].fields.customNumber}
                 </CustomID>
 
-                <AnimatedTransparencyText
+                <AnimatedPartnersText
                   className="svgText"
                   $color={currentTheme.textColor}
                 />
@@ -999,13 +1037,13 @@ export default ({
                 >
                   {currentSection.fields[currentStep].fields.description1}
                 </CustomText>
-                <CustomText
+                {/* <CustomText
                   className="custom_anime"
                   $right={getRight()}
                   $margin={getMarginCustomText()}
                 >
                   {currentSection.fields[currentStep].fields.description2}
-                </CustomText>
+                </CustomText> */}
               </CustomBlock>
             </CustomBlockWrapper>
             <CustomBlockMobGradient />
@@ -1027,13 +1065,7 @@ export default ({
                 $mobGridCols={getMobGridColumns()}
                 $maxWidth={getMaxWidthCustomBlock()}
               >
-                <CustomText
-                  className="custom_anime"
-                  $margin={getMarginCustomText()}
-                >
-                  {currentSection.fields[currentStep].fields.description1}
-                </CustomText>
-                <CustomText
+                {/* <CustomText
                   className="custom_anime"
                   $margin={getMarginCustomText()}
                 >
@@ -1044,7 +1076,7 @@ export default ({
                   $margin={getMarginCustomText()}
                 >
                   {currentSection.fields[currentStep].fields.description3}
-                </CustomText>
+                </CustomText> */}
                 <CustomID
                   $margin={getMarginId()}
                   className="custom_anime"
@@ -1052,10 +1084,16 @@ export default ({
                 >
                   {currentSection.fields[currentStep].fields.customNumber}
                 </CustomID>
-                <AnimatedFlexibilityText
+                <AnimatedVisionText
                   className="svgText"
                   $color={currentTheme.textColor}
                 />
+                <CustomText
+                  className="custom_anime"
+                  $margin={getMarginCustomText()}
+                >
+                  {currentSection.fields[currentStep].fields.description1}
+                </CustomText>
               </CustomBlock>
             </CustomBlockWrapper>
             <CustomBlockMobGradient />
@@ -1077,31 +1115,31 @@ export default ({
                 $mobGridCols={getMobGridColumns()}
                 $maxWidth={getMaxWidthCustomBlock()}
               >
-                <CustomText className="custom_anime" $right={getRight()}>
-                  {currentSection.fields[currentStep].fields.description1}
-                </CustomText>
-                <CustomText className="custom_anime" $right={getRight()}>
+                {/* <CustomText className="custom_anime" $right={getRight()}>
                   {currentSection.fields[currentStep].fields.description2}
-                </CustomText>
+                </CustomText> */}
 
                 <CustomID $margin={getMarginId()} className="custom_anime">
                   {currentSection.fields[currentStep].fields.customNumber}
                 </CustomID>
 
-                <AnimatedSelflessText
+                <AnimatedVeteransText
                   className="svgText"
                   $color={currentTheme.textColor}
                 />
-                <AnimatedServiceText
+                <CustomText className="custom_anime" $right={getRight()}>
+                  {currentSection.fields[currentStep].fields.description1}
+                </CustomText>
+                {/* <AnimatedServiceText
                   className="svgText2"
                   $color={currentTheme.textColor}
-                />
-                <CustomText className="custom_anime" $right={getRight()}>
+                /> */}
+                {/* <CustomText className="custom_anime" $right={getRight()}>
                   {currentSection.fields[currentStep].fields.description3}
                 </CustomText>
                 <CustomText className="custom_anime" $right={getRight()}>
                   {currentSection.fields[currentStep].fields.description4}
-                </CustomText>
+                </CustomText> */}
               </CustomBlock>
             </CustomBlockWrapper>
             <CustomBlockMobGradient />
@@ -1153,6 +1191,8 @@ export default ({
             )}
           </>
         );
+      default:
+        return;
     }
   };
 
@@ -1315,6 +1355,9 @@ export default ({
             </WatchAgain>
           </>
         );
+
+      default:
+        return;
     }
   };
 
@@ -1328,8 +1371,12 @@ export default ({
     case "work": {
       return getWorkContent();
     }
+    default:
+      return;
   }
 };
+
+export default App;
 
 const FormContainer = styled.div`
   position: absolute;
@@ -1384,9 +1431,9 @@ const AnimatedSVG = css`
   stroke: rgba(255, 255, 255, 0);
 `;
 
-const AnimatedStrategyText = styled(StrategySvg)`
-  width: 475px;
-  height: 100px;
+const AnimtateOutcomeText = styled(OutcomeSVG)`
+  width: auto;
+  height: auto;
   transform-origin: left;
   ${AnimatedSVG};
 
@@ -1398,12 +1445,12 @@ const AnimatedStrategyText = styled(StrategySvg)`
   @media (max-width: ${BREAKPOINTS.mob}px) {
     grid-row-start: 2;
     width: 70%;
-    height: 58px;
+    height: 86px;
   }
 `;
-const AnimatedTransparencyText = styled(TransparencySvg)`
-  width: 650px;
-  height: 100px;
+const AnimatedPartnersText = styled(PartnersSVG)`
+  width: auto;
+  height: auto;
   transform-origin: right;
   ${AnimatedSVG};
 
@@ -1415,12 +1462,12 @@ const AnimatedTransparencyText = styled(TransparencySvg)`
   @media (max-width: ${BREAKPOINTS.mob}px) {
     grid-row-start: 2;
     width: 100%;
-    height: 58px;
+    height: 86px;
   }
 `;
-const AnimatedFlexibilityText = styled(FlexibilitySvg)`
-  width: 500px;
-  height: 120px;
+const AnimatedVisionText = styled(VisionSVG)`
+  width: auto;
+  height: auto;
   transform-origin: left;
   ${AnimatedSVG};
 
@@ -1432,12 +1479,12 @@ const AnimatedFlexibilityText = styled(FlexibilitySvg)`
   @media (max-width: ${BREAKPOINTS.mob}px) {
     grid-row-start: 2;
     width: 80%;
-    height: 58px;
+    height: 86px;
   }
 `;
-const AnimatedSelflessText = styled(SelflessSvg)`
-  width: 450px;
-  height: 100px;
+const AnimatedVeteransText = styled(VeteransSVG)`
+  width: auto;
+  height: auto;
   transform-origin: right;
   ${AnimatedSVG};
 
@@ -1449,27 +1496,27 @@ const AnimatedSelflessText = styled(SelflessSvg)`
   @media (max-width: ${BREAKPOINTS.mob}px) {
     grid-row-start: 2;
     width: 70%;
-    height: 58px;
-  }
-`;
-const AnimatedServiceText = styled(ServiceSvg)`
-  width: 400px;
-  height: 100px;
-  transform-origin: right;
-  ${AnimatedSVG};
-  margin-bottom: 10px;
-
-  @media (max-width: ${BREAKPOINTS.tablet}px) {
-    grid-row-start: 3;
-    width: 286px;
     height: 86px;
   }
-  @media (max-width: ${BREAKPOINTS.mob}px) {
-    grid-row-start: 3;
-    width: 65%;
-    height: 58px;
-  }
 `;
+// const AnimatedServiceText = styled(ServiceSvg)`
+//   width: 400px;
+//   height: 100px;
+//   transform-origin: right;
+//   ${AnimatedSVG};
+//   margin-bottom: 10px;
+
+//   @media (max-width: ${BREAKPOINTS.tablet}px) {
+//     grid-row-start: 3;
+//     width: 286px;
+//     height: 86px;
+//   }
+//   @media (max-width: ${BREAKPOINTS.mob}px) {
+//     grid-row-start: 3;
+//     width: 65%;
+//     height: 58px;
+//   }
+// `;
 const MainText = styled.div`
   opacity: 0;
   position: fixed;
@@ -1652,7 +1699,8 @@ const ScheduleBtnBorder = styled(RightBtnSvg)`
   stroke-width: 2px;
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {
-    stroke: transparent;
+    stroke: transparent; 
+ 
   }
 `;
 
@@ -2000,6 +2048,7 @@ const CustomBlockWrapper = styled.div`
     top: 96%;
     //bottom: 160px;
     padding-left: 20px;
+    backdrop-filter: blur(14px);
   }
 `;
 const CustomBlockMobGradient = styled.div`
@@ -2052,7 +2101,7 @@ const CustomText = styled.div`
   letter-spacing: 1px;
 
   &:after {
-    position: absolute;
+    position: none;
     content: "";
     left: -15px;
     top: 12px;

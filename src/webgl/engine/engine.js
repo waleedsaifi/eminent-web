@@ -2,15 +2,12 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import AnimationProcessor from "./engine.animation";
 import gsap from "gsap";
-import { addDevGUIConfig, isDev, wait } from "../../helpers/dev.helpers";
 import { RaycasterEvents } from "../lib/raycasterEvents";
 import { loaderScene, scenes } from "../../constants/constants";
 import { createScene } from "../../webgl/scenes/createScene";
 import { TexturesLoader } from "./textures.loader";
 import { isMobile } from "react-device-detect";
 import HdrFile from "../models/env.hdr";
-import { useDispatch, useSelector, useStore } from "react-redux";
-import { setCurrentSectionTitle } from "../../store/actions/actionCreator";
 
 class WebglEngine {
   constructor(props) {

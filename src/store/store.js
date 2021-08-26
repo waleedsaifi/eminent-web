@@ -1,4 +1,4 @@
-import { applyMiddleware, compose, createStore } from "redux";
+import { applyMiddleware, createStore } from "redux";
 import { routerMiddleware } from "connected-react-router";
 import rootReducer from "./reducers/rootReducer";
 import { composeWithDevTools } from "redux-devtools-extension";

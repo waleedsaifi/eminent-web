@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styled, { keyframes } from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import anime from "animejs/lib/anime.es.js";
 import { setProgress } from "../../store/actions/actionCreator";
 import { BREAKPOINTS } from "../../constants/constants";
@@ -16,21 +16,20 @@ import {
   getStandardNextStep,
 } from "../../helpers/next_step";
 
-export default ({
+const ProgressBarContent = ({
   currentSectionTitle,
   currentStep,
   currentSection,
   currentTheme,
 }) => {
   const dispatch = useDispatch();
-  const { stepsTextData } = useSelector((state) => state.state);
   const _root = React.useRef(null);
 
   useEffect(() => {
     dispatch(setProgress(currentStep));
     currentSection.fields.forEach((i) => (i.active = false));
     currentSection.fields[currentStep].active = true;
-  }, [currentStep, _root]);
+  }, [currentStep, _root, currentSection, dispatch]);
 
   const progressHoverIn = (e) => {
     const box = e.target.classList.contains("progressBtn")
@@ -109,6 +108,7 @@ export default ({
             getStandardNextStep(nextStep, currentSectionTitle, dispatch);
           }
         }
+        break;
       }
       default: {
         window.animation.way = "back";
@@ -192,6 +192,8 @@ export default ({
     </ProgressBar>
   );
 };
+
+export default ProgressBarContent;
 
 const block1_progress_animation = keyframes`
 	0%   {transform: skew(-30deg) rotate(1deg)}

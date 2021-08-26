@@ -2,9 +2,7 @@ import anime from "animejs";
 import {
     wait
 } from "helpers/dev.helpers";
-import {
-    Noise
-} from "../noise";
+
 import {
     Scene
 } from "../scene";

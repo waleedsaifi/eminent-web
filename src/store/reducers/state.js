@@ -1,4 +1,4 @@
-import { isDev } from "../../helpers/dev.helpers";
+//import { isDev } from "../../helpers/dev.helpers";
 import { ACTIONS } from "../constants/constants";
 import { darkTheme, lightTheme } from "../../constants/constants";
 
@@ -8,7 +8,7 @@ let count = 0;
 
 const initState = {
   loader: true,
-  currentStep: 0,
+  currentStep:  0,
   currentTheme: darkTheme,
   currentSection: {
     active: true,

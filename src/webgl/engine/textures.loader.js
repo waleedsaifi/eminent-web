@@ -1,7 +1,4 @@
 /* eslint class-methods-use-this: 0 */
-import {
-    find
-} from 'lodash'
 import * as THREE from 'three'
 import {
     RGBELoader

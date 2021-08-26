@@ -1,34 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import Viewer from "webgl/viewer/viewer";
 import styled from "styled-components";
-import { useSelector, useDispatch, useStore } from "react-redux";
-import TweenMax from "gsap";
-import Contentful from "../../helpers/contentful";
-import { useParams, withRouter, useLocation } from "react-router-dom";
-import { addDevGUIConfig, isDev, wait } from "../../helpers/dev.helpers";
-import {
-  setMenuData,
-  setStepsTextData,
-  setScheduleData,
-  setLightThemeData,
-  setDarkThemeData,
-  setHomeSection,
-  setCurrentSection,
-  setCurrentSectionTitle,
-  setProgress,
-  toggleLoader,
-  stepBack,
-  stepForward,
-} from "../../store/actions/actionCreator";
-import { lightTheme, darkTheme } from "../../constants/constants";
+import { useSelector } from "react-redux";
 
 export default function App(props) {
   const node = useRef(null);
-  const { currentStep, currentSection, currentSectionTitle } = useSelector(
+  const { currentStep, currentSectionTitle } = useSelector(
     (state) => state.state
   );
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     new Viewer({

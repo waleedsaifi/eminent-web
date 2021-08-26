@@ -16,7 +16,6 @@ export const getAnimationTimeout = (currentStep, currentSectionTitle) => {
         default:
           return 2500;
       }
-      return;
     }
     case "approach": {
       switch (currentStep) {
@@ -28,7 +27,6 @@ export const getAnimationTimeout = (currentStep, currentSectionTitle) => {
         default:
           return 2500;
       }
-      return;
     }
     case "work": {
       switch (currentStep) {
@@ -39,8 +37,9 @@ export const getAnimationTimeout = (currentStep, currentSectionTitle) => {
         default:
           return 2500;
       }
-      return;
     }
+    default:
+      return;
   }
 };
 
@@ -89,7 +88,6 @@ export const stopMainTextAnimation = (classes) => {
 };
 
 export const stopChooseStoryTitleAnimation = (classes) => {
-  const [majorClass, minorClass] = classes;
   window.animation && window.animation.pause();
   const elements = classes.reduce((acc, curr) => {
     const partElements = [...document.querySelectorAll(curr)];

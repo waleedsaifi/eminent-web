@@ -22,7 +22,7 @@ export const CustomSelect = ({
 
     useEffect(() => {
         setOptionHandler(selected);
-    }, [selected])
+    }, [selected, setOptionHandler])
 
     const selectClickHandler = () => {
         setIsOpen((state) => !state)

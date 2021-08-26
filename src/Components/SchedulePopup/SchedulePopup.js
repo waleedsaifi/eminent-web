@@ -5,16 +5,16 @@ import { ReactComponent as CrossSvg } from "../../assets/images/cross.svg";
 import { BREAKPOINTS } from "../../constants/constants";
 import { useSelector } from "react-redux";
 
-export default ({ closeHandler }) => {
+const schedulePopupContent = () => ({ closeHandler }) => {
   const wrapper = useRef(null);
   const header = useRef(null);
   const [isHeaderSmall, setIsHeaderSmall] = useState(false);
-  const { currentStep, darkThemeData, stepsTextData, currentTheme } = useSelector((state) => state.state);
+  const { currentTheme } = useSelector((state) => state.state);
   
   useEffect(() => {
     window.addEventListener("wheel", popupWheelHandler);
     return () => window.removeEventListener("wheel", popupWheelHandler);
-  }, []);
+  });
 
   const popupWheelHandler = useCallback(
     (e) => {
@@ -22,7 +22,7 @@ export default ({ closeHandler }) => {
         setIsHeaderSmall(() => e.deltaY > 0);
       }
     },
-    [isHeaderSmall]
+    []
   );
 
   const closeHandlerPopup = () => {
@@ -52,6 +52,8 @@ export default ({ closeHandler }) => {
     </Wrapper>
   );
 };
+
+export default schedulePopupContent;
 
 const mobBreakpoint = 900;
 

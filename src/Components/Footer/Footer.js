@@ -1,114 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { BREAKPOINTS } from "../../constants/constants";
-import { useSelector } from "react-redux";
 import {
   getAnimationTimeout,
   getFadeInFormTen,
 } from "../../helpers/animations";
 
-export default ({ showPopup, menuHandler, currentSectionTitle, currentStep, currentSection, currentTheme }) => {
-
-
-  useEffect(() => {
-    getContent(currentStep) &&
-      getFadeInFormTen(".footer", getAnimationTimeout(currentStep, currentSectionTitle), () =>
-        setTimeout(() => (window.stoppedAnimation = true), 1000)
-      );
-  }, [currentStep]);
-
-  const getBottom = () => {
-    switch (currentSectionTitle) {
-      case "work": {
-        switch (currentStep) {
-          case 2:
-            return {
-              desk: "14%",
-              tablet: "160px",
-              mob: "133px",
-            };
-          default:
-            return {
-              desk: "3%",
-              tablet: "65px",
-              mob: "65px",
-            };
-        }
-        return;
-      }
-      case "home":
-      case "approach":
-      default:
-        return {
-          desk: "3%",
-          tablet: "65px",
-          mob: "65px",
-        };
-    }
-  };
-
-  const getFooterText = () => {
-    switch (currentSectionTitle) {
-      case "home": {
-        switch (currentStep) {
-          case 0:
-          case 1:
-            return window.innerWidth < BREAKPOINTS.tablet
-              ? `Scroll right and don't look back into the past`
-              : `Scroll and don't look back to the past`;
-        }
-      }
-      return;
-    }
-  };
-
-  const getDisplayBlurredBlock = () => {
-    switch (currentSectionTitle) {
-      case "work": {
-        switch (currentStep) {
-          case 0:
-          case 1:
-            return "block";
-          default:
-            return "none";
-        }
-        return;
-      }
-      case "home":
-      case "approach": {
-        switch (currentStep) {
-          default:
-            return "none";
-        }
-        return;
-      }
-    }
-  };
-
-  const getDisplayBlurredBlockHeight = () => {
-    switch (currentSectionTitle) {
-      case "work": {
-        switch (currentStep) {
-          case 0:
-            return "100px";
-          case 1:
-            return "70px";
-          default:
-            return "0px";
-        }
-        return;
-      }
-      case "home":
-      case "approach": {
-        switch (currentStep) {
-          default:
-            return "none";
-        }
-        return;
-      }
-    }
-  };
-
+const FooterContent = ({
+  showPopup,
+  menuHandler,
+  currentSectionTitle,
+  currentStep,
+  currentSection,
+  currentTheme,
+}) => {
   const getContent = () => {
     switch (currentSectionTitle) {
       case "home": {
@@ -119,7 +24,6 @@ export default ({ showPopup, menuHandler, currentSectionTitle, currentStep, curr
           default:
             return null;
         }
-        return;
       }
       case "work": {
         switch (currentStep) {
@@ -140,15 +44,118 @@ export default ({ showPopup, menuHandler, currentSectionTitle, currentStep, curr
           default:
             return null;
         }
-        return;
       }
       case "approach": {
         switch (currentStep) {
           default:
             return null;
         }
-        return;
       }
+      default:
+        return null;
+    }
+  };
+
+  useEffect(() => {
+    getContent(currentStep) &&
+      getFadeInFormTen(
+        ".footer",
+        getAnimationTimeout(currentStep, currentSectionTitle),
+        () => setTimeout(() => (window.stoppedAnimation = true), 1000)
+      );
+  }, [currentStep]);
+
+  const getBottom = () => {
+    switch (currentSectionTitle) {
+      case "work": {
+        switch (currentStep) {
+          case 2:
+            return {
+              desk: "14%",
+              tablet: "160px",
+              mob: "133px",
+            };
+          default:
+            return {
+              desk: "3%",
+              tablet: "65px",
+              mob: "65px",
+            };
+        }
+      }
+      case "home":
+      case "approach":
+      default:
+        return {
+          desk: "3%",
+          tablet: "65px",
+          mob: "65px",
+        };
+    }
+  };
+
+  const getFooterText = () => {
+    switch (currentSectionTitle) {
+      case "home": {
+        switch (currentStep) {
+          case 0:
+          case 1:
+            return window.innerWidth < BREAKPOINTS.tablet
+              ? `Scroll right to go to the next screen`
+              : `Scroll to go to the next screen`;
+          default:
+            return;
+        }
+      }
+      default:
+        return;
+    }
+  };
+
+  const getDisplayBlurredBlock = () => {
+    switch (currentSectionTitle) {
+      case "work": {
+        switch (currentStep) {
+          case 0:
+          case 1:
+            return "block";
+          default:
+            return "none";
+        }
+      }
+      case "home":
+      case "approach": {
+        switch (currentStep) {
+          default:
+            return "none";
+        }
+      }
+      default:
+        return;
+    }
+  };
+
+  const getDisplayBlurredBlockHeight = () => {
+    switch (currentSectionTitle) {
+      case "work": {
+        switch (currentStep) {
+          case 0:
+            return "100px";
+          case 1:
+            return "70px";
+          default:
+            return "0px";
+        }
+      }
+      case "home":
+      case "approach": {
+        switch (currentStep) {
+          default:
+            return "none";
+        }
+      }
+      default:
+        return;
     }
   };
 
@@ -169,6 +176,8 @@ export default ({ showPopup, menuHandler, currentSectionTitle, currentStep, curr
     </>
   );
 };
+
+export default FooterContent;
 
 const Footer = styled.div`
   width: 100%;
