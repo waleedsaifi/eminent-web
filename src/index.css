@@ -66,6 +66,6 @@ body {
 
 .custom_anime .letter,
 .anime .letter {
-  display: inline-block;
+  display: inline;
   line-height: 1em;
 }

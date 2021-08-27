@@ -854,7 +854,9 @@ const App = ({
   };
 
   const getHomeContent = () => {
-    //console.log(stepsTextData)
+    {
+      console.log(getBoxMaxWidth());
+    }
     switch (currentStep) {
       case 0:
         return (
@@ -936,7 +938,6 @@ const App = ({
                   $color={currentTheme.menuBtnColor}
                   onClick={onScheduleClickHandler}
                   $lineBg={currentTheme.bgScheduleBtn}
-               
                 >
                   <ScheduleBtnBorder $color={currentTheme.bgScheduleBtn} />
                   <span> SCHEDULE A CALL </span>
@@ -1439,11 +1440,9 @@ const AnimtateOutcomeText = styled(OutcomeSVG)`
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {
     grid-row-start: 2;
-
   }
   @media (max-width: ${BREAKPOINTS.mob}px) {
     grid-row-start: 2;
-
   }
 `;
 const AnimatedPartnersText = styled(PartnersSVG)`
@@ -1454,11 +1453,9 @@ const AnimatedPartnersText = styled(PartnersSVG)`
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {
     grid-row-start: 2;
-
   }
   @media (max-width: ${BREAKPOINTS.mob}px) {
     grid-row-start: 2;
-
   }
 `;
 const AnimatedVisionText = styled(VisionSVG)`
@@ -1469,11 +1466,9 @@ const AnimatedVisionText = styled(VisionSVG)`
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {
     grid-row-start: 2;
-
   }
   @media (max-width: ${BREAKPOINTS.mob}px) {
     grid-row-start: 2;
-
   }
 `;
 const AnimatedVeteransText = styled(VeteransSVG)`
@@ -1689,8 +1684,7 @@ const ScheduleBtnBorder = styled(RightBtnSvg)`
   stroke-width: 2px;
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {
-    stroke: transparent; 
- 
+    stroke: transparent;
   }
 `;
 

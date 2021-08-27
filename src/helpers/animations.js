@@ -259,6 +259,7 @@ export const logoTimeline = (logoColor, introTextFontSize, callback) => {
   //   //   }, '-=2000')
 };
 
+
 export const getLogoToMobPosition = () => {
   anime({
     targets: ".logo",
