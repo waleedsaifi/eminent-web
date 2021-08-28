@@ -249,7 +249,7 @@ const App = ({
           case 2:
             return ["80%"];
           case 3:
-            return ["90%"];
+            return ["83%"];
           case 4:
             return ["83%"];
           case 5:
@@ -944,7 +944,7 @@ const App = ({
                   onClick={getNextStep}
                   $top={getContinueText()}
                 >
-                  Learn More >>
+                  Learn more >>
                   <ContinueArrow />
                 </Continue>
               )}
