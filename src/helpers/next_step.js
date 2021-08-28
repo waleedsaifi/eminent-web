@@ -7,19 +7,18 @@ import {
 import { setProgress } from "../store/actions/actionCreator";
 
 export const getNextStepFromForm = (
-  nextStep,
-  progressSvgArray,
-  currentSectionTitle,
-  dispatch
+  progressSvgArray
 ) => {
   getFadeOutProgressSvg(progressSvgArray, () => {
     getFadeOutFormTen([".footer"], 0, () => null);
-    getFadeOutFormTen([".formTen"], 100, () => {
-      setTimeout(
-        () => dispatch(setProgress(nextStep, currentSectionTitle)),
-        500
-      );
-    });
+    // getFadeOutFormTen([".formTen"], 100, () => {
+    //   setTimeout(
+    //     () => store.dispatch(setProgress(nextStep, currentSectionTitle)),
+    //     500
+    //   );
+    // });
+    getFadeOutFormTen([".formTen"], 100, () => null);
+    return true;
   });
 };
 
@@ -28,18 +27,5 @@ export const getStandardNextStep = (
   currentSectionTitle,
   dispatch
 ) => {
-  window.animation._name === "anime" &&
-    getFadeOutMainText(() => {
-      setTimeout(
-        () => dispatch(setProgress(nextStep, currentSectionTitle)),
-        100
-      );
-    });
-  window.animation._name === "custom_anime" &&
-    getFadeOutCustomText(() => {
-      setTimeout(
-        () => dispatch(setProgress(nextStep, currentSectionTitle)),
-        100
-      );
-    });
+ 
 };

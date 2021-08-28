@@ -16,6 +16,8 @@ import {
   stopCustomAnimationSvg,
   stopFormTenAnimation,
   stopMainTextAnimation,
+  getFadeOutCustomText,
+  getFadeOutMainText,
 } from "../../helpers/animations";
 import { ReactComponent as PlugLogo } from "../../assets/images/logo.svg";
 import {
@@ -27,6 +29,7 @@ import {
   toggleLoader,
   stepBack,
   stepForward,
+  setProgress,
 } from "../../store/actions/actionCreator";
 
 const ContainerContent = (currentData) => {
@@ -264,7 +267,12 @@ const ContainerContent = (currentData) => {
       const progressSvgArray = document.querySelectorAll(
         `.styledProgress_${currentStep}`
       );
-      getNextStepFromForm(nextStep, progressSvgArray, dispatch);
+      if (getNextStepFromForm(progressSvgArray)) {
+        setTimeout(
+          () => dispatch(setProgress(nextStep, currentSectionTitle)),
+          500
+        );
+      }
     }
 
     window.animation.way = "back";
@@ -280,7 +288,22 @@ const ContainerContent = (currentData) => {
       [...progressSvgArray, progressBorderDefault],
       () => {}
     );
-    getStandardNextStep(nextStep, currentSection.title, dispatch);
+    //getStandardNextStep(nextStep, currentSection.title, dispatch);
+
+    window.animation._name === "anime" &&
+      getFadeOutMainText(() => {
+        setTimeout(
+          () => dispatch(setProgress(nextStep, currentSectionTitle)),
+          100
+        );
+      });
+    window.animation._name === "custom_anime" &&
+      getFadeOutCustomText(() => {
+        setTimeout(
+          () => dispatch(setProgress(nextStep, currentSectionTitle)),
+          100
+        );
+      });
   };
 
   const touchstartHandler = (e) => {

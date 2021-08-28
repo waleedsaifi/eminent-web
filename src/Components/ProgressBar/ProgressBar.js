@@ -10,6 +10,8 @@ import { ReactComponent as ProgressEllipse } from "../../assets/images/ellipse_p
 import {
   getFadeOutFormTen,
   getFadeOutProgressSvg,
+  getFadeOutCustomText,
+  getFadeOutMainText,
 } from "../../helpers/animations";
 import {
   getNextStepFromForm,
@@ -88,12 +90,12 @@ const ProgressBarContent = ({
             const progressSvgArray = document.querySelectorAll(
               `.styledProgress_${currentStep}`
             );
-            getNextStepFromForm(
-              nextStep,
-              progressSvgArray,
-              currentSectionTitle,
-              dispatch
-            );
+            if (getNextStepFromForm(progressSvgArray)) {
+              setTimeout(
+                () => dispatch(setProgress(nextStep, currentSectionTitle)),
+                500
+              );
+            }
             return;
           }
           default: {
@@ -110,7 +112,21 @@ const ProgressBarContent = ({
               [...progressSvgArray, progressBorderDefault],
               () => {}
             );
-            getStandardNextStep(nextStep, currentSectionTitle, dispatch);
+            // getStandardNextStep(nextStep, currentSectionTitle, dispatch);
+            window.animation._name === "anime" &&
+              getFadeOutMainText(() => {
+                setTimeout(
+                  () => dispatch(setProgress(nextStep, currentSectionTitle)),
+                  100
+                );
+              });
+            window.animation._name === "custom_anime" &&
+              getFadeOutCustomText(() => {
+                setTimeout(
+                  () => dispatch(setProgress(nextStep, currentSectionTitle)),
+                  100
+                );
+              });
           }
         }
         break;
@@ -130,7 +146,21 @@ const ProgressBarContent = ({
           [...progressSvgArray, progressBorderDefault],
           () => {}
         );
-        getStandardNextStep(nextStep, currentSectionTitle, dispatch);
+        //getStandardNextStep(nextStep, currentSectionTitle, dispatch);
+        window.animation._name === "anime" &&
+          getFadeOutMainText(() => {
+            setTimeout(
+              () => dispatch(setProgress(nextStep, currentSectionTitle)),
+              100
+            );
+          });
+        window.animation._name === "custom_anime" &&
+          getFadeOutCustomText(() => {
+            setTimeout(
+              () => dispatch(setProgress(nextStep, currentSectionTitle)),
+              100
+            );
+          });
       }
     }
   };
@@ -145,9 +175,9 @@ const ProgressBarContent = ({
 
   const getMobProgressBarPosition = () => {
     switch (currentSectionTitle) {
-      case "home": 
+      case "home":
         return "25%";
-      case "approach": 
+      case "approach":
         return "25%";
       case "work":
         return "36%";

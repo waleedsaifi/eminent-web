@@ -25,6 +25,8 @@ import {
   getFadeOutChooseStoryText,
   getFadeOutFormTen,
   getFadeOutProgressSvg,
+  getFadeOutCustomText,
+  getFadeOutMainText,
 } from "../../helpers/animations";
 import ScheduleForm from "../SchedulePopup/ScheduleForm";
 import { getNextStepFromForm } from "../../helpers/next_step";
@@ -696,7 +698,13 @@ const App = ({
     const progressSvgArray = document.querySelectorAll(
       `.styledProgress_${currentStep}`
     );
-    getNextStepFromForm(currentStep + 1, progressSvgArray, dispatch);
+    //getNextStepFromForm(currentStep + 1, progressSvgArray, dispatch);
+    if (getNextStepFromForm(progressSvgArray)) {
+      setTimeout(
+        () => dispatch(setProgress(currentStep + 1, currentSectionTitle)),
+        500
+      );
+    }
   };
 
   const getBoxMaxWidth = () => {

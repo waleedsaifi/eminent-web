@@ -16,12 +16,17 @@ import {
   mobMenuCloseAnimation,
   mobMenuOpenAnimation,
   removeInlineStyles,
+  getFadeOutCustomText,
+  getFadeOutFormTen,
+  getFadeOutMainText,
+  getFadeOutProgressSvg,
 } from "../../helpers/animations";
 import { getStandardNextStep } from "../../helpers/next_step";
 import { Link, useLocation } from "react-router-dom";
 import {
   setCurrentStep,
   setCurrentSectionTitle,
+  setProgress,
 } from "../../store/actions/actionCreator";
 
 const MenuContent = ({
@@ -305,7 +310,15 @@ const MenuContent = ({
     }
     if (window.animation) {
       window.animation.way = "back";
-      getStandardNextStep(0, type, dispatch);
+      //getStandardNextStep(0, type, dispatch);
+      window.animation._name === "anime" &&
+        getFadeOutMainText(() => {
+          setTimeout(() => dispatch(setProgress(0, type)), 100);
+        });
+      window.animation._name === "custom_anime" &&
+        getFadeOutCustomText(() => {
+          setTimeout(() => dispatch(setProgress(0, type)), 100);
+        });
     }
     return () => {
       console.error("Error going to" + type);
