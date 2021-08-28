@@ -897,7 +897,7 @@ const App = ({
               onClick={getNextStep}
               $top={getContinueText()}
             >
-              Learn More >>
+              Learn more >>
               <ContinueArrow />
             </Continue>
           </>
@@ -1572,7 +1572,7 @@ const MainTextSecond = styled(MainText)`
 `;
 
 const Continue = styled.div`
-  color: #fff;
+  color: ${({ $color }) => $color};
   position: absolute;
   top: ${({ $top }) => $top};
   text-align: ${({ $textAlign }) => ($textAlign ? $textAlign : "center")};
