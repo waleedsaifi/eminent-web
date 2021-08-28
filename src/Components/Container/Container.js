@@ -485,8 +485,9 @@ const Container = styled.div`
   justify-content: center;
   transition: 0.3s ease;
   overflow-x: hidden;
-  overflow-y: ${({ $isMenuOpen, $overflow }) =>
-    $isMenuOpen ? "hidden" : $overflow};
+  overflow-y: auto;
+  ${'' /* ${({ $isMenuOpen, $overflow }) =>
+    $isMenuOpen ? "hidden" : $overflow}; */}
   touch-action: pan-y;
 `;
 const BlurredBackground = styled.div`

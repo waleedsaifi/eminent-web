@@ -178,7 +178,7 @@ const MenuContent = ({
           mobMenuCloseAnimation(btn);
         }
       });
-
+      if(window.getComputedStyle(document.querySelector(".anime")).getPropertyValue("opacity") != 0)
       mobLogoCloseAnimation(".logo");
     } else if (isMenuOpen) {
       burgerChildren[0].classList.add("open");
