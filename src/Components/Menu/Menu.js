@@ -178,8 +178,16 @@ const MenuContent = ({
           mobMenuCloseAnimation(btn);
         }
       });
-      if(window.getComputedStyle(document.querySelector(".anime")).getPropertyValue("opacity") != 0)
-      mobLogoCloseAnimation(".logo");
+      if (
+        currentSectionTitle === "home" &&
+        window
+          .getComputedStyle(document.querySelector(".anime"))
+          .getPropertyValue("opacity") != 0
+      )
+        mobLogoCloseAnimation(".logo");
+      else if (currentSectionTitle !== "home") {
+        mobLogoCloseAnimation(".logo");
+      }
     } else if (isMenuOpen) {
       burgerChildren[0].classList.add("open");
       mobBurgerOpenAnimation(burgerChildren);
@@ -351,7 +359,12 @@ const MenuContent = ({
           $color={currentTheme?.textColor}
         >
           Made By
-           <audio src="https://s3.amazonaws.com/www.eminentfuture.com/Regency+intro.mp3" controls autoPlay style={{display: "none"}}/>
+          <audio
+            src="https://s3.amazonaws.com/www.eminentfuture.com/Regency+intro.mp3"
+            controls
+            autoPlay
+            style={{ display: "none" }}
+          />
         </IntroText>
       )}{" "}
       <Menu
