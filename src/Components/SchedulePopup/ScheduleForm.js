@@ -302,7 +302,7 @@ const ScheduleFormContent = ({
               <span> * </span>
             </TextHolder>
             <CustomSelect
-              color={color}
+              color={"#000"}
               bg={background}
               focus={focus}
               setOptionHandler={setOptionHandler}
@@ -392,7 +392,8 @@ const StyledInput = styled.input`
     ${({ $color }) => ($color ? $color : "var(--block1-text-secondary)")};
   box-sizing: border-box;
   border-radius: 3px;
-  color: ${({ $color }) => ($color ? $color : "var(--block1-text-secondary)")};
+  ${'' /* color: ${({ $color }) => ($color ? $color : "var(--block1-text-secondary)")}; */}
+  color: #000;
   font-style: normal;
   font-weight: normal;
   font-size: 1.125rem;
@@ -431,7 +432,8 @@ const StyledTextarea = styled.textarea`
     ${({ $color }) => ($color ? $color : "var(--block1-text-secondary)")};
   box-sizing: border-box;
   border-radius: 3px;
-  color: ${({ $color }) => ($color ? $color : "var(--block1-text-primary)")};
+  ${'' /* color: ${({ $color }) => ($color ? $color : "var(--block1-text-primary)")}; */}
+  color: #000;
   font-style: normal;
   font-weight: normal;
   font-size: 1.125rem;

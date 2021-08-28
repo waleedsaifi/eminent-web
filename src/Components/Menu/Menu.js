@@ -311,11 +311,13 @@ const MenuContent = ({
     if (window.animation) {
       window.animation.way = "back";
       //getStandardNextStep(0, type, dispatch);
-      window.animation._name === "anime" &&
+      //window.animation._name === "anime" &&
+      currentStep > 0 &&
         getFadeOutMainText(() => {
           setTimeout(() => dispatch(setProgress(0, type)), 100);
         });
-      window.animation._name === "custom_anime" &&
+      //window.animation._name === "custom_anime" &&
+      currentStep > 0 &&
         getFadeOutCustomText(() => {
           setTimeout(() => dispatch(setProgress(0, type)), 100);
         });
@@ -349,6 +351,7 @@ const MenuContent = ({
           $color={currentTheme?.textColor}
         >
           Made By
+           <audio src="https://s3.amazonaws.com/www.eminentfuture.com/Regency+intro.mp3" controls autoPlay style={{display: "none"}}/>
         </IntroText>
       )}{" "}
       <Menu
@@ -377,7 +380,7 @@ const MenuContent = ({
           <span className="menu_item" onMouseOver={menuLabelHandler}>
             <Link to="/approach"> APPROACH </Link>
           </span>{" "}
-          <span className="menu_label"> COMPLIANT YET DISRUPTIVE </span>{" "}
+          <span className="menu_label"> COMPLIANT DISRUPTION </span>{" "}
         </MenuBtn>
         <MenuBtn
           $open={isMenuOpen}
@@ -433,7 +436,7 @@ const MenuContent = ({
             ref={rightBorderBtn}
             $color={currentTheme?.bgScheduleBtn}
           />{" "}
-          <span> SCHEDULE A CALL </span>{" "}
+          <span> LETS TALK </span>{" "}
         </MenuRightBtn>{" "}
       </Menu>
     </>
@@ -496,10 +499,10 @@ const MenuBurger = styled.div`
 const Menu = styled.div`
   position: fixed;
   top: 0;
-  left: 55vmax;
+  left: 50vmax;
   transform: translateX(-50%);
   display: grid;
-  grid-template-columns: 135px 135px 273px 135px 331px;
+  grid-template-columns: 185px 185px 200px 185px 185px;
   grid-template-rows: 75px;
   align-items: center;
   z-index: 10;
@@ -713,7 +716,7 @@ const RightBtnBorder = styled(RightBtnSvg)`
 `;
 const MenuRightBtn = styled(MenuBtn)`
   background: ${({ $bg }) => $bg};
-  padding: 13px 30px;
+  padding: 13px 20px;
   border-radius: 67px;
   white-space: nowrap;
   border: 1px solid transparent;

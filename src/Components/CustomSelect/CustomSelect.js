@@ -107,7 +107,8 @@ const SelectWrapper = styled.div `
   border: 1px solid ${({$color}) => $color ? $color : 'var(--block1-text-secondary)'};;
   box-sizing: border-box;
   border-radius: 3px;
-  color: var(--block1-text-primary);
+  ${'' /* color: var(--block1-text-primary); */}
+  color: #000;
   font-style: normal;
   font-weight: normal;
   font-size: 1.125rem;

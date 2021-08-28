@@ -6,9 +6,7 @@ import {
 } from "./animations";
 import { setProgress } from "../store/actions/actionCreator";
 
-export const getNextStepFromForm = (
-  progressSvgArray
-) => {
+export const getNextStepFromForm = (progressSvgArray) => {
   getFadeOutProgressSvg(progressSvgArray, () => {
     getFadeOutFormTen([".footer"], 0, () => null);
     // getFadeOutFormTen([".formTen"], 100, () => {
@@ -26,6 +24,4 @@ export const getStandardNextStep = (
   nextStep,
   currentSectionTitle,
   dispatch
-) => {
- 
-};
+) => {};

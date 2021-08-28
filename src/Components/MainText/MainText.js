@@ -136,7 +136,8 @@ const App = ({
         window.animation._name = "anime";
         setTimeout(() => (window.stoppedAnimation = true), 700);
       },
-      currentStep === 0 ? 6000 : 0
+      
+      currentSectionTitle !== "work" ? currentStep === 0 ? 6000 : 0 : 500
     );
   }, [currentSectionTitle, currentStep]);
 
@@ -862,9 +863,9 @@ const App = ({
   };
 
   const getHomeContent = () => {
-    {
-      console.log(getBoxMaxWidth());
-    }
+    // {
+    //   console.log(getBoxMaxWidth());
+    // }
     switch (currentStep) {
       case 0:
         return (
@@ -1698,7 +1699,7 @@ const ScheduleBtnBorder = styled(RightBtnSvg)`
 
 const ScheduleBtn = styled(CallActionBtn)`
   background: ${({ $bg }) => $bg};
-  padding: 13px 30px;
+  padding: 13px 15px;
   border-radius: 67px;
   white-space: nowrap;
   border: 1px solid transparent;
@@ -1847,7 +1848,7 @@ const ChooseStoryText = styled.div`
   color: ${({ $color }) => $color};
   font-size: ${({ $fontSize }) => $fontSize[0]};
   text-align: left;
-  max-width: 910px;
+  max-width: 1200px;
   white-space: pre-line;
   letter-spacing: ${({ $letterSpacing }) => $letterSpacing};
   line-height: 35px;
@@ -1871,7 +1872,7 @@ const ChooseStoryTitle = styled.div`
   color: ${({ $color }) => $color};
   font-size: ${({ $fontSize }) => $fontSize[0]};
   text-align: left;
-  max-width: 910px;
+  max-width: 1200px;
   white-space: pre-line;
   letter-spacing: ${({ $letterSpacing }) => $letterSpacing};
   line-height: 35px;
