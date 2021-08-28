@@ -88,7 +88,12 @@ const ProgressBarContent = ({
             const progressSvgArray = document.querySelectorAll(
               `.styledProgress_${currentStep}`
             );
-            getNextStepFromForm(nextStep, progressSvgArray, currentSectionTitle, dispatch);
+            getNextStepFromForm(
+              nextStep,
+              progressSvgArray,
+              currentSectionTitle,
+              dispatch
+            );
             return;
           }
           default: {
@@ -138,12 +143,26 @@ const ProgressBarContent = ({
     getNextStep(Number(stepId));
   };
 
+  const getMobProgressBarPosition = () => {
+    switch (currentSectionTitle) {
+      case "home": 
+        return "25%";
+      case "approach": 
+        return "25%";
+      case "work":
+        return "36%";
+      default:
+        return;
+    }
+  };
+
   //console.log(currentSection);
   return (
     <ProgressBar
       className="progressBar"
       ref={_root}
       $step={currentStep}
+      $left={getMobProgressBarPosition()}
       $numSteps={
         currentSection && currentSection?.fields != null
           ? currentSection?.fields.length
@@ -231,6 +250,10 @@ const ProgressBar = styled.div`
     grid-template-columns: repeat(${({ $numSteps }) => $numSteps}, 35px);
     transition: 0.3s ease;
     z-index: 5;
+  }
+
+  @media (max-width: ${BREAKPOINTS.mob}px) {
+    left: ${({ $left }) => $left};
   }
 `;
 

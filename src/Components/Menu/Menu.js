@@ -614,7 +614,7 @@ const MenuBtn = styled.div`
     top: 30px;
     left: 0;
     color: ${({ $color }) => $color};
-    width: 400px;
+    width: 200px;
     font-size: 15px;
     letter-spacing: 0;
     text-transform: uppercase;
