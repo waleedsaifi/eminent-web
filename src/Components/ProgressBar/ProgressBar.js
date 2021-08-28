@@ -90,12 +90,16 @@ const ProgressBarContent = ({
             const progressSvgArray = document.querySelectorAll(
               `.styledProgress_${currentStep}`
             );
-            if (getNextStepFromForm(progressSvgArray)) {
-              setTimeout(
-                () => dispatch(setProgress(nextStep, currentSectionTitle)),
-                500
-              );
-            }
+            getFadeOutProgressSvg(progressSvgArray, () => {
+              getFadeOutFormTen([".footer"], 0, () => null);
+              getFadeOutFormTen([".formTen"], 100, () => {
+                setTimeout(
+                  () =>
+                    dispatch(setProgress(nextStep + 1, currentSectionTitle)),
+                  500
+                );
+              });
+            });
             return;
           }
           default: {

@@ -29,7 +29,6 @@ import {
   getFadeOutMainText,
 } from "../../helpers/animations";
 import ScheduleForm from "../SchedulePopup/ScheduleForm";
-import { getNextStepFromForm } from "../../helpers/next_step";
 
 const App = ({
   showPopup,
@@ -136,8 +135,8 @@ const App = ({
         window.animation._name = "anime";
         setTimeout(() => (window.stoppedAnimation = true), 700);
       },
-      
-      currentSectionTitle !== "work" ? currentStep === 0 ? 6000 : 0 : 500
+
+      currentSectionTitle !== "work" ? (currentStep === 0 ? 6000 : 0) : 500
     );
   }, [currentSectionTitle, currentStep]);
 
@@ -250,9 +249,9 @@ const App = ({
           case 2:
             return ["80%"];
           case 3:
-            return ["80%"];
+            return ["90%"];
           case 4:
-            return ["85%"];
+            return ["83%"];
           case 5:
             return ["50%;"];
           default:
@@ -700,12 +699,21 @@ const App = ({
       `.styledProgress_${currentStep}`
     );
     //getNextStepFromForm(currentStep + 1, progressSvgArray, dispatch);
-    if (getNextStepFromForm(progressSvgArray)) {
-      setTimeout(
-        () => dispatch(setProgress(currentStep + 1, currentSectionTitle)),
-        500
-      );
-    }
+    // if (getNextStepFromForm(progressSvgArray)) {
+    //   setTimeout(
+    //     () => dispatch(setProgress(currentStep + 1, currentSectionTitle)),
+    //     500
+    //   );
+    // }
+    getFadeOutProgressSvg(progressSvgArray, () => {
+      getFadeOutFormTen([".footer"], 0, () => null);
+      getFadeOutFormTen([".formTen"], 100, () => {
+        setTimeout(
+          () => dispatch(setProgress(currentStep + 1, currentSectionTitle)),
+          500
+        );
+      });
+    });
   };
 
   const getBoxMaxWidth = () => {
@@ -949,7 +957,7 @@ const App = ({
                   $lineBg={currentTheme.bgScheduleBtn}
                 >
                   <ScheduleBtnBorder $color={currentTheme.bgScheduleBtn} />
-                  <span> SCHEDULE A CALL </span>
+                  <span> LETS TALK </span>
                 </ScheduleBtn>
               )}
           </>
@@ -1196,7 +1204,7 @@ const App = ({
                 $lineBg={currentTheme.bgScheduleBtn}
               >
                 <ScheduleBtnBorder $color={currentTheme.bgScheduleBtn} />
-                <span> SCHEDULE A CALL </span>
+                <span> LETS TALK </span>
               </ScheduleBtn>
             )}
           </>
@@ -1452,6 +1460,7 @@ const AnimtateOutcomeText = styled(OutcomeSVG)`
   }
   @media (max-width: ${BREAKPOINTS.mob}px) {
     grid-row-start: 2;
+    margin: 20px 0px 0px !important;
   }
 `;
 const AnimatedPartnersText = styled(PartnersSVG)`
@@ -1465,6 +1474,7 @@ const AnimatedPartnersText = styled(PartnersSVG)`
   }
   @media (max-width: ${BREAKPOINTS.mob}px) {
     grid-row-start: 2;
+    margin: 20px 0px 0px !important;
   }
 `;
 const AnimatedVisionText = styled(VisionSVG)`
@@ -1478,6 +1488,7 @@ const AnimatedVisionText = styled(VisionSVG)`
   }
   @media (max-width: ${BREAKPOINTS.mob}px) {
     grid-row-start: 2;
+    margin: 20px 0px 0px !important;
   }
 `;
 const AnimatedVeteransText = styled(VeteransSVG)`
@@ -1491,6 +1502,7 @@ const AnimatedVeteransText = styled(VeteransSVG)`
   }
   @media (max-width: ${BREAKPOINTS.mob}px) {
     grid-row-start: 2;
+    margin: 20px 0px 0px !important;
   }
 `;
 // const AnimatedServiceText = styled(ServiceSvg)`
@@ -1565,7 +1577,7 @@ const Continue = styled.div`
   top: ${({ $top }) => $top};
   text-align: ${({ $textAlign }) => ($textAlign ? $textAlign : "center")};
   text-decoration: none;
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
   padding-bottom: 5px;
   &:after {

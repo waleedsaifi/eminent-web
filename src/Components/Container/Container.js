@@ -19,11 +19,7 @@ import {
   getFadeOutCustomText,
   getFadeOutMainText,
 } from "../../helpers/animations";
-import { ReactComponent as PlugLogo } from "../../assets/images/logo.svg";
-import {
-  getStandardNextStep,
-  getNextStepFromForm,
-} from "../../helpers/next_step";
+import { ReactComponent as PlugLogo } from "../../assets/images/logo.svg"; 
 import { getThemeContent, getSectionContent } from "../../helpers/content";
 import {
   toggleLoader,
@@ -267,12 +263,15 @@ const ContainerContent = (currentData) => {
       const progressSvgArray = document.querySelectorAll(
         `.styledProgress_${currentStep}`
       );
-      if (getNextStepFromForm(progressSvgArray)) {
-        setTimeout(
-          () => dispatch(setProgress(nextStep, currentSectionTitle)),
-          500
-        );
-      }
+      getFadeOutProgressSvg(progressSvgArray, () => {
+        getFadeOutFormTen([".footer"], 0, () => null);
+        getFadeOutFormTen([".formTen"], 100, () => {
+          setTimeout(
+            () => dispatch(setProgress(nextStep + 1, currentSectionTitle)),
+            500
+          );
+        });
+      });
     }
 
     window.animation.way = "back";
@@ -486,7 +485,7 @@ const Container = styled.div`
   transition: 0.3s ease;
   overflow-x: hidden;
   overflow-y: auto;
-  ${'' /* ${({ $isMenuOpen, $overflow }) =>
+  ${"" /* ${({ $isMenuOpen, $overflow }) =>
     $isMenuOpen ? "hidden" : $overflow}; */}
   touch-action: pan-y;
 `;

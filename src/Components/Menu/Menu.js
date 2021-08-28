@@ -21,7 +21,6 @@ import {
   getFadeOutMainText,
   getFadeOutProgressSvg,
 } from "../../helpers/animations";
-import { getStandardNextStep } from "../../helpers/next_step";
 import { Link, useLocation } from "react-router-dom";
 import {
   setCurrentStep,
@@ -602,7 +601,7 @@ const MenuBtn = styled.div`
   transition: 0.3s ease;
 
   .menu_item a {
-    color: ${({ $color }) => $color};
+    color: var(--block1-text-primary);
     text-decoration: none;
   }
 
