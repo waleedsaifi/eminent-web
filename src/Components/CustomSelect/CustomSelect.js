@@ -1,121 +1,76 @@
 import styled from "styled-components";
-import {
-    ReactComponent as ChevronSvg
-} from '../../assets/images/Chevron.svg';
-import {
-    useEffect,
-    useState
-} from "react";
-import {
-    BREAKPOINTS
-} from "../../constants/constants";
+import { ReactComponent as ChevronSvg } from "../../assets/images/Chevron.svg";
+import { useEffect, useState } from "react";
+import { BREAKPOINTS } from "../../constants/constants";
+import { useSelector } from "react-redux";
 
 export const CustomSelect = ({
-    options,
-    setOptionHandler,
-    color,
-    bg,
-    focus = `0 0 23px 2px rgba(255,255,255,0.5)`
+  options,
+  setOptionHandler,
+  color,
+  bg,
+  focus = `0 0 23px 2px rgba(255,255,255,0.5)`,
 }) => {
-    const [selected, setSelected] = useState(options[0]);
-    const [isOpen, setIsOpen] = useState(false);
+  const [selected, setSelected] = useState(options[0]);
+  const [isOpen, setIsOpen] = useState(false);
+  const { currentTheme } = useSelector((state) => state.state);
 
-    useEffect(() => {
-        setOptionHandler(selected);
-    }, [selected, setOptionHandler])
+  useEffect(() => {
+    setOptionHandler(selected);
+  }, [selected]);
 
-    const selectClickHandler = () => {
-        setIsOpen((state) => !state)
-    }
+  const selectClickHandler = () => {
+    setIsOpen((state) => !state);
+  };
 
-    const optionClickHandler = (optionId) => {
-        setSelected(options[optionId]);
-        setIsOpen((state) => !state);
-    }
+  const optionClickHandler = (optionId) => {
+    setSelected(options[optionId]);
+    setIsOpen((state) => !state);
+  };
 
-    return ( <
-        SelectWrapper $color = {
-            color
-        }
-        $bg = {
-            bg
-        }
-        $focus = {
-            focus
-        }
-        $open = {
-            isOpen
-        } >
-        <
-        Selected $color = {
-            color
-        }
-        onClick = {
-            selectClickHandler
-        } >
-        <
-        p > {
-            selected
-        } < /p> <
-        Chevron $color = {
-            color
-        }
-        $open = {
-            isOpen
-        }
-        /> <
-        /Selected> <
-        Options $open = {
-            isOpen
-        }
-        $color = {
-            color
-        }
-        $bg = {
-            bg
-        } > {
-            options.map((option, index) => {
-                return ( <
-                    Option $color = {
-                        color
-                    }
-                    key = {
-                        option
-                    }
-                    onClick = {
-                        () => optionClickHandler(index)
-                    } >
-                    {
-                        option
-                    } <
-                    /Option>
-                )
-            })
-        } <
-        /Options> <
-        /SelectWrapper>
-    )
-}
+  return (
+    <SelectWrapper $color={color} $bg={bg} $focus={focus} $open={isOpen}>
+      <Selected $color={color} onClick={selectClickHandler}>
+        <p> {selected} </p> <Chevron $color={color} $open={isOpen} />{" "}
+      </Selected>{" "}
+      <Options $open={isOpen} $color={color} $bg={bg}>
+        {" "}
+        {options.map((option, index) => {
+          return (
+            <Option
+              $color={color}
+              key={option}
+              onClick={() => optionClickHandler(index)}
+            >
+              {option}{" "}
+            </Option>
+          );
+        })}{" "}
+      </Options>{" "}
+    </SelectWrapper>
+  );
+};
 
-const SelectWrapper = styled.div `
+const SelectWrapper = styled.div`
   position: relative;
-  font-family: 'Archia', serif;
+  font-family: "Archia", serif;
   width: 100%;
   min-width: 295px;
   height: 48px;
-  background: ${({$bg}) => $bg ? $bg[1] : 'var(--popup-bg1)'};
-  border: 1px solid ${({$color}) => $color ? $color : 'var(--block1-text-secondary)'};;
+  background: ${({ $bg }) => ($bg ? $bg[1] : "var(--popup-bg1)")};
+  border: 1px solid
+    ${({ $color }) => ($color ? $color : "var(--block1-text-secondary)")};
   box-sizing: border-box;
   border-radius: 3px;
-  ${'' /* color: var(--block1-text-primary); */}
-  color: #000;
+  ${"" /* color: var(--block1-text-primary); */}
+  color:  ${({ $color }) => ($color ? $color : "var(--block1-text-secondary)")};;
   font-style: normal;
   font-weight: normal;
   font-size: 1.125rem;
   padding: 0 1rem;
   margin: 0;
   cursor: pointer;
-  box-shadow: ${({$open, $focus}) => $open ? $focus : 'none'};
+  box-shadow: ${({ $open, $focus }) => ($open ? $focus : "none")};
   transition: 0.4s ease-in-out;
 
   &:focus {
@@ -125,20 +80,20 @@ const SelectWrapper = styled.div `
   @media (max-width: 900px) {
     width: 100%;
   }
-`
-const Selected = styled.div `
+`;
+const Selected = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  
+
   p {
-    color: ${({$color}) => $color ? $color : 'var(--block1-text-secondary)'};
+    color: ${({ $color }) =>
+      $color ? $color : "var(--block1-text-secondary)"};
   }
-`
-const Chevron = styled(ChevronSvg)
-`
+`;
+const Chevron = styled(ChevronSvg)`
   display: inline-block;
   position: absolute;
   right: 0.5rem;
@@ -146,31 +101,33 @@ const Chevron = styled(ChevronSvg)
   width: 20px;
   height: 20px;
   cursor: pointer;
-  stroke: ${({$color}) => $color ? $color : 'var(--block1-text-secondary)'};
-  transform: rotate(${({$open}) => $open ? '180deg' : 0});
+  stroke: ${({ $color }) => ($color ? $color : "var(--block1-text-secondary)")};
+  transform: rotate(${({ $open }) => ($open ? "180deg" : 0)});
   transition: 0.2s ease;
-`
-const Options = styled.div `
+`;
+const Options = styled.div`
   position: absolute;
   width: calc(100% + 2px);
   left: -1px;
   top: 3.5rem;
-  background: ${({$bg}) => $bg ? $bg[1] : 'var(--popup-bg1)'};
-  border: 1px solid ${({$color}) => $color ? $color : 'var(--block1-text-secondary)'};
+  background: ${({ $bg }) => ($bg ? $bg : "var(--popup-bg1)")};
+  border: 1px solid
+    ${({ $color }) => ($color ? $color : "var(--block1-text-secondary)")};
   box-sizing: border-box;
   border-radius: 3px;
-  visibility: ${({$open}) => $open ? 'visible' : 'hidden'};
-  height: ${({$open}) => $open ? 'auto' : 0};
-  box-shadow: ${({$open, $focus}) => $open ? $focus : 'none'};
+  visibility: ${({ $open }) => ($open ? "visible" : "hidden")};
+  height: ${({ $open }) => ($open ? "auto" : 0)};
+  box-shadow: ${({ $open, $focus }) => ($open ? $focus : "none")};
   z-index: 1;
-`
-const Option = styled.p `
+`;
+const Option = styled.p`
   margin: 0 1rem;
   padding: 0.8rem 0;
-  color: ${({$color}) => $color ? $color : 'var(--block1-text-secondary)'};
+  color: ${({ $color }) => ($color ? $color : "var(--block1-text-secondary)")};
 
   &:not(:last-of-type) {
-    border-bottom: 1px solid ${({$color}) => $color ? $color : 'var(--popup-border2)'};
+    border-bottom: 1px solid
+      ${({ $color }) => ($color ? $color : "var(--popup-border2)")};
   }
 
   @media (min-width: ${BREAKPOINTS.tablet + 1}px) {
@@ -178,4 +135,4 @@ const Option = styled.p `
       opacity: 0.7;
     }
   }
-`
+`;

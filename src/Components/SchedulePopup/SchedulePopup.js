@@ -5,47 +5,44 @@ import { ReactComponent as CrossSvg } from "../../assets/images/cross.svg";
 import { BREAKPOINTS } from "../../constants/constants";
 import { useSelector } from "react-redux";
 
-const schedulePopupContent = () => ({ closeHandler }) => {
+const SchedulePopupContent = ({ closeHandler }) => {
   const wrapper = useRef(null);
   const header = useRef(null);
   const [isHeaderSmall, setIsHeaderSmall] = useState(false);
   const { currentTheme } = useSelector((state) => state.state);
-  
+
   useEffect(() => {
     window.addEventListener("wheel", popupWheelHandler);
     return () => window.removeEventListener("wheel", popupWheelHandler);
   });
 
-  const popupWheelHandler = useCallback(
-    (e) => {
-      if (window.innerWidth < 901) {
-        setIsHeaderSmall(() => e.deltaY > 0);
-      }
-    },
-    []
-  );
+  const popupWheelHandler = useCallback((e) => {
+    if (window.innerWidth < 901) {
+      setIsHeaderSmall(() => e.deltaY > 0);
+    }
+  }, []);
 
   const closeHandlerPopup = () => {
     closeHandler();
   };
 
   return (
-    <Wrapper ref={wrapper} $bg={currentTheme.schedulePopupBg[0]}>
-      <PopupContainer $border={currentTheme.schedulePopupTextColor}>
+    <Wrapper ref={wrapper} $bg={currentTheme?.schedulePopupBg[0]}>
+      <PopupContainer $border={currentTheme?.schedulePopupTextColor}>
         <Header
           ref={header}
           $isSmall={isHeaderSmall}
-          $color={currentTheme.schedulePopupTextColor}
-          $bg={currentTheme.schedulePopupBg[0]}
+          $color={currentTheme?.schedulePopupTextColor}
+          $bg={currentTheme?.schedulePopupBg[0]}
         >
           <h2> Schedule a call </h2>{" "}
           <CloseCross onClick={closeHandlerPopup}>
-            <Cross $color={currentTheme.schedulePopupTextColor} />{" "}
+            <Cross $color={currentTheme?.schedulePopupTextColor} />{" "}
           </CloseCross>{" "}
         </Header>
         <ScheduleForm
-          background={currentTheme.schedulePopupBg}
-          color={currentTheme.schedulePopupTextColor}
+          background={currentTheme?.schedulePopupBg[0]}
+          color={currentTheme?.schedulePopupTextColor}
           closeHandlerPopup={closeHandlerPopup}
         />
       </PopupContainer>
@@ -53,7 +50,7 @@ const schedulePopupContent = () => ({ closeHandler }) => {
   );
 };
 
-export default schedulePopupContent;
+export default SchedulePopupContent;
 
 const mobBreakpoint = 900;
 

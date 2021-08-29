@@ -63,10 +63,10 @@ export const setMenuData = (menuData) => {
   };
 };
 
-export const setCurrentThemeData = (themeData) => {
+export const setCurrentThemeData = (currentTheme) => {
   return {
     type: ACTIONS.SET_CURRENT_THEME_DATA,
-    themeData,
+    currentTheme,
   };
 };
 

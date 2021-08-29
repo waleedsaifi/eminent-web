@@ -302,7 +302,7 @@ const ScheduleFormContent = ({
               <span> * </span>
             </TextHolder>
             <CustomSelect
-              color={"#000"}
+              color={color}
               bg={background}
               focus={focus}
               setOptionHandler={setOptionHandler}
@@ -387,24 +387,23 @@ const StyledInput = styled.input`
   width: 100%;
   min-width: 295px;
   height: 48px;
-  background: ${({ $bg }) => ($bg ? $bg[1] : "var(--popup-bg1)")};
+  background: ${({ $bg }) => ($bg ? $bg : "var(--popup-bg1)")};
   border: 1px solid
     ${({ $color }) => ($color ? $color : "var(--block1-text-secondary)")};
   box-sizing: border-box;
   border-radius: 3px;
-  ${'' /* color: ${({ $color }) => ($color ? $color : "var(--block1-text-secondary)")}; */}
-  color: #000;
+  color: ${({ $color }) => ($color ? $color : "var(--block1-text-secondary)")};
   font-style: normal;
   font-weight: normal;
   font-size: 1.125rem;
   padding: 0 1rem;
   transition: 0.4s ease-in-out;
   box-shadow: ${({ $valid }) =>
-    $valid ? "none" : "0 0 15px 6px rgba(255, 0, 0, 0.15)"};
+    $valid ? "none" : "0 0 23px 2px rgba(255,255,255,0.15)"};
   //safari-fix
   -webkit-appearance: none !important;
   -webkit-box-shadow: ${({ $valid }) =>
-    $valid ? "none" : "0 0 15px 6px rgba(255, 0, 0, 0.15)"} !important;
+    $valid ? "none" : "0 0 23px 2px rgba(255,255,255,0.15)"} !important;
 
   &:focus {
     outline: none;
@@ -427,13 +426,13 @@ const StyledTextarea = styled.textarea`
   font-family: "Archia", serif;
   width: 100%;
   height: 84px;
-  background: ${({ $bg }) => ($bg ? $bg[1] : "var(--popup-bg1)")};
+  background: ${({ $bg }) => ($bg ? $bg : "var(--popup-bg1)")};
   border: 1px solid
     ${({ $color }) => ($color ? $color : "var(--block1-text-secondary)")};
   box-sizing: border-box;
   border-radius: 3px;
-  ${'' /* color: ${({ $color }) => ($color ? $color : "var(--block1-text-primary)")}; */}
-  color: #000;
+  ${"" /* color: ${({ $color }) => ($color ? $color : "var(--block1-text-primary)")}; */}
+  color: ${({ $color }) => ($color ? $color : "var(--block1-text-secondary)")};
   font-style: normal;
   font-weight: normal;
   font-size: 1.125rem;
@@ -441,11 +440,11 @@ const StyledTextarea = styled.textarea`
   resize: none;
   transition: 0.4s ease-in-out;
   box-shadow: ${({ $valid }) =>
-    $valid ? "none" : "0 0 15px 6px rgba(255, 0, 0, 0.15)"};
+    $valid ? "none" : "0 0 23px 2px rgba(255,255,255,0.15)"};
   //safari-fix
   -webkit-appearance: none !important;
   -webkit-box-shadow: ${({ $valid }) =>
-    $valid ? "none" : "0 0 15px 6px rgba(255, 0, 0, 0.15)"} !important;
+    $valid ? "none" : "0 0 23px 2px rgba(255,255,255,0.15)"} !important;
 
   &:focus {
     outline: none;

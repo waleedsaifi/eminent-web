@@ -601,7 +601,7 @@ const MenuBtn = styled.div`
   transition: 0.3s ease;
 
   .menu_item a {
-    color: var(--block1-text-primary);
+    color: ${({ $color }) => $color};
     text-decoration: none;
   }
 
@@ -702,6 +702,11 @@ const MenuBtn = styled.div`
     .menu_label {
       display: none;
     }
+
+    .menu_item a {
+    color: var(--block1-text-primary);
+    text-decoration: none;
+  }
   }
 `;
 const rightBtnBorderAnimation = keyframes`
