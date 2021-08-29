@@ -29,6 +29,7 @@ import {
 } from "../../store/actions/actionCreator";
 import ReactGA from "react-ga";
 
+
 const MenuContent = ({
   showPopup,
   menuHandler,
@@ -52,7 +53,9 @@ const MenuContent = ({
   const rightBorderBtn = useRef(null);
   const introText = useRef(null);
   const dispatch = useDispatch();
-
+  const trackingId = "G-60F2EVTPDX"; // Replace with your Google Analytics tracking ID
+  ReactGA.initialize(trackingId);
+  
   const menuResizer = () => {
     if (window.innerWidth > BREAKPOINTS.tablet) {
       setMenuOpen(true);

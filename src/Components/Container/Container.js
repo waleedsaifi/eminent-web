@@ -190,7 +190,7 @@ const ContainerContent = (currentData) => {
 
     window.stoppedAnimation = false;
 
-    if (currentSection?.fields[currentStep].fields.blurBackground) {
+    if (currentSection?.fields[currentStep] && currentSection?.fields[currentStep].fields.blurBackground) {
       setBgBlur(true);
     } else {
       setBgBlur(false);

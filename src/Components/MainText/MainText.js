@@ -140,10 +140,10 @@ const App = ({
     );
   }, [currentSectionTitle, currentStep]);
 
-  const getTopMainText = () => {
+  const getTopMainText = (step) => {
     switch (currentSectionTitle) {
       case "home": {
-        switch (currentStep) {
+        switch (step) {
           case 0:
           case 1:
             return window.innerWidth < BREAKPOINTS.tablet ? ["45%"] : ["auto"];
@@ -160,7 +160,7 @@ const App = ({
         }
       }
       case "approach": {
-        switch (currentStep) {
+        switch (step) {
           case 0:
             return ["50%;"];
           case 1:
@@ -176,7 +176,7 @@ const App = ({
         }
       }
       case "work": {
-        switch (currentStep) {
+        switch (step) {
           case 0:
             return ["21%", "12%"];
           case 1:
@@ -349,10 +349,10 @@ const App = ({
         return;
     }
   };
-  const getFontSize = () => {
+  const getFontSize = (step) => {
     switch (currentSectionTitle) {
       case "home": {
-        switch (currentStep) {
+        switch (step) {
           case 0:
           case 1:
           case 2:
@@ -366,7 +366,7 @@ const App = ({
         }
       }
       case "approach": {
-        switch (currentStep) {
+        switch (step) {
           case 0:
           case 1:
           case 2:
@@ -379,7 +379,7 @@ const App = ({
         }
       }
       case "work": {
-        switch (currentStep) {
+        switch (step) {
           case 0:
             return {
               title: ["64px", "45px"],
@@ -399,10 +399,10 @@ const App = ({
         return;
     }
   };
-  const getLetterSpacing = () => {
+  const getLetterSpacing = (step) => {
     switch (currentSectionTitle) {
       case "home": {
-        switch (currentStep) {
+        switch (step) {
           case 0:
           case 1:
           case 2:
@@ -416,7 +416,7 @@ const App = ({
         }
       }
       case "approach": {
-        switch (currentStep) {
+        switch (step) {
           case 4:
             return "0.04em";
           default:
@@ -424,7 +424,7 @@ const App = ({
         }
       }
       case "work": {
-        switch (currentStep) {
+        switch (step) {
           case 1:
             return "0.07em";
           default:
@@ -435,16 +435,16 @@ const App = ({
         return;
     }
   };
-  const getBackground = () => {
-    switch (currentStep) {
+  const getBackground = (step) => {
+    switch (step) {
       default:
         return ["rgba(184, 197, 201, 0.68)", "rgba(184, 197, 201, 1)"];
     }
   };
-  const getFocus = () => {
+  const getFocus = (step) => {
     switch (currentSectionTitle) {
       case "work": {
-        switch (currentStep) {
+        switch (step) {
           case 1:
             return "0 0 23px 2px rgba(255,255,255,0.5)";
           default:
@@ -456,10 +456,10 @@ const App = ({
     }
   };
 
-  const getMarginId = () => {
+  const getMarginId = (step) => {
     switch (currentSectionTitle) {
       case "approach": {
-        switch (currentStep) {
+        switch (step) {
           case 0:
             return { desk: "25px 0", tablet: "0 0 10px 0" };
           case 1:
@@ -475,10 +475,10 @@ const App = ({
     }
   };
 
-  const getMarginCustomText = () => {
+  const getMarginCustomText = (step) => {
     switch (currentSectionTitle) {
       case "approach": {
-        switch (currentStep) {
+        switch (step) {
           case 0:
           case 1:
           case 2:
@@ -493,10 +493,10 @@ const App = ({
     }
   };
 
-  const getTextAlign = () => {
+  const getTextAlign = (step) => {
     switch (currentSectionTitle) {
       case "work": {
-        switch (currentStep) {
+        switch (step) {
           case 0:
             return ["left"];
           default:
@@ -577,9 +577,8 @@ const App = ({
       storyItem3.current,
       storyItem4.current,
     ];
-    const blurTextEl = chooseStoryTextContainer.current.querySelector(
-      ".storyBlur"
-    );
+    const blurTextEl =
+      chooseStoryTextContainer.current.querySelector(".storyBlur");
     chooseStoryTextContainer.current.style.opacity = 1;
     blurTextEl.style.opacity = 0;
     _.each(storyItems, (item) => {
@@ -716,10 +715,10 @@ const App = ({
     });
   };
 
-  const getBoxMaxWidth = () => {
+  const getBoxMaxWidth = (step) => {
     switch (currentSectionTitle) {
       case "home": {
-        switch (currentStep) {
+        switch (step) {
           case 0:
             return {
               deskXl: { t1: "1200px" },
@@ -767,7 +766,7 @@ const App = ({
         }
       }
       case "approach": {
-        switch (currentStep) {
+        switch (step) {
           case 4:
             return {
               deskXl: { t1: "710px", t2: "770px" },
@@ -780,7 +779,7 @@ const App = ({
         }
       }
       case "work": {
-        switch (currentStep) {
+        switch (step) {
           case 1:
             return {
               deskXl: { t1: "1200px" },
@@ -802,10 +801,10 @@ const App = ({
     }
   };
 
-  const getMobGridColumns = () => {
+  const getMobGridColumns = (step) => {
     switch (currentSectionTitle) {
       case "approach": {
-        switch (currentStep) {
+        switch (step) {
           case 0:
             return { tablet: "465px" };
           case 1:
@@ -823,10 +822,10 @@ const App = ({
     }
   };
 
-  const getMaxWidthCustomBlock = () => {
+  const getMaxWidthCustomBlock = (step) => {
     switch (currentSectionTitle) {
       case "approach": {
-        switch (currentStep) {
+        switch (step) {
           case 0:
             return "500px";
           case 1:
@@ -882,12 +881,12 @@ const App = ({
               <MainText
                 className="anime"
                 $color={currentTheme.textColor}
-                $top={getTopMainText()}
+                $top={getTopMainText(0)}
                 $step={currentStep}
-                $fontSize={getFontSize()}
-                $left={getLeft()}
-                $letterSpacing={getLetterSpacing()}
-                $boxMaxWidth={getBoxMaxWidth()}
+                $fontSize={getFontSize(0)}
+                $left={getLeft(0)}
+                $letterSpacing={getLetterSpacing(0)}
+                $boxMaxWidth={getBoxMaxWidth(0)}
               >
                 {currentSection?.fields[currentStep].fields.mainText}
               </MainText>
@@ -895,9 +894,8 @@ const App = ({
             <Continue
               className="anime"
               onClick={getNextStep}
-              $top={getContinueText()}
+              $top={getContinueText(0)}
               $color={currentTheme.textColor}
-
             >
               Learn more >>
               <ContinueArrow />
@@ -915,12 +913,12 @@ const App = ({
               <MainText
                 className="anime"
                 $color={currentTheme.textColor}
-                $top={getTopMainText()}
+                $top={getTopMainText(currentStep)}
                 $step={currentStep}
-                $fontSize={getFontSize()}
-                $left={getLeft()}
-                $letterSpacing={getLetterSpacing()}
-                $boxMaxWidth={getBoxMaxWidth()}
+                $fontSize={getFontSize(currentStep)}
+                $left={getLeft(currentStep)}
+                $letterSpacing={getLetterSpacing(currentStep)}
+                $boxMaxWidth={getBoxMaxWidth(currentStep)}
               >
                 {currentSection.fields[currentStep].fields.mainText}
               </MainText>
@@ -929,12 +927,12 @@ const App = ({
               <MainTextSecond
                 className="anime2"
                 $color={currentTheme.textColor}
-                $top={getTopSecondText()}
+                $top={getTopSecondText(currentStep)}
                 $step={currentStep}
-                $fontSize={getFontSize()}
-                $left={getLeft()}
-                $letterSpacing={getLetterSpacing()}
-                $boxMaxWidth={getBoxMaxWidth()}
+                $fontSize={getFontSize(currentStep)}
+                $left={getLeft(currentStep)}
+                $letterSpacing={getLetterSpacing(currentStep)}
+                $boxMaxWidth={getBoxMaxWidth(currentStep)}
               >
                 {currentSection.fields[currentStep].fields.subText}
               </MainTextSecond>
@@ -944,7 +942,7 @@ const App = ({
                 <Continue
                   className="anime"
                   onClick={getNextStep}
-                  $top={getContinueText()}
+                  $top={getContinueText(currentStep)}
                   $color={currentTheme.textColor}
                 >
                   Learn more >>
@@ -973,17 +971,18 @@ const App = ({
   const getApproachContent = () => {
     switch (currentStep) {
       case 0:
+      default:
         return (
           <>
             <CustomBlockWrapper
-              $top={getTopCustomBlock()}
-              $left={getLeft()}
-              $maxWidth={getMaxWidthCustomBlock()}
+              $top={getTopCustomBlock(0)}
+              $left={getLeft(0)}
+              $maxWidth={getMaxWidthCustomBlock(0)}
             >
               <CustomBlock
                 className="customBlock"
                 $align={"flex-start"}
-                $mobGridCols={getMobGridColumns()}
+                $mobGridCols={getMobGridColumns(0)}
               >
                 {/* <CustomText
                   className="custom_anime"
@@ -991,8 +990,8 @@ const App = ({
                 >
                   {currentSection.fields[currentStep].fields.description2}
                 </CustomText> */}
-                <CustomID $margin={getMarginId()} className="custom_anime">
-                  {currentSection.fields[currentStep].fields.customNumber}
+                <CustomID $margin={getMarginId(0)} className="custom_anime">
+                  {currentSection.fields[0].fields.customNumber}
                 </CustomID>
 
                 {/* <AnimatedStrategyText
@@ -1008,9 +1007,9 @@ const App = ({
 
                 <CustomText
                   className="custom_anime"
-                  $margin={getMarginCustomText()}
+                  $margin={getMarginCustomText(0)}
                 >
-                  {currentSection.fields[currentStep].fields.description1}
+                  {currentSection.fields[0].fields.description1}
                 </CustomText>
                 {/* <CustomText
                   className="custom_anime"
@@ -1027,19 +1026,19 @@ const App = ({
         return (
           <>
             <CustomBlockWrapper
-              $top={getTopCustomBlock()}
-              $right={getRight()}
-              $maxWidth={getMaxWidthCustomBlock()}
+              $top={getTopCustomBlock(1)}
+              $right={getRight(1)}
+              $maxWidth={getMaxWidthCustomBlock(1)}
             >
               <CustomBlock
                 className="customBlock"
-                $top={getTopCustomBlock()}
+                $top={getTopCustomBlock(1)}
                 $align={"flex-end"}
-                $mobGridCols={getMobGridColumns()}
-                $maxWidth={getMaxWidthCustomBlock()}
+                $mobGridCols={getMobGridColumns(1)}
+                $maxWidth={getMaxWidthCustomBlock(1)}
               >
                 <CustomID
-                  $margin={getMarginId()}
+                  $margin={getMarginId(1)}
                   className="custom_anime"
                   $step={currentStep}
                 >
@@ -1053,8 +1052,8 @@ const App = ({
 
                 <CustomText
                   className="custom_anime"
-                  $right={getRight()}
-                  $margin={getMarginCustomText()}
+                  $right={getRight(1)}
+                  $margin={getMarginCustomText(1)}
                 >
                   {currentSection.fields[currentStep].fields.description1}
                 </CustomText>
@@ -1074,17 +1073,17 @@ const App = ({
         return (
           <>
             <CustomBlockWrapper
-              $top={getTopCustomBlock()}
-              $left={getLeft()}
-              $maxWidth={getMaxWidthCustomBlock()}
+              $top={getTopCustomBlock(2)}
+              $left={getLeft(2)}
+              $maxWidth={getMaxWidthCustomBlock(2)}
             >
               <CustomBlock
                 className="customBlock"
-                $top={getTopCustomBlock()}
+                $top={getTopCustomBlock(2)}
                 $left={getLeft}
                 $align={"flex-start"}
-                $mobGridCols={getMobGridColumns()}
-                $maxWidth={getMaxWidthCustomBlock()}
+                $mobGridCols={getMobGridColumns(2)}
+                $maxWidth={getMaxWidthCustomBlock(2)}
               >
                 {/* <CustomText
                   className="custom_anime"
@@ -1099,7 +1098,7 @@ const App = ({
                   {currentSection.fields[currentStep].fields.description3}
                 </CustomText> */}
                 <CustomID
-                  $margin={getMarginId()}
+                  $margin={getMarginId(2)}
                   className="custom_anime"
                   $step={currentStep}
                 >
@@ -1111,7 +1110,7 @@ const App = ({
                 />
                 <CustomText
                   className="custom_anime"
-                  $margin={getMarginCustomText()}
+                  $margin={getMarginCustomText(2)}
                 >
                   {currentSection.fields[currentStep].fields.description1}
                 </CustomText>
@@ -1124,23 +1123,23 @@ const App = ({
         return (
           <>
             <CustomBlockWrapper
-              $top={getTopCustomBlock()}
-              $right={getRight()}
-              $maxWidth={getMaxWidthCustomBlock()}
+              $top={getTopCustomBlock(3)}
+              $right={getRight(3)}
+              $maxWidth={getMaxWidthCustomBlock(3)}
             >
               <CustomBlock
                 className="customBlock"
-                $top={getTopCustomBlock()}
-                $right={getRight()}
+                $top={getTopCustomBlock(3)}
+                $right={getRight(3)}
                 $align={"flex-end"}
-                $mobGridCols={getMobGridColumns()}
-                $maxWidth={getMaxWidthCustomBlock()}
+                $mobGridCols={getMobGridColumns(3)}
+                $maxWidth={getMaxWidthCustomBlock(3)}
               >
                 {/* <CustomText className="custom_anime" $right={getRight()}>
                   {currentSection.fields[currentStep].fields.description2}
                 </CustomText> */}
 
-                <CustomID $margin={getMarginId()} className="custom_anime">
+                <CustomID $margin={getMarginId(3)} className="custom_anime">
                   {currentSection.fields[currentStep].fields.customNumber}
                 </CustomID>
 
@@ -1148,7 +1147,7 @@ const App = ({
                   className="svgText"
                   $color={currentTheme.textColor}
                 />
-                <CustomText className="custom_anime" $right={getRight()}>
+                <CustomText className="custom_anime" $right={getRight(3)}>
                   {currentSection.fields[currentStep].fields.description1}
                 </CustomText>
                 {/* <AnimatedServiceText
@@ -1174,12 +1173,12 @@ const App = ({
               <MainText
                 className="anime"
                 $color={currentTheme.textColor}
-                $top={getTopMainText()}
+                $top={getTopMainText(4)}
                 $step={currentStep}
-                $fontSize={getFontSize()}
-                $left={getLeft()}
-                $letterSpacing={getLetterSpacing()}
-                $boxMaxWidth={getBoxMaxWidth()}
+                $fontSize={getFontSize(4)}
+                $left={getLeft(4)}
+                $letterSpacing={getLetterSpacing(4)}
+                $boxMaxWidth={getBoxMaxWidth(4)}
               >
                 {currentSection.fields[currentStep].fields.mainText}
               </MainText>
@@ -1188,12 +1187,12 @@ const App = ({
               <MainTextSecond
                 className="anime2"
                 $color={currentTheme.textColor}
-                $top={getTopSecondText()}
+                $top={getTopSecondText(4)}
                 $step={currentStep}
-                $fontSize={getFontSize()}
-                $left={getLeft()}
-                $letterSpacing={getLetterSpacing()}
-                $boxMaxWidth={getBoxMaxWidth()}
+                $fontSize={getFontSize(4)}
+                $left={getLeft(4)}
+                $letterSpacing={getLetterSpacing(4)}
+                $boxMaxWidth={getBoxMaxWidth(4)}
               >
                 {currentSection.fields[currentStep].fields.subText}
               </MainTextSecond>
@@ -1212,13 +1211,12 @@ const App = ({
             )}
           </>
         );
-      default:
-        return;
     }
   };
 
   const getWorkContent = () => {
     switch (currentStep) {
+      default:
       case 0:
         return (
           <ChooseStoryWrapper>
@@ -1226,27 +1224,27 @@ const App = ({
               <ChooseStoryText
                 className="chooseStoryText"
                 $color={currentTheme.textColor}
-                $top={getTopMainText()[1]}
-                $step={currentStep}
-                $fontSize={getFontSize().text}
-                $left={getLeft()}
-                $letterSpacing={getLetterSpacing()}
-                $textAlign={getTextAlign()[0]}
+                $top={getTopMainText(0)}
+                $step={0}
+                $fontSize={getFontSize(0).text}
+                $left={getLeft(0)}
+                $letterSpacing={getLetterSpacing(0)}
+                $textAlign={getTextAlign(0)}
               >
-                {currentSection.fields[currentStep].fields.subText}
+                {currentSection.fields[0].fields.subText}
               </ChooseStoryText>
               <span className="storyBlur" />
             </ChooseStoryTextContainer>
             <ChooseStoryTitle
               className="anime"
               $color={currentTheme.textColor}
-              $top={getTopMainText()[0]}
-              $step={currentStep}
-              $fontSize={getFontSize().title}
-              $left={getLeft()}
-              $letterSpacing={getLetterSpacing()}
+              $top={getTopMainText(0)[0]}
+              $step={0}
+              $fontSize={getFontSize(0).title}
+              $left={getLeft(0)}
+              $letterSpacing={getLetterSpacing(0)}
             >
-              {currentSection.fields[currentStep].fields.mainText}
+              {currentSection.fields[0].fields.mainText}
             </ChooseStoryTitle>
             <ChooseStory
               className="chooseStory"
@@ -1261,11 +1259,11 @@ const App = ({
               >
                 <StoryContext
                   className="storyItem-context"
-                  $fontSize={getFontSize()}
+                  $fontSize={getFontSize(0)}
                 >
                   <span className="num">01.</span>
                   <span className="text1">
-                    {currentSection.fields[currentStep].fields.description1}
+                    {currentSection.fields[0].fields.description1}
                   </span>
                 </StoryContext>
                 <span className="storyBlur" />
@@ -1280,11 +1278,11 @@ const App = ({
               >
                 <StoryContext
                   className="storyItem-context"
-                  $fontSize={getFontSize()}
+                  $fontSize={getFontSize(0)}
                 >
                   <span className="num">02.</span>
                   <span className="text2">
-                    {currentSection.fields[currentStep].fields.description2}
+                    {currentSection.fields[0].fields.description2}
                   </span>
                 </StoryContext>
                 <span className="storyBlur" />
@@ -1299,11 +1297,11 @@ const App = ({
               >
                 <StoryContext
                   className="storyItem-context"
-                  $fontSize={getFontSize()}
+                  $fontSize={getFontSize(0)}
                 >
                   <span className="num">03.</span>
                   <span className="text3">
-                    {currentSection.fields[currentStep].fields.description3}
+                    {currentSection.fields[0].fields.description3}
                   </span>
                 </StoryContext>
                 <span className="storyBlur" />
@@ -1318,11 +1316,11 @@ const App = ({
               >
                 <StoryContext
                   className="storyItem-context"
-                  $fontSize={getFontSize()}
+                  $fontSize={getFontSize(0)}
                 >
                   <span className="num">04.</span>
                   <span className="text4">
-                    {currentSection.fields[currentStep].fields.description4}
+                    {currentSection.fields[0].fields.description4}
                   </span>
                 </StoryContext>
                 <span className="storyBlur" />
@@ -1337,7 +1335,7 @@ const App = ({
             <FormContainer
               className="formTen"
               $color={currentTheme.textColor}
-              $bg={getBackground()}
+              $bg={getBackground(1)}
             >
               <ScheduleHeader $color={currentTheme.textColor}>
                 {currentSection.fields[currentStep].fields.mainText}
@@ -1347,8 +1345,8 @@ const App = ({
               </FormHeader>
               <ScheduleForm
                 color={currentTheme.textColor}
-                background={getBackground()}
-                focus={getFocus()}
+                background={getBackground(1)}
+                focus={getFocus(1)}
                 inputFocusHandler={inputFocusHandler}
                 inputOnfocusoutHandler={inputOnfocusoutHandler}
                 validateData={formDataValidator}
@@ -1362,11 +1360,11 @@ const App = ({
             <MainText
               className="anime"
               $color={currentTheme.textColor}
-              $top={getTopMainText()}
+              $top={getTopMainText(2)}
               $step={currentStep}
-              $fontSize={getFontSize()}
-              $left={getLeft()}
-              $boxMaxWidth={getBoxMaxWidth()}
+              $fontSize={getFontSize(2)}
+              $left={getLeft(2)}
+              $boxMaxWidth={getBoxMaxWidth(2)}
             >
               {currentSection.fields[currentStep].fields.mainText}
             </MainText>
@@ -1376,9 +1374,6 @@ const App = ({
             </WatchAgain>
           </>
         );
-
-      default:
-        return;
     }
   };
 
@@ -1720,6 +1715,7 @@ const ScheduleBtn = styled(CallActionBtn)`
   border: 1px solid transparent;
   position: relative;
   transition: 0.2s ease-in-out;
+  margin-top: 60px;
 
   @media (min-width: ${BREAKPOINTS.tablet + 1}px) {
     &:hover {
@@ -1759,7 +1755,7 @@ none `};
     font-size: 21px;
     border-radius: 0 0 45px 45px;
     border-bottom: 1px solid var(--block1-text-secondary);
-
+    margin-top: 0px;
     & > span {
       padding-left: 21px;
     }

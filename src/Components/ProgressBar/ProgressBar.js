@@ -30,7 +30,10 @@ const ProgressBarContent = ({
   useEffect(() => {
     dispatch(setProgress(currentStep));
     currentSection.fields.forEach((i) => (i.active = false));
-    currentSection.fields[currentStep].active = true;
+    if(currentSection.fields[currentStep])
+    {
+      currentSection.fields[currentStep].active = true;
+    }
   }, [currentStep, _root, currentSection, dispatch]);
 
   const progressHoverIn = (e) => {
