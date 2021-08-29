@@ -27,6 +27,7 @@ import {
   setCurrentSectionTitle,
   setProgress,
 } from "../../store/actions/actionCreator";
+import ReactGA from "react-ga";
 
 const MenuContent = ({
   showPopup,
@@ -289,14 +290,20 @@ const MenuContent = ({
     switch (location.pathname) {
       case "/": {
         GoSectionHandler("home");
+        ReactGA.set({ page: location.pathname }); // Update the user's current page
+        ReactGA.pageview(location.pathname);
         return;
       }
       case "/approach": {
         GoSectionHandler("approach");
+        ReactGA.set({ page: location.pathname }); // Update the user's current page
+        ReactGA.pageview(location.pathname);
         return;
       }
       case "/work": {
         GoSectionHandler("work");
+        ReactGA.set({ page: location.pathname }); // Update the user's current page
+        ReactGA.pageview(location.pathname);
         return;
       }
       default:
@@ -704,9 +711,9 @@ const MenuBtn = styled.div`
     }
 
     .menu_item a {
-    color: var(--block1-text-primary);
-    text-decoration: none;
-  }
+      color: var(--block1-text-primary);
+      text-decoration: none;
+    }
   }
 `;
 const rightBtnBorderAnimation = keyframes`
