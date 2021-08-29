@@ -943,6 +943,7 @@ const App = ({
                   className="anime"
                   onClick={getNextStep}
                   $top={getContinueText()}
+                  $color={currentTheme.textColor}
                 >
                   Learn more >>
                   <ContinueArrow />
