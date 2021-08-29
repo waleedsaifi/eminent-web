@@ -251,7 +251,7 @@ const App = ({
           case 3:
             return ["83%"];
           case 4:
-            return ["83%"];
+            return ["85%"];
           case 5:
             return ["50%;"];
           default:
