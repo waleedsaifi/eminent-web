@@ -7,8 +7,9 @@ import {
 } from './vertexShader'
 import _ from 'lodash'
 import gsap from 'gsap/all'
+import point_texture from '../../../assets/images/point_texture.png';
 
-const texture = new THREE.TextureLoader().load("/assets/images/point_texture.png")
+const texture = new THREE.TextureLoader().load(point_texture);
 
 window.THREE = THREE
 
