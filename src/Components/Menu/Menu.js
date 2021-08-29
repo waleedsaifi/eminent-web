@@ -762,7 +762,7 @@ auto `
     display: ${({ $show, $open }) =>
       $open && $show
         ? `
-grid `
+block `
         : `
 none `};
     align-self: stretch;
@@ -772,10 +772,20 @@ none `};
     color: var(--block1-text-primary);
     font-size: 21px;
     border-radius: 0 0 45px 45px;
-    border-bottom: 1px solid var(--block1-text-secondary);
-
+    ${"" /* border-bottom: 1px solid var(--block1-text-secondary); */}
+    padding: 0px;
+    border-bottom: none;
     & > span {
       padding-left: 21px;
     }
+
+    ${"" /* border-bottom: none;
+    padding: 0px;
+    display: ${({ $show, $open }) =>
+      $open && $show
+        ? `
+block `
+        : `
+none `}; */}
   }
 `;
