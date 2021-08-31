@@ -458,7 +458,7 @@ const MenuContent = ({
             ref={rightBorderBtn}
             $color={currentTheme?.bgScheduleBtn}
           />{" "}
-          <span> LETS TALK </span>{" "}
+          <span> LET'S TALK </span>{" "}
         </MenuRightBtn>{" "}
       </Menu>
     </>
@@ -521,7 +521,8 @@ const MenuBurger = styled.div`
 const Menu = styled.div`
   position: fixed;
   top: 0;
-  left: 50vmax;
+  ${'' /* left: 50vmax; */}
+  left: 50%;
   transform: translateX(-50%);
   display: grid;
   grid-template-columns: 185px 185px 200px 185px 185px;
@@ -530,7 +531,7 @@ const Menu = styled.div`
   z-index: 10;
   backdrop-filter: blur(${({ $blur }) => $blur}px);
 
-  @media (max-width: 1650px) {
+  ${'' /* @media (max-width: 1650px) {
     left: 55.5vmax;
   }
   @media (max-width: 1550px) {
@@ -538,7 +539,7 @@ const Menu = styled.div`
   }
   @media (max-width: 1450px) {
     left: 57vmax;
-  }
+  } */}
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {
     grid-template-columns: 1fr;

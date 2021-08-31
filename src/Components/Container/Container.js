@@ -19,7 +19,7 @@ import {
   getFadeOutCustomText,
   getFadeOutMainText,
 } from "../../helpers/animations";
-import { ReactComponent as PlugLogo } from "../../assets/images/logo.svg"; 
+import { ReactComponent as PlugLogo } from "../../assets/images/logo.svg";
 import { getThemeContent, getSectionContent } from "../../helpers/content";
 import {
   toggleLoader,
@@ -190,7 +190,10 @@ const ContainerContent = (currentData) => {
 
     window.stoppedAnimation = false;
 
-    if (currentSection?.fields[currentStep] && currentSection?.fields[currentStep].fields.blurBackground) {
+    if (
+      currentSection?.fields[currentStep] &&
+      currentSection?.fields[currentStep].fields.blurBackground
+    ) {
       setBgBlur(true);
     } else {
       setBgBlur(false);
@@ -485,8 +488,10 @@ const Container = styled.div`
   transition: 0.3s ease;
   overflow-x: hidden;
   overflow-y: auto;
-  ${"" /* ${({ $isMenuOpen, $overflow }) =>
-    $isMenuOpen ? "hidden" : $overflow}; */}
+  ${
+    "" /* ${({ $isMenuOpen, $overflow }) =>
+    $isMenuOpen ? "hidden" : $overflow}; */
+  }
   touch-action: pan-y;
 `;
 const BlurredBackground = styled.div`

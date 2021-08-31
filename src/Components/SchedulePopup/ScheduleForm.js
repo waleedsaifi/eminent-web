@@ -8,6 +8,7 @@ import { CustomSelect } from "../CustomSelect/CustomSelect";
 import { BREAKPOINTS, schedulePopup } from "../../constants/constants";
 import { setScheduleData } from "../../store/actions/actionCreator";
 import { sendEmail } from "../../helpers/http.api";
+import { setScheduleForm } from "../../helpers/content";
 
 const ScheduleFormContent = ({
   closeHandlerPopup = null,
@@ -136,6 +137,7 @@ const ScheduleFormContent = ({
       validateData && validateData(isDataValid.isValid);
 
       sendEmail(newData);
+      setScheduleForm(newData);
     }
 
     if (closeHandlerPopup) {

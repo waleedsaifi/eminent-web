@@ -1,5 +1,7 @@
 import { lightTheme, darkTheme } from "../constants/constants";
 import Contentful from "../helpers/contentful";
+import { createClient } from "contentful-management";
+
 import {
   setMenuData,
   setScheduleData,
@@ -137,4 +139,49 @@ export const getSectionContent = (currentSectionTitle, dispatch) => {
     default:
       return;
   }
+};
+
+export const setScheduleForm = (formData) => {
+  const client = createClient({
+    accessToken: "CFPAT-h8r2Lb79QV64F8Yt0SaQsSEhilbJ5LpuIPFvdZh58a0",
+  });
+
+  client
+    .getSpace("1cn68t2wnpi8")
+    .then((space) => space.getEnvironment("master"))
+    .then((environment) =>
+      environment.createEntry("scheduleForm", {
+        fields: {
+          title: {
+            "en-US": "Contact form submitted by " + formData.name,
+          },
+          name: {
+            "en-US": formData.name,
+          },
+          organization: {
+            "en-US": formData.organization,
+          },
+          job: {
+            "en-US": formData.jobTitle,
+          },
+          phone: {
+            "en-US": formData.phone,
+          },
+          email: {
+            "en-US": formData.email,
+          },
+          improve_process: {
+            "en-US": formData.process,
+          },
+          team: {
+            "en-US": formData.team,
+          },
+          form_message: {
+            "en-US": formData.message,
+          },
+        },
+      })
+    )
+    .then((entry) => console.log(entry))
+    .catch(console.error);
 };

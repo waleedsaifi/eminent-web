@@ -958,7 +958,7 @@ const App = ({
                   $lineBg={currentTheme.bgScheduleBtn}
                 >
                   <ScheduleBtnBorder $color={currentTheme.bgScheduleBtn} />
-                  <span> LETS TALK </span>
+                  <span> LET'S TALK </span>
                 </ScheduleBtn>
               )}
           </>

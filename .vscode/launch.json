@@ -10,7 +10,7 @@
       "type": "pwa-chrome",
       "url": "http://localhost:3000",
       "webRoot": "${workspaceFolder}",
-      "userDataDir": false
+      // "userDataDir": false
     }
   ]
 }
