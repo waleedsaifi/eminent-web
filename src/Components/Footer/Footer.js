@@ -34,10 +34,10 @@ const FooterContent = ({
               <>
                 <FooterFollowText>Follow us:</FooterFollowText>{" "}
                 <FooterLinks>
-                  <FooterLink href="#"> Telegram </FooterLink>{" "}
-                  <FooterLink href="#"> Instagram </FooterLink>{" "}
-                  <FooterLink href="#"> Twitter </FooterLink>{" "}
-                  <FooterLink href="#"> Facebook </FooterLink>{" "}
+                  <FooterLink href="https://www.linkedin.com/company/eminent-it"> Linkedin </FooterLink>{" "}
+                  <FooterLink href="https://www.instagram.com/eminent.it/"> Instagram </FooterLink>{" "}
+                  <FooterLink href="https://twitter.com/eminentit"> Twitter </FooterLink>{" "}
+                  <FooterLink href="https://www.facebook.com/EminentIT"> Facebook </FooterLink>{" "}
                 </FooterLinks>{" "}
               </>
             );
