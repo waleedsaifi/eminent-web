@@ -1,19 +1,21 @@
 import React, { useEffect, useRef } from "react";
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import _ from "lodash";
-import { screens, BREAKPOINTS } from "../../constants/constants";
-import { useSelector, useDispatch } from "react-redux";
+import { BREAKPOINTS } from "../../constants/constants";
+import { useDispatch } from "react-redux";
 import anime from "animejs/lib/anime.es.js";
-import {
-  setProgress,
-  setStepsTextData,
-} from "../../store/actions/actionCreator";
-import { ReactComponent as StrategySvg } from "../../assets/images/Strategy.svg";
-import { ReactComponent as TransparencySvg } from "../../assets/images/Transparency.svg";
-import { ReactComponent as FlexibilitySvg } from "../../assets/images/Flexibility.svg";
-import { ReactComponent as SelflessSvg } from "../../assets/images/Selfless.svg";
-import { ReactComponent as ServiceSvg } from "../../assets/images/service.svg";
+import { setProgress } from "../../store/actions/actionCreator";
+import { ReactComponent as OutcomeSVG } from "../../assets/images/Outcome.svg";
+import { ReactComponent as PartnersSVG } from "../../assets/images/Partners.svg";
+import { ReactComponent as VisionSVG } from "../../assets/images/Vision.svg";
+import { ReactComponent as VeteransSVG } from "../../assets/images/Veterans.svg";
+// import { ReactComponent as StrategySvg } from "../../assets/images/Strategy.svg";
+// import { ReactComponent as TransparencySvg } from "../../assets/images/Transparency.svg";
+// import { ReactComponent as FlexibilitySvg } from "../../assets/images/Flexibility.svg";
+// import { ReactComponent as SelflessSvg } from "../../assets/images/Selfless.svg";
+// import { ReactComponent as ServiceSvg } from "../../assets/images/service.svg";
 import { ReactComponent as WatchAgainSvg } from "../../assets/images/watchAgainArrow.svg";
+import { ReactComponent as RightBtnSvg } from "../../assets/images/rightBtn.svg";
 import {
   getFadeInChooseStoryText,
   getFadeInCustomText,
@@ -23,19 +25,30 @@ import {
   getFadeOutChooseStoryText,
   getFadeOutFormTen,
   getFadeOutProgressSvg,
+  getFadeOutCustomText,
+  getFadeOutMainText,
 } from "../../helpers/animations";
 import ScheduleForm from "../SchedulePopup/ScheduleForm";
 
-export default () => {
+const App = ({
+  showPopup,
+  menuHandler,
+  currentSectionTitle,
+  currentStep,
+  currentSection,
+  currentTheme,
+}) => {
   const dispatch = useDispatch();
-  const { currentStep, stepsTextData } = useSelector((state) => state.state);
   const svgWatch = useRef(null);
-  const strategySvg = useRef(null);
   const chooseStoryTextContainer = useRef(null);
   const storyItem1 = useRef(null);
   const storyItem2 = useRef(null);
   const storyItem3 = useRef(null);
   const storyItem4 = useRef(null);
+
+  const onScheduleClickHandler = (e) => {
+    document.getElementById("ScheduleBtn").click();
+  };
 
   useEffect(() => {
     const progressSvgArray = document.querySelectorAll(
@@ -46,7 +59,13 @@ export default () => {
     );
     getFadeInProgressSvg([progressSvgArray, progressBorderDefault], () => "");
 
-    if (currentStep === 11) {
+    if (currentSectionTitle === "approach" && currentStep === 0) {
+      window.animation = anime;
+      window.animation.way = "forward";
+    }
+
+    if (currentSectionTitle === "work" && currentStep === 0) {
+      window.animation = anime;
       window.animation.way = "forward";
       getFadeInFormTen(".chooseStory", 0, () =>
         setTimeout(() => (window.stoppedAnimation = true), 1000)
@@ -65,7 +84,7 @@ export default () => {
       }
     }
 
-    if (currentStep === 12) {
+    if (currentSectionTitle === "work" && currentStep === 1) {
       getFadeInFormTen(".formTen", 0, () => {
         //window.engine.start();
         setTimeout(() => (window.stoppedAnimation = true), 1000);
@@ -73,8 +92,12 @@ export default () => {
       return;
     }
 
-    const customSteps = [6, 7, 8, 9];
-    if (customSteps.includes(currentStep)) {
+    //const customSteps = [6, 7, 8, 9];
+    if (
+      currentSectionTitle === "approach" &&
+      window.animation &&
+      currentStep < 4
+    ) {
       window.animation.way = "forward";
       getFadeInCustomText(() => {
         window.animation._name = "custom_anime";
@@ -106,187 +129,378 @@ export default () => {
       () => {
         //   window.engine.start();
         window.animation._name = "anime";
-        setTimeout(() => (window.stoppedAnimation = true), 1000);
+        setTimeout(() => (window.stoppedAnimation = true), 700);
       },
-      currentStep === 0 ? 6000 : 0
-    );
-  }, [currentStep, stepsTextData]);
 
-  const getTopMainText = () => {
-    switch (currentStep) {
-      case 0:
-      case 1:
-        return window.innerWidth < BREAKPOINTS.tablet ? ["45%"] : ["auto"];
-      case 2:
-        return window.innerWidth < BREAKPOINTS.tablet ? ["45%"] : ["30%"];
-      case 3:
-      case 4:
-        return ["16%"];
-      case 5:
-        return ["40%;"];
-      case 6:
-        return ["50%;"];
-      case 7:
-        return ["50%"];
-      case 8:
-        return ["50%;"];
-      case 9:
-        return ["50%"];
-      case 10:
-        return ["35%"];
-      case 11:
-        return ["21%", "12%"];
-      case 12:
-        return ["135px"];
-      case 13:
-        return ["18%"];
+      currentSectionTitle !== "work" ? (currentStep === 0 ? 6000 : 0) : 500
+    );
+  }, [currentSectionTitle, currentStep]);
+
+  const getTopMainText = (step) => {
+    switch (currentSectionTitle) {
+      case "home": {
+        switch (step) {
+          case 0:
+          case 1:
+            return window.innerWidth < BREAKPOINTS.tablet ? ["45%"] : ["auto"];
+          case 2:
+            return window.innerWidth < BREAKPOINTS.tablet ? ["45%"] : ["30%"];
+          case 3:
+            return ["15%"];
+          case 4:
+            return ["15%"];
+          case 5:
+            return ["40%;"];
+          default:
+            return;
+        }
+      }
+      case "approach": {
+        switch (step) {
+          case 0:
+            return ["50%;"];
+          case 1:
+            return ["50%"];
+          case 2:
+            return ["50%;"];
+          case 3:
+            return ["50%"];
+          case 4:
+            return ["35%"];
+          default:
+            return;
+        }
+      }
+      case "work": {
+        switch (step) {
+          case 0:
+            return ["21%", "12%"];
+          case 1:
+            return ["135px"];
+          case 2:
+            return ["18%"];
+          default:
+            return;
+        }
+      }
+      default:
+        return;
     }
   };
 
   const getTopSecondText = () => {
-    switch (currentStep) {
-      case 3:
-      case 4:
-        return ["75%"];
-      case 5:
-        return ["40%;"];
-      case 6:
-        return ["50%;"];
-      case 7:
-        return ["50%"];
-      case 8:
-        return ["50%;"];
-      case 9:
-        return ["50%"];
-      case 10:
-        return ["55%"];
-      case 11:
-        return ["21%", "12%"];
-      case 12:
-        return ["135px"];
-      case 13:
-        return ["18%"];
+    switch (currentSectionTitle) {
+      case "home": {
+        switch (currentStep) {
+          case 3:
+          case 4:
+            return ["75%"];
+          case 5:
+            return ["40%;"];
+          default:
+            return ["40%"];
+        }
+      }
+      case "approach": {
+        switch (currentStep) {
+          case 0:
+            return ["50%;"];
+          case 1:
+            return ["50%"];
+          case 2:
+            return ["50%;"];
+          case 3:
+            return ["50%"];
+          case 4:
+            return ["55%"];
+          default:
+            return ["40%"];
+        }
+      }
+      case "work": {
+        switch (currentStep) {
+          case 0:
+            return ["21%", "12%"];
+          case 1:
+            return ["135px"];
+          case 2:
+            return ["18%"];
+          default:
+            return ["40%"];
+        }
+      }
       default:
-        return ["40%"];
+        return;
+    }
+  };
+
+  const getContinueText = () => {
+    switch (currentSectionTitle) {
+      case "home": {
+        switch (currentStep) {
+          case 0:
+            return ["60%"];
+          case 1:
+            return ["60%"];
+          case 2:
+            return ["80%"];
+          case 3:
+            return ["83%"];
+          case 4:
+            return ["85%"];
+          case 5:
+            return ["50%;"];
+          default:
+            return;
+        }
+      }
+      case "approach": {
+        switch (currentStep) {
+          case 0:
+            return ["70%;"];
+          case 1:
+            return ["70%"];
+          case 2:
+            return ["70%;"];
+          case 3:
+            return ["70%"];
+          case 4:
+            return ["55%"];
+          default:
+            return;
+        }
+      }
+      case "work": {
+        switch (currentStep) {
+          case 11:
+            return ["41%", "32%"];
+          case 12:
+            return ["235px"];
+          case 13:
+            return ["38%"];
+          default:
+            return;
+        }
+      }
+      default:
+        return;
     }
   };
 
   const getTopCustomBlock = () => {
-    switch (currentStep) {
-      case 6:
-        return ["50%"];
-      case 7:
-        return ["52%"];
-      case 8:
-        return ["56%", "57"];
-      case 9:
-        return ["47%", "50%"];
+    switch (currentSectionTitle) {
+      case "approach": {
+        switch (currentStep) {
+          case 0:
+            return ["50%"];
+          case 1:
+            return ["52%"];
+          case 2:
+            return ["56%", "57"];
+          case 3:
+            return ["47%", "50%"];
+          default:
+            return ["50%"];
+        }
+      }
       default:
         return ["50%"];
     }
   };
   const getLeft = () => {
-    switch (currentStep) {
-      case 6:
-      case 8:
-      case 11:
-        return "15%";
+    switch (currentSectionTitle) {
+      case "approach": {
+        switch (currentStep) {
+          case 0:
+          case 2:
+            return "15%";
+          default:
+            return;
+        }
+      }
+      case "work": {
+        switch (currentStep) {
+          case 0:
+            return "15%";
+          default:
+            return;
+        }
+      }
+      default:
+        return;
     }
   };
   const getRight = () => {
-    switch (currentStep) {
-      case 7:
-      case 9:
-        return "15%";
+    switch (currentSectionTitle) {
+      case "approach": {
+        switch (currentStep) {
+          case 1:
+          case 3:
+            return "15%";
+          default:
+            return;
+        }
+      }
+      default:
+        return;
     }
   };
-  const getFontSize = () => {
-    switch (currentStep) {
-      case 0:
-      case 1:
-      case 2:
-      case 5:
-        return ["36px", "28px", "18px"];
-      case 3:
-      case 4:
-        return ["28px", "21px", "18px"];
-      case 6:
-      case 7:
-      case 8:
-      case 9:
-        return ["100px"];
-      case 10:
-        return ["32px", "28px", "18px"];
-      case 11:
-        return {
-          title: ["64px", "45px"],
-          text: ["24px", "18px"],
-          itemText: ["28px", "21px"],
-          numText: ["48px", "36px"],
-        };
-      case 12:
-        return ["100px"];
-      case 13:
-        return ["32px", "28px", "18px"];
+  const getFontSize = (step) => {
+    switch (currentSectionTitle) {
+      case "home": {
+        switch (step) {
+          case 0:
+          case 1:
+          case 2:
+          case 5:
+            return ["36px", "28px", "18px"];
+          case 3:
+          case 4:
+            return ["28px", "21px", "18px"];
+          default:
+            return;
+        }
+      }
+      case "approach": {
+        switch (step) {
+          case 0:
+          case 1:
+          case 2:
+          case 3:
+            return ["100px"];
+          case 4:
+            return ["32px", "28px", "18px"];
+          default:
+            return;
+        }
+      }
+      case "work": {
+        switch (step) {
+          case 0:
+            return {
+              title: ["64px", "45px"],
+              text: ["24px", "18px"],
+              itemText: ["28px", "21px"],
+              numText: ["48px", "36px"],
+            };
+          case 1:
+            return ["100px"];
+          case 2:
+            return ["32px", "28px", "18px"];
+          default:
+            return;
+        }
+      }
+      default:
+        return;
     }
   };
-  const getLetterSpacing = () => {
-    switch (currentStep) {
-      case 0:
-      case 1:
-      case 2:
-      case 3:
-      case 4:
-      case 11:
-        return "0.07em";
-      case 10:
-        return "0.04em";
-      case 5:
-        return "0.02em";
+  const getLetterSpacing = (step) => {
+    switch (currentSectionTitle) {
+      case "home": {
+        switch (step) {
+          case 0:
+          case 1:
+          case 2:
+          case 3:
+          case 4:
+            return "0.07em";
+          case 5:
+            return "0.02em";
+          default:
+            return;
+        }
+      }
+      case "approach": {
+        switch (step) {
+          case 4:
+            return "0.04em";
+          default:
+            return;
+        }
+      }
+      case "work": {
+        switch (step) {
+          case 1:
+            return "0.07em";
+          default:
+            return;
+        }
+      }
+      default:
+        return;
     }
   };
-  const getBackground = () => {
-    switch (currentStep) {
+  const getBackground = (step) => {
+    switch (step) {
       default:
         return ["rgba(184, 197, 201, 0.68)", "rgba(184, 197, 201, 1)"];
     }
   };
-  const getFocus = () => {
-    switch (currentStep) {
-      case 12:
-        return "0 0 23px 2px rgba(255,255,255,0.5)";
+  const getFocus = (step) => {
+    switch (currentSectionTitle) {
+      case "work": {
+        switch (step) {
+          case 1:
+            return "0 0 23px 2px rgba(255,255,255,0.5)";
+          default:
+            return;
+        }
+      }
+      default:
+        return;
     }
   };
 
-  const getMarginId = () => {
-    switch (currentStep) {
-      case 6:
-        return { desk: "25px 0", tablet: "0 0 10px 0" };
-      case 7:
-      case 8:
-      case 9:
-        return { desk: "25px 0", tablet: "0 0 10px 0" };
+  const getMarginId = (step) => {
+    switch (currentSectionTitle) {
+      case "approach": {
+        switch (step) {
+          case 0:
+            return { desk: "25px 0", tablet: "0 0 10px 0" };
+          case 1:
+          case 2:
+          case 3:
+            return { desk: "25px 0", tablet: "0 0 10px 0" };
+          default:
+            return { desk: "25px 0", tablet: "25px 0" };
+        }
+      }
       default:
         return { desk: "25px 0", tablet: "25px 0" };
     }
   };
 
-  const getMarginCustomText = () => {
-    switch (currentStep) {
-      case 6:
-      case 7:
-      case 8:
-      case 9:
-        return { desk: "25px 0 10px 0", tablet: "20px 0 0 0" };
+  const getMarginCustomText = (step) => {
+    switch (currentSectionTitle) {
+      case "approach": {
+        switch (step) {
+          case 0:
+          case 1:
+          case 2:
+          case 3:
+            return { desk: "25px 0 10px 0", tablet: "20px 0 0 0" };
+          default:
+            return { desk: "25px 0 10px 0", tablet: "20px 0 0 0" };
+        }
+      }
       default:
         return { desk: "25px 0 10px 0", tablet: "20px 0 0 0" };
     }
   };
 
-  const getTextAlign = () => {
-    switch (currentStep) {
-      case 11:
-        return ["left"];
+  const getTextAlign = (step) => {
+    switch (currentSectionTitle) {
+      case "work": {
+        switch (step) {
+          case 0:
+            return ["left"];
+          default:
+            return;
+        }
+      }
+      default:
+        return;
     }
   };
 
@@ -308,7 +522,7 @@ export default () => {
     if (!target) return;
 
     const allItems = document.querySelectorAll(".storyItem");
-    [...allItems].map((i) => {
+    [...allItems].forEach((i) => {
       if (i !== target) {
         const context = i.querySelector(".storyItem-context");
         context.style.opacity = "0.5";
@@ -329,7 +543,9 @@ export default () => {
       window.animation.reverse();
       window.animation.play();
       window.animation.complete = () => {
-        setTimeout(() => dispatch(setProgress(currentStep + 1), 500));
+        setTimeout(() =>
+          dispatch(setProgress(currentStep + 1, currentSectionTitle), 500)
+        );
       };
     });
   };
@@ -343,7 +559,9 @@ export default () => {
     getFadeOutProgressSvg(progressSvgArray, () => {
       getFadeOutFormTen([".footer"], 0, () => null);
       getFadeOutFormTen([".formTen"], 100, () => {
-        setTimeout(() => dispatch(setProgress(currentStep + 1), 500));
+        setTimeout(() =>
+          dispatch(setProgress(currentStep + 1, currentSectionTitle), 500)
+        );
       });
     });
   };
@@ -366,37 +584,38 @@ export default () => {
     });
   };
 
-  const mouseOverStoryItem = (e) => {
-    if (window.innerWidth < 900) return;
-    const el = e.target.classList.contains("storyItem")
-      ? e.target
-      : e.target.parentElement.classList.contains("storyItem")
-      ? e.target.parentElement
-      : null;
+  // const mouseOverStoryItem = (e) => {
+  //   if (window.innerWidth < 900) return;
+  //   const el = e.target.classList.contains("storyItem")
+  //     ? e.target
+  //     : e.target.parentElement.classList.contains("storyItem")
+  //     ? e.target.parentElement
+  //     : null;
 
-    if (!el) return;
+  //   if (!el) return;
 
-    const blurTextEl =
-      chooseStoryTextContainer.current.querySelector(".storyBlur");
-    // chooseStoryTextContainer.current.style.opacity = 0.2;
-    blurTextEl.style.opacity = 1;
-    const storyItems = [
-      storyItem1.current,
-      storyItem2.current,
-      storyItem3.current,
-      storyItem4.current,
-    ];
-    _.each(storyItems, (item) => {
-      const blurEl = item.querySelector(".storyBlur");
-      if (item !== el) {
-        // item.style.opacity = 0.2;
-        blurEl.style.opacity = 1;
-      } else {
-        // item.style.opacity = 1;
-        blurEl.style.opacity = 0;
-      }
-    });
-  };
+  //   const blurTextEl = chooseStoryTextContainer.current.querySelector(
+  //     ".storyBlur"
+  //   );
+  //   // chooseStoryTextContainer.current.style.opacity = 0.2;
+  //   blurTextEl.style.opacity = 1;
+  //   const storyItems = [
+  //     storyItem1.current,
+  //     storyItem2.current,
+  //     storyItem3.current,
+  //     storyItem4.current,
+  //   ];
+  //   _.each(storyItems, (item) => {
+  //     const blurEl = item.querySelector(".storyBlur");
+  //     if (item !== el) {
+  //       // item.style.opacity = 0.2;
+  //       blurEl.style.opacity = 1;
+  //     } else {
+  //       // item.style.opacity = 1;
+  //       blurEl.style.opacity = 0;
+  //     }
+  //   });
+  // };
 
   // const mouseOverStoryItemThrottle = _.throttle((e) => mouseOverStoryItem(e), 1);
 
@@ -466,101 +685,157 @@ export default () => {
       })
       .finished.then(() => {
         // window.engine.setCurrentStep(0);
-        dispatch(setProgress(0));
+        dispatch(setProgress(0, currentSectionTitle));
       });
   };
 
-  const getBoxMaxWidth = () => {
-    switch (currentStep) {
-      case 0:
-        return {
-          deskXl: { t1: "1200px" },
-          deskM: { t1: "1200px" },
-          tablet: { t1: "700px" },
-          mob: { t1: "325px" },
-        };
-      case 1:
-        return {
-          deskXl: { t1: "1200px" },
-          deskM: { t1: "1200px", t2: "1200px" },
-          tablet: { t1: "580px", t2: "580px" },
-          mob: { t1: "270px", t2: "325px" },
-        };
-      case 2:
-        return {
-          deskXl: { t1: "1200px" },
-          deskM: { t1: "1200px" },
-          tablet: { t1: "700px" },
-          mob: { t1: "265px" },
-        };
-      case 3:
-        return {
-          deskXl: { t1: "770px", t2: "770px" },
-          deskM: { t1: "575px", t2: "575px" },
-          tablet: { t1: "580px", t2: "580px" },
-          mob: { t1: "325px", t2: "325px" },
-        };
-      case 4:
-        return {
-          deskXl: { t1: "805px", t2: "770px" },
-          deskM: { t1: "630px", t2: "630px" },
-          tablet: { t1: "595px", t2: "560px" },
-          mob: { t1: "304px", t2: "335px" },
-        };
-      case 5:
-        return {
-          deskXl: { t1: "730px" },
-          deskM: { t1: "570px" },
-          tablet: { t1: "570px" },
-          mob: { t1: "314px" },
-        };
-      case 10:
-        return {
-          deskXl: { t1: "710px", t2: "770px" },
-          deskM: { t1: "620px", t2: "620px" },
-          tablet: { t1: "490px", t2: "510px" },
-          mob: { t1: "314px", t2: "314px" },
-        };
-      case 13:
-        return {
-          deskXl: { t1: "1200px" },
-          deskM: { t1: "1200px", t2: "1200px" },
-          tablet: { t1: "580px", t2: "580px" },
-          mob: { t1: "255px" },
-        };
+  const getNextStep = () => {
+    const progressSvgArray = document.querySelectorAll(
+      `.styledProgress_${currentStep}`
+    );
+    //getNextStepFromForm(currentStep + 1, progressSvgArray, dispatch);
+    // if (getNextStepFromForm(progressSvgArray)) {
+    //   setTimeout(
+    //     () => dispatch(setProgress(currentStep + 1, currentSectionTitle)),
+    //     500
+    //   );
+    // }
+    getFadeOutProgressSvg(progressSvgArray, () => {
+      getFadeOutFormTen([".footer"], 0, () => null);
+      getFadeOutFormTen([".formTen"], 100, () => {
+        setTimeout(
+          () => dispatch(setProgress(currentStep + 1, currentSectionTitle)),
+          500
+        );
+      });
+    });
+  };
+
+  const getBoxMaxWidth = (step) => {
+    switch (currentSectionTitle) {
+      case "home": {
+        switch (step) {
+          case 0:
+            return {
+              deskXl: { t1: "1200px" },
+              deskM: { t1: "1200px" },
+              tablet: { t1: "700px" },
+              mob: { t1: "325px" },
+            };
+          case 1:
+            return {
+              deskXl: { t1: "1200px" },
+              deskM: { t1: "1200px", t2: "1200px" },
+              tablet: { t1: "580px", t2: "580px" },
+              mob: { t1: "270px", t2: "325px" },
+            };
+          case 2:
+            return {
+              deskXl: { t1: "1200px" },
+              deskM: { t1: "1200px" },
+              tablet: { t1: "700px" },
+              mob: { t1: "265px" },
+            };
+          case 3:
+            return {
+              deskXl: { t1: "770px", t2: "770px" },
+              deskM: { t1: "575px", t2: "575px" },
+              tablet: { t1: "580px", t2: "580px" },
+              mob: { t1: "325px", t2: "325px" },
+            };
+          case 4:
+            return {
+              deskXl: { t1: "805px", t2: "770px" },
+              deskM: { t1: "630px", t2: "630px" },
+              tablet: { t1: "595px", t2: "560px" },
+              mob: { t1: "304px", t2: "335px" },
+            };
+          case 5:
+            return {
+              deskXl: { t1: "730px" },
+              deskM: { t1: "570px" },
+              tablet: { t1: "570px" },
+              mob: { t1: "314px" },
+            };
+          default:
+            return;
+        }
+      }
+      case "approach": {
+        switch (step) {
+          case 4:
+            return {
+              deskXl: { t1: "710px", t2: "770px" },
+              deskM: { t1: "620px", t2: "620px" },
+              tablet: { t1: "490px", t2: "510px" },
+              mob: { t1: "314px", t2: "314px" },
+            };
+          default:
+            return;
+        }
+      }
+      case "work": {
+        switch (step) {
+          case 1:
+            return {
+              deskXl: { t1: "1200px" },
+              deskM: { t1: "1200px", t2: "1200px" },
+              tablet: { t1: "580px", t2: "580px" },
+              mob: { t1: "255px" },
+            };
+          default:
+            return {
+              deskXl: { t1: "1200px" },
+              deskM: { t1: "1200px", t2: "1200px" },
+              tablet: { t1: "580px", t2: "580px" },
+              mob: { t1: "325px", t2: "325px" },
+            };
+        }
+      }
       default:
-        return {
-          deskXl: { t1: "1200px" },
-          deskM: { t1: "1200px", t2: "1200px" },
-          tablet: { t1: "580px", t2: "580px" },
-          mob: { t1: "325px", t2: "325px" },
-        };
+        return;
     }
   };
 
-  const getMobGridColumns = () => {
-    switch (currentStep) {
-      case 6:
-        return { tablet: "465px" };
-      case 7:
-        return { tablet: "555px" };
-      case 8:
-        return { tablet: "555px" };
-      case 9:
-        return { tablet: "470px" };
+  const getMobGridColumns = (step) => {
+    switch (currentSectionTitle) {
+      case "approach": {
+        switch (step) {
+          case 0:
+            return { tablet: "465px" };
+          case 1:
+            return { tablet: "555px" };
+          case 2:
+            return { tablet: "555px" };
+          case 3:
+            return { tablet: "470px" };
+          default:
+            return;
+        }
+      }
+      default:
+        return;
     }
   };
 
-  const getMaxWidthCustomBlock = () => {
-    switch (currentStep) {
-      case 6:
-        return "500px";
-      case 7:
-        return "471px";
-      case 8:
-        return "500px";
-      case 9:
-        return "453px";
+  const getMaxWidthCustomBlock = (step) => {
+    switch (currentSectionTitle) {
+      case "approach": {
+        switch (step) {
+          case 0:
+            return "500px";
+          case 1:
+            return "500px";
+          case 2:
+            return "500px";
+          case 3:
+            return "500px";
+          default:
+            return;
+        }
+      }
+      default:
+        return;
     }
   };
 
@@ -590,27 +865,37 @@ export default () => {
     }
   };
 
-  const getContent = () => {
-    //console.log(stepsTextData)
+  const getHomeContent = () => {
+    // {
+    //   console.log(getBoxMaxWidth());
+    // }
     switch (currentStep) {
       case 0:
         return (
           <>
-            {screens[currentStep].text && stepsTextData && (
+            {currentSection?.fields[currentStep].fields.mainText && (
               <MainText
                 className="anime"
-                $color={screens[currentStep].textColor}
-                $top={getTopMainText()}
+                $color={currentTheme.textColor}
+                $top={getTopMainText(0)}
                 $step={currentStep}
-                $fontSize={getFontSize()}
-                $left={getLeft()}
-                $letterSpacing={getLetterSpacing()}
-                $boxMaxWidth={getBoxMaxWidth()}
+                $fontSize={getFontSize(0)}
+                $left={getLeft(0)}
+                $letterSpacing={getLetterSpacing(0)}
+                $boxMaxWidth={getBoxMaxWidth(0)}
               >
-                {/*{screens[currentStep].text}*/}
-                {stepsTextData[currentStep].mainText}
+                {currentSection?.fields[currentStep].fields.mainText}
               </MainText>
             )}
+            <Continue
+              className="anime"
+              onClick={getNextStep}
+              $top={getContinueText(0)}
+              $color={currentTheme.textColor}
+            >
+              Learn more >>
+              <ContinueArrow />
+            </Continue>
           </>
         );
       case 1:
@@ -620,375 +905,490 @@ export default () => {
       case 5:
         return (
           <>
-            {screens[currentStep].text && stepsTextData && (
+            {currentSection.fields[currentStep].fields.mainText && (
               <MainText
                 className="anime"
-                $color={screens[currentStep].textColor}
-                $top={getTopMainText()}
+                $color={currentTheme.textColor}
+                $top={getTopMainText(currentStep)}
                 $step={currentStep}
-                $fontSize={getFontSize()}
-                $left={getLeft()}
-                $letterSpacing={getLetterSpacing()}
-                $boxMaxWidth={getBoxMaxWidth()}
+                $fontSize={getFontSize(currentStep)}
+                $left={getLeft(currentStep)}
+                $letterSpacing={getLetterSpacing(currentStep)}
+                $boxMaxWidth={getBoxMaxWidth(currentStep)}
               >
-                {/*{screens[currentStep].text}*/}
-                {stepsTextData[currentStep].mainText}
+                {currentSection.fields[currentStep].fields.mainText}
               </MainText>
             )}
-            {screens[currentStep].text_2 && stepsTextData && (
+            {currentSection.fields[currentStep].fields.subText && (
               <MainTextSecond
                 className="anime2"
-                $color={screens[currentStep].textColor}
-                $top={getTopSecondText()}
+                $color={currentTheme.textColor}
+                $top={getTopSecondText(currentStep)}
                 $step={currentStep}
-                $fontSize={getFontSize()}
-                $left={getLeft()}
-                $letterSpacing={getLetterSpacing()}
-                $boxMaxWidth={getBoxMaxWidth()}
+                $fontSize={getFontSize(currentStep)}
+                $left={getLeft(currentStep)}
+                $letterSpacing={getLetterSpacing(currentStep)}
+                $boxMaxWidth={getBoxMaxWidth(currentStep)}
               >
-                {/*{screens[currentStep].text_2}*/}
-                {stepsTextData[currentStep].subText}
+                {currentSection.fields[currentStep].fields.subText}
               </MainTextSecond>
+            )}
+            {currentSection.fields[currentStep].fields.mainText &&
+              currentStep !== 5 && (
+                <Continue
+                  className="anime"
+                  onClick={getNextStep}
+                  $top={getContinueText(currentStep)}
+                  $color={currentTheme.textColor}
+                >
+                  Learn more >>
+                  <ContinueArrow />
+                </Continue>
+              )}
+            {currentSection.fields[currentStep].fields.mainText &&
+              currentStep == 5 && (
+                <ScheduleBtn
+                  $bg={currentTheme.bgScheduleBtn}
+                  $color={currentTheme.menuBtnColor}
+                  onClick={onScheduleClickHandler}
+                  $lineBg={currentTheme.bgScheduleBtn}
+                >
+                  <ScheduleBtnBorder $color={currentTheme.bgScheduleBtn} />
+                  <span> LET'S TALK </span>
+                </ScheduleBtn>
+              )}
+          </>
+        );
+      default:
+        return;
+    }
+  };
+
+  const getApproachContent = () => {
+    switch (currentStep) {
+      case 0:
+      default:
+        return (
+          <>
+            <CustomBlockWrapper
+              $top={getTopCustomBlock(0)}
+              $left={getLeft(0)}
+              $maxWidth={getMaxWidthCustomBlock(0)}
+            >
+              <CustomBlock
+                className="customBlock"
+                $align={"flex-start"}
+                $mobGridCols={getMobGridColumns(0)}
+              >
+                {/* <CustomText
+                  className="custom_anime"
+                  $margin={getMarginCustomText()}
+                >
+                  {currentSection.fields[currentStep].fields.description2}
+                </CustomText> */}
+                <CustomID $margin={getMarginId(0)} className="custom_anime">
+                  {currentSection.fields[0].fields.customNumber}
+                </CustomID>
+
+                {/* <AnimatedStrategyText
+                  ref={strategySvg}
+                  className="svgText"
+                  $color={currentTheme.textColor}
+                /> */}
+
+                <AnimtateOutcomeText
+                  className="svgText"
+                  $color={currentTheme.textColor}
+                />
+
+                <CustomText
+                  className="custom_anime"
+                  $margin={getMarginCustomText(0)}
+                >
+                  {currentSection.fields[0].fields.description1}
+                </CustomText>
+                {/* <CustomText
+                  className="custom_anime"
+                  $margin={getMarginCustomText()}
+                >
+                  {currentSection.fields[currentStep].fields.description4}
+                </CustomText> */}
+              </CustomBlock>
+            </CustomBlockWrapper>
+            <CustomBlockMobGradient />
+          </>
+        );
+      case 1:
+        return (
+          <>
+            <CustomBlockWrapper
+              $top={getTopCustomBlock(1)}
+              $right={getRight(1)}
+              $maxWidth={getMaxWidthCustomBlock(1)}
+            >
+              <CustomBlock
+                className="customBlock"
+                $top={getTopCustomBlock(1)}
+                $align={"flex-end"}
+                $mobGridCols={getMobGridColumns(1)}
+                $maxWidth={getMaxWidthCustomBlock(1)}
+              >
+                <CustomID
+                  $margin={getMarginId(1)}
+                  className="custom_anime"
+                  $step={currentStep}
+                >
+                  {currentSection.fields[currentStep].fields.customNumber}
+                </CustomID>
+
+                <AnimatedPartnersText
+                  className="svgText"
+                  $color={currentTheme.textColor}
+                />
+
+                <CustomText
+                  className="custom_anime"
+                  $right={getRight(1)}
+                  $margin={getMarginCustomText(1)}
+                >
+                  {currentSection.fields[currentStep].fields.description1}
+                </CustomText>
+                {/* <CustomText
+                  className="custom_anime"
+                  $right={getRight()}
+                  $margin={getMarginCustomText()}
+                >
+                  {currentSection.fields[currentStep].fields.description2}
+                </CustomText> */}
+              </CustomBlock>
+            </CustomBlockWrapper>
+            <CustomBlockMobGradient />
+          </>
+        );
+      case 2:
+        return (
+          <>
+            <CustomBlockWrapper
+              $top={getTopCustomBlock(2)}
+              $left={getLeft(2)}
+              $maxWidth={getMaxWidthCustomBlock(2)}
+            >
+              <CustomBlock
+                className="customBlock"
+                $top={getTopCustomBlock(2)}
+                $left={getLeft}
+                $align={"flex-start"}
+                $mobGridCols={getMobGridColumns(2)}
+                $maxWidth={getMaxWidthCustomBlock(2)}
+              >
+                {/* <CustomText
+                  className="custom_anime"
+                  $margin={getMarginCustomText()}
+                >
+                  {currentSection.fields[currentStep].fields.description2}
+                </CustomText>
+                <CustomText
+                  className="custom_anime"
+                  $margin={getMarginCustomText()}
+                >
+                  {currentSection.fields[currentStep].fields.description3}
+                </CustomText> */}
+                <CustomID
+                  $margin={getMarginId(2)}
+                  className="custom_anime"
+                  $step={currentStep}
+                >
+                  {currentSection.fields[currentStep].fields.customNumber}
+                </CustomID>
+                <AnimatedVisionText
+                  className="svgText"
+                  $color={currentTheme.textColor}
+                />
+                <CustomText
+                  className="custom_anime"
+                  $margin={getMarginCustomText(2)}
+                >
+                  {currentSection.fields[currentStep].fields.description1}
+                </CustomText>
+              </CustomBlock>
+            </CustomBlockWrapper>
+            <CustomBlockMobGradient />
+          </>
+        );
+      case 3:
+        return (
+          <>
+            <CustomBlockWrapper
+              $top={getTopCustomBlock(3)}
+              $right={getRight(3)}
+              $maxWidth={getMaxWidthCustomBlock(3)}
+            >
+              <CustomBlock
+                className="customBlock"
+                $top={getTopCustomBlock(3)}
+                $right={getRight(3)}
+                $align={"flex-end"}
+                $mobGridCols={getMobGridColumns(3)}
+                $maxWidth={getMaxWidthCustomBlock(3)}
+              >
+                {/* <CustomText className="custom_anime" $right={getRight()}>
+                  {currentSection.fields[currentStep].fields.description2}
+                </CustomText> */}
+
+                <CustomID $margin={getMarginId(3)} className="custom_anime">
+                  {currentSection.fields[currentStep].fields.customNumber}
+                </CustomID>
+
+                <AnimatedVeteransText
+                  className="svgText"
+                  $color={currentTheme.textColor}
+                />
+                <CustomText className="custom_anime" $right={getRight(3)}>
+                  {currentSection.fields[currentStep].fields.description1}
+                </CustomText>
+                {/* <AnimatedServiceText
+                  className="svgText2"
+                  $color={currentTheme.textColor}
+                /> */}
+                {/* <CustomText className="custom_anime" $right={getRight()}>
+                  {currentSection.fields[currentStep].fields.description3}
+                </CustomText>
+                <CustomText className="custom_anime" $right={getRight()}>
+                  {currentSection.fields[currentStep].fields.description4}
+                </CustomText> */}
+              </CustomBlock>
+            </CustomBlockWrapper>
+            <CustomBlockMobGradient />
+          </>
+        );
+
+      case 4:
+        return (
+          <>
+            {currentSection.fields[currentStep].fields.mainText && (
+              <MainText
+                className="anime"
+                $color={currentTheme.textColor}
+                $top={getTopMainText(4)}
+                $step={currentStep}
+                $fontSize={getFontSize(4)}
+                $left={getLeft(4)}
+                $letterSpacing={getLetterSpacing(4)}
+                $boxMaxWidth={getBoxMaxWidth(4)}
+              >
+                {currentSection.fields[currentStep].fields.mainText}
+              </MainText>
+            )}
+            {currentSection.fields[currentStep].fields.subText && (
+              <MainTextSecond
+                className="anime2"
+                $color={currentTheme.textColor}
+                $top={getTopSecondText(4)}
+                $step={currentStep}
+                $fontSize={getFontSize(4)}
+                $left={getLeft(4)}
+                $letterSpacing={getLetterSpacing(4)}
+                $boxMaxWidth={getBoxMaxWidth(4)}
+              >
+                {currentSection.fields[currentStep].fields.subText}
+              </MainTextSecond>
+            )}
+
+            {currentSection.fields[currentStep].fields.mainText && (
+              <ScheduleBtn
+                $bg={currentTheme.bgScheduleBtn}
+                $color={currentTheme.menuBtnColor}
+                onClick={onScheduleClickHandler}
+                $lineBg={currentTheme.bgScheduleBtn}
+              >
+                <ScheduleBtnBorder $color={currentTheme.bgScheduleBtn} />
+                <span> LETS TALK </span>
+              </ScheduleBtn>
             )}
           </>
         );
     }
   };
-  return getContent();
+
+  const getWorkContent = () => {
+    switch (currentStep) {
+      default:
+      case 0:
+        return (
+          <ChooseStoryWrapper>
+            <ChooseStoryTextContainer ref={chooseStoryTextContainer}>
+              <ChooseStoryText
+                className="chooseStoryText"
+                $color={currentTheme.textColor}
+                $top={getTopMainText(0)}
+                $step={0}
+                $fontSize={getFontSize(0).text}
+                $left={getLeft(0)}
+                $letterSpacing={getLetterSpacing(0)}
+                $textAlign={getTextAlign(0)}
+              >
+                {currentSection.fields[0].fields.subText}
+              </ChooseStoryText>
+              <span className="storyBlur" />
+            </ChooseStoryTextContainer>
+            <ChooseStoryTitle
+              className="anime"
+              $color={currentTheme.textColor}
+              $top={getTopMainText(0)[0]}
+              $step={0}
+              $fontSize={getFontSize(0).title}
+              $left={getLeft(0)}
+              $letterSpacing={getLetterSpacing(0)}
+            >
+              {currentSection.fields[0].fields.mainText}
+            </ChooseStoryTitle>
+            <ChooseStory
+              className="chooseStory"
+              onMouseOut={mouseLeaveStoryContainer}
+            >
+              <ChooseStoryItem
+                onClick={clickHandler}
+                onMouseMove={mouseMoveHandlerStoryThrottle}
+                onMouseLeave={mouseLeaveHandlerStory}
+                className="storyItem"
+                ref={storyItem1}
+              >
+                <StoryContext
+                  className="storyItem-context"
+                  $fontSize={getFontSize(0)}
+                >
+                  <span className="num">01.</span>
+                  <span className="text1">
+                    {currentSection.fields[0].fields.description1}
+                  </span>
+                </StoryContext>
+                <span className="storyBlur" />
+                <FocusHolder />
+              </ChooseStoryItem>
+              <ChooseStoryItem
+                onClick={clickHandler}
+                onMouseMove={mouseMoveHandlerStoryThrottle}
+                onMouseLeave={mouseLeaveHandlerStory}
+                className="storyItem"
+                ref={storyItem2}
+              >
+                <StoryContext
+                  className="storyItem-context"
+                  $fontSize={getFontSize(0)}
+                >
+                  <span className="num">02.</span>
+                  <span className="text2">
+                    {currentSection.fields[0].fields.description2}
+                  </span>
+                </StoryContext>
+                <span className="storyBlur" />
+                <FocusHolder />
+              </ChooseStoryItem>
+              <ChooseStoryItem
+                onClick={clickHandler}
+                onMouseMove={mouseMoveHandlerStoryThrottle}
+                onMouseLeave={mouseLeaveHandlerStory}
+                className="storyItem"
+                ref={storyItem3}
+              >
+                <StoryContext
+                  className="storyItem-context"
+                  $fontSize={getFontSize(0)}
+                >
+                  <span className="num">03.</span>
+                  <span className="text3">
+                    {currentSection.fields[0].fields.description3}
+                  </span>
+                </StoryContext>
+                <span className="storyBlur" />
+                <FocusHolder />
+              </ChooseStoryItem>
+              <ChooseStoryItem
+                onClick={clickHandler}
+                onMouseMove={mouseMoveHandlerStoryThrottle}
+                onMouseLeave={mouseLeaveHandlerStory}
+                className="storyItem"
+                ref={storyItem4}
+              >
+                <StoryContext
+                  className="storyItem-context"
+                  $fontSize={getFontSize(0)}
+                >
+                  <span className="num">04.</span>
+                  <span className="text4">
+                    {currentSection.fields[0].fields.description4}
+                  </span>
+                </StoryContext>
+                <span className="storyBlur" />
+                <FocusHolder />
+              </ChooseStoryItem>
+            </ChooseStory>
+          </ChooseStoryWrapper>
+        );
+      case 1:
+        return (
+          <>
+            <FormContainer
+              className="formTen"
+              $color={currentTheme.textColor}
+              $bg={getBackground(1)}
+            >
+              <ScheduleHeader $color={currentTheme.textColor}>
+                {currentSection.fields[currentStep].fields.mainText}
+              </ScheduleHeader>
+              <FormHeader $color={currentTheme.textColor}>
+                {currentSection.fields[currentStep].fields.subText}
+              </FormHeader>
+               <ScheduleForm
+                color={currentTheme.textColor}
+                background={"rgb(11, 17, 23)"}
+                focus={getFocus(1)}
+                inputFocusHandler={inputFocusHandler}
+                inputOnfocusoutHandler={inputOnfocusoutHandler}
+                validateData={formDataValidator}
+              /> 
+            </FormContainer>
+          </>
+        );
+      case 2:
+        return (
+          <>
+            <MainText
+              className="anime"
+              $color={currentTheme.textColor}
+              $top={getTopMainText(2)}
+              $step={currentStep}
+              $fontSize={getFontSize(2)}
+              $left={getLeft(2)}
+              $boxMaxWidth={getBoxMaxWidth(2)}
+            >
+              {currentSection.fields[currentStep].fields.mainText}
+            </MainText>
+            <WatchAgain onClick={watchAgain}>
+              {currentSection.fields[currentStep].fields.subText}
+              <SvgWatchAgain ref={svgWatch} />
+            </WatchAgain>
+          </>
+        );
+    }
+  };
+
+  switch (currentSectionTitle) {
+    case "home": {
+      return getHomeContent();
+    }
+    case "approach": {
+      return getApproachContent();
+    }
+    case "work": {
+      return getWorkContent();
+    }
+    default:
+      return;
+  }
 };
 
-/*const getWorkContent = () => {
-   switch (currentStep) {
-    case 6: return (
-              <>
-                <CustomBlockWrapper
-                  $top={getTopCustomBlock()}
-                  $left={getLeft()}
-                  $maxWidth={getMaxWidthCustomBlock()}
-                >
-                  <CustomBlock
-                    className="customBlock"
-                    $align={'flex-start'}
-                    $mobGridCols={getMobGridColumns()}
-                  >
-                      <CustomText className="custom_anime" $margin={getMarginCustomText()}>
-                        
-                        {stepsTextData[currentStep].description1}
-                      </CustomText>
-                      <CustomText className="custom_anime" $margin={getMarginCustomText()}>
-               
-                        {stepsTextData[currentStep].description2}
-                      </CustomText>
-                      <CustomID $margin={getMarginId()} className="custom_anime">
-                        {stepsTextData[currentStep].customNumber}
-                      </CustomID>
-
-                      <AnimatedStrategyText ref={strategySvg} className="svgText" $color={screens[currentStep].textColor} />
-
-                      <CustomText className="custom_anime" $margin={getMarginCustomText()}>
-                        {stepsTextData[currentStep].description3}
-                      </CustomText>
-                      <CustomText className="custom_anime" $margin={getMarginCustomText()}>
-                        {stepsTextData[currentStep].description4}
-                      </CustomText>
-                  </CustomBlock>
-                </CustomBlockWrapper>
-                <CustomBlockMobGradient/>
-              </>
-            )
-            case 7: return (
-                <>
-                  <CustomBlockWrapper
-                    $top={getTopCustomBlock()}
-                    $right={getRight()}
-                    $maxWidth={getMaxWidthCustomBlock()}
-                  >
-                    <CustomBlock
-                      className="customBlock"
-                      $top={getTopCustomBlock()}
-                      
-                      $align={'flex-end'}
-                      $mobGridCols={getMobGridColumns()}
-                      $maxWidth={getMaxWidthCustomBlock()}
-                    >
-                      <CustomID $margin={getMarginId()} className="custom_anime" $step={currentStep}>
-                        {stepsTextData[currentStep].customNumber}
-                      </CustomID>
-
-                      <AnimatedTransparencyText className="svgText" $color={screens[currentStep].textColor} />
-
-                      <CustomText className="custom_anime" $right={getRight()} $margin={getMarginCustomText()}>
-                        
-                        {stepsTextData[currentStep].description1}
-                      </CustomText>
-                      <CustomText className="custom_anime" $right={getRight()} $margin={getMarginCustomText()}>
-                     
-                        {stepsTextData[currentStep].description2}
-                      </CustomText>
-                    </CustomBlock>
-                  </CustomBlockWrapper>
-                  <CustomBlockMobGradient/>
-                </>
-            )
-            case 8: return (
-                <>
-                  <CustomBlockWrapper
-                    $top={getTopCustomBlock()}
-                    $left={getLeft()}
-                    $maxWidth={getMaxWidthCustomBlock()}
-                  >
-                    <CustomBlock
-                      className="customBlock"
-                      $top={getTopCustomBlock()}
-                      $left={getLeft}
-                      $align={'flex-start'}
-                      $mobGridCols={getMobGridColumns()}
-                      $maxWidth={getMaxWidthCustomBlock()}
-                    >
-                      <CustomText className="custom_anime" $margin={getMarginCustomText()}>
-                      
-                         {stepsTextData[currentStep].description1}
-                      </CustomText>
-                      <CustomText className="custom_anime" $margin={getMarginCustomText()}>
-                       
-                         {stepsTextData[currentStep].description2}
-                      </CustomText>
-                      <CustomText className="custom_anime" $margin={getMarginCustomText()} >
-                       
-                         {stepsTextData[currentStep].description3}
-                      </CustomText>
-                      <CustomID $margin={getMarginId()} className="custom_anime" $step={currentStep}>
-                        {stepsTextData[currentStep].customNumber}
-                      </CustomID>
-                      <AnimatedFlexibilityText className="svgText" $color={screens[currentStep].textColor} />
-                    </CustomBlock>
-                  </CustomBlockWrapper>
-                  <CustomBlockMobGradient/>
-                </>
-            )
-            case 9: return (
-                <>
-                  <CustomBlockWrapper
-                    $top={getTopCustomBlock()}
-                    $right={getRight()}
-                    $maxWidth={getMaxWidthCustomBlock()}
-                  >
-                    <CustomBlock
-                      className="customBlock"
-                      $top={getTopCustomBlock()}
-                      $right={getRight()}
-                      $align={'flex-end'}
-                      $mobGridCols={getMobGridColumns()}
-                      $maxWidth={getMaxWidthCustomBlock()}
-                    >
-                      <CustomText className="custom_anime" $right={getRight()}>
-                       
-                        {stepsTextData[currentStep].description1}
-                      </CustomText>
-                      <CustomText className="custom_anime" $right={getRight()}>
-                      
-                        {stepsTextData[currentStep].description2}
-                      </CustomText>
-
-                      <CustomID $margin={getMarginId()} className="custom_anime" >
-                        {stepsTextData[currentStep].customNumber}
-                      </CustomID>
-
-                      <AnimatedSelflessText className="svgText" $color={screens[currentStep].textColor} />
-                      <AnimatedServiceText className="svgText2" $color={screens[currentStep].textColor} />
-                      <CustomText className="custom_anime" $right={getRight()}>
-                        {/
-                        {stepsTextData[currentStep].description3}
-                      </CustomText>
-                      <CustomText className="custom_anime" $right={getRight()}>
-                      
-                        {stepsTextData[currentStep].description4}
-                      </CustomText>
-                    </CustomBlock>
-                  </CustomBlockWrapper>
-                  <CustomBlockMobGradient/>
-                </>
-            )
-            case 11: return (
-                <ChooseStoryWrapper>
-                    <ChooseStoryTextContainer ref={chooseStoryTextContainer}>
-                      <ChooseStoryText
-                        className="chooseStoryText"
-                        $color={screens[currentStep].textColor}
-                        $top={getTopMainText()[1]}
-                        $step={currentStep}
-                        $fontSize={getFontSize().text}
-                        $left={getLeft()}
-                        $letterSpacing={getLetterSpacing()}
-                        $textAlign={getTextAlign()[0]}
-
-                      >
-                      
-                        {stepsTextData[currentStep].subText}
-                      </ChooseStoryText>
-                      <span className="storyBlur"/>
-                    </ChooseStoryTextContainer>
-                    <ChooseStoryTitle
-                        className="anime"
-                        $color={screens[currentStep].textColor}
-                        $top={getTopMainText()[0]}
-                        $step={currentStep}
-                        $fontSize={getFontSize().title}
-                        $left={getLeft()}
-                        $letterSpacing={getLetterSpacing()}
-                    >
-                       
-                        {stepsTextData[currentStep].mainText}
-                    </ChooseStoryTitle>
-                    <ChooseStory className="chooseStory" onMouseOut={mouseLeaveStoryContainer}>
-                        <ChooseStoryItem
-                            onClick={clickHandler}
-                            onMouseMove={mouseMoveHandlerStoryThrottle}
-                            onMouseLeave={mouseLeaveHandlerStory}
-                           
-                            className="storyItem"
-                            ref={storyItem1}
-                        >
-                          <StoryContext
-                            className="storyItem-context"
-                            $fontSize={getFontSize()}
-                          >
-                              <span className="num">01.</span>
-                              <span className="text1">
-                               
-                                {stepsTextData[currentStep].description1}
-                              </span>
-                          </StoryContext>
-                          <span className="storyBlur"/>
-                          <FocusHolder/>
-                        </ChooseStoryItem>
-                        <ChooseStoryItem
-                            onClick={clickHandler}
-                            onMouseMove={mouseMoveHandlerStoryThrottle}
-                            onMouseLeave={mouseLeaveHandlerStory}
-                            /
-                            className="storyItem"
-                            ref={storyItem2}
-                        >
-                          <StoryContext
-                            className="storyItem-context"
-                            $fontSize={getFontSize()}
-                          >
-                              <span className="num">02.</span>
-                              <span className="text2">
-                                
-                                {stepsTextData[currentStep].description2}
-                              </span>
-                          </StoryContext>
-                          <span className="storyBlur"/>
-                          <FocusHolder/>
-                        </ChooseStoryItem>
-                        <ChooseStoryItem
-                            onClick={clickHandler}
-                            onMouseMove={mouseMoveHandlerStoryThrottle}
-                            onMouseLeave={mouseLeaveHandlerStory}
-                            
-                            className="storyItem"
-                            ref={storyItem3}
-                        >
-                          <StoryContext
-                            className="storyItem-context"
-                            $fontSize={getFontSize()}
-                          >
-                              <span className="num">03.</span>
-                              <span className="text3">
-                                
-                                {stepsTextData[currentStep].description3}
-                              </span>
-                          </StoryContext>
-                          <span className="storyBlur"/>
-                          <FocusHolder/>
-                        </ChooseStoryItem>
-                        <ChooseStoryItem
-                            onClick={clickHandler}
-                            onMouseMove={mouseMoveHandlerStoryThrottle}
-                            onMouseLeave={mouseLeaveHandlerStory}
-                            
-                            className="storyItem"
-                            ref={storyItem4}
-                        >
-                          <StoryContext
-                            className="storyItem-context"
-                            $fontSize={getFontSize()}
-                          >
-                            <span className="num">04.</span>
-                            <span className="text4">
-                              
-                              {stepsTextData[currentStep].description4}
-                            </span>
-                          </StoryContext>
-                          <span className="storyBlur"/>
-                          <FocusHolder/>
-                        </ChooseStoryItem>
-                    </ChooseStory>
-                </ChooseStoryWrapper>
-            )
-            case 12: return (
-              <>
-                  <FormContainer
-                    className="formTen"
-                    $color={screens[currentStep].textColor}
-                    $bg={getBackground()}
-                  >
-                      <ScheduleHeader
-                        $color={screens[currentStep].textColor}
-                      >
-                        
-                        {stepsTextData[currentStep].mainText}
-                      </ScheduleHeader>
-                      <FormHeader
-                        $color={screens[currentStep].textColor}
-                      >
-                       
-                        {stepsTextData[currentStep].subText}
-                      </FormHeader>
-                      <ScheduleForm
-                        color={screens[currentStep].textColor}
-                        background={getBackground()}
-                        focus={getFocus()}
-                        inputFocusHandler={inputFocusHandler}
-                        inputOnfocusoutHandler={inputOnfocusoutHandler}
-                        
-                        validateData={formDataValidator}
-                      />
-                  </FormContainer>
-              </>
-            )
-            case 13 : return (
-                <>
-                    <MainText className="anime"
-                        $color={screens[currentStep].textColor}
-                        $top={getTopMainText()}
-                        $step={currentStep}
-                        $fontSize={getFontSize()}
-                        $left={getLeft()}
-                        $boxMaxWidth={getBoxMaxWidth()}
-                    >
-                     
-                      {stepsTextData[currentStep].mainText}
-                    </MainText>
-                    <WatchAgain
-                        onClick={watchAgain}
-                    >
-                      
-                      {stepsTextData[currentStep].subText}
-                        <SvgWatchAgain ref={svgWatch} />
-                    </WatchAgain>
-                </>
-            )
-   
-   }
-
- return (
-        getWorkContent()
-    )
-
-}*/
+export default App;
 
 const FormContainer = styled.div`
   position: absolute;
@@ -1043,92 +1443,80 @@ const AnimatedSVG = css`
   stroke: rgba(255, 255, 255, 0);
 `;
 
-const AnimatedStrategyText = styled(StrategySvg)`
-  width: 475px;
-  height: 100px;
+const AnimtateOutcomeText = styled(OutcomeSVG)`
+  width: auto;
+  height: auto;
   transform-origin: left;
   ${AnimatedSVG};
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {
     grid-row-start: 2;
-    width: 324px;
-    height: 86px;
   }
   @media (max-width: ${BREAKPOINTS.mob}px) {
     grid-row-start: 2;
-    width: 70%;
-    height: 58px;
+    margin: 20px 0px 0px !important;
   }
 `;
-const AnimatedTransparencyText = styled(TransparencySvg)`
-  width: 650px;
-  height: 100px;
+const AnimatedPartnersText = styled(PartnersSVG)`
+  width: auto;
+  height: auto;
   transform-origin: right;
   ${AnimatedSVG};
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {
     grid-row-start: 2;
-    width: 513px;
-    height: 86px;
   }
   @media (max-width: ${BREAKPOINTS.mob}px) {
     grid-row-start: 2;
-    width: 100%;
-    height: 58px;
+    margin: 20px 0px 0px !important;
   }
 `;
-const AnimatedFlexibilityText = styled(FlexibilitySvg)`
-  width: 500px;
-  height: 120px;
+const AnimatedVisionText = styled(VisionSVG)`
+  width: auto;
+  height: auto;
   transform-origin: left;
   ${AnimatedSVG};
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {
     grid-row-start: 2;
-    width: 388px;
-    height: 86px;
   }
   @media (max-width: ${BREAKPOINTS.mob}px) {
     grid-row-start: 2;
-    width: 80%;
-    height: 58px;
+    margin: 20px 0px 0px !important;
   }
 `;
-const AnimatedSelflessText = styled(SelflessSvg)`
-  width: 450px;
-  height: 100px;
+const AnimatedVeteransText = styled(VeteransSVG)`
+  width: auto;
+  height: auto;
   transform-origin: right;
   ${AnimatedSVG};
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {
     grid-row-start: 2;
-    width: 318px;
-    height: 86px;
   }
   @media (max-width: ${BREAKPOINTS.mob}px) {
     grid-row-start: 2;
-    width: 70%;
-    height: 58px;
+    margin: 20px 0px 0px !important;
   }
 `;
-const AnimatedServiceText = styled(ServiceSvg)`
-  width: 400px;
-  height: 100px;
-  transform-origin: right;
-  ${AnimatedSVG};
-  margin-bottom: 10px;
+// const AnimatedServiceText = styled(ServiceSvg)`
+//   width: 400px;
+//   height: 100px;
+//   transform-origin: right;
+//   ${AnimatedSVG};
+//   margin-bottom: 10px;
 
-  @media (max-width: ${BREAKPOINTS.tablet}px) {
-    grid-row-start: 3;
-    width: 286px;
-    height: 86px;
-  }
-  @media (max-width: ${BREAKPOINTS.mob}px) {
-    grid-row-start: 3;
-    width: 65%;
-    height: 58px;
-  }
-`;
+//   @media (max-width: ${BREAKPOINTS.tablet}px) {
+//     grid-row-start: 3;
+//     width: 286px;
+//     height: 86px;
+//   }
+//   @media (max-width: ${BREAKPOINTS.mob}px) {
+//     grid-row-start: 3;
+//     width: 65%;
+//     height: 58px;
+//   }
+// `;
 const MainText = styled.div`
   opacity: 0;
   position: fixed;
@@ -1175,6 +1563,199 @@ const MainTextSecond = styled(MainText)`
     max-width: ${({ $boxMaxWidth }) =>
       $boxMaxWidth.mob.t2 ? $boxMaxWidth.mob.t2 : "80%"};
   }
+`;
+
+const Continue = styled.div`
+  color: ${({ $color }) => $color};
+  position: absolute;
+  top: ${({ $top }) => $top};
+  text-align: ${({ $textAlign }) => ($textAlign ? $textAlign : "center")};
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding-bottom: 5px;
+  &:after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 1px;
+    left: 0;
+    bottom: 4px;
+    background: #fff;
+    transition: 0.7s ease;
+    opacity: 1;
+  }
+`;
+
+const ContinueArrow = styled.span`
+  content: "\ea3c";
+  font-size: 28px;
+  height: 20px;
+  width: 5px;
+  @media (min-width: ${BREAKPOINTS.tablet}px) {
+    &:hover {
+      &:after {
+        width: 0;
+        opacity: 0;
+      }
+      svg {
+        transform: rotate(45deg);
+      }
+    }
+  }
+
+  @media (max-width: ${BREAKPOINTS.tablet}px) {
+    bottom: 78px;
+    font-size: 18px;
+  }
+  @media (max-width: ${BREAKPOINTS.mob}px) {
+    bottom: 78px;
+  }
+`;
+
+const CallActionBtn = styled.a`
+  color: ${({ $color }) => $color};
+  font-size: 15px;
+  letter-spacing: 3px;
+  text-decoration: none;
+  justify-self: center;
+  position: relative;
+  display: block;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+
+  .menu_item {
+    z-index: 1;
+
+    &::before {
+      position: absolute;
+      content: "";
+      display: block;
+      top: 12px;
+      left: -6%;
+      width: 110%;
+      height: 10px;
+      background: ${({ $lineBg }) => $lineBg};
+      opacity: 0;
+      transition: 0.4s ease-in;
+      z-index: -1;
+    }
+
+    &:hover {
+      &::before {
+        opacity: 0.8;
+      }
+
+      & ~ .menu_label {
+        opacity: 1;
+
+        .letter {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .menu_label {
+    position: absolute;
+    display: block;
+    top: 30px;
+    left: 0;
+    color: ${({ $color }) => $color};
+    width: 200px;
+    font-size: 15px;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    overflow: hidden;
+    opacity: 0;
+    white-space: nowrap;
+
+    .letter {
+      display: inline-block;
+      line-height: 1em;
+      opacity: 0;
+    }
+  }
+`;
+
+const ScheduleBtnAnimation = keyframes`
+	0%   { stroke-dashoffset: 520;}
+	100% {stroke-dashoffset: 0;}
+`;
+
+const ScheduleBtnBorder = styled(RightBtnSvg)`
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0%;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  stroke: ${({ $color }) => $color};
+  stroke-dashoffset: 520;
+  stroke-dasharray: 520;
+  stroke-width: 2px;
+
+  @media (max-width: ${BREAKPOINTS.tablet}px) {
+    stroke: transparent;
+  }
+`;
+
+const ScheduleBtn = styled(CallActionBtn)`
+  background: ${({ $bg }) => $bg};
+  padding: 13px 15px;
+  border-radius: 67px;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  position: relative;
+  transition: 0.2s ease-in-out;
+  margin-top: 60px;
+
+  ${'' /* @media (min-width: ${BREAKPOINTS.tablet + 1}px) {
+    &:hover {
+      background: none;
+
+      ${ScheduleBtnBorder} {
+        animation: ${ScheduleBtnAnimation} 0.5s ease-in;
+        animation-direction: normal;
+        stroke: ${({ $bg }) => $bg};
+        stroke-dashoffset: 0;
+      }
+    }
+    &:active {
+      background: ${({ $bg }) => $bg};
+    }
+  }
+
+  @media (max-width: ${BREAKPOINTS.tablet}px) {
+    opacity: ${({ $open }) => ($open ? 1 : 0)};
+    height: ${({ $open }) =>
+      $open
+        ? `
+auto `
+        : `
+0 px `};
+    display: ${({ $show, $open }) =>
+      $open && $show
+        ? `
+grid `
+        : `
+none `};
+    align-self: stretch;
+    align-items: center;
+    transition: 0.3s ease;
+    background: none !important;
+    color: var(--block1-text-primary);
+    font-size: 21px;
+    border-radius: 0 0 45px 45px;
+    border-bottom: 1px solid var(--block1-text-secondary);
+    margin-top: 0px;
+    & > span {
+      padding-left: 21px;
+    }
+  } */}
 `;
 
 const WatchAgain = styled.div`
@@ -1274,7 +1855,7 @@ const ChooseStoryText = styled.div`
   color: ${({ $color }) => $color};
   font-size: ${({ $fontSize }) => $fontSize[0]};
   text-align: left;
-  max-width: 910px;
+  max-width: 1200px;
   white-space: pre-line;
   letter-spacing: ${({ $letterSpacing }) => $letterSpacing};
   line-height: 35px;
@@ -1298,7 +1879,7 @@ const ChooseStoryTitle = styled.div`
   color: ${({ $color }) => $color};
   font-size: ${({ $fontSize }) => $fontSize[0]};
   text-align: left;
-  max-width: 910px;
+  max-width: 1200px;
   white-space: pre-line;
   letter-spacing: ${({ $letterSpacing }) => $letterSpacing};
   line-height: 35px;
@@ -1443,34 +2024,33 @@ const FocusHolder = styled.div`
   }
 `;
 const CustomBlockWrapper = styled.div`
-    position: absolute;
-    top: ${({ $top }) => $top[0]};
-    left: ${({ $left }) => $left};
-    right: ${({ $right }) => $right};
-    transform: translateY(-50%);
-    max-width: ${({ $maxWidth }) => $maxWidth};
+  position: absolute;
+  top: ${({ $top }) => $top[0]};
+  left: ${({ $left }) => $left};
+  right: ${({ $right }) => $right};
+  transform: translateY(-50%);
+  max-width: ${({ $maxWidth }) => $maxWidth};
 
-    @media (max-width: ${BREAKPOINTS.xl}px) {
-      top: ${({ $top }) => $top[1]};
-    }
+  @media (max-width: ${BREAKPOINTS.xl}px) {
+    top: ${({ $top }) => $top[1]};
+  }
 
-    @media (max-width: ${BREAKPOINTS.tablet}px) {
-      left: 70px;
-      top: 65%;
-    }
-    @media (max-width: ${BREAKPOINTS.tablet}px) and (orientation: landscape) {
-      top: 60%;
-    }
-  
-    @media (max-width: ${BREAKPOINTS.mob}px) {
+  @media (max-width: ${BREAKPOINTS.tablet}px) {
+    left: 70px;
+    top: 65%;
+  }
+  @media (max-width: ${BREAKPOINTS.tablet}px) and (orientation: landscape) {
+    top: 60%;
+  }
+
+  @media (max-width: ${BREAKPOINTS.mob}px) {
     left: 4%;
-    top: 95%;
+    top: 96%;
+    bottom: 160px;
     padding-left: 20px;
-    background: rgb(127 150 160);
-}
-
-
-    }
+    ${'' /* backdrop-filter: blur(14px); */}
+    background: #7f96a0;
+  }
 `;
 const CustomBlockMobGradient = styled.div`
   display: none;
@@ -1522,7 +2102,7 @@ const CustomText = styled.div`
   letter-spacing: 1px;
 
   &:after {
-    position: absolute;
+    position: none;
     content: "";
     left: -15px;
     top: 12px;
