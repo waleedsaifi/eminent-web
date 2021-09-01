@@ -40,13 +40,14 @@ class Scene {
     return this._active;
   }
   set active(value) {
-    this.noise._shaders.forEach((shader) => {
+    if(this.noise)
+    {this.noise._shaders.forEach((shader) => {
       shader.material.visible = value;
     });
 
     this.noise.someMaterials.forEach((item) => {
       item.visible = value;
-    });
+    });}
 
     this._active = value;
   }
