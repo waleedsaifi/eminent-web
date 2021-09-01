@@ -2046,9 +2046,9 @@ const CustomBlockWrapper = styled.div`
   @media (max-width: ${BREAKPOINTS.mob}px) {
     left: 4%;
     top: 96%;
-    //bottom: 160px;
+    bottom: 160px;
     padding-left: 20px;
-    backdrop-filter: blur(14px);
+    ${'' /* backdrop-filter: blur(14px); */}
     background: #7f96a0;
   }
 `;
