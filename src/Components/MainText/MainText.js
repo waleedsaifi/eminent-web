@@ -2049,6 +2049,7 @@ const CustomBlockWrapper = styled.div`
     //bottom: 160px;
     padding-left: 20px;
     backdrop-filter: blur(14px);
+    background: #7f96a0;
   }
 `;
 const CustomBlockMobGradient = styled.div`
