@@ -57,7 +57,7 @@ const SelectWrapper = styled.div`
   width: 100%;
   min-width: 295px;
   height: 48px;
-  background: ${({ $bg }) => ($bg ? $bg[1] : "var(--popup-bg1)")};
+  background: ${({ $bg }) => ($bg ? $bg[0] : "var(--popup-bg1)")};
   border: 1px solid
     ${({ $color }) => ($color ? $color : "var(--block1-text-secondary)")};
   box-sizing: border-box;
