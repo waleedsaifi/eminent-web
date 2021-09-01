@@ -39,10 +39,6 @@ const App = ({
   currentTheme,
 }) => {
   const dispatch = useDispatch();
-  // const currentSectionTitle = props.currentSectionTitle;
-  // const currentStep = props.currentStep;
-  // const currentSection = props.currentSection;
-  // const currentTheme = props.currentTheme;
   const svgWatch = useRef(null);
   const chooseStoryTextContainer = useRef(null);
   const storyItem1 = useRef(null);
@@ -1343,14 +1339,14 @@ const App = ({
               <FormHeader $color={currentTheme.textColor}>
                 {currentSection.fields[currentStep].fields.subText}
               </FormHeader>
-              <ScheduleForm
+               <ScheduleForm
                 color={currentTheme.textColor}
-                background={getBackground(1)}
+                background={"rgb(11, 17, 23)"}
                 focus={getFocus(1)}
                 inputFocusHandler={inputFocusHandler}
                 inputOnfocusoutHandler={inputOnfocusoutHandler}
                 validateData={formDataValidator}
-              />
+              /> 
             </FormContainer>
           </>
         );

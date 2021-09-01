@@ -138,10 +138,13 @@ const ScheduleFormContent = ({
 
       sendEmail(newData);
       setScheduleForm(newData);
+
     }
 
     if (closeHandlerPopup) {
       closeHandlerPopup();
+    }else{
+      document.querySelectorAll("[data-id='2']")[0].click();
     }
   };
   return (
@@ -337,7 +340,7 @@ const ScheduleFormContent = ({
           </StyledLabel>{" "}
         </FormRow>{" "}
         <ScheduleSubmitBtn $color={color} type="submit">
-          Connect{" "}
+          Submit{" "}
         </ScheduleSubmitBtn>{" "}
       </ScheduleForm>{" "}
     </>

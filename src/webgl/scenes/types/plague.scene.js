@@ -189,11 +189,11 @@ class PlagueScene extends Scene {
         switch (to) {
           case 0:
           case 1: {
-            const friendly = [0, 1];
+            const friendly = [0, 1, 2];
             const fromFriendly = friendly.includes(from);
             changeColor("extra");
 
-            if (!fromFriendly) {
+            if (fromFriendly) {
               await wait(this.fade_config.scale_duration);
 
               await open(true);
@@ -202,7 +202,7 @@ class PlagueScene extends Scene {
             break;
           }
           case 2: {
-            const friendly = [0, 1];
+            const friendly = [0, 1, 2];
             const fromFriendly = friendly.includes(from);
 
             if (fromFriendly) {

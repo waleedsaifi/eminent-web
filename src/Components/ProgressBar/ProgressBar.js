@@ -98,7 +98,7 @@ const ProgressBarContent = ({
               getFadeOutFormTen([".formTen"], 100, () => {
                 setTimeout(
                   () =>
-                    dispatch(setProgress(nextStep + 1, currentSectionTitle)),
+                    dispatch(setProgress(currentStep + 1, currentSectionTitle)),
                   500
                 );
               });

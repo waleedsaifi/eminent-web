@@ -423,7 +423,7 @@ const ContainerContent = (currentData) => {
       onClick={stopAnimation}
       onTouchStart={touchstartHandler}
       onTouchMove={touchmoveHandler}
-      onWheel={wheelHandler}
+      //onWheel={wheelHandler}
       $overflow={getOverflow()}
     >
       {activePopup && popupManager()}
