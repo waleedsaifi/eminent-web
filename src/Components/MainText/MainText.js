@@ -1713,7 +1713,7 @@ const ScheduleBtn = styled(CallActionBtn)`
   transition: 0.2s ease-in-out;
   margin-top: 60px;
 
-  @media (min-width: ${BREAKPOINTS.tablet + 1}px) {
+  ${'' /* @media (min-width: ${BREAKPOINTS.tablet + 1}px) {
     &:hover {
       background: none;
 
@@ -1755,7 +1755,7 @@ none `};
     & > span {
       padding-left: 21px;
     }
-  }
+  } */}
 `;
 
 const WatchAgain = styled.div`
