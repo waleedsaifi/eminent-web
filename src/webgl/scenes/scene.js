@@ -40,14 +40,15 @@ class Scene {
     return this._active;
   }
   set active(value) {
-    if(this.noise)
-    {this.noise._shaders.forEach((shader) => {
-      shader.material.visible = value;
-    });
+    if (this.noise) {
+      this.noise._shaders.forEach((shader) => {
+        shader.material.visible = value;
+      });
 
-    this.noise.someMaterials.forEach((item) => {
-      item.visible = value;
-    });}
+      this.noise.someMaterials.forEach((item) => {
+        item.visible = value;
+      });
+    }
 
     this._active = value;
   }
@@ -199,11 +200,14 @@ class Scene {
   }
 
   startAnimation(dir = 1, noAnim = false) {
-    const [anim] = this.clips;
+   // this.initAnimations();
 
-    anim.timeScale = Math.abs(anim.timeScale) * dir;
-    anim.paused = false;
-    anim.play();
+    const [anim] = this.clips;
+    if (anim) {
+      anim.timeScale = Math.abs(anim.timeScale) * dir;
+      anim.paused = false;
+      anim.play();
+    }
 
     if (noAnim) {
       if (dir === 1) {
