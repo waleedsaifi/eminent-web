@@ -893,7 +893,7 @@ const App = ({
               $top={getContinueText(0)}
               $color={currentTheme.textColor}
             >
-              Learn more >>
+              DISCOVER MORE
               <ContinueArrow />
             </Continue>
           </>
@@ -941,7 +941,7 @@ const App = ({
                   $top={getContinueText(currentStep)}
                   $color={currentTheme.textColor}
                 >
-                  Learn more >>
+                  DISCOVER MORE
                   <ContinueArrow />
                 </Continue>
               )}
@@ -954,7 +954,7 @@ const App = ({
                   $lineBg={currentTheme.bgScheduleBtn}
                 >
                   <ScheduleBtnBorder $color={currentTheme.bgScheduleBtn} />
-                  <span> LET'S TALK </span>
+                  <span> REQUEST INFO </span>
                 </ScheduleBtn>
               )}
           </>
@@ -1202,7 +1202,7 @@ const App = ({
                 $lineBg={currentTheme.bgScheduleBtn}
               >
                 <ScheduleBtnBorder $color={currentTheme.bgScheduleBtn} />
-                <span> LETS TALK </span>
+                <span> REQUEST INFO </span>
               </ScheduleBtn>
             )}
           </>

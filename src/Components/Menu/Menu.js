@@ -458,7 +458,7 @@ const MenuContent = ({
             ref={rightBorderBtn}
             $color={currentTheme?.bgScheduleBtn}
           />{" "}
-          <span> LET'S TALK </span>{" "}
+          <span> REQUEST INFO </span>{" "}
         </MenuRightBtn>{" "}
       </Menu>
     </>
