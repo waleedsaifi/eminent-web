@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import Viewer from "webgl/viewer/viewer";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
+import { WEBGL } from "three/examples/jsm/WebGL.js";
 
 export default function App(props) {
   const node = useRef(null);
@@ -10,11 +11,16 @@ export default function App(props) {
   );
 
   useEffect(() => {
-    new Viewer({
-      container: node.current,
-      currentSectionTitle: props.currentSectionTitle,
-      currentStep: currentStep,
-    });
+    if (WEBGL.isWebGLAvailable()) {
+      new Viewer({
+        container: node.current,
+        currentSectionTitle: props.currentSectionTitle,
+        currentStep: currentStep,
+      });
+    } else {
+      const warning = WEBGL.getWebGLErrorMessage();
+      document.getElementById("glContainer").appendChild(warning);
+    }
   }, []);
 
   return (

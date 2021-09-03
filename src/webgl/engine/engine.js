@@ -179,7 +179,7 @@ class WebglEngine {
   }
 
   setCurrentStep(step) {
-   // console.log("Step: " + step + " prevStep:" + this.currentStep);
+    // console.log("Step: " + step + " prevStep:" + this.currentStep);
     const prevStep = this.currentStep;
     this.currentStep = step;
     this.scenes.forEach((scene) => {

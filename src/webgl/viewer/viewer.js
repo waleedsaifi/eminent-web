@@ -3,8 +3,8 @@ class Viewer {
   constructor(props) {
     this.engine = new WebglEngine({
       container: props.container,
-	  currentSectionTitle: props.currentSectionTitle,
-	  currentStep: props.currentStep,
+      currentSectionTitle: props.currentSectionTitle,
+      currentStep: props.currentStep,
     });
   }
 }
