@@ -307,8 +307,9 @@ export const getFadeInMainText = (callback, mainDelay = 0) => {
         translateZ: 0,
         opacity: [0, 1],
         easing: "easeOutQuad",
-        duration: 500,
-        delay: (el, i) => 400 + 30 * i,
+        duration: 50,
+       // delay: (el, i) => 40 + 30 * i,
+       delay: (el, i) => 5 * i,
       },
       `+=${mainDelay}`
     )
@@ -319,8 +320,9 @@ export const getFadeInMainText = (callback, mainDelay = 0) => {
         translateZ: 0,
         opacity: [0, 1],
         easing: "easeOutQuad",
-        duration: 500,
-        delay: (el, i) => 400 + 30 * i,
+        duration: 50,
+        //delay: (el, i) => 40 + 30 * i,
+        delay: (el, i) => 5 * i,
         complete: () => callback(),
       },
       `-=${mainDelay ? mainDelay : 2300}`
@@ -335,13 +337,13 @@ export const getFadeOutMainText = (callback) => {
       translateX: [0, -30],
       opacity: [1, 0],
       easing: "easeInQuad",
-      duration: 500,
+      duration: 50,
       delay: (el, i) => 50 + 10 * i,
     })
     .add({
       targets: ".anime",
       opacity: [1, 0],
-      duration: 100,
+      duration: 10,
     })
     .add(
       {
@@ -349,7 +351,7 @@ export const getFadeOutMainText = (callback) => {
         translateX: [0, -30],
         opacity: [1, 0],
         easing: "easeInQuad",
-        duration: 500,
+        duration: 50,
         delay: (el, i) => 50 + 10 * i,
       },
       "-=1500"
@@ -357,7 +359,7 @@ export const getFadeOutMainText = (callback) => {
     .add({
       targets: ".anime2",
       opacity: [1, 0],
-      duration: 100,
+      duration: 10,
       complete: () => callback(),
     });
 };
@@ -393,17 +395,17 @@ export const getFadeInCustomText = (callback) => {
       targets: [".svgText", ".svgText2"],
       stroke: "#ffffff",
       scaleX: [1.3, 1],
-      duration: 1100,
+      duration: 110,
       easing: "easeOutQuad",
     })
     .add(
       {
         targets: [".svgText path", ".svgText2 path"],
         strokeDashoffset: [anime.setDashoffset, 0],
-        duration: 500,
+        duration: 50,
         easing: "linear",
         delay: function (el, i) {
-          return i * 100;
+          return i * 10;
         },
       },
       "-=1100"
@@ -412,7 +414,7 @@ export const getFadeInCustomText = (callback) => {
       {
         targets: ".svgText",
         fill: ["rgba(255,255,255,0)", "rgba(255,255,255,1)"],
-        duration: 650,
+        duration: 65,
         easing: "linear",
       },
       "-=350"
@@ -421,7 +423,7 @@ export const getFadeInCustomText = (callback) => {
       {
         targets: ".svgText2",
         fill: ["rgba(255,255,255,0)", "rgba(255,255,255,1)"],
-        duration: 650,
+        duration: 65,
         easing: "linear",
       },
       "-=650"
@@ -431,7 +433,7 @@ export const getFadeInCustomText = (callback) => {
         targets: ".custom_anime, .letter",
         opacity: [0, 1],
         easing: "easeInOutQuad",
-        duration: 400,
+        duration: 40,
         delay: (el, i) => 7 * (i + 1),
         complete: () => callback(),
       },

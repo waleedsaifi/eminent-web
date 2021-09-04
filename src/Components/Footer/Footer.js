@@ -101,8 +101,8 @@ const FooterContent = ({
           case 0:
           case 1:
             return window.innerWidth < BREAKPOINTS.tablet
-              ? `Scroll right to go to the next screen`
-              : `Scroll to go to the next screen`;
+              ? `Swipe right to navigate`
+              : `Scroll to go to navigate`;
           default:
             return;
         }

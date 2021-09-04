@@ -367,13 +367,13 @@ const MenuContent = ({
           ref={introText}
           $color={currentTheme?.textColor}
         >
-          Made By
-          <audio
+         INSPIRING EXCELLENCE
+          {/* <audio
             src="https://s3.amazonaws.com/www.eminentfuture.com/Regency+intro.mp3"
             controls
             autoPlay
             style={{ display: "none" }}
-          />
+          /> */}
         </IntroText>
       )}{" "}
       <Menu
