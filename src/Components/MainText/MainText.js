@@ -141,6 +141,7 @@ const App = ({
       case "home": {
         switch (step) {
           case 0:
+            return window.innerWidth < BREAKPOINTS.tablet ? ["25%"] : ["30%"];
           case 1:
             return window.innerWidth < BREAKPOINTS.tablet ? ["45%"] : ["auto"];
           case 2:
@@ -192,6 +193,8 @@ const App = ({
     switch (currentSectionTitle) {
       case "home": {
         switch (currentStep) {
+          case 0:
+            return window.innerWidth < BREAKPOINTS.tablet ? ["45%"] : ["50%"];
           case 3:
           case 4:
             return ["75%"];
@@ -239,7 +242,7 @@ const App = ({
       case "home": {
         switch (currentStep) {
           case 0:
-            return ["60%"];
+            return window.innerWidth < BREAKPOINTS.tablet ? ["72%"] : ["64%"];
           case 1:
             return ["60%"];
           case 2:
@@ -350,6 +353,7 @@ const App = ({
       case "home": {
         switch (step) {
           case 0:
+            return ["80px", "36px", "32px"];
           case 1:
           case 2:
           case 5:
@@ -583,41 +587,6 @@ const App = ({
       blurEl.style.opacity = 0;
     });
   };
-
-  // const mouseOverStoryItem = (e) => {
-  //   if (window.innerWidth < 900) return;
-  //   const el = e.target.classList.contains("storyItem")
-  //     ? e.target
-  //     : e.target.parentElement.classList.contains("storyItem")
-  //     ? e.target.parentElement
-  //     : null;
-
-  //   if (!el) return;
-
-  //   const blurTextEl = chooseStoryTextContainer.current.querySelector(
-  //     ".storyBlur"
-  //   );
-  //   // chooseStoryTextContainer.current.style.opacity = 0.2;
-  //   blurTextEl.style.opacity = 1;
-  //   const storyItems = [
-  //     storyItem1.current,
-  //     storyItem2.current,
-  //     storyItem3.current,
-  //     storyItem4.current,
-  //   ];
-  //   _.each(storyItems, (item) => {
-  //     const blurEl = item.querySelector(".storyBlur");
-  //     if (item !== el) {
-  //       // item.style.opacity = 0.2;
-  //       blurEl.style.opacity = 1;
-  //     } else {
-  //       // item.style.opacity = 1;
-  //       blurEl.style.opacity = 0;
-  //     }
-  //   });
-  // };
-
-  // const mouseOverStoryItemThrottle = _.throttle((e) => mouseOverStoryItem(e), 1);
 
   const mouseMoveHandlerStory = (e) => {
     if (window.innerWidth < 900) return;
@@ -866,9 +835,6 @@ const App = ({
   };
 
   const getHomeContent = () => {
-    // {
-    //   console.log(getBoxMaxWidth());
-    // }
     switch (currentStep) {
       case 0:
         return (
@@ -883,22 +849,105 @@ const App = ({
                 $left={getLeft(0)}
                 $letterSpacing={getLetterSpacing(0)}
                 $boxMaxWidth={getBoxMaxWidth(0)}
+                $textTransform={"uppercase"}
+                $fontWeight={"bold"}
               >
                 {currentSection?.fields[currentStep].fields.mainText}
               </MainText>
             )}
-            <Continue
-              className="anime"
-              onClick={getNextStep}
-              $top={getContinueText(0)}
-              $color={currentTheme.textColor}
-            >
-              DISCOVER MORE
-              <ContinueArrow />
-            </Continue>
+
+            {currentSection?.fields[currentStep].fields.mainText && (
+              <MainTextSecond
+                className="anime"
+                $color={currentTheme.textColor}
+                $top={getTopSecondText(0)}
+                $step={currentStep}
+                $fontSize={["28px", "21px", "18px"]}
+                $lineHeight={["38px", "31px", "28px"]}
+                $left={getLeft(0)}
+                $letterSpacing={getLetterSpacing(0)}
+                $boxMaxWidth={{
+                  deskXl: { t2: "1200px" },
+                  deskM: { t2: "1200px" },
+                  tablet: { t2: "700px" },
+                  mob: { t2: "248px" },
+                }}
+              >
+                {currentSection?.fields[currentStep].fields.subText}
+              </MainTextSecond>
+            )}
+            {currentSection?.fields[currentStep].fields.mainText && (
+              <ContinueBtn
+                className="animeCalltoAction"
+                onClick={getNextStep}
+                $top={"15%"}
+                $color={currentTheme?.menuBtnColor}
+                $bg={currentTheme?.bgScheduleBtn}
+              >
+                <ContinueBtnBorder
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlnsXlink="http://www.w3.org/1999/xlink"
+                  aria-labelledby="VIEW OUR SERVICES"
+                  viewBox="0 0 226 43"
+                  $color={currentTheme?.bgScheduleBtn}
+                  id="MyButton"
+                  fill="none"
+                >
+                  <title>VIEW OUR SERVICES</title>
+                  <rect x="0.5" y="0.5" width="225" height="42" rx="21" />
+                </ContinueBtnBorder>
+                <span> VIEW OUR SERVICES </span>{" "}
+              </ContinueBtn>
+            )}
           </>
         );
       case 1:
+        return (
+          <>
+            {currentSection.fields[currentStep].fields.mainText && (
+              <MainText
+                className="anime"
+                $color={currentTheme.textColor}
+                $top={getTopMainText(currentStep)}
+                $step={currentStep}
+                $fontSize={getFontSize(currentStep)}
+                $left={getLeft(currentStep)}
+                $letterSpacing={getLetterSpacing(currentStep)}
+                $boxMaxWidth={getBoxMaxWidth(currentStep)}
+              >
+                {currentSection.fields[currentStep].fields.mainText}
+              </MainText>
+            )}
+            {currentSection.fields[currentStep].fields.subText && (
+              <MainTextSecond
+                className="anime2"
+                $color={currentTheme.textColor}
+                $top={getTopSecondText(currentStep)}
+                $step={currentStep}
+                $fontSize={getFontSize(currentStep)}
+                $left={getLeft(currentStep)}
+                $letterSpacing={getLetterSpacing(currentStep)}
+                $boxMaxWidth={getBoxMaxWidth(currentStep)}
+              >
+                {currentSection.fields[currentStep].fields.subText}
+              </MainTextSecond>
+            )}
+            {}
+            {/*   */}
+            {currentSection.fields[currentStep].fields.mainText &&
+              currentStep == 5 && (
+                <ScheduleBtn
+                  $bg={currentTheme.bgScheduleBtn}
+                  $color={currentTheme.menuBtnColor}
+                  onClick={onScheduleClickHandler}
+                  $lineBg={currentTheme.bgScheduleBtn}
+                >
+                  <ScheduleBtnBorder $color={currentTheme.bgScheduleBtn} />
+                  <span> REQUEST INFO </span>
+                </ScheduleBtn>
+              )}
+          </>
+        );
       case 2:
       case 3:
       case 4:
@@ -1339,14 +1388,14 @@ const App = ({
               <FormHeader $color={currentTheme.textColor}>
                 {currentSection.fields[currentStep].fields.subText}
               </FormHeader>
-               <ScheduleForm
+              <ScheduleForm
                 color={currentTheme.textColor}
                 background={"rgb(11, 17, 23)"}
                 focus={getFocus(1)}
                 inputFocusHandler={inputFocusHandler}
                 inputOnfocusoutHandler={inputOnfocusoutHandler}
                 validateData={formDataValidator}
-              /> 
+              />
             </FormContainer>
           </>
         );
@@ -1499,24 +1548,6 @@ const AnimatedVeteransText = styled(VeteransSVG)`
     margin: 20px 0px 0px !important;
   }
 `;
-// const AnimatedServiceText = styled(ServiceSvg)`
-//   width: 400px;
-//   height: 100px;
-//   transform-origin: right;
-//   ${AnimatedSVG};
-//   margin-bottom: 10px;
-
-//   @media (max-width: ${BREAKPOINTS.tablet}px) {
-//     grid-row-start: 3;
-//     width: 286px;
-//     height: 86px;
-//   }
-//   @media (max-width: ${BREAKPOINTS.mob}px) {
-//     grid-row-start: 3;
-//     width: 65%;
-//     height: 58px;
-//   }
-// `;
 const MainText = styled.div`
   opacity: 0;
   position: fixed;
@@ -1528,7 +1559,10 @@ const MainText = styled.div`
   max-width: ${({ $boxMaxWidth }) => $boxMaxWidth.deskXl.t1};
   white-space: pre-line;
   letter-spacing: ${({ $letterSpacing }) => $letterSpacing};
-  line-height: 45px;
+  line-height: ${({ $fontSize }) => $fontSize[0]};
+  text-transform: ${({ $textTransform }) =>
+    $textTransform ? $textTransform : "none"};
+  font-weight: ${({ $fontWeight }) => ($fontWeight ? $fontWeight : "none")};
 
   @media (max-width: ${BREAKPOINTS.xl}px) {
     font-size: ${({ $fontSize }) => $fontSize[1]};
@@ -1539,81 +1573,41 @@ const MainText = styled.div`
     max-width: ${({ $boxMaxWidth }) => $boxMaxWidth.tablet.t1};
     font-size: ${({ $fontSize }) => $fontSize[1]};
     top: ${({ $top }) => $top};
-    line-height: 42px;
+    line-height: "42px";
   }
   @media (max-width: ${BREAKPOINTS.mob}px) {
     font-size: ${({ $fontSize }) => $fontSize[2]};
     max-width: ${({ $boxMaxWidth }) => $boxMaxWidth.mob.t1};
-    line-height: 27px;
+    line-height: "27px";
   }
 `;
 const MainTextSecond = styled(MainText)`
   max-width: ${({ $boxMaxWidth }) =>
     $boxMaxWidth.deskXl.t2 ? $boxMaxWidth.deskXl.t2 : "80%"};
+  line-height: ${({ $lineHeight }) =>
+    $lineHeight[0] ? $lineHeight[0] : ($fontSize) => $fontSize[0]};
 
   @media (max-width: ${BREAKPOINTS.xl}px) {
     max-width: ${({ $boxMaxWidth }) =>
       $boxMaxWidth.deskM ? $boxMaxWidth.deskM.t2 : "80%"};
+    line-height: ${({ $lineHeight }) =>
+      $lineHeight[0] ? $lineHeight[0] : ($fontSize) => $fontSize[0]};
   }
   @media (max-width: ${BREAKPOINTS.tablet}px) {
     max-width: ${({ $boxMaxWidth }) =>
       $boxMaxWidth.tablet.t2 ? $boxMaxWidth.tablet.t2 : "80%"};
+    line-height: ${({ $lineHeight }) =>
+      $lineHeight[1] ? $lineHeight[1] : "42px"};
   }
   @media (max-width: ${BREAKPOINTS.mob}px) {
     max-width: ${({ $boxMaxWidth }) =>
       $boxMaxWidth.mob.t2 ? $boxMaxWidth.mob.t2 : "80%"};
+    line-height: ${({ $lineHeight }) =>
+      $lineHeight[2] ? $lineHeight[2] : "27px"};
   }
 `;
 
-const Continue = styled.div`
-  color: ${({ $color }) => $color};
-  position: absolute;
-  top: ${({ $top }) => $top};
-  text-align: ${({ $textAlign }) => ($textAlign ? $textAlign : "center")};
-  text-decoration: none;
-  font-size: 16px;
-  cursor: pointer;
-  padding-bottom: 5px;
-  &:after {
-    position: absolute;
-    content: "";
-    width: 100%;
-    height: 1px;
-    left: 0;
-    bottom: 4px;
-    background: #fff;
-    transition: 0.7s ease;
-    opacity: 1;
-  }
-`;
-
-const ContinueArrow = styled.span`
-  content: "\ea3c";
-  font-size: 28px;
-  height: 20px;
-  width: 5px;
-  @media (min-width: ${BREAKPOINTS.tablet}px) {
-    &:hover {
-      &:after {
-        width: 0;
-        opacity: 0;
-      }
-      svg {
-        transform: rotate(45deg);
-      }
-    }
-  }
-
-  @media (max-width: ${BREAKPOINTS.tablet}px) {
-    bottom: 78px;
-    font-size: 18px;
-  }
-  @media (max-width: ${BREAKPOINTS.mob}px) {
-    bottom: 78px;
-  }
-`;
-
-const CallActionBtn = styled.a`
+const CallActionBtn = styled.div`
   color: ${({ $color }) => $color};
   font-size: 15px;
   letter-spacing: 3px;
@@ -1625,63 +1619,16 @@ const CallActionBtn = styled.a`
   cursor: pointer;
   transition: 0.3s ease;
 
-  .menu_item {
-    z-index: 1;
-
-    &::before {
-      position: absolute;
-      content: "";
-      display: block;
-      top: 12px;
-      left: -6%;
-      width: 110%;
-      height: 10px;
-      background: ${({ $lineBg }) => $lineBg};
-      opacity: 0;
-      transition: 0.4s ease-in;
-      z-index: -1;
-    }
-
-    &:hover {
-      &::before {
-        opacity: 0.8;
-      }
-
-      & ~ .menu_label {
-        opacity: 1;
-
-        .letter {
-          opacity: 1;
-        }
-      }
-    }
-  }
-
-  .menu_label {
-    position: absolute;
-    display: block;
-    top: 30px;
-    left: 0;
-    color: ${({ $color }) => $color};
-    width: 200px;
-    font-size: 15px;
-    letter-spacing: 0;
-    text-transform: uppercase;
-    overflow: hidden;
+  .letter {
+    display: inline-block;
+    line-height: 1em;
     opacity: 0;
-    white-space: nowrap;
-
-    .letter {
-      display: inline-block;
-      line-height: 1em;
-      opacity: 0;
-    }
   }
 `;
 
 const ScheduleBtnAnimation = keyframes`
-	0%   { stroke-dashoffset: 520;}
-	100% {stroke-dashoffset: 0;}
+	0%   { stroke-dashoffset: 1000;}
+	100% { stroke-dashoffset: 0; }
 `;
 
 const ScheduleBtnBorder = styled(RightBtnSvg)`
@@ -1712,13 +1659,65 @@ const ScheduleBtn = styled(CallActionBtn)`
   position: relative;
   transition: 0.2s ease-in-out;
   margin-top: 60px;
+`;
 
-  ${'' /* @media (min-width: ${BREAKPOINTS.tablet + 1}px) {
+const Continue = styled.div`
+  color: ${({ $color }) => $color};
+  position: absolute;
+  top: ${({ $top }) => $top};
+  text-align: ${({ $textAlign }) => ($textAlign ? $textAlign : "center")};
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding-bottom: 5px;
+  &:after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 1px;
+    left: 0;
+    bottom: 4px;
+    background: #fff;
+    transition: 0.7s ease;
+    opacity: 1;
+  }
+`;
+
+const ContinueBtnBorder = styled.svg`
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  stroke: ${({ $color }) => $color};
+  stroke-dashoffset: 1000;
+  stroke-dasharray: 1000;
+  stroke-width: 2px;
+
+  @media (max-width: ${BREAKPOINTS.tablet}px) {
+    stroke: transparent;
+  }
+`;
+
+const ContinueBtn = styled(CallActionBtn)`
+  opacity: 0;
+  background: ${({ $bg }) => $bg};
+  padding: 13px 10px;
+  border-radius: 67px;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  position: relative;
+  transition: 0.2s ease-in-out;
+  top: ${({ $top }) => $top};
+  @media (min-width: ${BREAKPOINTS.tablet + 1}px) {
     &:hover {
       background: none;
 
-      ${ScheduleBtnBorder} {
-        animation: ${ScheduleBtnAnimation} 0.5s ease-in;
+      ${ContinueBtnBorder} {
+        animation: ${ScheduleBtnAnimation} .7s ease-in;
         animation-direction: normal;
         stroke: ${({ $bg }) => $bg};
         stroke-dashoffset: 0;
@@ -1730,19 +1729,9 @@ const ScheduleBtn = styled(CallActionBtn)`
   }
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {
-    opacity: ${({ $open }) => ($open ? 1 : 0)};
-    height: ${({ $open }) =>
-      $open
-        ? `
-auto `
-        : `
-0 px `};
-    display: ${({ $show, $open }) =>
-      $open && $show
-        ? `
-grid `
-        : `
-none `};
+    opacity: 1;
+    height: auto;
+    display: block;
     align-self: stretch;
     align-items: center;
     transition: 0.3s ease;
@@ -1750,12 +1739,38 @@ none `};
     color: var(--block1-text-primary);
     font-size: 21px;
     border-radius: 0 0 45px 45px;
-    border-bottom: 1px solid var(--block1-text-secondary);
-    margin-top: 0px;
+    padding: 0px;
+    border-bottom: none;
     & > span {
       padding-left: 21px;
     }
-  } */}
+  }
+`;
+
+const ContinueArrow = styled.span`
+  content: "\ea3c";
+  font-size: 28px;
+  height: 20px;
+  width: 5px;
+  @media (min-width: ${BREAKPOINTS.tablet}px) {
+    &:hover {
+      &:after {
+        width: 0;
+        opacity: 0;
+      }
+      svg {
+        transform: rotate(45deg);
+      }
+    }
+  }
+
+  @media (max-width: ${BREAKPOINTS.tablet}px) {
+    bottom: 78px;
+    font-size: 18px;
+  }
+  @media (max-width: ${BREAKPOINTS.mob}px) {
+    bottom: 78px;
+  }
 `;
 
 const WatchAgain = styled.div`
@@ -2135,3 +2150,4 @@ const CustomID = styled.div`
     font-size: 28px;
   }
 `;
+
