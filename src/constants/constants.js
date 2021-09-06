@@ -28,7 +28,7 @@ export const darkTheme =
     bgScheduleBtn: "#678F7D",
     progressBorder: "#7E7E7E",
     menuBtnColor: "#fff",
-    schedulePopupTextColor: "#678F7D",
+    schedulePopupTextColor: "#9cd8c4",
     schedulePopupBg: ["#050C11FF", "#0b1117"],
   };
 

@@ -29,6 +29,7 @@ import {
   getFadeOutMainText,
 } from "../../helpers/animations";
 import ScheduleForm from "../SchedulePopup/ScheduleForm";
+import ServicesPopupContent from "../Services/ServicesPopup";
 
 const App = ({
   showPopup,
@@ -49,6 +50,12 @@ const App = ({
   const onScheduleClickHandler = (e) => {
     document.getElementById("ScheduleBtn").click();
   };
+
+  const onServicesPopUpHandler = (e) => {
+    showPopup("services");
+  };
+
+
 
   useEffect(() => {
     const progressSvgArray = document.querySelectorAll(
@@ -879,7 +886,7 @@ const App = ({
             {currentSection?.fields[currentStep].fields.mainText && (
               <ContinueBtn
                 className="animeCalltoAction"
-                onClick={getNextStep}
+                onClick={onServicesPopUpHandler}
                 $top={"15%"}
                 $color={currentTheme?.menuBtnColor}
                 $bg={currentTheme?.bgScheduleBtn}
@@ -1573,12 +1580,12 @@ const MainText = styled.div`
     max-width: ${({ $boxMaxWidth }) => $boxMaxWidth.tablet.t1};
     font-size: ${({ $fontSize }) => $fontSize[1]};
     top: ${({ $top }) => $top};
-    line-height: "42px";
+    line-height: 42px;
   }
   @media (max-width: ${BREAKPOINTS.mob}px) {
     font-size: ${({ $fontSize }) => $fontSize[2]};
     max-width: ${({ $boxMaxWidth }) => $boxMaxWidth.mob.t1};
-    line-height: "27px";
+    line-height: 27px;
   }
 `;
 const MainTextSecond = styled(MainText)`
@@ -1712,12 +1719,14 @@ const ContinueBtn = styled(CallActionBtn)`
   position: relative;
   transition: 0.2s ease-in-out;
   top: ${({ $top }) => $top};
+
+
   @media (min-width: ${BREAKPOINTS.tablet + 1}px) {
     &:hover {
       background: none;
 
       ${ContinueBtnBorder} {
-        animation: ${ScheduleBtnAnimation} .7s ease-in;
+        animation: ${ScheduleBtnAnimation} 0.7s ease-in;
         animation-direction: normal;
         stroke: ${({ $bg }) => $bg};
         stroke-dashoffset: 0;
@@ -1744,6 +1753,11 @@ const ContinueBtn = styled(CallActionBtn)`
     & > span {
       padding-left: 21px;
     }
+  }
+
+  @media (max-width: ${BREAKPOINTS.mob}px) {
+      top: 74%;
+      height: 45px;
   }
 `;
 
@@ -2150,4 +2164,3 @@ const CustomID = styled.div`
     font-size: 28px;
   }
 `;
-

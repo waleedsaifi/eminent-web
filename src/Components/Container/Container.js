@@ -6,6 +6,7 @@ import MainText from "./../MainText/MainText";
 import FooterContent from "./../Footer/Footer";
 import HotspotsContainer from "../Hotspots/HotspotsContainer";
 import SchedulePopup from "../SchedulePopup/SchedulePopup";
+import ServicesPopup from "../Services/ServicesPopup";
 import { isMobileOnly } from "react-device-detect";
 import { useDispatch, useSelector } from "react-redux";
 import { addDevGUIConfig } from "../../helpers/dev.helpers";
@@ -100,7 +101,7 @@ const ContainerContent = (currentData) => {
         "custom_anime",
         "customBlock",
         "storyBlur",
-        "animeCalltoAction"
+        "animeCalltoAction",
       ];
       if (!window.animation) return;
       const isAllowedList = e.target.classList;
@@ -216,6 +217,12 @@ const ContainerContent = (currentData) => {
     mainContainer.current.style.overflowY = "auto";
     const menu = document.querySelector(".menu");
     menu.removeAttribute("style");
+    setPopupOpen(false);
+    setActivePopup(null);
+  };
+
+  const closeServicesPopup = () => {
+    mainContainer.current.style.overflowY = "auto";
     setPopupOpen(false);
     setActivePopup(null);
   };
@@ -386,6 +393,8 @@ const ContainerContent = (currentData) => {
     switch (activePopup) {
       case "schedule":
         return <SchedulePopup closeHandler={closeSchedulePopup} />;
+      case "services":
+        return <ServicesPopup closeHandler={closeServicesPopup} />;
       default:
         break;
     }
@@ -446,6 +455,7 @@ const ContainerContent = (currentData) => {
       )}
       {currentSection && (
         <MainText
+          showPopup={setActivePopup}
           currentSectionTitle={currentSectionTitle}
           currentStep={currentStep}
           currentSection={currentSection}
