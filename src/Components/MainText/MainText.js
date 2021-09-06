@@ -1585,25 +1585,25 @@ const MainTextSecond = styled(MainText)`
   max-width: ${({ $boxMaxWidth }) =>
     $boxMaxWidth.deskXl.t2 ? $boxMaxWidth.deskXl.t2 : "80%"};
   line-height: ${({ $lineHeight }) =>
-    $lineHeight[0] ? $lineHeight[0] : ($fontSize) => $fontSize[0]};
+    $lineHeight ? $lineHeight[0] : ($fontSize) => $fontSize[0]};
 
   @media (max-width: ${BREAKPOINTS.xl}px) {
     max-width: ${({ $boxMaxWidth }) =>
       $boxMaxWidth.deskM ? $boxMaxWidth.deskM.t2 : "80%"};
     line-height: ${({ $lineHeight }) =>
-      $lineHeight[0] ? $lineHeight[0] : ($fontSize) => $fontSize[0]};
+      $lineHeight ? $lineHeight[0] : ($fontSize) => $fontSize[0]};
   }
   @media (max-width: ${BREAKPOINTS.tablet}px) {
     max-width: ${({ $boxMaxWidth }) =>
       $boxMaxWidth.tablet.t2 ? $boxMaxWidth.tablet.t2 : "80%"};
     line-height: ${({ $lineHeight }) =>
-      $lineHeight[1] ? $lineHeight[1] : "42px"};
+      $lineHeight ? $lineHeight[1] : "42px"};
   }
   @media (max-width: ${BREAKPOINTS.mob}px) {
     max-width: ${({ $boxMaxWidth }) =>
       $boxMaxWidth.mob.t2 ? $boxMaxWidth.mob.t2 : "80%"};
     line-height: ${({ $lineHeight }) =>
-      $lineHeight[2] ? $lineHeight[2] : "27px"};
+      $lineHeight ? $lineHeight[2] : "27px"};
   }
 `;
 
