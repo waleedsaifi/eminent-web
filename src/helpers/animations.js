@@ -326,19 +326,6 @@ export const getFadeInMainText = (callback, mainDelay = 0) => {
         complete: () => callback(),
       },
       `-=${mainDelay ? mainDelay : 2300}`
-    )
-    .add(
-      {
-        targets: [".animeCalltoAction"],
-        translateX: [40, 0],
-        translateZ: 0,
-        opacity: [0, 1],
-        easing: "easeOutQuad",
-        duration: 50,
-       // delay: (el, i) => 40 + 30 * i,
-       
-      },
-      `+=${300}`
     );
 };
 

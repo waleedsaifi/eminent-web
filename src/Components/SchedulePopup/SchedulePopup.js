@@ -35,7 +35,7 @@ const SchedulePopupContent = ({ closeHandler }) => {
           $color={currentTheme?.schedulePopupTextColor}
           $bg={currentTheme?.schedulePopupBg[0]}
         >
-          <h2> Request Information </h2>{" "}
+          <h2> Schedule a call </h2>{" "}
           <CloseCross onClick={closeHandlerPopup}>
             <Cross $color={currentTheme?.schedulePopupTextColor} />{" "}
           </CloseCross>{" "}

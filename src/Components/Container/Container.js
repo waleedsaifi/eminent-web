@@ -100,7 +100,6 @@ const ContainerContent = (currentData) => {
         "custom_anime",
         "customBlock",
         "storyBlur",
-        "animeCalltoAction"
       ];
       if (!window.animation) return;
       const isAllowedList = e.target.classList;

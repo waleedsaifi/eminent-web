@@ -367,7 +367,7 @@ const MenuContent = ({
           ref={introText}
           $color={currentTheme?.textColor}
         >
-         Inspiring Excellence
+         INSPIRING EXCELLENCE
           {/* <audio
             src="https://s3.amazonaws.com/www.eminentfuture.com/Regency+intro.mp3"
             controls
@@ -437,9 +437,9 @@ const MenuContent = ({
         >
           <span className="menu_item" onMouseOver={menuLabelHandler}>
             {" "}
-            ABOUT{" "}
+            CAREERS{" "}
           </span>{" "}
-          <span className="menu_label"> OUR STORY </span>
+          <span className="menu_label"> JOIN OUR TEAM </span>
         </MenuBtn>
         <MenuRightBtn
           ref={menuRightBtn}
@@ -744,7 +744,7 @@ const RightBtnBorder = styled(RightBtnSvg)`
 `;
 const MenuRightBtn = styled(MenuBtn)`
   background: ${({ $bg }) => $bg};
-  padding: 13px 10px;
+  padding: 13px 20px;
   border-radius: 67px;
   white-space: nowrap;
   border: 1px solid transparent;
