@@ -4,13 +4,20 @@ import { isMobileOnly } from "react-device-detect";
 class ParticleBg {
   constructor(canvas) {
     this.canvas = canvas;
-
     this.init();
   }
 
   dispose() {
     this.disposed = true;
   }
+
+  resizeCanvas()
+    {    
+       
+         this.canvas.width = document.documentElement.clientWidth;
+         this.canvas.height = document.documentElement.clientHeight;
+         this.init();
+    }
 
   init() {
     const canvas = this.canvas;
