@@ -55,8 +55,6 @@ const App = ({
     showPopup("services");
   };
 
-
-
   useEffect(() => {
     const progressSvgArray = document.querySelectorAll(
       `.styledProgress_${currentStep}`
@@ -148,7 +146,7 @@ const App = ({
       case "home": {
         switch (step) {
           case 0:
-            return window.innerWidth < BREAKPOINTS.tablet ? ["25%"] : ["30%"];
+            return window.innerWidth < BREAKPOINTS.tablet ? ["20%"] : ["30%"];
           case 1:
             return window.innerWidth < BREAKPOINTS.tablet ? ["45%"] : ["auto"];
           case 2:
@@ -201,7 +199,7 @@ const App = ({
       case "home": {
         switch (currentStep) {
           case 0:
-            return window.innerWidth < BREAKPOINTS.tablet ? ["45%"] : ["50%"];
+            return window.innerWidth < BREAKPOINTS.tablet ? ["40%"] : ["50%"];
           case 3:
           case 4:
             return ["75%"];
@@ -1585,7 +1583,7 @@ const MainText = styled.div`
   @media (max-width: ${BREAKPOINTS.mob}px) {
     font-size: ${({ $fontSize }) => $fontSize[2]};
     max-width: ${({ $boxMaxWidth }) => $boxMaxWidth.mob.t1};
-    line-height: 27px;
+    line-height: 34px;
   }
 `;
 const MainTextSecond = styled(MainText)`
@@ -1704,8 +1702,8 @@ const ContinueBtnBorder = styled.svg`
   stroke-dasharray: 1000;
   stroke-width: 2px;
 
-  @media (max-width: ${BREAKPOINTS.tablet}px) {
-    stroke: transparent;
+  @media (max-width: ${BREAKPOINTS.mob}px) {
+    display: none;
   }
 `;
 
@@ -1719,7 +1717,6 @@ const ContinueBtn = styled(CallActionBtn)`
   position: relative;
   transition: 0.2s ease-in-out;
   top: ${({ $top }) => $top};
-
 
   @media (min-width: ${BREAKPOINTS.tablet + 1}px) {
     &:hover {
@@ -1744,7 +1741,7 @@ const ContinueBtn = styled(CallActionBtn)`
     align-self: stretch;
     align-items: center;
     transition: 0.3s ease;
-    background: none !important;
+    background: none;
     color: var(--block1-text-primary);
     font-size: 21px;
     border-radius: 0 0 45px 45px;
@@ -1756,8 +1753,16 @@ const ContinueBtn = styled(CallActionBtn)`
   }
 
   @media (max-width: ${BREAKPOINTS.mob}px) {
-      top: 74%;
-      height: 45px;
+    top: 70%;
+    height: 20px;
+    background: ${({ $bg }) => $bg};
+    border-radius: 67px;
+    font-size: 18px;
+    color: #fff;
+    padding: 20px;
+    & > span {
+      padding-left: 0px;
+    }
   }
 `;
 
