@@ -1759,7 +1759,7 @@ const ContinueBtn = styled(CallActionBtn)`
     border-radius: 67px;
     font-size: 18px;
     color: #fff;
-    padding: 20px;
+    padding: 15px;
     & > span {
       padding-left: 0px;
     }

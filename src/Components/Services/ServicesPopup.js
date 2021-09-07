@@ -41,7 +41,7 @@ const ServicesPopupContent = ({ closeHandler }) => {
       deskXl: { t1: "1200px" },
       deskM: { t1: "1200px" },
       tablet: { t1: "700px" },
-      mob: { t1: "325px" },
+      mob: { t1: "375px" },
     };
   };
 
@@ -213,7 +213,7 @@ const PopupContainer = styled.div`
 `;
 const Header = styled.div`
   text-align: center;
-  ${'' /* transition: 0.2s ease; */}
+  ${"" /* transition: 0.2s ease; */}
 
   h2 {
     padding: 0;
@@ -267,7 +267,7 @@ const Header = styled.div`
 
     h4 {
       font-size: 20px;
-	  margin-bottom:10px;
+      margin-bottom: 10px;
     }
   }
 `;
@@ -285,7 +285,7 @@ const LogoIcon = styled(LogoIconSVG)`
   height: 64px;
   @media (max-width: ${BREAKPOINTS.mob}px) {
     height: 34px;
-	width: 40px;
+    width: 40px;
   }
 `;
 
@@ -330,6 +330,7 @@ const ServicesTextContainer = styled.div`
   margin: 56px auto 50px;
   box-sizing: border-box;
 
+  
   .grid-left {
     margin-right: 10px;
   }
@@ -361,7 +362,7 @@ const ServicesTextContainer = styled.div`
     max-width: ${({ $boxMaxWidth }) => $boxMaxWidth.mob.t1};
     line-height: "27px";
     grid-template-columns: repeat(1, 1fr);
-	margin-top:30px;
+    margin-top: 30px;
     .grid-left {
       margin-right: 0px;
     }
@@ -390,8 +391,9 @@ const ServicesTextItem = styled.div`
   transition: transform 1s cubic-bezier(0.5, 1, 0.89, 1);
   transition-delay: 0.25s;
   margin-bottom: 20px;
-  border: 1px solid #465e4f;
+  ${'' /* border: 1px solid #465e4f; */}
   border-radius: 18px;
+  background: #222224f0;
 
   img {
     max-height: 400px;
@@ -424,13 +426,15 @@ const ServicesTextItem = styled.div`
     margin: 10px 20px 20px;
     max-width: 550px;
     text-align: left;
-    color: #a1a1a6;
+    color: #e6e6eb;
     font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica",
       "Arial", sans-serif;
   }
 
   @media (max-width: ${BREAKPOINTS.mob}px) {
-    h5 {font-size: 20px;}
+    h5 {
+      font-size: 20px;
+    }
   }
 `;
 
