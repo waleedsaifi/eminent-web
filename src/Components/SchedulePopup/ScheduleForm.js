@@ -138,12 +138,11 @@ const ScheduleFormContent = ({
 
       sendEmail(newData);
       setScheduleForm(newData);
-
     }
 
     if (closeHandlerPopup) {
       closeHandlerPopup();
-    }else{
+    } else {
       document.querySelectorAll("[data-id='2']")[0].click();
     }
   };
@@ -436,7 +435,9 @@ const StyledTextarea = styled.textarea`
     ${({ $color }) => ($color ? $color : "var(--block1-text-secondary)")};
   box-sizing: border-box;
   border-radius: 3px;
-  ${"" /* color: ${({ $color }) => ($color ? $color : "var(--block1-text-primary)")}; */}
+  ${
+    "" /* color: ${({ $color }) => ($color ? $color : "var(--block1-text-primary)")}; */
+  }
   color: ${({ $color }) => ($color ? $color : "var(--block1-text-secondary)")};
   font-style: normal;
   font-weight: normal;
@@ -466,19 +467,22 @@ const ScheduleSubmitBtn = styled.button`
   border: none;
   font-style: normal;
   font-weight: normal;
-  font-size: 28px;
+  font-size: 18px;
   cursor: pointer;
   background: transparent;
-  color: ${({ $color }) => ($color ? $color : "var(--block1-text-primary)")};
+  background: #678F7D;
+  color: #ffffff;
   text-align: center;
   letter-spacing: 0.15em;
   top: -5px;
   left: 50%;
   transform: translate(-50%);
   margin-bottom: 1rem;
-  padding: 1px 0;
+  padding: 10px 20px;
+  border-radius: 67px;
+  text-transform: uppercase;
 
-  &:after {
+  ${'' /* &:after {
     position: absolute;
     content: "";
     width: 97%;
@@ -489,7 +493,7 @@ const ScheduleSubmitBtn = styled.button`
       $color ? $color : "var(--block1-text-primary)"};
     transition: 0.5s ease;
     opacity: 1;
-  }
+  } */}
 
   &:focus {
     outline: none;

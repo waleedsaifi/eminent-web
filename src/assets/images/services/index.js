@@ -5,6 +5,7 @@ import TwoWorkingTogetherIMG from "./two_working_together.jpg";
 import WireframingCollaborationIMG from "./wireframing_collaboration.jpg";
 import WomanWorkerIMG from "./woman_worker.jpg";
 import WorkersIMG from "./workers.jpg";
+import CloudIMG from "./cloud.jpg";
 
 export {
   TeamCollabIMG,
@@ -14,4 +15,5 @@ export {
   WireframingCollaborationIMG,
   WomanWorkerIMG,
   WorkersIMG,
+  CloudIMG,
 };

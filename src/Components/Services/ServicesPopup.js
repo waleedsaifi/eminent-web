@@ -12,6 +12,7 @@ import {
   WireframingCollaborationIMG,
   WomanWorkerIMG,
   WorkersIMG,
+  CloudIMG,
 } from "../../assets/images/services/index";
 
 const ServicesPopupContent = ({ closeHandler }) => {
@@ -73,7 +74,7 @@ const ServicesPopupContent = ({ closeHandler }) => {
           $boxMaxWidth={getBoxMaxWidth()}
         >
           <ServicesTextItem className="grid-left">
-            <img src={GroupWorkingIMG} alt="Logo" />
+            <img src={MomWorkingIMG} alt="Logo" />
             <h5>Apps and Frameworks</h5>
             <GradientKeyline />
             <h6>
@@ -95,7 +96,7 @@ const ServicesPopupContent = ({ closeHandler }) => {
             </h6>
           </ServicesTextItem>
           <ServicesTextItem className="grid-left">
-            <img src={MomWorkingIMG} alt="Logo" />
+            <img src={CloudIMG} alt="Logo" />
             <h5>DevOps and Site Reliability</h5>
             <GradientKeyline />
             <h6>

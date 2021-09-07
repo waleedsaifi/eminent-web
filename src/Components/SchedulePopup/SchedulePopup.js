@@ -100,10 +100,11 @@ const Header = styled.div`
   h2 {
     padding: 0;
     margin: 0 0 1rem;
-    font-weight: normal;
+    font-weight: bold;
     font-size: 32px;
     letter-spacing: 0.1em;
     color: ${({ $color }) => $color};
+    text-transform: uppercase;
   }
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {
