@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import anime from "animejs/lib/anime.es.js";
 import { useDispatch } from "react-redux";
-import { BREAKPOINTS } from "../../constants/constants";
+// import { BREAKPOINTS } from "../../constants/constants";
 import { ReactComponent as Logo } from "../../assets/images/logo.svg";
 import { ReactComponent as RightBtnSvg } from "../../assets/images/rightBtn.svg";
 import {
@@ -29,7 +29,6 @@ import {
 } from "../../store/actions/actionCreator";
 import ReactGA from "react-ga";
 
-
 const MenuContent = ({
   showPopup,
   menuHandler,
@@ -38,6 +37,11 @@ const MenuContent = ({
   currentSection,
   currentTheme,
 }) => {
+  const BREAKPOINTS = {
+    mob: 767,
+    tablet: 4400,
+    xl: 4400,
+  };
   let location = useLocation();
 
   const [isMenuOpen, setMenuOpen] = useState(true);
@@ -55,7 +59,7 @@ const MenuContent = ({
   const dispatch = useDispatch();
   const trackingId = "G-60F2EVTPDX"; // Replace with your Google Analytics tracking ID
   ReactGA.initialize(trackingId);
-  
+
   const menuResizer = () => {
     if (window.innerWidth > BREAKPOINTS.tablet) {
       setMenuOpen(true);
@@ -367,7 +371,7 @@ const MenuContent = ({
           ref={introText}
           $color={currentTheme?.textColor}
         >
-         Inspiring Excellence
+          Inspiring Excellence
           {/* <audio
             src="https://s3.amazonaws.com/www.eminentfuture.com/Regency+intro.mp3"
             controls
@@ -467,6 +471,12 @@ const MenuContent = ({
 
 export default MenuContent;
 
+const BREAKPOINTS = {
+  mob: 767,
+  tablet: 4400,
+  xl: 4400,
+};
+
 const IntroText = styled.div`
   opacity: 0;
   position: absolute;
@@ -521,7 +531,7 @@ const MenuBurger = styled.div`
 const Menu = styled.div`
   position: fixed;
   top: 0;
-  ${'' /* left: 50vmax; */}
+  ${"" /* left: 50vmax; */}
   left: 50%;
   transform: translateX(-50%);
   display: grid;
@@ -531,7 +541,8 @@ const Menu = styled.div`
   z-index: 10;
   backdrop-filter: blur(${({ $blur }) => $blur}px);
 
-  ${'' /* @media (max-width: 1650px) {
+  ${
+    "" /* @media (max-width: 1650px) {
     left: 55.5vmax;
   }
   @media (max-width: 1550px) {
@@ -539,7 +550,8 @@ const Menu = styled.div`
   }
   @media (max-width: 1450px) {
     left: 57vmax;
-  } */}
+  } */
+  }
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {
     grid-template-columns: 1fr;
@@ -588,9 +600,12 @@ const MenuLogoBtn = styled.div`
     width: 124px;
     height: 24px;
     margin-top: 20px;
-    margin-left: ${({ $open }) => ($open ? "20px" : "0")};
+    margin-left: ${({ $open }) => ($open ? "20px" : "60px")};
     align-self: start;
     transition: 0.3s ease;
+  }
+  @media (max-width: ${BREAKPOINTS.mob}px) {
+    margin-left: ${({ $open }) => ($open ? "0px" : "0")};
   }
 `;
 const LogoSvg = styled(Logo)`
@@ -795,13 +810,15 @@ none `};
       padding-left: 21px;
     }
 
-    ${"" /* border-bottom: none;
+    ${
+      "" /* border-bottom: none;
     padding: 0px;
     display: ${({ $show, $open }) =>
       $open && $show
         ? `
 block `
         : `
-none `}; */}
+none `}; */
+    }
   }
 `;
