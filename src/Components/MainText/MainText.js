@@ -30,6 +30,7 @@ import {
 } from "../../helpers/animations";
 import ScheduleForm from "../SchedulePopup/ScheduleForm";
 import ServicesPopupContent from "../Services/ServicesPopup";
+import ProjectsPopupContent from "../Projects/ProjectsPopup";
 
 const App = ({
   showPopup,
@@ -53,6 +54,10 @@ const App = ({
 
   const onServicesPopUpHandler = (e) => {
     showPopup("services");
+  };
+
+  const onProjectsPopUpHandler = (e) => {
+    showPopup("projects");
   };
 
   useEffect(() => {
@@ -358,7 +363,7 @@ const App = ({
       case "home": {
         switch (step) {
           case 0:
-            return ["80px", "36px", "32px"];
+            return ["70px", "36px", "32px"];
           case 1:
           case 2:
           case 5:
@@ -937,20 +942,29 @@ const App = ({
                 {currentSection.fields[currentStep].fields.subText}
               </MainTextSecond>
             )}
-            {}
-            {/*   */}
-            {currentSection.fields[currentStep].fields.mainText &&
-              currentStep == 5 && (
-                <ScheduleBtn
-                  $bg={currentTheme.bgScheduleBtn}
-                  $color={currentTheme.menuBtnColor}
-                  onClick={onScheduleClickHandler}
-                  $lineBg={currentTheme.bgScheduleBtn}
+            {currentSection.fields[currentStep].fields.mainText && (
+              <ContinueBtn
+                className="animeCalltoAction"
+                onClick={onProjectsPopUpHandler}
+                $top={"10%"}
+                $color={currentTheme?.menuBtnColor}
+                $bg={currentTheme?.bgScheduleBtn}
+              >
+                <ContinueBtnBorder
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlnsXlink="http://www.w3.org/1999/xlink"
+                  aria-labelledby="VIEW OUR CONTRACTS"
+                  viewBox="0 0 226 43"
+                  $color={currentTheme?.bgScheduleBtn}
+                  id="MyButton"
+                  fill="none"
                 >
-                  <ScheduleBtnBorder $color={currentTheme.bgScheduleBtn} />
-                  <span> REQUEST INFO </span>
-                </ScheduleBtn>
-              )}
+                  <title>VIEW OUR CONTRACTS</title>
+                  <rect x="0.5" y="0.5" width="225" height="42" rx="21" />
+                </ContinueBtnBorder>
+                <span> VIEW OUR CONTRACTS </span>{" "}
+              </ContinueBtn>
+            )}
           </>
         );
       case 2:
@@ -989,15 +1003,27 @@ const App = ({
             )}
             {currentSection.fields[currentStep].fields.mainText &&
               currentStep !== 5 && (
-                <Continue
-                  className="anime"
-                  onClick={getNextStep}
-                  $top={getContinueText(currentStep)}
-                  $color={currentTheme.textColor}
+                <ContinueBtn
+                  className="animeCalltoAction"
+                  onClick={onProjectsPopUpHandler}
+                  $top={"35%"}
+                  $color={currentTheme?.menuBtnColor}
+                  $bg={currentTheme?.bgScheduleBtn}
                 >
-                  DISCOVER MORE
-                  <ContinueArrow />
-                </Continue>
+                  <ContinueBtnBorder
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlnsXlink="http://www.w3.org/1999/xlink"
+                    aria-labelledby="VIEW OUR PROJECTS"
+                    viewBox="0 0 226 43"
+                    $color={currentTheme?.bgScheduleBtn}
+                    id="MyButton"
+                    fill="none"
+                  >
+                    <title>VIEW OUR PROJECTS</title>
+                    <rect x="0.5" y="0.5" width="225" height="42" rx="21" />
+                  </ContinueBtnBorder>
+                  <span> VIEW OUR PROJECTS </span>{" "}
+                </ContinueBtn>
               )}
             {currentSection.fields[currentStep].fields.mainText &&
               currentStep == 5 && (
@@ -1587,23 +1613,29 @@ const MainText = styled.div`
   }
 `;
 const MainTextSecond = styled(MainText)`
-  ${'' /* max-width: ${({ $boxMaxWidth }) =>
-    $boxMaxWidth.deskXl.t2 ? $boxMaxWidth.deskXl.t2 : "80%"}; */}
-    max-width:60%;
+  ${
+    "" /* max-width: ${({ $boxMaxWidth }) =>
+    $boxMaxWidth.deskXl.t2 ? $boxMaxWidth.deskXl.t2 : "80%"}; */
+  }
+  max-width:60%;
   line-height: ${({ $lineHeight }) =>
     $lineHeight ? $lineHeight[0] : ($fontSize) => $fontSize[0]};
- 
+
   @media (max-width: ${BREAKPOINTS.xl}px) {
-    ${'' /* max-width: ${({ $boxMaxWidth }) =>
-      $boxMaxWidth.deskM ? $boxMaxWidth.deskM.t2 : "80%"}; */}
-       max-width:60%;
+    ${
+      "" /* max-width: ${({ $boxMaxWidth }) =>
+      $boxMaxWidth.deskM ? $boxMaxWidth.deskM.t2 : "80%"}; */
+    }
+    max-width:60%;
     line-height: ${({ $lineHeight }) =>
       $lineHeight ? $lineHeight[0] : ($fontSize) => $fontSize[0]};
   }
   @media (max-width: ${BREAKPOINTS.tablet}px) {
-    ${'' /* max-width: ${({ $boxMaxWidth }) =>
-      $boxMaxWidth.tablet ? $boxMaxWidth.tablet.t2 : "80%"}; */}
-       max-width:60%;
+    ${
+      "" /* max-width: ${({ $boxMaxWidth }) =>
+      $boxMaxWidth.tablet ? $boxMaxWidth.tablet.t2 : "80%"}; */
+    }
+    max-width:60%;
     line-height: ${({ $lineHeight }) =>
       $lineHeight ? $lineHeight[1] : "42px"};
   }

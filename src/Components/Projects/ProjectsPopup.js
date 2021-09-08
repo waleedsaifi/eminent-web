@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { BREAKPOINTS } from "../../constants/constants";
 import { ReactComponent as CrossSvg } from "../../assets/images/cross.svg";
 import { useSelector } from "react-redux";
@@ -15,23 +15,21 @@ import {
   CloudIMG,
 } from "../../assets/images/services/index";
 
-const ServicesPopupContent = ({ closeHandler, showPopup }) => {
+const ProjectsPopupContent = ({ closeHandler }) => {
   const wrapper = useRef(null);
   const header = useRef(null);
   const [isHeaderSmall, setIsHeaderSmall] = useState(false);
   const { currentTheme } = useSelector((state) => state.state);
 
+  const onScheduleClickHandler = (e) => {
+    closeHandlerPopup();
+    document.getElementById("ScheduleBtn").click();
+  };
+
   const closeHandlerPopup = () => {
     closeHandler();
     window.addEventListener("wheel", popupWheelHandler);
   };
-
-  //   const onScheduleClickHandler = () => {
-  //     if (window.innerWidth <= BREAKPOINTS.tablet) {
-  //       setMenuOpen(false);
-  //     }
-  //     showPopup("schedule");
-  //   };
 
   useEffect(() => {
     window.addEventListener("wheel", popupWheelHandler);
@@ -71,8 +69,8 @@ const ServicesPopupContent = ({ closeHandler, showPopup }) => {
           </CloseCross>{" "}
           <HeaderTextContainer>
             <LogoIcon />
-            <h2> SERVICES </h2>
-            <h4> Just a few of the ways we can help you make a difference. </h4>
+            <h2> CONTRACTS </h2>
+            <h4> We are a small team focused on solving big problems.</h4>
           </HeaderTextContainer>
         </Header>
         <ServicesTextContainer
@@ -84,9 +82,72 @@ const ServicesPopupContent = ({ closeHandler, showPopup }) => {
           $letterSpacing={"0.07em"}
           $boxMaxWidth={getBoxMaxWidth()}
         >
-          <ServicesTextItem className="grid-1 grid-left">
-            <ServiceCardContent cardImage={MomWorkingIMG} />
-            <h5>Apps and Frameworks</h5>
+          <ServicesTextItem className="grid-left">
+            {/* <img src={MomWorkingIMG} alt="Logo" /> */}
+            <h5>
+              Helping the Pentagon recruit diverse talent and close the
+              technology skills gap
+            </h5>
+            <GradientKeyline />
+
+            <p>$6 Million - Remote Team - 8(a) Sole Source</p>
+            {/* <h6>
+              Our Apps and Frameworks people create every application. Areas of
+              work include Application Development, API Design, User Interface
+              Design, Networking, Application Protocols, Framework Development,
+              and Performance Engineering.
+            </h6> */}
+          </ServicesTextItem>
+          <ServicesTextItem className="grid-right">
+            {/* <img src={TeamCollabIMG} alt="Logo" /> */}
+            <h5>
+              Improving Air Force and Space Force IT systems and software using
+              modern technology
+            </h5>
+            <GradientKeyline />
+            <p>$13.5 Billion - Remote Team - 8(a) Joint Venture</p>
+            {/* <h6>
+              Our Apps and Frameworks people create every application. Areas of
+              work include Application Development, API Design, User Interface
+              Design, Networking, Application Protocols, Framework Development,
+              and Performance Engineering.
+            </h6> */}
+          </ServicesTextItem>
+          <ServicesTextItem className="grid-left">
+            {/* <img src={CloudIMG} alt="Logo" /> */}
+            <h5>
+              Using the Cloud to develop the $25 billion diplomatic engagement
+              budget
+            </h5>
+            <GradientKeyline />
+            <p>$2 Million - Remote Team - 8(a) Subcontract</p>
+
+            {/* <h6>
+              Our Apps and Frameworks people create every application. Areas of
+              work include Application Development, API Design, User Interface
+              Design, Networking, Application Protocols, Framework Development,
+              and Performance Engineering.
+            </h6> */}
+          </ServicesTextItem>
+          <ServicesTextItem className="grid-right">
+            {/* <img src={TwoWorkingTogetherIMG} alt="Logo" /> */}
+            <h5>
+              Empowering Walter Reed National Military Medical Center Wounded
+              Warriors
+            </h5>
+            <GradientKeyline />
+            <p>$4.5 Million - Remote Team - 8(a) Sole Source</p>
+
+            {/* <h6>
+              Our Apps and Frameworks people create every application. Areas of
+              work include Application Development, API Design, User Interface
+              Design, Networking, Application Protocols, Framework Development,
+              and Performance Engineering.
+            </h6> */}
+          </ServicesTextItem>
+          {/* <ServicesTextItem className="grid-left">
+            <img src={WireframingCollaborationIMG} alt="Logo" />
+            <h5>Information Systems and Technology</h5>
             <GradientKeyline />
             <h6>
               Our Apps and Frameworks people create every application. Areas of
@@ -96,123 +157,67 @@ const ServicesPopupContent = ({ closeHandler, showPopup }) => {
             </h6>
           </ServicesTextItem>
           <ServicesTextItem className="grid-right">
-            <ServiceCardContent cardImage={TeamCollabIMG} />
-            <h5>Cloud and Infrastructure</h5>
-            <GradientKeyline />
-            <h6>
-              We are prepared to jump right in when with a team capable of
-              designing, developing, and deploying high-performance systems to
-              handle millions of queries every day. Areas of work include Big
-              Data, Server-Side Software Engineering, Database, and Data
-              Engineering.
-            </h6>
-          </ServicesTextItem>
-          <ServicesTextItem className="grid-left">
-            <ServiceCardContent cardImage={CloudIMG} />
-            <h5>DevOps and Site Reliability</h5>
-            <GradientKeyline />
-            <h6>
-              By designing and building a continuous integration and delivery
-              system, we’ll ensure the high availability, scalability, and
-              security of a huge infrastructure every day. Areas of work include
-              Site Reliability Engineering, Systems Engineering, Network
-              Engineering, Performance Engineering, Systems Administration, and
-              Hadoop Administration.
-            </h6>
-          </ServicesTextItem>
-          <ServicesTextItem className="grid-right">
-            <ServiceCardContent cardImage={TwoWorkingTogetherIMG} />
-            <h5>Project Management</h5>
-            <GradientKeyline />
-            <h6>
-              We take ownership of projects by overseeing every aspect, from
-              start to finish. Areas of work include Technical Project
-              Management, Evangelism, Metrics, Analytics, and Program
-              Management.
-            </h6>
-          </ServicesTextItem>
-          <ServicesTextItem className="grid-left">
-            <ServiceCardContent cardImage={WireframingCollaborationIMG} />
-            <h5>Information Systems and Technology</h5>
-            <GradientKeyline />
-            <h6>
-              You can depend on us, to help design and manage complex systems
-              that run our country such as high traffic public-facing web platforms,
-              as well as manufacturing, logistics, operations, and facilities.
-              Our team develops and manages data centers that support users all
-              over the globe. Areas of work include Web Application Engineering,
-              Back-End Engineering, Mobile Software Engineering, Data Science
-              and Applied Machine Learning, Software Quality Engineering,
-              Security Engineering, Network Engineering, Content Delivery, Data
-              Center Operations, and Package Support for SAP and Oracle.
-            </h6>
-          </ServicesTextItem>
-          <ServicesTextItem className="grid-right">
-            <ServiceCardContent cardImage={WomanWorkerIMG} />
+            <img src={WomanWorkerIMG} alt="Logo" />
             <h5>Machine Learning and AI</h5>
             <GradientKeyline />
             <h6>
-              We help develop algorithms that learn from data to create the most
-              insightful options for the best outcomes. We do it with the help
-              of privacy experts to ensure users’ privacy is respected. Areas of
-              work include Artificial Intelligence, Computer Vision, Data
-              Science, and Deep Learning.
+              Our Apps and Frameworks people create every application. Areas of
+              work include Application Development, API Design, User Interface
+              Design, Networking, Application Protocols, Framework Development,
+              and Performance Engineering.
             </h6>
           </ServicesTextItem>
           <ServicesTextItem className="grid-left">
-            <ServiceCardContent cardImage={WorkersIMG} />
+            <img src={WorkersIMG} alt="Logo" />
             <h5>Defi and Blockchain</h5>
             <GradientKeyline />
             <h6>
-              All though the technology is still not widely adopted, we've come
-              to take Blockchain and Cryptocurrency seriously. We are proactivly
-              engaged in the community to see what innovations we can advance as
-              we create customer experiences that are seamless. Areas of work
-              include Blockchain Solutions, Smart Contracts, Wallet Development,
-              DAPP Development and NFTs.
+              Our Apps and Frameworks people create every application. Areas of
+              work include Application Development, API Design, User Interface
+              Design, Networking, Application Protocols, Framework Development,
+              and Performance Engineering.
             </h6>
           </ServicesTextItem>
           <ServicesTextItem className="grid-right">
-            <ServiceCardContent cardImage={GroupWorkingIMG} />
-            <h5>Quality, Automation, and Tools</h5>
+            <img src={GroupWorkingIMG} alt="Logo" />
+            <h5>Software Quality, Automation, and Tools</h5>
             <GradientKeyline />
             <h6>
-              We work to ensure that your software and services run as smoothly
-              as each was designed to. Areas of work include Quality Assurance
-              Engineering, Integration Engineering, Software Developer in Test
-              Engineering, Applications Engineering, Software Compatibility
-              Engineering, Automation Engineering, and Tools Development.
+              Our Apps and Frameworks people create every application. Areas of
+              work include Application Development, API Design, User Interface
+              Design, Networking, Application Protocols, Framework Development,
+              and Performance Engineering.
             </h6>
-          </ServicesTextItem>
+          </ServicesTextItem> */}
         </ServicesTextContainer>
+        <ContinueBtn
+          className="animeCalltoAction"
+          onClick={onScheduleClickHandler}
+          $top={"35%"}
+          $color={currentTheme?.menuBtnColor}
+          $bg={currentTheme?.bgScheduleBtn}
+        >
+          <ContinueBtnBorder
+            xmlns="http://www.w3.org/2000/svg"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+            aria-labelledby="REQUEST INFORMATION"
+            viewBox="0 0 226 43"
+            $color={currentTheme?.bgScheduleBtn}
+            id="MyButton"
+            fill="none"
+          >
+            <title>REQUEST INFORMATION</title>
+            <rect x="0.5" y="0.5" width="225" height="42" rx="21" />
+          </ContinueBtnBorder>
+          <span> REQUEST INFO </span>{" "}
+        </ContinueBtn>
       </PopupContainer>
     </Wrapper>
   );
 };
 
-export default ServicesPopupContent;
+export default ProjectsPopupContent;
 
-const onScheduleClickHandler = (e) => {
-  document.getElementById("ScheduleBtn").click();
-};
-
-const ServiceCardContent = (cardImage) => {
-  const src = Object.values(cardImage);
-  return (
-    <ServiceCard className="card-1">
-      <img src={src} alt="Logo" />
-      <div className="content">
-        <h3>Need a Quote?</h3>
-        <h4>Let's work together.</h4>
-        <a onClick={onScheduleClickHandler} className="btn">
-          REQUEST QUOTE
-        </a>
-      </div>
-      <div className="overlay red"></div>
-      <div className="overlay blue"></div>
-    </ServiceCard>
-  );
-};
 const mobBreakpoint = 900;
 const Wrapper = styled.div`
   position: absolute;
@@ -421,15 +426,18 @@ const ServicesTextItem = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  min-height: 530px;
+  min-height: 200px;
+  padding: 40px;
   height: auto;
   box-sizing: border-box;
   overflow: hidden;
+  ${"" /* box-shadow: 4px 12px 40px 6px rgb(156 216 196 / 10%); */}
   transition: transform 1s cubic-bezier(0.5, 1, 0.89, 1);
   transition-delay: 0.25s;
   margin-bottom: 20px;
+  ${"" /* border: 1px solid #465e4f; */}
   border-radius: 18px;
-  background: #08141d;
+  background: #08141df0;
 
   img {
     max-height: 400px;
@@ -438,21 +446,27 @@ const ServicesTextItem = styled.div`
     object-fit: cover;
     object-position: 20% 10%;
   }
+  p {
+    margin-bottom: 0px;
+    font-size: 17px;
+    color: #a1a1a6;
+  }
+
   h5 {
     font-size: 26px;
     margin-top: 30px;
     margin-bottom: 10px;
     line-height: 1.1em;
     letter-spacing: 0.03em;
-    text-align: left;
+    text-align: center;
     padding: 0px 20px 0px;
     color: #fff;
     display: inline-block;
     color: transparent;
     -webkit-background-clip: text;
-    background-image: linear-gradient(to right, #999999, #ffffff);
+    ${"" /* background-image: linear-gradient(to right, #77a596, #9cd8c4); */}
+    background-image: linear-gradient(to right,#999999,#ffffff);
   }
-
   h6 {
     font-size: 17px;
     line-height: 1.19048;
@@ -473,117 +487,115 @@ const ServicesTextItem = styled.div`
   }
 `;
 
-const ServiceCard = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  min-height: 350px;
-  height: auto;
-  box-sizing: border-box;
-  overflow: hidden;
-
-  h3 {
-    font-size: 2rem;
-    color: #fff;
-    margin-bottom: 0.7rem;
-    margin-top: 0.7rem;
-	text-transform: uppercase;
-  }
-
-  h4 {
-    font-size: 1.3rem;
-    color: #fff;
-    margin-bottom: 1.5rem;
-    line-height: 1.3;
-  }
-
-  .btn {
-    text-decoration: none;
-    color: #40464c;
-    background: #fff;
-    padding: 15px 25px;
-    border-radius: 31px;
-    font-weight: 500;
-    margin-top: 1.2rem;
-  }
-
-  .btn:hover {
-    background: #081119;
-    color: #fff;
-  }
-
-  .content {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 1;
-    transform: translateY(100px);
-    opacity: 0;
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-    transition-delay: 0.3s;
-    padding: 0;
-    text-align: center;
-  }
-
-  .overlay {
-    position: absolute;
-    width: 0px;
-    height: 0px;
-    transform-origin: 50% 50%;
-    mix-blend-mode: normal;
-    border-radius: 50%;
-    -webkit-transition: all 0.4s cubic-bezier(0.55, 0.055, 0.675, 0.19);
-    transition: all 0.4s cubic-bezier(0.55, 0.055, 0.675, 0.19);
-    opacity: 0.8;
-  }
-
-  .red {
-    width: 1400px;
-    height: 1400px;
-    background-color: #465e4f;
-    left: calc(0% - 1400px);
-    top: calc(50% - 700px);
-  }
-
-  .blue {
-    width: 1400px;
-    height: 1400px;
-    background-color: #7dab9e;
-    left: calc(100%);
-    top: calc(50% - 700px);
-  }
-
-  &:hover .red {
-    width: 1400px;
-    height: 1400px;
-    left: calc(0% - 700px);
-    top: calc(50% - 700px);
-  }
-
-  &:hover .blue {
-    width: 1400px;
-    height: 1400px;
-    left: calc(100% - 700px);
-    top: calc(50% - 700px);
-  }
-
-  &:hover .content {
-    transform: translateY(0);
-    opacity: 1;
-  }
-`;
-
 const GradientKeyline = styled.div`
   align-self: flex-end;
   width: 93%;
   margin: 10px auto 10px;
   height: 2px;
   background-image: linear-gradient(to right, #77a596, #9cd8c4);
-  display: none;
+`;
+
+const BtnAnimation = keyframes`
+	0%   { stroke-dashoffset: 1000;}
+	100% { stroke-dashoffset: 0; }
+`;
+
+const CallActionBtn = styled.div`
+  color: ${({ $color }) => $color};
+  font-size: 15px;
+  letter-spacing: 3px;
+  text-decoration: none;
+  justify-self: center;
+  position: relative;
+  display: block;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+
+  .letter {
+    display: inline-block;
+    line-height: 1em;
+    opacity: 0;
+  }
+`;
+
+const ContinueBtnBorder = styled.svg`
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 247px;
+  height: 100%;
+  opacity: 1;
+  stroke: ${({ $color }) => $color};
+  stroke-dashoffset: 1000;
+  stroke-dasharray: 1000;
+  stroke-width: 2px;
+
+  @media (max-width: ${BREAKPOINTS.mob}px) {
+    display: none;
+  }
+`;
+
+const ContinueBtn = styled(CallActionBtn)`
+  opacity: 1;
+  background: ${({ $bg }) => $bg};
+  padding: 13px 10px;
+  border-radius: 67px;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  position: relative;
+  transition: 0.2s ease-in-out;
+  top: ${({ $top }) => $top};
+  width: 227px;
+  margin: 0px auto;
+  text-align: center;
+  @media (min-width: ${BREAKPOINTS.tablet + 1}px) {
+    &:hover {
+      background: none;
+
+      ${ContinueBtnBorder} {
+        animation: ${BtnAnimation} 0.7s ease-in;
+        animation-direction: normal;
+        stroke: ${({ $bg }) => $bg};
+        stroke-dashoffset: 0;
+      }
+    }
+    &:active {
+      background: ${({ $bg }) => $bg};
+    }
+  }
+
+  @media (max-width: ${BREAKPOINTS.tablet}px) {
+    top: 70%;
+    opacity: 1;
+    height: 40px;
+    display: block;
+    align-self: stretch;
+    align-items: center;
+    transition: 0.3s ease;
+    background: none;
+    color: var(--block1-text-primary);
+    font-size: 21px;
+    border-radius: 0 0 45px 45px;
+    padding: 0px;
+    border-bottom: none;
+    & > span {
+      padding-left: 21px;
+    }
+  }
+
+  @media (max-width: ${BREAKPOINTS.mob}px) {
+    top: 70%;
+    height: 20px;
+    background: ${({ $bg }) => $bg};
+    border-radius: 67px;
+    font-size: 18px;
+    color: #fff;
+    padding: 15px;
+    & > span {
+      padding-left: 0px;
+    }
+  }
 `;

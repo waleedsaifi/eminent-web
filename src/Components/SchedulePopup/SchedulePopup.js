@@ -27,7 +27,7 @@ const SchedulePopupContent = ({ closeHandler }) => {
   };
 
   return (
-    <Wrapper ref={wrapper} $bg={currentTheme?.schedulePopupBg[0]}>
+    <Wrapper ref={wrapper} $bg={currentTheme?.schedulePopupBg[0]} className="popup">
       <PopupContainer $border={currentTheme?.schedulePopupTextColor}>
         <Header
           ref={header}

@@ -7,6 +7,7 @@ import FooterContent from "./../Footer/Footer";
 import HotspotsContainer from "../Hotspots/HotspotsContainer";
 import SchedulePopup from "../SchedulePopup/SchedulePopup";
 import ServicesPopup from "../Services/ServicesPopup";
+import ProjectsPopup from "../Projects/ProjectsPopup";
 import { isMobileOnly } from "react-device-detect";
 import { useDispatch, useSelector } from "react-redux";
 import { addDevGUIConfig } from "../../helpers/dev.helpers";
@@ -227,6 +228,12 @@ const ContainerContent = (currentData) => {
     setActivePopup(null);
   };
 
+  const closeProjectsPopup = () => {
+    mainContainer.current.style.overflowY = "auto";
+    setPopupOpen(false);
+    setActivePopup(null);
+  };
+
   const getBlur = () => {
     switch (currentSectionTitle) {
       case "home": {
@@ -355,10 +362,12 @@ const ContainerContent = (currentData) => {
     // e.preventDefault();              // this one is the key
     e.stopPropagation();
 
-    if (e.deltaY > 0) {
-      getNextStep(currentStep + 1);
-    } else if (e.deltaY < 0) {
-      getNextStep(currentStep - 1);
+    if (document.getElementsByClassName("popup").length < 1) {
+      if (e.deltaY > 0) {
+        getNextStep(currentStep + 1);
+      } else if (e.deltaY < 0) {
+        getNextStep(currentStep - 1);
+      }
     }
   };
 
@@ -395,6 +404,8 @@ const ContainerContent = (currentData) => {
         return <SchedulePopup closeHandler={closeSchedulePopup} />;
       case "services":
         return <ServicesPopup closeHandler={closeServicesPopup} />;
+      case "projects":
+        return <ProjectsPopup closeHandler={closeProjectsPopup} />;
       default:
         break;
     }
