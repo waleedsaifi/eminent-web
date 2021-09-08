@@ -594,13 +594,13 @@ const MenuLogoBtn = styled.div`
   width: 175px;
   height: 34px;
   justify-self: center;
-
+  margin-left: ${({ $open }) => ($open ? "20px" : "60px")};
   @media (max-width: ${BREAKPOINTS.tablet}px) {
     grid-row-start: 1;
     width: 124px;
     height: 24px;
     margin-top: 20px;
-    margin-left: ${({ $open }) => ($open ? "20px" : "60px")};
+    margin-left: ${({ $open }) => ($open ? "20px" : "0px")};
     align-self: start;
     transition: 0.3s ease;
   }
@@ -808,17 +808,6 @@ none `};
     border-bottom: none;
     & > span {
       padding-left: 21px;
-    }
-
-    ${
-      "" /* border-bottom: none;
-    padding: 0px;
-    display: ${({ $show, $open }) =>
-      $open && $show
-        ? `
-block `
-        : `
-none `}; */
     }
   }
 `;
