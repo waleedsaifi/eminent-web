@@ -1,19 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import styled, { css, keyframes } from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { BREAKPOINTS } from "../../constants/constants";
 import { ReactComponent as CrossSvg } from "../../assets/images/cross.svg";
 import { useSelector } from "react-redux";
 import { ReactComponent as LogoIconSVG } from "../../assets/images/eminent-icon.svg";
-import {
-  TeamCollabIMG,
-  GroupWorkingIMG,
-  MomWorkingIMG,
-  TwoWorkingTogetherIMG,
-  WireframingCollaborationIMG,
-  WomanWorkerIMG,
-  WorkersIMG,
-  CloudIMG,
-} from "../../assets/images/services/index";
 
 const ProjectsPopupContent = ({ closeHandler }) => {
   const wrapper = useRef(null);

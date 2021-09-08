@@ -204,7 +204,7 @@ const ServiceCardContent = (cardImage) => {
       <div className="content">
         <h3>Need a Quote?</h3>
         <h4>Let's work together.</h4>
-        <a onClick={onScheduleClickHandler} className="btn">
+        <a onClick={onScheduleClickHandler} href="#" className="btn" title="Request Quote">
           REQUEST QUOTE
         </a>
       </div>
