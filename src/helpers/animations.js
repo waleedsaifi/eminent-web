@@ -374,7 +374,14 @@ export const getFadeOutMainText = (callback) => {
       opacity: [1, 0],
       duration: 10,
       complete: () => callback(),
-    });
+    })
+    .add({
+      targets: ".animeCalltoAction",
+      opacity: [1, 0],
+      duration: 10,
+      complete: () => callback(),
+    })
+    ;
 };
 
 export const getFadeInChooseStoryText = (callback) => {

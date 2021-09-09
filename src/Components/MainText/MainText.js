@@ -153,15 +153,15 @@ const App = ({
           case 0:
             return window.innerWidth < BREAKPOINTS.tablet ? ["20%"] : ["30%"];
           case 1:
-            return window.innerWidth < BREAKPOINTS.tablet ? ["45%"] : ["auto"];
+            return window.innerWidth < BREAKPOINTS.tablet ? ["30%"] : ["35%"];
           case 2:
-            return window.innerWidth < BREAKPOINTS.tablet ? ["45%"] : ["30%"];
+            return window.innerWidth < BREAKPOINTS.tablet ? ["20%"] : ["20%"];
           case 3:
             return ["15%"];
           case 4:
             return ["15%"];
           case 5:
-            return ["40%;"];
+            return window.innerWidth < BREAKPOINTS.tablet ? ["22%"] : ["30%"];
           default:
             return;
         }
@@ -204,12 +204,14 @@ const App = ({
       case "home": {
         switch (currentStep) {
           case 0:
-            return window.innerWidth < BREAKPOINTS.tablet ? ["40%"] : ["50%"];
+            return window.innerWidth < BREAKPOINTS.tablet ? ["40%"] : ["48%"];
+          case 1:
+            return window.innerWidth < BREAKPOINTS.tablet ? ["45%"] : ["45%"];
           case 3:
           case 4:
             return ["75%"];
           case 5:
-            return ["40%;"];
+            return window.innerWidth < BREAKPOINTS.tablet ? ["40%"] : ["48%"];
           default:
             return ["40%"];
         }
@@ -247,22 +249,21 @@ const App = ({
     }
   };
 
-  const getContinueText = () => {
+  const getTopContinueBtn = () => {
     switch (currentSectionTitle) {
       case "home": {
         switch (currentStep) {
           case 0:
-            return window.innerWidth < BREAKPOINTS.tablet ? ["72%"] : ["64%"];
+            return window.innerWidth < BREAKPOINTS.tablet ? ["62%"] : ["15%"];
           case 1:
-            return ["60%"];
+            return window.innerWidth < BREAKPOINTS.tablet ? ["70%"] : ["10%"];
           case 2:
-            return ["80%"];
+            return window.innerWidth < BREAKPOINTS.tablet ? ["70%"] : ["35%"];
           case 3:
-            return ["83%"];
           case 4:
-            return ["85%"];
+           return window.innerWidth < BREAKPOINTS.tablet ? ["82%"] : ["35%"];
           case 5:
-            return ["50%;"];
+            return window.innerWidth < BREAKPOINTS.tablet ? ["64%"] : ["50%"];
           default:
             return;
         }
@@ -872,8 +873,8 @@ const App = ({
                 $color={currentTheme.textColor}
                 $top={getTopSecondText(0)}
                 $step={currentStep}
-                $fontSize={["28px", "21px", "18px"]}
-                $lineHeight={["38px", "31px", "28px"]}
+                $fontSize={["40px", "28px", "18px"]}
+                $lineHeight={["50px", "31px", "28px"]}
                 $left={getLeft(0)}
                 $letterSpacing={getLetterSpacing(0)}
                 $boxMaxWidth={{
@@ -890,7 +891,7 @@ const App = ({
               <ContinueBtn
                 className="animeCalltoAction"
                 onClick={onServicesPopUpHandler}
-                $top={"15%"}
+                $top={getTopContinueBtn}
                 $color={currentTheme?.menuBtnColor}
                 $bg={currentTheme?.bgScheduleBtn}
               >
@@ -903,10 +904,10 @@ const App = ({
                   id="MyButton"
                   fill="none"
                 >
-                  <title>VIEW OUR SERVICES</title>
+                  <title>VIEW SERVICES</title>
                   <rect x="0.5" y="0.5" width="225" height="42" rx="21" />
                 </ContinueBtnBorder>
-                <span> VIEW OUR SERVICES </span>{" "}
+                <span> VIEW SERVICES </span>{" "}
               </ContinueBtn>
             )}
           </>
@@ -918,26 +919,34 @@ const App = ({
               <MainText
                 className="anime"
                 $color={currentTheme.textColor}
-                $top={getTopMainText(currentStep)}
+                $top={getTopMainText(1)}
                 $step={currentStep}
-                $fontSize={getFontSize(currentStep)}
-                $left={getLeft(currentStep)}
-                $letterSpacing={getLetterSpacing(currentStep)}
-                $boxMaxWidth={getBoxMaxWidth(currentStep)}
+                $fontSize={getFontSize(0)}
+                $left={getLeft(0)}
+                $letterSpacing={getLetterSpacing(0)}
+                $boxMaxWidth={getBoxMaxWidth(0)}
+                $textTransform={"uppercase"}
+                $fontWeight={"bold"}
               >
                 {currentSection.fields[currentStep].fields.mainText}
               </MainText>
             )}
             {currentSection.fields[currentStep].fields.subText && (
               <MainTextSecond
-                className="anime2"
+                className="anime"
                 $color={currentTheme.textColor}
-                $top={getTopSecondText(currentStep)}
+                $top={getTopSecondText(1)}
                 $step={currentStep}
-                $fontSize={getFontSize(currentStep)}
-                $left={getLeft(currentStep)}
-                $letterSpacing={getLetterSpacing(currentStep)}
-                $boxMaxWidth={getBoxMaxWidth(currentStep)}
+                $fontSize={["40px", "28px", "18px"]}
+                $lineHeight={["44px", "31px", "28px"]}
+                $left={getLeft(0)}
+                $letterSpacing={getLetterSpacing(0)}
+                $boxMaxWidth={{
+                  deskXl: { t2: "1200px" },
+                  deskM: { t2: "1200px" },
+                  tablet: { t2: "700px" },
+                  mob: { t2: "248px" },
+                }}
               >
                 {currentSection.fields[currentStep].fields.subText}
               </MainTextSecond>
@@ -946,23 +955,23 @@ const App = ({
               <ContinueBtn
                 className="animeCalltoAction"
                 onClick={onProjectsPopUpHandler}
-                $top={"10%"}
+                $top={getTopContinueBtn}
                 $color={currentTheme?.menuBtnColor}
                 $bg={currentTheme?.bgScheduleBtn}
               >
                 <ContinueBtnBorder
                   xmlns="http://www.w3.org/2000/svg"
                   xmlnsXlink="http://www.w3.org/1999/xlink"
-                  aria-labelledby="VIEW OUR CONTRACTS"
+                  aria-labelledby="VIEW CONTRACTS"
                   viewBox="0 0 226 43"
                   $color={currentTheme?.bgScheduleBtn}
                   id="MyButton"
                   fill="none"
                 >
-                  <title>VIEW OUR CONTRACTS</title>
+                  <title>VIEW CONTRACTS</title>
                   <rect x="0.5" y="0.5" width="225" height="42" rx="21" />
                 </ContinueBtnBorder>
-                <span> VIEW OUR CONTRACTS </span>{" "}
+                <span> VIEW CONTRACTS </span>{" "}
               </ContinueBtn>
             )}
           </>
@@ -970,7 +979,6 @@ const App = ({
       case 2:
       case 3:
       case 4:
-      case 5:
         return (
           <>
             {currentSection.fields[currentStep].fields.mainText && (
@@ -1006,23 +1014,23 @@ const App = ({
                 <ContinueBtn
                   className="animeCalltoAction"
                   onClick={onProjectsPopUpHandler}
-                  $top={"35%"}
                   $color={currentTheme?.menuBtnColor}
                   $bg={currentTheme?.bgScheduleBtn}
+                  $top={getTopContinueBtn}
                 >
                   <ContinueBtnBorder
                     xmlns="http://www.w3.org/2000/svg"
                     xmlnsXlink="http://www.w3.org/1999/xlink"
-                    aria-labelledby="VIEW OUR PROJECTS"
+                    aria-labelledby="VIEW PROJECTS"
                     viewBox="0 0 226 43"
                     $color={currentTheme?.bgScheduleBtn}
                     id="MyButton"
                     fill="none"
                   >
-                    <title>VIEW OUR PROJECTS</title>
+                    <title>VIEW PROJECTS</title>
                     <rect x="0.5" y="0.5" width="225" height="42" rx="21" />
                   </ContinueBtnBorder>
-                  <span> VIEW OUR PROJECTS </span>{" "}
+                  <span> VIEW PROJECTS </span>{" "}
                 </ContinueBtn>
               )}
             {currentSection.fields[currentStep].fields.mainText &&
@@ -1037,6 +1045,70 @@ const App = ({
                   <span> REQUEST INFO </span>
                 </ScheduleBtn>
               )}
+          </>
+        );
+      case 5:
+        return (
+          <>
+            {currentSection.fields[currentStep].fields.mainText && (
+              <MainText
+                className="anime"
+                $color={currentTheme.textColor}
+                $top={getTopMainText(5)}
+                $step={currentStep}
+                $fontSize={getFontSize(0)}
+                $left={getLeft(0)}
+                $letterSpacing={getLetterSpacing(0)}
+                $boxMaxWidth={getBoxMaxWidth(0)}
+                $textTransform={"uppercase"}
+                $fontWeight={"bold"}
+              >
+                {currentSection.fields[currentStep].fields.mainText}
+              </MainText>
+            )}
+            {currentSection.fields[currentStep].fields.subText && (
+              <MainTextSecond
+                className="anime"
+                $color={currentTheme.textColor}
+                $top={getTopSecondText(0)}
+                $step={currentStep}
+                $fontSize={["40px", "28px", "18px"]}
+                $lineHeight={["44px", "31px", "28px"]}
+                $left={getLeft(0)}
+                $letterSpacing={getLetterSpacing(0)}
+                $boxMaxWidth={{
+                  deskXl: { t2: "1200px" },
+                  deskM: { t2: "1200px" },
+                  tablet: { t2: "700px" },
+                  mob: { t2: "248px" },
+                }}
+              >
+                {currentSection.fields[currentStep].fields.subText}
+              </MainTextSecond>
+            )}
+            {currentSection.fields[currentStep].fields.mainText && (
+              <ContinueBtn
+                className="animeCalltoAction"
+                onClick={onScheduleClickHandler}
+                $top={getTopContinueBtn}
+                $color={currentTheme?.menuBtnColor}
+                $bg={currentTheme?.bgScheduleBtn}
+              >
+                <ContinueBtnBorder
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlnsXlink="http://www.w3.org/1999/xlink"
+                  aria-labelledby="REQUEST INFO"
+                  viewBox="0 0 211 53"
+                  $color={currentTheme?.bgScheduleBtn}
+                  id="MyButton"
+                  fill="none"
+                >
+                  <title>REQUEST INFO</title>
+                  <rect x="0.5" y="0.5" width="210" height="52" rx="21" />
+                </ContinueBtnBorder>
+                <span> REQUEST INFO </span>{" "}
+              </ContinueBtn>
+            )}
           </>
         );
       default:
@@ -1770,7 +1842,7 @@ const ContinueBtn = styled(CallActionBtn)`
   }
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {
-    top: 70%;
+    ${'' /* top: 70%; */}
     opacity: 1;
     height: 40px;
     display: block;
@@ -1789,7 +1861,7 @@ const ContinueBtn = styled(CallActionBtn)`
   }
 
   @media (max-width: ${BREAKPOINTS.mob}px) {
-    top: 70%;
+    ${'' /* top: 70%; */}
     height: 20px;
     background: ${({ $bg }) => $bg};
     border-radius: 67px;

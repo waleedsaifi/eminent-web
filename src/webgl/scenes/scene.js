@@ -200,24 +200,28 @@ class Scene {
   }
 
   startAnimation(dir = 1, noAnim = false) {
-   // this.initAnimations();
+    // this.initAnimations();
+    if (this.clips) {
+      const [anim] = this.clips;
 
-    const [anim] = this.clips;
-    if (anim) {
-      anim.timeScale = Math.abs(anim.timeScale) * dir;
-      anim.paused = false;
-      anim.play();
-    }
+      if (anim) {
+        anim.timeScale = Math.abs(anim.timeScale) * dir;
+        anim.paused = false;
+        anim.play();
+      }
 
-    if (noAnim) {
-      if (dir === 1) {
-        this.mixer.update(this.mixer.time);
-        this.mixer.update(anim._clip.duration * 2);
+      if (noAnim) {
+        if (dir === 1) {
+          this.mixer.update(this.mixer.time);
+          this.mixer.update(anim._clip.duration * 2);
+        } else {
+          this.mixer.update(this.mixer.time);
+          this.mixer.update(anim._clip.duration * 2);
+        }
       } else {
-        this.mixer.update(this.mixer.time);
-        this.mixer.update(anim._clip.duration * 2);
       }
     } else {
+      this.load();
     }
   }
 

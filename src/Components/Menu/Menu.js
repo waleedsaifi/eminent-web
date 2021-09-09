@@ -39,8 +39,10 @@ const MenuContent = ({
 }) => {
   const BREAKPOINTS = {
     mob: 767,
-    tablet: 4400,
-    xl: 4400,
+    tablet: 1180,
+    large: 1400,
+    xl: 1600,
+    xxl: 4400,
   };
   let location = useLocation();
 
@@ -181,7 +183,7 @@ const MenuContent = ({
       mobBurgerCloseAnimation(burgerChildren);
 
       menuButtons.forEach((btn, index) => {
-        if (index !== 0 && index !== 3) {
+        if (index !== 0 && index !== 4) {
           mobMenuCloseAnimation(btn);
         }
       });
@@ -200,7 +202,7 @@ const MenuContent = ({
       mobBurgerOpenAnimation(burgerChildren);
 
       menuButtons.forEach((btn, index) => {
-        if (index !== 0 && index !== 3) {
+        if (index !== 0 && index !== 4) {
           mobMenuOpenAnimation(btn);
         }
       });
@@ -208,6 +210,14 @@ const MenuContent = ({
       mobLogoOpenAnimation(".logo");
     }
   }, [isMenuOpen]);
+
+  const onServicesPopUpHandler = (e) => {
+    showPopup("services");
+  };
+
+   const onProjectsPopUpHandler = (e) => {
+    showPopup("projects");
+  };
 
   const menuLabelHandler = (e) => {
     e.preventDefault();
@@ -236,7 +246,7 @@ const MenuContent = ({
       if (state) {
         menu.current.style.gridTemplateRows = `73px 0 0 0 0`;
       } else {
-        menu.current.style.gridTemplateRows = `93px 64px 64px 64px 94px`;
+        menu.current.style.gridTemplateRows = `93px 64px 64px 64px 64px 64px 94px`;
       }
       return !state;
     });
@@ -402,6 +412,18 @@ const MenuContent = ({
           $color={currentTheme?.menuBtnColor}
           $lineBg={currentTheme?.bgScheduleBtn}
           $show={isLogoBtnsShow.second}
+          onClick={onServicesPopUpHandler}
+        >
+          <span className="menu_item" onMouseOver={menuLabelHandler}>
+            SERVICES
+          </span>{" "}
+          <span className="menu_label"> INNOVATION NOW </span>{" "}
+        </MenuBtn>
+        <MenuBtn
+          $open={isMenuOpen}
+          $color={currentTheme?.menuBtnColor}
+          $lineBg={currentTheme?.bgScheduleBtn}
+          $show={isLogoBtnsShow.second}
         >
           <span className="menu_item" onMouseOver={menuLabelHandler}>
             <Link to="/approach"> APPROACH </Link>
@@ -445,6 +467,18 @@ const MenuContent = ({
           </span>{" "}
           <span className="menu_label"> OUR STORY </span>
         </MenuBtn>
+        <MenuBtn
+          $open={isMenuOpen}
+          $color={currentTheme?.menuBtnColor}
+          $lineBg={currentTheme?.bgScheduleBtn}
+          $show={isLogoBtnsShow.second}
+          onClick={onProjectsPopUpHandler}
+        >
+          <span className="menu_item" onMouseOver={menuLabelHandler}>
+             CONTRACTS
+          </span>{" "}
+          <span className="menu_label"> TRUSTED PARTNERS </span>{" "}
+        </MenuBtn>
         <MenuRightBtn
           ref={menuRightBtn}
           $open={isMenuOpen}
@@ -473,8 +507,10 @@ export default MenuContent;
 
 const BREAKPOINTS = {
   mob: 767,
-  tablet: 4400,
-  xl: 4400,
+  tablet: 1180,
+  large: 1400,
+  xl: 1600,
+  xxl: 4400,
 };
 
 const IntroText = styled.div`
@@ -535,7 +571,7 @@ const Menu = styled.div`
   left: 50%;
   transform: translateX(-50%);
   display: grid;
-  grid-template-columns: 185px 185px 200px 185px 185px;
+  grid-template-columns: 185px 185px 185px 200px 185px 185px 185px;
   grid-template-rows: 75px;
   align-items: center;
   z-index: 10;
@@ -555,24 +591,15 @@ const Menu = styled.div`
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {
     grid-template-columns: 1fr;
-    grid-template-rows: 73px 0 0 0 0;
-    //grid-template-rows: ${({ $open }) =>
-      $open
-        ? `
-93 px 64 px 64 px 64 px 94 px `
-        : `
-73 px 0 0 0 0 `};
+    ${"" /* grid-template-rows: 73px 0 0 0 0 0 0; */}
+    grid-template-rows: ${({ $open }) =>
+      $open ? `93px 64px 64px 64px 64px 64px 94px` : `73 px 0 0 0 0 `};
     width: 100%;
     top: 0;
     left: 0;
     transform: none;
     backdrop-filter: ${({ $open }) =>
-      $open
-        ? `
-blur(10 px) opacity(0.8)
-`
-        : `
-`};
+      $open ? `blur(10 px) opacity(0.8)` : ``};
     transition: 0.3s ease;
 
     &::after {
@@ -690,7 +717,7 @@ const MenuBtn = styled.div`
     align-self: stretch;
     align-items: center;
 
-    &:nth-of-type(4) {
+    &:nth-of-type(5) {
       &::after {
         content: "";
         position: absolute;

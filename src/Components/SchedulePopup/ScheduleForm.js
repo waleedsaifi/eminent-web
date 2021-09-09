@@ -279,7 +279,7 @@ const ScheduleFormContent = ({
           <StyledLabel $color={color}>
             <TextHolder>
               {" "}
-              What software or process do you want to improve ? <span> * </span>
+              What can we help you make better? <span> * </span>
             </TextHolder>
             <StyledInput
               onInput={onInputHandler}
