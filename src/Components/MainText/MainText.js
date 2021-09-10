@@ -206,7 +206,7 @@ const App = ({
           case 0:
             return window.innerWidth < BREAKPOINTS.tablet ? ["40%"] : ["48%"];
           case 1:
-            return window.innerWidth < BREAKPOINTS.tablet ? ["45%"] : ["45%"];
+            return window.innerWidth < BREAKPOINTS.tablet ? ["45%"] : ["46%"];
           case 3:
           case 4:
             return ["75%"];
@@ -256,14 +256,14 @@ const App = ({
           case 0:
             return window.innerWidth < BREAKPOINTS.tablet ? ["62%"] : ["15%"];
           case 1:
-            return window.innerWidth < BREAKPOINTS.tablet ? ["70%"] : ["10%"];
+            return window.innerWidth < BREAKPOINTS.tablet ? ["70%"] : ["12%"];
           case 2:
             return window.innerWidth < BREAKPOINTS.tablet ? ["70%"] : ["35%"];
           case 3:
           case 4:
-           return window.innerWidth < BREAKPOINTS.tablet ? ["82%"] : ["35%"];
+            return window.innerWidth < BREAKPOINTS.tablet ? ["82%"] : ["35%"];
           case 5:
-            return window.innerWidth < BREAKPOINTS.tablet ? ["64%"] : ["50%"];
+            return window.innerWidth < BREAKPOINTS.tablet ? ["64%"] : ["15%"];
           default:
             return;
         }
@@ -697,15 +697,15 @@ const App = ({
         switch (step) {
           case 0:
             return {
-              deskXl: { t1: "1200px" },
-              deskM: { t1: "1200px" },
+              deskXl: { t1: "1100px" },
+              deskM: { t1: "1100px" },
               tablet: { t1: "700px" },
               mob: { t1: "325px" },
             };
           case 1:
             return {
-              deskXl: { t1: "1200px" },
-              deskM: { t1: "1200px", t2: "1200px" },
+              deskXl: { t1: "1100px" },
+              deskM: { t1: "1100px", t2: "1100px" },
               tablet: { t1: "580px", t2: "580px" },
               mob: { t1: "270px", t2: "325px" },
             };
@@ -861,7 +861,7 @@ const App = ({
                 $letterSpacing={getLetterSpacing(0)}
                 $boxMaxWidth={getBoxMaxWidth(0)}
                 $textTransform={"uppercase"}
-                $fontWeight={"bold"}
+                $fontWeight={"600"}
               >
                 {currentSection?.fields[currentStep].fields.mainText}
               </MainText>
@@ -873,13 +873,13 @@ const App = ({
                 $color={currentTheme.textColor}
                 $top={getTopSecondText(0)}
                 $step={currentStep}
-                $fontSize={["40px", "28px", "18px"]}
+                $fontSize={["34px", "28px", "18px"]}
                 $lineHeight={["50px", "31px", "28px"]}
                 $left={getLeft(0)}
                 $letterSpacing={getLetterSpacing(0)}
                 $boxMaxWidth={{
-                  deskXl: { t2: "1200px" },
-                  deskM: { t2: "1200px" },
+                  deskXl: { t2: "1100px" },
+                  deskM: { t2: "1100px" },
                   tablet: { t2: "700px" },
                   mob: { t2: "248px" },
                 }}
@@ -926,7 +926,7 @@ const App = ({
                 $letterSpacing={getLetterSpacing(0)}
                 $boxMaxWidth={getBoxMaxWidth(0)}
                 $textTransform={"uppercase"}
-                $fontWeight={"bold"}
+                $fontWeight={"600"}
               >
                 {currentSection.fields[currentStep].fields.mainText}
               </MainText>
@@ -937,13 +937,13 @@ const App = ({
                 $color={currentTheme.textColor}
                 $top={getTopSecondText(1)}
                 $step={currentStep}
-                $fontSize={["40px", "28px", "18px"]}
+                $fontSize={["34px", "28px", "18px"]}
                 $lineHeight={["44px", "31px", "28px"]}
                 $left={getLeft(0)}
                 $letterSpacing={getLetterSpacing(0)}
                 $boxMaxWidth={{
-                  deskXl: { t2: "1200px" },
-                  deskM: { t2: "1200px" },
+                  deskXl: { t2: "1100px" },
+                  deskM: { t2: "1100px" },
                   tablet: { t2: "700px" },
                   mob: { t2: "248px" },
                 }}
@@ -1061,7 +1061,7 @@ const App = ({
                 $letterSpacing={getLetterSpacing(0)}
                 $boxMaxWidth={getBoxMaxWidth(0)}
                 $textTransform={"uppercase"}
-                $fontWeight={"bold"}
+                $fontWeight={"600"}
               >
                 {currentSection.fields[currentStep].fields.mainText}
               </MainText>
@@ -1072,13 +1072,13 @@ const App = ({
                 $color={currentTheme.textColor}
                 $top={getTopSecondText(0)}
                 $step={currentStep}
-                $fontSize={["40px", "28px", "18px"]}
+                $fontSize={["34px", "28px", "18px"]}
                 $lineHeight={["44px", "31px", "28px"]}
                 $left={getLeft(0)}
                 $letterSpacing={getLetterSpacing(0)}
                 $boxMaxWidth={{
-                  deskXl: { t2: "1200px" },
-                  deskM: { t2: "1200px" },
+                  deskXl: { t2: "1100px" },
+                  deskM: { t2: "1100px" },
                   tablet: { t2: "700px" },
                   mob: { t2: "248px" },
                 }}
@@ -1842,7 +1842,7 @@ const ContinueBtn = styled(CallActionBtn)`
   }
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {
-    ${'' /* top: 70%; */}
+    ${"" /* top: 70%; */}
     opacity: 1;
     height: 40px;
     display: block;
@@ -1861,7 +1861,7 @@ const ContinueBtn = styled(CallActionBtn)`
   }
 
   @media (max-width: ${BREAKPOINTS.mob}px) {
-    ${'' /* top: 70%; */}
+    ${"" /* top: 70%; */}
     height: 20px;
     background: ${({ $bg }) => $bg};
     border-radius: 67px;

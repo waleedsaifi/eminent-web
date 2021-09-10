@@ -126,7 +126,7 @@ class PlagueScene extends Scene {
           }
           case 1:
           case 3: {
-            const friendly = [0, 2, 4, 5];
+            const friendly = [2, 4, 5];
             const fromFriendly = friendly.includes(from);
 
             if (!fromFriendly) {
