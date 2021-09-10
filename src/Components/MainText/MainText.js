@@ -861,7 +861,7 @@ const App = ({
                 $letterSpacing={getLetterSpacing(0)}
                 $boxMaxWidth={getBoxMaxWidth(0)}
                 $textTransform={"uppercase"}
-                $fontWeight={"600"}
+                $fontWeight={"400"}
               >
                 {currentSection?.fields[currentStep].fields.mainText}
               </MainText>
@@ -926,7 +926,7 @@ const App = ({
                 $letterSpacing={getLetterSpacing(0)}
                 $boxMaxWidth={getBoxMaxWidth(0)}
                 $textTransform={"uppercase"}
-                $fontWeight={"600"}
+                $fontWeight={"400"}
               >
                 {currentSection.fields[currentStep].fields.mainText}
               </MainText>
@@ -1061,7 +1061,7 @@ const App = ({
                 $letterSpacing={getLetterSpacing(0)}
                 $boxMaxWidth={getBoxMaxWidth(0)}
                 $textTransform={"uppercase"}
-                $fontWeight={"600"}
+                $fontWeight={"400"}
               >
                 {currentSection.fields[currentStep].fields.mainText}
               </MainText>

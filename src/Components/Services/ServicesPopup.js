@@ -263,7 +263,7 @@ const Header = styled.div`
   h2 {
     padding: 0;
     margin: 0 0 1rem;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 86px;
     letter-spacing: 0.1em;
     color: ${({ $color }) => $color};
