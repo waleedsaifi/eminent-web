@@ -8,6 +8,7 @@ import HotspotsContainer from "../Hotspots/HotspotsContainer";
 import SchedulePopup from "../SchedulePopup/SchedulePopup";
 import ServicesPopup from "../Services/ServicesPopup";
 import ProjectsPopup from "../Projects/ProjectsPopup";
+import AboutPopup from "../About/AboutPopup";
 import { isMobileOnly } from "react-device-detect";
 import { useDispatch, useSelector } from "react-redux";
 import { addDevGUIConfig } from "../../helpers/dev.helpers";
@@ -214,6 +215,7 @@ const ContainerContent = (currentData) => {
     };
   }, [currentStep, isLandscape, currentSection?.fields]);
 
+//FIXME
   const closeSchedulePopup = () => {
     mainContainer.current.style.overflowY = "auto";
     const menu = document.querySelector(".menu");
@@ -221,14 +223,20 @@ const ContainerContent = (currentData) => {
     setPopupOpen(false);
     setActivePopup(null);
   };
-
+//FIXME
   const closeServicesPopup = () => {
     mainContainer.current.style.overflowY = "auto";
     setPopupOpen(false);
     setActivePopup(null);
   };
-
+//FIXME
   const closeProjectsPopup = () => {
+    mainContainer.current.style.overflowY = "auto";
+    setPopupOpen(false);
+    setActivePopup(null);
+  };
+//FIXME
+   const closeAboutPopup = () => {
     mainContainer.current.style.overflowY = "auto";
     setPopupOpen(false);
     setActivePopup(null);
@@ -334,21 +342,22 @@ const ContainerContent = (currentData) => {
   };
 
   const touchmoveHandler = (e) => {
-    if (!touchStart.x1 || !touchStart.y1) return;
+    // if (!touchStart.x1 || !touchStart.y1) return;
 
-    const x2 = e.touches[0].clientX;
-    const y2 = e.touches[0].clientY;
-    const xDiff = x2 - touchStart.x1;
-    const yDiff = y2 - touchStart.y1;
+    wheelHandler(e);
+    // const x2 = e.touches[0].clientX;
+    // const y2 = e.touches[0].clientY;
+    // const xDiff = x2 - touchStart.x1;
+    // const yDiff = y2 - touchStart.y1;ß
 
-    if (Math.abs(xDiff) > Math.abs(yDiff)) {
-      //right-left
-      if (xDiff > 0) {
-        getNextStep(currentStep - 1); //swipe right
-      } else {
-        getNextStep(currentStep + 1); //swipe left
-      }
-    } //else {
+    // if (Math.abs(xDiff) > Math.abs(yDiff)) {
+    //   //right-left
+    //   if (xDiff > 0) {
+    //     getNextStep(currentStep - 1); //swipe right
+    //   } else {
+    //     getNextStep(currentStep + 1); //swipe left
+    //   }
+    // } //else {
     //top - bottom
     // if (yDiff > 0) {
     //   console.log('down')
@@ -406,6 +415,8 @@ const ContainerContent = (currentData) => {
         return <ServicesPopup closeHandler={closeServicesPopup} />;
       case "projects":
         return <ProjectsPopup closeHandler={closeProjectsPopup} />;
+        case "about":
+        return <AboutPopup closeHandler={closeProjectsPopup} />;
       default:
         break;
     }

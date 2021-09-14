@@ -4,19 +4,9 @@ import { BREAKPOINTS } from "../../constants/constants";
 import { ReactComponent as CrossSvg } from "../../assets/images/cross.svg";
 import { useSelector } from "react-redux";
 import { ReactComponent as LogoIconSVG } from "../../assets/images/eminent-icon.svg";
-import {
-  TeamCollabIMG,
-  GroupWorkingIMG,
-  MomWorkingIMG,
-  TwoWorkingTogetherIMG,
-  WireframingCollaborationIMG,
-  WomanWorkerIMG,
-  WorkersIMG,
-  CloudIMG,
-} from "../../assets/images/services/index";
-import PaperWhiteIcon from "../../assets/images/icon_paper_white.png";
+import { RisiIMG, IsaacIMG, LeAnnIMG } from "../../assets/images/about/index";
 
-const ServicesPopupContent = ({ closeHandler, showPopup }) => {
+const AboutPopupContent = ({ closeHandler, showPopup }) => {
   const wrapper = useRef(null);
   const header = useRef(null);
   const [isHeaderSmall, setIsHeaderSmall] = useState(false);
@@ -72,32 +62,15 @@ const ServicesPopupContent = ({ closeHandler, showPopup }) => {
           </CloseCross>{" "}
           <HeaderTextContainer>
             <LogoIcon />
-            <h2> SERVICES </h2>
-            <h4> Just a few of the ways we can help you make a difference. </h4>
+            <h2> ABOUT </h2>
+            <h4>
+              We are committed individuals driven by values that inspire
+              excellence{" "}
+            </h4>
           </HeaderTextContainer>
         </Header>
-        <AboutSectionViolatorStrip $icon={PaperWhiteIcon}>
-          <div className="violator-strip-content">
-            <div className="overview-copy">
-              <p>
-                Eminent uses design and strategy to bring your
-                unique vision of the future to life.
-              </p>
-            </div>
-            <a
-              href="/privacy/docs/Building_a_Trusted_Ecosystem_for_Millions_of_Apps.pdf"
-              data-analytics-title="view capabilities statement"
-              aria-label=" View Capabilities Statement (PDF)"
-              className="icon-wrapper violator-strip-link-outlined"
-            >
-              <span className="icon-copy">
-                View Capabilities Statement&nbsp;(PDF)
-              </span>
-            </a>{" "}
-          </div>
-        </AboutSectionViolatorStrip>
-        <ServicesTextContainer
-          className="serviceTextContainer"
+        <AboutTextContainer
+          className="aboutTextContainer"
           $color={currentTheme?.textColor}
           $top={"50%"}
           $fontSize={"12px"}
@@ -105,134 +78,148 @@ const ServicesPopupContent = ({ closeHandler, showPopup }) => {
           $letterSpacing={"0.07em"}
           $boxMaxWidth={getBoxMaxWidth()}
         >
-          <ServicesTextItem className="grid-1 grid-left">
-            <ServiceCardContent cardImage={MomWorkingIMG} />
-            <h5>Apps and Frameworks</h5>
+          <AboutSection>
+            <AboutSectionContent>
+              <AboutHeadline className="headline">
+                Eminent Leadership
+              </AboutHeadline>
+
+              <p className="typography-overview-feature-copy feature-excerpt">
+                Finding the courage to lead in the face of adversity.
+              </p>
+
+              {/* <label
+                tabindex="0"
+                className="typography-body-tight feature-cta"
+                for="feature-toggle-maps"
+              >
+                <i className="icon cta-icon-default icon-pluscircle"></i>
+                <i className="icon cta-icon-hover icon-plussolid"></i>
+                <span className="feature-cta-text" role="button">
+                  <span className="visuallyhidden close-copy">close</span> More
+                  <span class="visuallyhidden"> about Maps</span>
+                </span>
+              </label> */}
+              <div className="typography-overview-feature-copy feature-copy">
+                <div className="feature-copy-columns">
+                  <p>
+                    With a shared ambition to make the future of work
+                    extraordinary, Mr. José "Tech" Risi and Mr. Isaac Barnes
+                    joined forces in 2009.
+                  </p>
+                  <p>
+                    Despite being from disadvantaged backgrounds, the founders
+                    of Eminent formed a risky partnership – one forged from a
+                    shared passion for software engineering and a desire to
+                    create the Best Innovation Company in the world.
+                  </p>
+                </div>
+              </div>
+            </AboutSectionContent>
+            <AboutCardContainer>
+              <AboutTextItem className="grid-1 grid-left">
+                <AboutCardContent cardImage={RisiIMG} url={"https://www.linkedin.com/in/joserisi/"} />
+                <h5>José "Tech" Risi</h5>
+                <GradientKeyline />
+                <h6>CEO and Founder</h6>
+                {/* <a href="" title="View Profile">View Profile</a> */}
+              </AboutTextItem>
+              <AboutTextItem className="grid-1 grid-right">
+                <AboutCardContent cardImage={IsaacIMG} url={"https://www.linkedin.com/in/isaacbarnes/"} />
+                <h5>Isaac Barnes</h5>
+                <GradientKeyline />
+                <h6>President and Founder</h6>
+                {/* <a href="" title="View Profile">View Profile</a> */}
+              </AboutTextItem>
+              <AboutTextItem className="grid-1 grid-right">
+                <AboutCardContent cardImage={LeAnnIMG} url={"https://www.linkedin.com/in/leann-dishart-b7676461/"} />
+                <h5>LeAnn Dishart</h5>
+                <GradientKeyline />
+                <h6>Chief Human Resources Officer</h6>
+                {/* <a href="" title="View Profile">View Profile</a> */}
+              </AboutTextItem>
+              
+            </AboutCardContainer>
+          </AboutSection>
+
+          <AboutSection>
+            <AboutSectionContent>
+              <AboutHeadline className="headline">
+                Eminent the Company
+              </AboutHeadline>
+
+              <p className="typography-overview-feature-copy feature-excerpt">
+                Committed to doing great work to create a better future.
+              </p>
+
+              <div className="typography-overview-feature-copy feature-copy">
+                <div className="feature-copy-columns">
+                  <p>
+                    Eminent is a truly remote-first organization with a
+                    distributed team of 20+ people across the United States.
+                    We have a diverse and inclusive culture with people from all
+                    over the world offering different expertise, cultural
+                    perspectives, and different age ranges.
+                  </p>
+                  <p>
+                    Together we imagine and create new ways of taking on issues
+                    we care about deeply, such as equity, security,
+                    transparency, and the environment.
+                  </p>
+                </div>
+              </div>
+            </AboutSectionContent>
+            {/* <AboutCardContainer>
+              <AboutTextItem className="grid-1 grid-left">
+                <AboutCardContent cardImage={IsaacIMG} />
+              </AboutTextItem>
+              <AboutTextItem className="grid-1 grid-right">
+                <AboutCardContent cardImage={IsaacIMG} />
+              </AboutTextItem>
+            </AboutCardContainer> */}
+          </AboutSection>
+
+          <AboutSection>
+            <h5></h5>
             <GradientKeyline />
-            <h6>
-              Our Apps and Frameworks people create every application. Areas of
-              work include Application Development, API Design, User Interface
-              Design, Networking, Application Protocols, Framework Development,
-              and Performance Engineering.
-            </h6>
-          </ServicesTextItem>
-          <ServicesTextItem className="grid-right">
-            <ServiceCardContent cardImage={TeamCollabIMG} />
-            <h5>Cloud and Infrastructure</h5>
-            <GradientKeyline />
-            <h6>
-              We are prepared to jump right in when with a team capable of
-              designing, developing, and deploying high-performance systems to
-              handle millions of queries every day. Areas of work include Big
-              Data, Server-Side Software Engineering, Database, and Data
-              Engineering.
-            </h6>
-          </ServicesTextItem>
-          <ServicesTextItem className="grid-left">
-            <ServiceCardContent cardImage={CloudIMG} />
-            <h5>DevOps and Site Reliability</h5>
-            <GradientKeyline />
-            <h6>
-              By designing and building a continuous integration and delivery
-              system, we’ll ensure the high availability, scalability, and
-              security of a huge infrastructure every day. Areas of work include
-              Site Reliability Engineering, Systems Engineering, Network
-              Engineering, Performance Engineering, Systems Administration, and
-              Hadoop Administration.
-            </h6>
-          </ServicesTextItem>
-          <ServicesTextItem className="grid-right">
-            <ServiceCardContent cardImage={TwoWorkingTogetherIMG} />
-            <h5>Project Management</h5>
-            <GradientKeyline />
-            <h6>
-              We take ownership of projects by overseeing every aspect, from
-              start to finish. Areas of work include Technical Project
-              Management, Evangelism, Metrics, Analytics, and Program
-              Management.
-            </h6>
-          </ServicesTextItem>
-          <ServicesTextItem className="grid-left">
-            <ServiceCardContent cardImage={WireframingCollaborationIMG} />
-            <h5>Information Systems and Technology</h5>
-            <GradientKeyline />
-            <h6>
-              You can depend on us, to help design and manage complex systems
-              that run our country such as high traffic public-facing web
-              platforms, as well as manufacturing, logistics, operations, and
-              facilities. Our team develops and manages data centers that
-              support users all over the globe. Areas of work include Web
-              Application Engineering, Back-End Engineering, Mobile Software
-              Engineering, Data Science and Applied Machine Learning, Software
-              Quality Engineering, Security Engineering, Network Engineering,
-              Content Delivery, Data Center Operations, and Package Support for
-              SAP and Oracle.
-            </h6>
-          </ServicesTextItem>
-          <ServicesTextItem className="grid-right">
-            <ServiceCardContent cardImage={WomanWorkerIMG} />
-            <h5>Machine Learning and AI</h5>
-            <GradientKeyline />
-            <h6>
-              We help develop algorithms that learn from data to create the most
-              insightful options for the best outcomes. We do it with the help
-              of privacy experts to ensure users’ privacy is respected. Areas of
-              work include Artificial Intelligence, Computer Vision, Data
-              Science, and Deep Learning.
-            </h6>
-          </ServicesTextItem>
-          <ServicesTextItem className="grid-left">
-            <ServiceCardContent cardImage={WorkersIMG} />
-            <h5>Defi and Blockchain</h5>
-            <GradientKeyline />
-            <h6>
-              All though the technology is still not widely adopted, we've come
-              to take Blockchain and Cryptocurrency seriously. We are proactivly
-              engaged in the community to see what innovations we can advance as
-              we create customer experiences that are seamless. Areas of work
-              include Blockchain Solutions, Smart Contracts, Wallet Development,
-              DAPP Development and NFTs.
-            </h6>
-          </ServicesTextItem>
-          <ServicesTextItem className="grid-right">
-            <ServiceCardContent cardImage={GroupWorkingIMG} />
-            <h5>Quality, Automation, and Tools</h5>
-            <GradientKeyline />
-            <h6>
-              We work to ensure that your software and services run as smoothly
-              as each was designed to. Areas of work include Quality Assurance
-              Engineering, Integration Engineering, Software Developer in Test
-              Engineering, Applications Engineering, Software Compatibility
-              Engineering, Automation Engineering, and Tools Development.
-            </h6>
-          </ServicesTextItem>
-        </ServicesTextContainer>
+            <h6></h6>
+          </AboutSection>
+        </AboutTextContainer>
       </PopupContainer>
     </Wrapper>
   );
 };
 
-export default ServicesPopupContent;
+export default AboutPopupContent;
 
 const onScheduleClickHandler = (e) => {
   document.getElementById("ScheduleBtn").click();
 };
+const AboutCardContainer = styled.div`
+  max-width: 1068px;
+  display: grid;
+  grid-template-columns: repeat(2, 2fr);
+  grid-gap: var(--grid-gutter);
+  margin: 40px 0;
+`;
 
-const ServiceCardContent = (cardImage) => {
-  const src = Object.values(cardImage);
+const AboutCardContent = ({cardImage, url}) => {
+  //const src = Object.values(cardImage);
+   const src = cardImage;
   return (
     <ServiceCard className="card-1">
       <img src={src} alt="Logo" />
       <div className="content">
-        <h3>Need a Quote?</h3>
-        <h4>Let's work together.</h4>
+        <h3>Want to Know More?</h3>
+        <h4>Click the link below</h4>
         <a
-          onClick={onScheduleClickHandler}
-          href="#"
+          // onClick={onScheduleClickHandler}
+          href={url}
           className="btn"
-          title="Request Quote"
+          title="View Profile"
+          target="new"
         >
-          REQUEST QUOTE
+          View Profile
         </a>
       </div>
       <div className="overlay red"></div>
@@ -298,7 +285,7 @@ const Header = styled.div`
   }
 
   h4 {
-    font-size: 32px;
+    font-size: 28px;
     line-height: 1.1;
     font-weight: 400;
     max-width: 600px;
@@ -309,7 +296,10 @@ const Header = styled.div`
     letter-spacing: 0.03em;
     color: #a1a1a6;
   }
-
+  p {
+    font-size: 22px;
+    line-height: 30px;
+  }
   @media (max-width: ${BREAKPOINTS.tablet}px) {
     position: fixed;
     text-align: center;
@@ -382,7 +372,7 @@ const Cross = styled(CrossSvg)`
   fill: ${({ $color }) => $color};
 `;
 
-const ServicesTextContainer = styled.div`
+const AboutTextContainer = styled.div`
   color: ${({ $color }) => $color};
   font-size: ${({ $fontSize }) => $fontSize[0]};
   top: ${({ $top }) => $top};
@@ -396,7 +386,7 @@ const ServicesTextContainer = styled.div`
     $textTransform ? $textTransform : "none"};
   font-weight: ${({ $fontWeight }) => ($fontWeight ? $fontWeight : "none")};
   display: grid;
-  grid-template-columns: repeat(2, 2fr);
+  grid-template-columns: repeat(1, 2fr);
   grid-gap: var(--grid-gutter);
   width: 100%;
   margin: 56px auto 50px;
@@ -444,7 +434,33 @@ const ServicesTextContainer = styled.div`
   }
 `;
 
-const ServicesTextItem = styled.div`
+const AboutSection = styled.section`
+  width: 100%;
+    display: grid;
+    justify-content: center;
+"
+`;
+
+const AboutHeadline = styled.h3`
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -0.003em;
+  line-height: 1.1em;
+  text-align: left;
+  color: #fff;
+  display: inline-block;
+  ${
+    "" /* color: transparent;
+  -webkit-background-clip: text;
+  background-image: linear-gradient(to right, #999999, #ffffff); */
+  }
+  grid-column: headline-start/headline-end;
+  grid-row: headline-start/headline-end;
+  padding-right: 2em;
+  margin: 0px;
+`;
+
+const AboutTextItem = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
@@ -459,11 +475,11 @@ const ServicesTextItem = styled.div`
   background: #08141d;
 
   img {
-    max-height: 400px;
+    max-height: 500px;
     width: 100%;
-    height: 350px;
+    height: 440px;
     object-fit: cover;
-    object-position: 20% 10%;
+    object-position: 10% 70%;
   }
   h5 {
     font-size: 26px;
@@ -615,64 +631,57 @@ const GradientKeyline = styled.div`
   display: none;
 `;
 
-const AboutSectionViolatorStrip = styled.section`
+const AboutSectionContent = styled.div`
+  display: grid;
   border: 1px dashed #71998bff;
-  text-align: center;
-  padding: 44px;
-  color: #9cd8c4;
   border-radius: 30px;
-  font-weight: 600;
-  font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue","Helvetica", "Arial",sans-serif;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  min-height: 500px;
+  max-width: 1068px;
+  grid-template-columns: [margin-start] 70px [violator-start headline-start excerpt-start cta-start] 1fr [media-start headline-end violator-end excerpt-end cta-end copy-start] 1fr [margin-end media-end];
+  grid-template-rows: [margin-start media-start] 100px [violator-start headline-start copy-start] max-content [violator-end headline-end excerpt-start] 185px [excerpt-end copy-end cta-start] max-content [cta-end] 40px [margin-end media-end];
 
-  .overview-copy {
-    font-size: 20px;
+  .feature-excerpt {
+    font-size: 19px;
+    line-height: 1.4211;
+    font-weight: 400;
+    letter-spacing: 0.012em;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica",
+      "Arial", sans-serif;
+    text-align: left;
+    grid-column: excerpt-start/excerpt-end;
+    grid-row: excerpt-start/excerpt-end;
+    color: #fff;
+    margin: 0 0 2em;
+    max-width: 17em;
   }
 
-  .violator-strip-link-outlined {
-    display: inline-block;
-    position: relative;
-    margin-top: 1.35em;
-    border: 1px solid #06c;
-    border-radius: 16px;
-    padding: 8px 16px 8px 28px;
-    color: #9cd8c4;
-    border-color: #fff;
-  }
-
-  a.icon-wrapper {
-    text-decoration: none;
-  }
-
-  a.icon-wrapper:hover {
-    text-decoration: underline;
-  }
-
-  .violator-strip-link-outlined .icon-copy {
-    padding-left: 8px;
-  }
-
-  .violator-strip-link-outlined:before {
-    content: "";
-    display: inline-block;
-    position: absolute;
-    top: 8px;
-    left: 14px;
-  }
-
-  .violator-strip-link-outlined:before {
-    width: 13px;
-    height: 18px;
-    background-size: 13px 18px;
-    background-repeat: no-repeat;
-    background-image: url(${PaperWhiteIcon});
-  }
-
-  @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-    only screen and (min-resolution: 1.5dppx),
-    (-webkit-min-device-pixel-ratio: 1.5),
-    (min-resolution: 144dpi) {
-    .violator-strip-link-outlined:before {
-      background-image: url(${PaperWhiteIcon});
+  .feature-copy {
+    -webkit-transition: opacity 0.1s linear;
+    transition: opacity 0.1s linear;
+    padding-right: 6.5em;
+    ${
+      "" /* opacity: 0;
+    visibility: hidden; */
     }
+    margin-top: -12px;
+    grid-column: copy-start/copy-end;
+    grid-row: copy-start/copy-end;
+  }
+
+  .typography-overview-feature-copy {
+    font-size: 20px;
+    line-height: 1.4211;
+    font-weight: 400;
+    letter-spacing: 0.012em;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica",
+      "Arial", sans-serif;
+    color: #fff;
+  }
+
+  @media only screen and (min-width: 1069px) .feature-copy {
+    max-height: 434px;
   }
 `;

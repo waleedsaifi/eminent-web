@@ -151,17 +151,21 @@ const App = ({
       case "home": {
         switch (step) {
           case 0:
-            return window.innerWidth < BREAKPOINTS.tablet ? ["20%"] : ["30%"];
+            return ["30%", "40%", "20%"];
+          //return window.innerWidth < BREAKPOINTS.tablet ? ["20%"] : ["30%"];
           case 1:
-            return window.innerWidth < BREAKPOINTS.tablet ? ["30%"] : ["35%"];
+            return ["35%", "38%", "20%"];
+          //return window.innerWidth < BREAKPOINTS.tablet ? ["30%"] : ["35%"];
           case 2:
-            return window.innerWidth < BREAKPOINTS.tablet ? ["20%"] : ["20%"];
+            return ["20%", "20%", "20%"];
+          //return window.innerWidth < BREAKPOINTS.tablet ? ["20%"] : ["20%"];
           case 3:
-            return ["15%"];
+            return ["15%", "15%", "15%"];
           case 4:
-            return ["15%"];
+            return ["15%", "15%", "15%"];
           case 5:
-            return window.innerWidth < BREAKPOINTS.tablet ? ["22%"] : ["30%"];
+            return ["30%", "40%", "22%"];
+          // return window.innerWidth < BREAKPOINTS.tablet ? ["22%"] : ["30%"];
           default:
             return;
         }
@@ -169,15 +173,15 @@ const App = ({
       case "approach": {
         switch (step) {
           case 0:
-            return ["50%;"];
+            return ["50%", "50%", "50%"];
           case 1:
-            return ["50%"];
+            return ["50%", "50%", "50%"];
           case 2:
-            return ["50%;"];
+            return ["50%", "50%", "50%"];
           case 3:
-            return ["50%"];
+            return ["50%", "50%", "50%"];
           case 4:
-            return ["35%"];
+            return ["35%", "35%", "35%"];
           default:
             return;
         }
@@ -185,11 +189,11 @@ const App = ({
       case "work": {
         switch (step) {
           case 0:
-            return ["21%", "12%"];
+            return ["21%", "21%", "12%"];
           case 1:
-            return ["135px"];
+            return ["135px", "135px", "135px"];
           case 2:
-            return ["18%"];
+            return ["18%", "18%", "18%"];
           default:
             return;
         }
@@ -369,6 +373,59 @@ const App = ({
           case 2:
           case 5:
             return ["36px", "28px", "18px"];
+          case 3:
+          case 4:
+            return ["28px", "21px", "18px"];
+          default:
+            return;
+        }
+      }
+      case "approach": {
+        switch (step) {
+          case 0:
+          case 1:
+          case 2:
+          case 3:
+            return ["100px"];
+          case 4:
+            return ["32px", "28px", "18px"];
+          default:
+            return;
+        }
+      }
+      case "work": {
+        switch (step) {
+          case 0:
+            return {
+              title: ["64px", "45px"],
+              text: ["24px", "18px"],
+              itemText: ["28px", "21px"],
+              numText: ["48px", "36px"],
+            };
+          case 1:
+            return ["100px"];
+          case 2:
+            return ["32px", "28px", "18px"];
+          default:
+            return;
+        }
+      }
+      default:
+        return;
+    }
+  };
+   const getSecondFontSize = (step) => {
+    switch (currentSectionTitle) {
+      case "home": {
+        switch (step) {
+          case 0:
+            return ["34px", "26px", "18px"];
+          case 1:
+            return ["34px", "28px", "18px"];
+          case 2:
+          return ["36px", "28px", "18px"];
+          case 5: 
+          return ["34px", "26px", "18px"];
           case 3:
           case 4:
             return ["28px", "21px", "18px"];
@@ -873,7 +930,7 @@ const App = ({
                 $color={currentTheme.textColor}
                 $top={getTopSecondText(0)}
                 $step={currentStep}
-                $fontSize={["34px", "28px", "18px"]}
+                $fontSize={getSecondFontSize(0)}
                 $lineHeight={["50px", "31px", "28px"]}
                 $left={getLeft(0)}
                 $letterSpacing={getLetterSpacing(0)}
@@ -937,7 +994,7 @@ const App = ({
                 $color={currentTheme.textColor}
                 $top={getTopSecondText(1)}
                 $step={currentStep}
-                $fontSize={["34px", "28px", "18px"]}
+                $fontSize={getSecondFontSize(1)}
                 $lineHeight={["44px", "31px", "28px"]}
                 $left={getLeft(0)}
                 $letterSpacing={getLetterSpacing(0)}
@@ -1072,7 +1129,7 @@ const App = ({
                 $color={currentTheme.textColor}
                 $top={getTopSecondText(0)}
                 $step={currentStep}
-                $fontSize={["34px", "28px", "18px"]}
+                $fontSize={getSecondFontSize(5)}
                 $lineHeight={["44px", "31px", "28px"]}
                 $left={getLeft(0)}
                 $letterSpacing={getLetterSpacing(0)}
@@ -1525,6 +1582,8 @@ const App = ({
     }
   };
 
+  const getAboutContent = () => {};
+
   switch (currentSectionTitle) {
     case "home": {
       return getHomeContent();
@@ -1656,7 +1715,7 @@ const MainText = styled.div`
   position: fixed;
   color: ${({ $color }) => $color};
   font-size: ${({ $fontSize }) => $fontSize[0]};
-  top: ${({ $top }) => $top};
+  top: ${({ $top }) => ($top ? $top[0] : "30%")};
   text-align: ${({ $textAlign }) => ($textAlign ? $textAlign : "center")};
   left: ${({ $left }) => $left};
   max-width: ${({ $boxMaxWidth }) => $boxMaxWidth.deskXl.t1};
@@ -1671,17 +1730,19 @@ const MainText = styled.div`
     font-size: ${({ $fontSize }) => $fontSize[1]};
     max-width: ${({ $boxMaxWidth }) =>
       $boxMaxWidth.deskM ? $boxMaxWidth.deskM.t1 : $boxMaxWidth.deskXl.t1};
+    top: ${({ $top }) => ($top ? $top[1] : "30%")};
   }
   @media (max-width: ${BREAKPOINTS.tablet}px) {
     max-width: ${({ $boxMaxWidth }) => $boxMaxWidth.tablet.t1};
     font-size: ${({ $fontSize }) => $fontSize[1]};
-    top: ${({ $top }) => $top};
+    top: ${({ $top }) => ($top ? $top[1] : "30%")};
     line-height: 42px;
   }
   @media (max-width: ${BREAKPOINTS.mob}px) {
     font-size: ${({ $fontSize }) => $fontSize[2]};
     max-width: ${({ $boxMaxWidth }) => $boxMaxWidth.mob.t1};
     line-height: 34px;
+    top: ${({ $top }) => ($top ? $top[2] : "30%")};
   }
 `;
 const MainTextSecond = styled(MainText)`

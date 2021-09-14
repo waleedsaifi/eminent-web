@@ -211,12 +211,17 @@ const MenuContent = ({
     }
   }, [isMenuOpen]);
 
+  //FIXME
   const onServicesPopUpHandler = (e) => {
     showPopup("services");
   };
-
-   const onProjectsPopUpHandler = (e) => {
+  //FIXME
+  const onProjectsPopUpHandler = (e) => {
     showPopup("projects");
+  };
+  //FIXME
+  const onAboutPopUpHandler = (e) => {
+    showPopup("about");
   };
 
   const menuLabelHandler = (e) => {
@@ -460,6 +465,7 @@ const MenuContent = ({
           $color={currentTheme?.menuBtnColor}
           $lineBg={currentTheme?.bgScheduleBtn}
           $show={isLogoBtnsShow.first}
+          onClick={onAboutPopUpHandler}
         >
           <span className="menu_item" onMouseOver={menuLabelHandler}>
             {" "}
@@ -475,7 +481,7 @@ const MenuContent = ({
           onClick={onProjectsPopUpHandler}
         >
           <span className="menu_item" onMouseOver={menuLabelHandler}>
-             CONTRACTS
+            CONTRACTS
           </span>{" "}
           <span className="menu_label"> TRUSTED PARTNERS </span>{" "}
         </MenuBtn>
