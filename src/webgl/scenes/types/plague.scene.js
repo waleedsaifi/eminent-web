@@ -42,7 +42,7 @@ class PlagueScene extends Scene {
         },
       });
     } else {
-      this.noise.noiseTransAlpha = value;
+      this.noise ? this.noise.noiseTransAlpha = value: this.initNoise();
     }
   }
 

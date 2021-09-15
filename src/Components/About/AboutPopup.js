@@ -61,11 +61,11 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
             <Cross $color={currentTheme?.schedulePopupTextColor} />{" "}
           </CloseCross>{" "}
           <HeaderTextContainer>
-            <LogoIcon />
+            {/* <LogoIcon /> */}
             <h2> ABOUT </h2>
             <h4>
               We are committed individuals driven by values that inspire
-              excellence{" "}
+              excellence.{" "}
             </h4>
           </HeaderTextContainer>
         </Header>
@@ -83,23 +83,9 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
               <AboutHeadline className="headline">
                 Eminent Leadership
               </AboutHeadline>
-
               <p className="typography-overview-feature-copy feature-excerpt">
                 Finding the courage to lead in the face of adversity.
               </p>
-
-              {/* <label
-                tabindex="0"
-                className="typography-body-tight feature-cta"
-                for="feature-toggle-maps"
-              >
-                <i className="icon cta-icon-default icon-pluscircle"></i>
-                <i className="icon cta-icon-hover icon-plussolid"></i>
-                <span className="feature-cta-text" role="button">
-                  <span className="visuallyhidden close-copy">close</span> More
-                  <span class="visuallyhidden"> about Maps</span>
-                </span>
-              </label> */}
               <div className="typography-overview-feature-copy feature-copy">
                 <div className="feature-copy-columns">
                   <p>
@@ -118,27 +104,35 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
             </AboutSectionContent>
             <AboutCardContainer>
               <AboutTextItem className="grid-1 grid-left">
-                <AboutCardContent cardImage={RisiIMG} url={"https://www.linkedin.com/in/joserisi/"} />
+                <AboutCardContent
+                  cardImage={RisiIMG}
+                  url={"https://www.linkedin.com/in/joserisi/"}
+                />
                 <h5>José "Tech" Risi</h5>
                 <GradientKeyline />
                 <h6>CEO and Founder</h6>
                 {/* <a href="" title="View Profile">View Profile</a> */}
               </AboutTextItem>
               <AboutTextItem className="grid-1 grid-right">
-                <AboutCardContent cardImage={IsaacIMG} url={"https://www.linkedin.com/in/isaacbarnes/"} />
+                <AboutCardContent
+                  cardImage={IsaacIMG}
+                  url={"https://www.linkedin.com/in/isaacbarnes/"}
+                />
                 <h5>Isaac Barnes</h5>
                 <GradientKeyline />
                 <h6>President and Founder</h6>
                 {/* <a href="" title="View Profile">View Profile</a> */}
               </AboutTextItem>
-              <AboutTextItem className="grid-1 grid-right">
-                <AboutCardContent cardImage={LeAnnIMG} url={"https://www.linkedin.com/in/leann-dishart-b7676461/"} />
+              <AboutTextItem className="grid-1 grid-left">
+                <AboutCardContent
+                  cardImage={LeAnnIMG}
+                  url={"https://www.linkedin.com/in/leann-dishart-b7676461/"}
+                />
                 <h5>LeAnn Dishart</h5>
                 <GradientKeyline />
                 <h6>Chief Human Resources Officer</h6>
                 {/* <a href="" title="View Profile">View Profile</a> */}
               </AboutTextItem>
-              
             </AboutCardContainer>
           </AboutSection>
 
@@ -156,8 +150,8 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
                 <div className="feature-copy-columns">
                   <p>
                     Eminent is a truly remote-first organization with a
-                    distributed team of 20+ people across the United States.
-                    We have a diverse and inclusive culture with people from all
+                    distributed team of 20+ people across the United States. We
+                    have a diverse and inclusive culture with people from all
                     over the world offering different expertise, cultural
                     perspectives, and different age ranges.
                   </p>
@@ -196,18 +190,24 @@ const onScheduleClickHandler = (e) => {
   document.getElementById("ScheduleBtn").click();
 };
 const AboutCardContainer = styled.div`
-  max-width: 1068px;
+  max-width: 1080px;
   display: grid;
   grid-template-columns: repeat(2, 2fr);
   grid-gap: var(--grid-gutter);
-  margin: 40px 0;
+  margin: 40px auto;
+
+  @media (max-width: ${BREAKPOINTS.mob}px) {
+    grid-template-columns: repeat(1, 2fr);
+    max-width: 93.5%;
+    margin: 40px auto;
+  }
 `;
 
-const AboutCardContent = ({cardImage, url}) => {
+const AboutCardContent = ({ cardImage, url }) => {
   //const src = Object.values(cardImage);
-   const src = cardImage;
+  const src = cardImage;
   return (
-    <ServiceCard className="card-1">
+    <AboutCard className="card-1">
       <img src={src} alt="Logo" />
       <div className="content">
         <h3>Want to Know More?</h3>
@@ -224,20 +224,19 @@ const AboutCardContent = ({cardImage, url}) => {
       </div>
       <div className="overlay red"></div>
       <div className="overlay blue"></div>
-    </ServiceCard>
+    </AboutCard>
   );
 };
 const mobBreakpoint = 900;
 const Wrapper = styled.div`
   position: absolute;
   left: 0;
-  top: 0;
+  top: 100px;
   width: 100%;
   height: 100%;
-  min-height: 100%;
+  min-height: 80%;
   z-index: 1000;
-  ${"" /* background: ${({ $bg }) => $bg}; */}
-  background: rgba(8,8,8,0.9);
+  background: rgb(5 11 17);
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -248,6 +247,8 @@ const Wrapper = styled.div`
 
   @media (max-width: ${mobBreakpoint}px) {
     align-items: flex-start;
+    top: 65px;
+    z-index: 1000;
   }
 `;
 const PopupContainer = styled.div`
@@ -277,8 +278,8 @@ const Header = styled.div`
   h2 {
     padding: 0;
     margin: 0 0 1rem;
-    font-weight: 400;
-    font-size: 86px;
+    font-weight: 700;
+    font-size: 66px;
     letter-spacing: 0.1em;
     color: ${({ $color }) => $color};
     display: inline-block;
@@ -341,7 +342,7 @@ const HeaderTextContainer = styled.div`
 `;
 
 const LogoIcon = styled(LogoIconSVG)`
-  display: inline-block;
+  display: none;
   stroke: rgba(255, 255, 255, 0);
   width: 80px;
   height: 64px;
@@ -376,7 +377,7 @@ const AboutTextContainer = styled.div`
   color: ${({ $color }) => $color};
   font-size: ${({ $fontSize }) => $fontSize[0]};
   top: ${({ $top }) => $top};
-  text-align: ${({ $textAlign }) => ($textAlign ? $textAlign : "center")};
+  text-align: ${({ $textAlign }) => ($textAlign ? $textAlign : "left")};
   left: ${({ $left }) => $left};
   max-width: ${({ $boxMaxWidth }) => $boxMaxWidth.deskXl.t1};
   white-space: pre-line;
@@ -402,8 +403,8 @@ const AboutTextContainer = styled.div`
 
   @media (max-width: ${BREAKPOINTS.xl}px) {
     font-size: ${({ $fontSize }) => $fontSize[1]};
-    max-width: ${({ $boxMaxWidth }) =>
-      $boxMaxWidth.deskM ? $boxMaxWidth.deskM.t1 : $boxMaxWidth.deskXl.t1};
+    max-width: 100%;
+
     .grid-left {
       margin-right: 10px;
     }
@@ -413,7 +414,7 @@ const AboutTextContainer = styled.div`
     }
   }
   @media (max-width: ${BREAKPOINTS.tablet}px) {
-    max-width: ${({ $boxMaxWidth }) => $boxMaxWidth.tablet.t1};
+    max-width: 100%;
     font-size: ${({ $fontSize }) => $fontSize[1]};
     top: ${({ $top }) => $top};
     line-height: "42px";
@@ -424,21 +425,121 @@ const AboutTextContainer = styled.div`
     line-height: "27px";
     grid-template-columns: repeat(1, 1fr);
     margin-top: 30px;
+
     .grid-left {
       margin-right: 0px;
+      min-height: 300px;
     }
 
     .grid-right {
       margin-left: 0px;
+      min-height: 300px;
     }
   }
 `;
 
 const AboutSection = styled.section`
+  margin-top: 0;
+  margin-bottom: 150px;
+
+  @media only screen and (max-width: 734px) {
+    text-align: left;
+    margin-bottom: 15px;
+  }
+`;
+
+const AboutSectionContent = styled.div`
+  display: grid;
+  border: 2px dashed #71998bff;
+  border-radius: 30px;
+  overflow: hidden;
+  position: relative;
   width: 100%;
-    display: grid;
-    justify-content: center;
-"
+  min-height: 500px;
+  max-width: 1068px;
+  grid-template-columns: [margin-start] 70px [violator-start headline-start excerpt-start cta-start] 1fr [media-start headline-end violator-end excerpt-end cta-end copy-start] 1fr [margin-end media-end];
+  grid-template-rows: [margin-start media-start] 100px [violator-start headline-start copy-start] max-content [violator-end headline-end excerpt-start] 185px [excerpt-end copy-end cta-start] max-content [cta-end] 40px [margin-end media-end];
+
+  @media only screen and (min-width: 1441px) {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1080px;
+  }
+
+  @media only screen and (max-width: 1068px) {
+    margin-left: auto;
+    margin-right: auto;
+    width: 692px;
+  }
+
+  @media only screen and (max-width: 734px) {
+    margin-left: auto;
+    margin-right: auto;
+    width: 87.5%;
+    display: block;
+    padding: 20px 10px;
+    border: 2px solid #71998bff;
+  }
+
+  .feature-excerpt {
+    font-size: 19px;
+    line-height: 1.4211;
+    font-weight: 400;
+    letter-spacing: 0.012em;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica",
+      "Arial", sans-serif;
+    grid-column: excerpt-start/excerpt-end;
+    grid-row: excerpt-start/excerpt-end;
+    color: #fff;
+    margin: 0 0 2em;
+    max-width: 17em;
+  }
+
+  .feature-copy {
+    -webkit-transition: opacity 0.1s linear;
+    transition: opacity 0.1s linear;
+    padding-right: 6.5em;
+    margin-top: -12px;
+    grid-column: copy-start/copy-end;
+    grid-row: copy-start/copy-end;
+  }
+
+  @media only screen and (max-width: 734px) .feature-excerpt {
+    padding-right: 50px;
+  }
+  @media only screen and (max-width: 734px) .feature-headline,
+    .feature-excerpt,
+    .feature-cta,
+    .feature-copy,
+    .typography-overview-feature-copy {
+    padding: 0 30px;
+  }
+  @media only screen and (max-width: 734px) .feature-excerpt {
+    margin-bottom: 1.33em;
+  }
+  @media only screen and (max-width: 734px) .feature-excerpt {
+    max-width: 100%;
+  }
+
+  .typography-overview-feature-copy {
+    font-size: 20px;
+    line-height: 1.4211;
+    font-weight: 400;
+    letter-spacing: 0.012em;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica",
+      "Arial", sans-serif;
+    color: #fff;
+  }
+
+  @media only screen and (max-width: 734px) {
+    .typography-overview-feature-copy {
+      padding: 0 30px;
+    }
+  }
+
+  @media only screen and (min-width: 1069px) .feature-copy {
+    max-height: 434px;
+  }
 `;
 
 const AboutHeadline = styled.h3`
@@ -458,6 +559,18 @@ const AboutHeadline = styled.h3`
   grid-row: headline-start/headline-end;
   padding-right: 2em;
   margin: 0px;
+
+  @media only screen and (max-width: 734px) {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    display: flex;
+    margin-bottom: 55px;
+    padding: 0 30px;
+    font-size: 38px;
+    text-align: left;
+  }
 `;
 
 const AboutTextItem = styled.div`
@@ -472,7 +585,7 @@ const AboutTextItem = styled.div`
   transition-delay: 0.25s;
   margin-bottom: 20px;
   border-radius: 18px;
-  background: #08141d;
+  background: #282e33f0;
 
   img {
     max-height: 500px;
@@ -516,7 +629,7 @@ const AboutTextItem = styled.div`
   }
 `;
 
-const ServiceCard = styled.div`
+const AboutCard = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
@@ -620,6 +733,14 @@ const ServiceCard = styled.div`
     transform: translateY(0);
     opacity: 1;
   }
+  @media (max-width: ${BREAKPOINTS.mob}px) {
+    min-height: 300px;
+
+    img {
+      height: 300px;
+      object-position: 50% 50%;
+    }
+  }
 `;
 
 const GradientKeyline = styled.div`
@@ -629,59 +750,4 @@ const GradientKeyline = styled.div`
   height: 2px;
   background-image: linear-gradient(to right, #77a596, #9cd8c4);
   display: none;
-`;
-
-const AboutSectionContent = styled.div`
-  display: grid;
-  border: 1px dashed #71998bff;
-  border-radius: 30px;
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-  min-height: 500px;
-  max-width: 1068px;
-  grid-template-columns: [margin-start] 70px [violator-start headline-start excerpt-start cta-start] 1fr [media-start headline-end violator-end excerpt-end cta-end copy-start] 1fr [margin-end media-end];
-  grid-template-rows: [margin-start media-start] 100px [violator-start headline-start copy-start] max-content [violator-end headline-end excerpt-start] 185px [excerpt-end copy-end cta-start] max-content [cta-end] 40px [margin-end media-end];
-
-  .feature-excerpt {
-    font-size: 19px;
-    line-height: 1.4211;
-    font-weight: 400;
-    letter-spacing: 0.012em;
-    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica",
-      "Arial", sans-serif;
-    text-align: left;
-    grid-column: excerpt-start/excerpt-end;
-    grid-row: excerpt-start/excerpt-end;
-    color: #fff;
-    margin: 0 0 2em;
-    max-width: 17em;
-  }
-
-  .feature-copy {
-    -webkit-transition: opacity 0.1s linear;
-    transition: opacity 0.1s linear;
-    padding-right: 6.5em;
-    ${
-      "" /* opacity: 0;
-    visibility: hidden; */
-    }
-    margin-top: -12px;
-    grid-column: copy-start/copy-end;
-    grid-row: copy-start/copy-end;
-  }
-
-  .typography-overview-feature-copy {
-    font-size: 20px;
-    line-height: 1.4211;
-    font-weight: 400;
-    letter-spacing: 0.012em;
-    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica",
-      "Arial", sans-serif;
-    color: #fff;
-  }
-
-  @media only screen and (min-width: 1069px) .feature-copy {
-    max-height: 434px;
-  }
 `;

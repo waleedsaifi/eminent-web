@@ -154,7 +154,7 @@ const App = ({
             return ["30%", "40%", "20%"];
           //return window.innerWidth < BREAKPOINTS.tablet ? ["20%"] : ["30%"];
           case 1:
-            return ["35%", "38%", "20%"];
+            return ["35%", "38%", "30%"];
           //return window.innerWidth < BREAKPOINTS.tablet ? ["30%"] : ["35%"];
           case 2:
             return ["20%", "20%", "20%"];
@@ -414,7 +414,7 @@ const App = ({
         return;
     }
   };
-   const getSecondFontSize = (step) => {
+  const getSecondFontSize = (step) => {
     switch (currentSectionTitle) {
       case "home": {
         switch (step) {
@@ -423,9 +423,9 @@ const App = ({
           case 1:
             return ["34px", "28px", "18px"];
           case 2:
-          return ["36px", "28px", "18px"];
-          case 5: 
-          return ["34px", "26px", "18px"];
+            return ["36px", "28px", "18px"];
+          case 5:
+            return ["34px", "26px", "18px"];
           case 3:
           case 4:
             return ["28px", "21px", "18px"];
@@ -918,7 +918,7 @@ const App = ({
                 $letterSpacing={getLetterSpacing(0)}
                 $boxMaxWidth={getBoxMaxWidth(0)}
                 $textTransform={"uppercase"}
-                $fontWeight={"400"}
+                $fontWeight={"700"}
               >
                 {currentSection?.fields[currentStep].fields.mainText}
               </MainText>
@@ -983,7 +983,7 @@ const App = ({
                 $letterSpacing={getLetterSpacing(0)}
                 $boxMaxWidth={getBoxMaxWidth(0)}
                 $textTransform={"uppercase"}
-                $fontWeight={"400"}
+                $fontWeight={"700"}
               >
                 {currentSection.fields[currentStep].fields.mainText}
               </MainText>
@@ -1118,7 +1118,7 @@ const App = ({
                 $letterSpacing={getLetterSpacing(0)}
                 $boxMaxWidth={getBoxMaxWidth(0)}
                 $textTransform={"uppercase"}
-                $fontWeight={"400"}
+                $fontWeight={"700"}
               >
                 {currentSection.fields[currentStep].fields.mainText}
               </MainText>
@@ -2061,7 +2061,7 @@ const ChooseStoryText = styled.div`
   max-width: 1200px;
   white-space: pre-line;
   letter-spacing: ${({ $letterSpacing }) => $letterSpacing};
-  line-height: 35px;
+  line-height: auto;
   padding: 0 0 2rem 1.2rem;
 
   @media (max-width: ${BREAKPOINTS.xl}px) {
@@ -2085,12 +2085,13 @@ const ChooseStoryTitle = styled.div`
   max-width: 1200px;
   white-space: pre-line;
   letter-spacing: ${({ $letterSpacing }) => $letterSpacing};
-  line-height: 35px;
+  line-height: 75px;
   padding: 0 0 0 1.2rem;
   margin-bottom: 5px;
 
   @media (max-width: ${BREAKPOINTS.xl}px) {
     font-size: ${({ $fontSize }) => $fontSize[1]};
+    line-height: ${({ $fontSize }) => $fontSize[1]};
   }
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {
@@ -2105,6 +2106,7 @@ const ChooseStoryTitle = styled.div`
     font-size: 8vmin;
     padding: 0 0 1rem 1rem;
     margin-top: 0;
+    line-height: 8vmin;
   }
 `;
 const ChooseStory = styled.div`
@@ -2181,7 +2183,7 @@ const StoryContext = styled.div`
 
   @media (max-width: ${BREAKPOINTS.xl}px) {
     font-size: ${({ $fontSize }) => $fontSize.itemText[1]};
-    line-height: 35px;
+    line-height: 70px;
 
     & span.num {
       font-size: ${({ $fontSize }) => $fontSize.numText[1]};
@@ -2321,6 +2323,8 @@ const CustomText = styled.div`
   @media (max-width: ${BREAKPOINTS.mob}px) {
     font-size: 14px;
     margin: 0;
+    top: 20px;
+    line-height: 26px;
   }
 `;
 const CustomID = styled.div`

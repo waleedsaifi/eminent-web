@@ -80,8 +80,8 @@ const ServicesPopupContent = ({ closeHandler, showPopup }) => {
           <div className="violator-strip-content">
             <div className="overview-copy">
               <p>
-                Eminent uses design and strategy to bring your
-                unique vision of the future to life.
+                Eminent uses design and strategy to bring your unique vision of
+                the future to life.
               </p>
             </div>
             <a
@@ -244,13 +244,12 @@ const mobBreakpoint = 900;
 const Wrapper = styled.div`
   position: absolute;
   left: 0;
-  top: 0;
+  top: 100px;
   width: 100%;
   height: 100%;
-  min-height: 100%;
+  min-height: 80%;
   z-index: 1000;
-  ${"" /* background: ${({ $bg }) => $bg}; */}
-  background: rgba(8,8,8,0.9);
+  background: rgb(5 11 17);
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -261,6 +260,8 @@ const Wrapper = styled.div`
 
   @media (max-width: ${mobBreakpoint}px) {
     align-items: flex-start;
+    top: 65px;
+    z-index: 1000;
   }
 `;
 const PopupContainer = styled.div`
@@ -285,13 +286,12 @@ const PopupContainer = styled.div`
 `;
 const Header = styled.div`
   text-align: center;
-  ${"" /* transition: 0.2s ease; */}
 
   h2 {
     padding: 0;
     margin: 0 0 1rem;
-    font-weight: 400;
-    font-size: 86px;
+    font-weight: 700;
+    font-size: 66px;
     letter-spacing: 0.1em;
     color: ${({ $color }) => $color};
     display: inline-block;
@@ -351,7 +351,7 @@ const HeaderTextContainer = styled.div`
 `;
 
 const LogoIcon = styled(LogoIconSVG)`
-  display: inline-block;
+  display: none;
   stroke: rgba(255, 255, 255, 0);
   width: 80px;
   height: 64px;
@@ -456,7 +456,7 @@ const ServicesTextItem = styled.div`
   transition-delay: 0.25s;
   margin-bottom: 20px;
   border-radius: 18px;
-  background: #08141d;
+  background: #282e33f0;
 
   img {
     max-height: 400px;
@@ -622,7 +622,8 @@ const AboutSectionViolatorStrip = styled.section`
   color: #9cd8c4;
   border-radius: 30px;
   font-weight: 600;
-  font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue","Helvetica", "Arial",sans-serif;
+  font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica",
+    "Arial", sans-serif;
 
   .overview-copy {
     font-size: 20px;

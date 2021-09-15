@@ -213,14 +213,23 @@ const MenuContent = ({
 
   //FIXME
   const onServicesPopUpHandler = (e) => {
+    if (window.innerWidth <= BREAKPOINTS.tablet) {
+      setMenuOpen(false);
+    }
     showPopup("services");
   };
   //FIXME
   const onProjectsPopUpHandler = (e) => {
+    if (window.innerWidth <= BREAKPOINTS.tablet) {
+      setMenuOpen(false);
+    }
     showPopup("projects");
   };
   //FIXME
   const onAboutPopUpHandler = (e) => {
+    if (window.innerWidth <= BREAKPOINTS.tablet) {
+      setMenuOpen(false);
+    }
     showPopup("about");
   };
 
@@ -443,7 +452,7 @@ const MenuContent = ({
         >
           <span className="menu_item" onMouseOver={menuLabelHandler}>
             {" "}
-            <Link to="/work"> WORK </Link>{" "}
+            <Link to="/work"> QUOTE </Link>{" "}
           </span>{" "}
           <span className="menu_label"> THINK BETTER </span>{" "}
         </MenuBtn>
@@ -580,7 +589,7 @@ const Menu = styled.div`
   grid-template-columns: 185px 185px 185px 200px 185px 185px 185px;
   grid-template-rows: 75px;
   align-items: center;
-  z-index: 10;
+  z-index: 9;
   backdrop-filter: blur(${({ $blur }) => $blur}px);
 
   ${

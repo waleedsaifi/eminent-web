@@ -73,7 +73,6 @@ const ProjectsPopupContent = ({ closeHandler }) => {
           $boxMaxWidth={getBoxMaxWidth()}
         >
           <ServicesTextItem className="grid-left">
-            {/* <img src={MomWorkingIMG} alt="Logo" /> */}
             <h5>
               Helping the Pentagon recruit diverse talent and close the
               technology skills gap
@@ -81,104 +80,31 @@ const ProjectsPopupContent = ({ closeHandler }) => {
             <GradientKeyline />
 
             <p>$6 Million - Remote Team - 8(a) Sole Source</p>
-            {/* <h6>
-              Our Apps and Frameworks people create every application. Areas of
-              work include Application Development, API Design, User Interface
-              Design, Networking, Application Protocols, Framework Development,
-              and Performance Engineering.
-            </h6> */}
           </ServicesTextItem>
           <ServicesTextItem className="grid-right">
-            {/* <img src={TeamCollabIMG} alt="Logo" /> */}
             <h5>
               Improving Air Force and Space Force IT systems and software using
               modern technology
             </h5>
             <GradientKeyline />
             <p>$13.5 Billion - Remote Team - 8(a) Joint Venture</p>
-            {/* <h6>
-              Our Apps and Frameworks people create every application. Areas of
-              work include Application Development, API Design, User Interface
-              Design, Networking, Application Protocols, Framework Development,
-              and Performance Engineering.
-            </h6> */}
           </ServicesTextItem>
           <ServicesTextItem className="grid-left">
-            {/* <img src={CloudIMG} alt="Logo" /> */}
             <h5>
               Using the Cloud to develop the $25 billion diplomatic engagement
               budget
             </h5>
             <GradientKeyline />
             <p>$2 Million - Remote Team - 8(a) Subcontract</p>
-
-            {/* <h6>
-              Our Apps and Frameworks people create every application. Areas of
-              work include Application Development, API Design, User Interface
-              Design, Networking, Application Protocols, Framework Development,
-              and Performance Engineering.
-            </h6> */}
           </ServicesTextItem>
           <ServicesTextItem className="grid-right">
-            {/* <img src={TwoWorkingTogetherIMG} alt="Logo" /> */}
             <h5>
               Empowering Walter Reed National Military Medical Center Wounded
               Warriors
             </h5>
             <GradientKeyline />
             <p>$4.5 Million - Remote Team - 8(a) Sole Source</p>
-
-            {/* <h6>
-              Our Apps and Frameworks people create every application. Areas of
-              work include Application Development, API Design, User Interface
-              Design, Networking, Application Protocols, Framework Development,
-              and Performance Engineering.
-            </h6> */}
           </ServicesTextItem>
-          {/* <ServicesTextItem className="grid-left">
-            <img src={WireframingCollaborationIMG} alt="Logo" />
-            <h5>Information Systems and Technology</h5>
-            <GradientKeyline />
-            <h6>
-              Our Apps and Frameworks people create every application. Areas of
-              work include Application Development, API Design, User Interface
-              Design, Networking, Application Protocols, Framework Development,
-              and Performance Engineering.
-            </h6>
-          </ServicesTextItem>
-          <ServicesTextItem className="grid-right">
-            <img src={WomanWorkerIMG} alt="Logo" />
-            <h5>Machine Learning and AI</h5>
-            <GradientKeyline />
-            <h6>
-              Our Apps and Frameworks people create every application. Areas of
-              work include Application Development, API Design, User Interface
-              Design, Networking, Application Protocols, Framework Development,
-              and Performance Engineering.
-            </h6>
-          </ServicesTextItem>
-          <ServicesTextItem className="grid-left">
-            <img src={WorkersIMG} alt="Logo" />
-            <h5>Defi and Blockchain</h5>
-            <GradientKeyline />
-            <h6>
-              Our Apps and Frameworks people create every application. Areas of
-              work include Application Development, API Design, User Interface
-              Design, Networking, Application Protocols, Framework Development,
-              and Performance Engineering.
-            </h6>
-          </ServicesTextItem>
-          <ServicesTextItem className="grid-right">
-            <img src={GroupWorkingIMG} alt="Logo" />
-            <h5>Software Quality, Automation, and Tools</h5>
-            <GradientKeyline />
-            <h6>
-              Our Apps and Frameworks people create every application. Areas of
-              work include Application Development, API Design, User Interface
-              Design, Networking, Application Protocols, Framework Development,
-              and Performance Engineering.
-            </h6>
-          </ServicesTextItem> */}
         </ServicesTextContainer>
         <ContinueBtn
           className="animeCalltoAction"
@@ -212,13 +138,12 @@ const mobBreakpoint = 900;
 const Wrapper = styled.div`
   position: absolute;
   left: 0;
-  top: 0;
+  top: 100px;
   width: 100%;
   height: 100%;
-  min-height: 100%;
-  z-index: 1000;
-  ${"" /* background: ${({ $bg }) => $bg}; */}
-  background: rgba(8,8,8,0.9);
+  min-height: 80%;
+  z-index: 100;
+  background: rgb(5 11 17);
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -229,11 +154,12 @@ const Wrapper = styled.div`
 
   @media (max-width: ${mobBreakpoint}px) {
     align-items: flex-start;
+    top: 65px;
+    z-index: 1000;
   }
 `;
 const PopupContainer = styled.div`
   position: relative;
-  ${"" /* border: 1px solid ${({ $border }) => $border}; */}
   border-radius: 18px;
   padding: 40px 78px;
   max-width: 1180px;
@@ -258,8 +184,8 @@ const Header = styled.div`
   h2 {
     padding: 0;
     margin: 0 0 1rem;
-    font-weight: 400;
-    font-size: 86px;
+    font-weight: 700;
+    font-size: 66px;
     letter-spacing: 0.1em;
     color: ${({ $color }) => $color};
     display: inline-block;
@@ -319,7 +245,7 @@ const HeaderTextContainer = styled.div`
 `;
 
 const LogoIcon = styled(LogoIconSVG)`
-  display: inline-block;
+  display: none;
   stroke: rgba(255, 255, 255, 0);
   width: 80px;
   height: 64px;
@@ -427,7 +353,7 @@ const ServicesTextItem = styled.div`
   margin-bottom: 20px;
   ${"" /* border: 1px solid #465e4f; */}
   border-radius: 18px;
-  background: #08141df0;
+  background: #282e33f0;
 
   img {
     max-height: 400px;
