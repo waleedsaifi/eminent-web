@@ -4,6 +4,7 @@ import { BREAKPOINTS } from "../../constants/constants";
 import { ReactComponent as CrossSvg } from "../../assets/images/cross.svg";
 import { useSelector } from "react-redux";
 import { ReactComponent as LogoIconSVG } from "../../assets/images/eminent-icon.svg";
+import { toggleElementsforPopup } from "utils/navigation";
 
 const ProjectsPopupContent = ({ closeHandler }) => {
   const wrapper = useRef(null);
@@ -51,7 +52,7 @@ const ProjectsPopupContent = ({ closeHandler }) => {
         <Header
           ref={header}
           $isSmall={isHeaderSmall}
-          $color={currentTheme?.schedulePopupTextColor}
+          $color={currentTheme.textColor}
           $bg={currentTheme?.schedulePopupBg[0]}
         >
           <CloseCross onClick={closeHandlerPopup}>
@@ -143,7 +144,7 @@ const Wrapper = styled.div`
   height: 100%;
   min-height: 80%;
   z-index: 100;
-  background: rgb(5 11 17);
+  ${'' /* background: rgb(5 11 17); */}
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -165,7 +166,7 @@ const PopupContainer = styled.div`
   max-width: 1180px;
   margin: 20px 0;
   width: 100%;
-  background: #071118;
+  ${'' /* background: #071118; */}
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {
     margin-top: 85px;

@@ -15,6 +15,7 @@ import {
   CloudIMG,
 } from "../../assets/images/services/index";
 import PaperWhiteIcon from "../../assets/images/icon_paper_white.png";
+import { toggleElementsforPopup } from "utils/navigation";
 
 const ServicesPopupContent = ({ closeHandler, showPopup }) => {
   const wrapper = useRef(null);
@@ -64,7 +65,7 @@ const ServicesPopupContent = ({ closeHandler, showPopup }) => {
         <Header
           ref={header}
           $isSmall={isHeaderSmall}
-          $color={currentTheme?.schedulePopupTextColor}
+          $color={currentTheme.textColor}
           $bg={currentTheme?.schedulePopupBg[0]}
         >
           <CloseCross onClick={closeHandlerPopup}>
@@ -249,7 +250,7 @@ const Wrapper = styled.div`
   height: 100%;
   min-height: 80%;
   z-index: 1000;
-  background: rgb(5 11 17);
+  ${'' /* background: rgb(5 11 17); */}
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -272,7 +273,7 @@ const PopupContainer = styled.div`
   max-width: 1180px;
   margin: 20px 0;
   width: 100%;
-  background: #071118;
+  ${'' /* background: #071118; */}
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {
     margin-top: 85px;

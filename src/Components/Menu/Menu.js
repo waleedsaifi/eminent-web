@@ -28,6 +28,7 @@ import {
   setProgress,
 } from "../../store/actions/actionCreator";
 import ReactGA from "react-ga";
+import { toggleElementsforPopup } from "utils/navigation";
 
 const MenuContent = ({
   showPopup,
@@ -216,6 +217,7 @@ const MenuContent = ({
     if (window.innerWidth <= BREAKPOINTS.tablet) {
       setMenuOpen(false);
     }
+    toggleElementsforPopup();
     showPopup("services");
   };
   //FIXME
@@ -223,6 +225,7 @@ const MenuContent = ({
     if (window.innerWidth <= BREAKPOINTS.tablet) {
       setMenuOpen(false);
     }
+    toggleElementsforPopup();
     showPopup("projects");
   };
   //FIXME
@@ -230,6 +233,7 @@ const MenuContent = ({
     if (window.innerWidth <= BREAKPOINTS.tablet) {
       setMenuOpen(false);
     }
+    toggleElementsforPopup();
     showPopup("about");
   };
 
@@ -463,7 +467,7 @@ const MenuContent = ({
               <LogoSvg
                 className="menuLogoSvg"
                 ref={logoSvg}
-                $color={currentTheme?.textColor}
+                $color={currentTheme?.logoColor}
                 $show={isLogoBtnsShow.logo}
               />
             </Link>

@@ -16,15 +16,15 @@ function App() {
             <Container currentSectionTitle="home" currentTheme={darkTheme} />
           </Route>
           <Route exact path="/approach">
-            <ParticleBackground currentTheme={lightTheme} />
+            <ParticleBackground currentTheme={darkTheme} />
             <GLContainer currentSectionTitle="approach" />
             <Container
               currentSectionTitle="approach"
-              currentTheme={lightTheme}
+              currentTheme={darkTheme}
             />
           </Route>
           <Route exact path="/work">
-             <ParticleBackground currentTheme={lightTheme} />
+             <ParticleBackground currentTheme={darkTheme} />
             <GLContainer currentSectionTitle="work" />
            <Container currentSectionTitle="work" currentTheme={darkTheme} />
           </Route>

@@ -30,6 +30,7 @@ import {
   stepForward,
   setProgress,
 } from "../../store/actions/actionCreator";
+import { toggleElementsforPopup } from "utils/navigation";
 
 const ContainerContent = (currentData) => {
   const [isLandscape, setLandscape] = useState(
@@ -228,18 +229,21 @@ const ContainerContent = (currentData) => {
     mainContainer.current.style.overflowY = "auto";
     setPopupOpen(false);
     setActivePopup(null);
+    toggleElementsforPopup();
   };
 //FIXME
   const closeProjectsPopup = () => {
     mainContainer.current.style.overflowY = "auto";
     setPopupOpen(false);
     setActivePopup(null);
+    toggleElementsforPopup();
   };
 //FIXME
    const closeAboutPopup = () => {
     mainContainer.current.style.overflowY = "auto";
     setPopupOpen(false);
     setActivePopup(null);
+    toggleElementsforPopup();
   };
 
   const getBlur = () => {
@@ -416,7 +420,7 @@ const ContainerContent = (currentData) => {
       case "projects":
         return <ProjectsPopup closeHandler={closeProjectsPopup} />;
         case "about":
-        return <AboutPopup closeHandler={closeProjectsPopup} />;
+        return <AboutPopup closeHandler={closeAboutPopup} />;
       default:
         break;
     }

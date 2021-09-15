@@ -5,6 +5,9 @@ import { ReactComponent as CrossSvg } from "../../assets/images/cross.svg";
 import { useSelector } from "react-redux";
 import { ReactComponent as LogoIconSVG } from "../../assets/images/eminent-icon.svg";
 import { RisiIMG, IsaacIMG, LeAnnIMG } from "../../assets/images/about/index";
+import { ParticleBackground } from "Components/ParticleBackground";
+import { darkTheme, lightTheme } from "constants/constants";
+import { toggleElementsforPopup } from "utils/navigation";
 
 const AboutPopupContent = ({ closeHandler, showPopup }) => {
   const wrapper = useRef(null);
@@ -50,11 +53,12 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
       $bg={currentTheme?.schedulePopupBg[0]}
       className="popup"
     >
+    {/* <ParticleBackground currentTheme={darkTheme} /> */}
       <PopupContainer $border={currentTheme?.schedulePopupTextColor}>
         <Header
           ref={header}
           $isSmall={isHeaderSmall}
-          $color={currentTheme?.schedulePopupTextColor}
+          $color={currentTheme?.textColor}
           $bg={currentTheme?.schedulePopupBg[0]}
         >
           <CloseCross onClick={closeHandlerPopup}>
@@ -126,7 +130,7 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
               <AboutTextItem className="grid-1 grid-left">
                 <AboutCardContent
                   cardImage={LeAnnIMG}
-                  url={"https://www.linkedin.com/in/leann-dishart-b7676461/"}
+                  url={"https://www.linkedin.com/in/leann-dishart-b7676461/"} //aws s3 cp “/Users/isaacbarnes/Documents/GitHub/eminent-web/build” s3://eminentfuture.com/ aws s3 rm s3://eminentfuture.com/ --recursive
                 />
                 <h5>LeAnn Dishart</h5>
                 <GradientKeyline />
@@ -236,7 +240,7 @@ const Wrapper = styled.div`
   height: 100%;
   min-height: 80%;
   z-index: 1000;
-  background: rgb(5 11 17);
+  ${'' /* background: rgb(5 11 17); */}
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -259,7 +263,7 @@ const PopupContainer = styled.div`
   max-width: 1180px;
   margin: 20px 0;
   width: 100%;
-  background: #071118;
+  ${'' /* background: #071118; */}
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {
     margin-top: 85px;

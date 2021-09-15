@@ -21,7 +21,8 @@ export const MOB_LOCK_BREAKPOINT = 950;
 export const darkTheme = 
   {
     background: ["#071118", "#04060B"],
-    textColor: "#9dd8c4",
+    // textColor: "#9dd8c4",
+    textColor: "#e1e1e1",
     footerTextColor: "#838A8E",
     textSecondary: "#485f56",
     logoColor: "#9dd8c4",
