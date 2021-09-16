@@ -19,12 +19,12 @@ export const toggleElementsforPopup = (display) => {
     elem.forEach((item, index) => {
       if (display === "hide") {
         hide(item);
-        console.log(item.className + " Hide: " + index);
+       // console.log(item.className + " Hide: " + index);
         
       } else {
         // otherwise, show it
         show(item);
-        console.log(item.className + " Show: " + index);
+       // console.log(item.className + " Show: " + index);
       }
       return;
     });

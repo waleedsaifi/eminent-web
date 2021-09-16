@@ -26,6 +26,7 @@ import {
 import ScheduleForm from "../SchedulePopup/ScheduleForm";
 import ServicesPopupContent from "../Services/ServicesPopup";
 import ProjectsPopupContent from "../Projects/ProjectsPopup";
+import { toggleElementsforPopup } from "utils/navigation";
 
 const App = ({
   showPopup,
@@ -48,10 +49,12 @@ const App = ({
   };
 
   const onServicesPopUpHandler = (e) => {
+    toggleElementsforPopup("hide");
     showPopup("services");
   };
 
   const onProjectsPopUpHandler = (e) => {
+    toggleElementsforPopup("hide");
     showPopup("projects");
   };
 

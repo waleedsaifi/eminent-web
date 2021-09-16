@@ -300,7 +300,7 @@ const Header = styled.div`
 
   h4 {
     font-size: 32px;
-    line-height: 1.1;
+    line-height: 1.3;
     font-weight: 400;
     max-width: 600px;
     text-align: center;
@@ -470,7 +470,7 @@ const ServicesTextItem = styled.div`
     font-size: 26px;
     margin-top: 30px;
     margin-bottom: 10px;
-    line-height: 1.1em;
+    line-height: 1.3em;
     letter-spacing: 0.03em;
     text-align: left;
     padding: 0px 20px 0px;
@@ -483,8 +483,8 @@ const ServicesTextItem = styled.div`
 
   h6 {
     font-size: 17px;
-    line-height: 1.19048;
-    font-weight: 600;
+    line-height: 1.52947;
+    font-weight: 400;
     letter-spacing: 0.011em;
     margin: 10px 20px 20px;
     max-width: 550px;
@@ -622,7 +622,7 @@ const AboutSectionViolatorStrip = styled.section`
   padding: 44px;
   color: ${({ $color }) => ($color == "" ? "#9cd8c4" : "#fff")};
   border-radius: 30px;
-  font-weight: 600;
+  font-weight: 500;
   font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica",
     "Arial", sans-serif;
 
