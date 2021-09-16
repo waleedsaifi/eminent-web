@@ -16,11 +16,11 @@ function App() {
             <Container currentSectionTitle="home" currentTheme={darkTheme} />
           </Route>
           <Route exact path="/approach">
-            <ParticleBackground currentTheme={darkTheme} />
+            <ParticleBackground currentTheme={lightTheme} />
             <GLContainer currentSectionTitle="approach" />
             <Container
               currentSectionTitle="approach"
-              currentTheme={darkTheme}
+              currentTheme={lightTheme}
             />
           </Route>
           <Route exact path="/work">

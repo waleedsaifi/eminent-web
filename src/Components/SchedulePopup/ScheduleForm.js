@@ -470,7 +470,7 @@ const ScheduleSubmitBtn = styled.button`
   font-size: 18px;
   cursor: pointer;
   background: transparent;
-  background: #678F7D;
+  background: #678f7d;
   color: #ffffff;
   text-align: center;
   letter-spacing: 0.15em;
@@ -482,7 +482,8 @@ const ScheduleSubmitBtn = styled.button`
   border-radius: 67px;
   text-transform: uppercase;
 
-  ${'' /* &:after {
+  ${
+    "" /* &:after {
     position: absolute;
     content: "";
     width: 97%;
@@ -493,7 +494,8 @@ const ScheduleSubmitBtn = styled.button`
       $color ? $color : "var(--block1-text-primary)"};
     transition: 0.5s ease;
     opacity: 1;
-  } */}
+  } */
+  }
 
   &:focus {
     outline: none;

@@ -77,7 +77,7 @@ const ServicesPopupContent = ({ closeHandler, showPopup }) => {
             <h4> Just a few of the ways we can help you make a difference. </h4>
           </HeaderTextContainer>
         </Header>
-        <AboutSectionViolatorStrip $icon={PaperWhiteIcon}>
+        <AboutSectionViolatorStrip $icon={PaperWhiteIcon} $borderColor={currentTheme?.bgScheduleBtn}>
           <div className="violator-strip-content">
             <div className="overview-copy">
               <p>
@@ -250,7 +250,7 @@ const Wrapper = styled.div`
   height: 100%;
   min-height: 80%;
   z-index: 1000;
-  ${'' /* background: rgb(5 11 17); */}
+  ${"" /* background: rgb(5 11 17); */}
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -273,7 +273,7 @@ const PopupContainer = styled.div`
   max-width: 1180px;
   margin: 20px 0;
   width: 100%;
-  ${'' /* background: #071118; */}
+  ${"" /* background: #071118; */}
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {
     margin-top: 85px;
@@ -308,7 +308,7 @@ const Header = styled.div`
     margin-right: auto;
     margin-top: 0.3em;
     letter-spacing: 0.03em;
-    color: #a1a1a6;
+    color: ${({ $color }) => ($color == "" ? "#a1a1a6" : "#fff")};
   }
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {
@@ -617,10 +617,10 @@ const GradientKeyline = styled.div`
 `;
 
 const AboutSectionViolatorStrip = styled.section`
-  border: 1px dashed #71998bff;
+  border: 2px dashed ${({$borderColor}) => $borderColor};
   text-align: center;
   padding: 44px;
-  color: #9cd8c4;
+  color: ${({ $color }) => ($color == "" ? "#9cd8c4" : "#fff")};
   border-radius: 30px;
   font-weight: 600;
   font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica",
@@ -637,7 +637,7 @@ const AboutSectionViolatorStrip = styled.section`
     border: 1px solid #06c;
     border-radius: 16px;
     padding: 8px 16px 8px 28px;
-    color: #9cd8c4;
+    color: ${({ $color }) => ($color == "" ? "#9cd8c4" : "#fff")};
     border-color: #fff;
   }
 

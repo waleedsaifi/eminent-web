@@ -216,7 +216,7 @@ const ContainerContent = (currentData) => {
     };
   }, [currentStep, isLandscape, currentSection?.fields]);
 
-//FIXME
+  //FIXME
   const closeSchedulePopup = () => {
     mainContainer.current.style.overflowY = "auto";
     const menu = document.querySelector(".menu");
@@ -224,26 +224,26 @@ const ContainerContent = (currentData) => {
     setPopupOpen(false);
     setActivePopup(null);
   };
-//FIXME
+  //FIXME
   const closeServicesPopup = () => {
     mainContainer.current.style.overflowY = "auto";
     setPopupOpen(false);
     setActivePopup(null);
-    toggleElementsforPopup();
+    toggleElementsforPopup("show");
   };
-//FIXME
+  //FIXME
   const closeProjectsPopup = () => {
     mainContainer.current.style.overflowY = "auto";
     setPopupOpen(false);
-    setActivePopup(null);
-    toggleElementsforPopup();
+    setActivePopup(null)
+    toggleElementsforPopup("show");
   };
-//FIXME
-   const closeAboutPopup = () => {
+  //FIXME
+  const closeAboutPopup = () => {
     mainContainer.current.style.overflowY = "auto";
     setPopupOpen(false);
     setActivePopup(null);
-    toggleElementsforPopup();
+    toggleElementsforPopup("show");
   };
 
   const getBlur = () => {
@@ -419,7 +419,7 @@ const ContainerContent = (currentData) => {
         return <ServicesPopup closeHandler={closeServicesPopup} />;
       case "projects":
         return <ProjectsPopup closeHandler={closeProjectsPopup} />;
-        case "about":
+      case "about":
         return <AboutPopup closeHandler={closeAboutPopup} />;
       default:
         break;

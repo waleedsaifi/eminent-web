@@ -83,7 +83,7 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
           $boxMaxWidth={getBoxMaxWidth()}
         >
           <AboutSection>
-            <AboutSectionContent>
+            <AboutSectionContent $borderColor={currentTheme?.bgScheduleBtn}>
               <AboutHeadline className="headline">
                 Eminent Leadership
               </AboutHeadline>
@@ -141,7 +141,7 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
           </AboutSection>
 
           <AboutSection>
-            <AboutSectionContent>
+            <AboutSectionContent $borderColor={currentTheme?.bgScheduleBtn}>
               <AboutHeadline className="headline">
                 Eminent the Company
               </AboutHeadline>
@@ -299,7 +299,7 @@ const Header = styled.div`
     margin-right: auto;
     margin-top: 0.3em;
     letter-spacing: 0.03em;
-    color: #a1a1a6;
+    color: ${({ $color }) => ($color == "" ? "#a1a1a6" : "#fff")};
   }
   p {
     font-size: 22px;
@@ -454,7 +454,7 @@ const AboutSection = styled.section`
 
 const AboutSectionContent = styled.div`
   display: grid;
-  border: 2px dashed #71998bff;
+  border: 2px dashed ${({$borderColor}) => $borderColor};
   border-radius: 30px;
   overflow: hidden;
   position: relative;
@@ -482,7 +482,7 @@ const AboutSectionContent = styled.div`
     width: 87.5%;
     display: block;
     padding: 20px 10px;
-    border: 2px solid #71998bff;
+    border: 2px solid ${({$borderColor}) => $borderColor};
   }
 
   .feature-excerpt {

@@ -217,7 +217,7 @@ const MenuContent = ({
     if (window.innerWidth <= BREAKPOINTS.tablet) {
       setMenuOpen(false);
     }
-    toggleElementsforPopup();
+    toggleElementsforPopup("hide");
     showPopup("services");
   };
   //FIXME
@@ -225,7 +225,7 @@ const MenuContent = ({
     if (window.innerWidth <= BREAKPOINTS.tablet) {
       setMenuOpen(false);
     }
-    toggleElementsforPopup();
+    toggleElementsforPopup("hide");
     showPopup("projects");
   };
   //FIXME
@@ -233,7 +233,7 @@ const MenuContent = ({
     if (window.innerWidth <= BREAKPOINTS.tablet) {
       setMenuOpen(false);
     }
-    toggleElementsforPopup();
+    toggleElementsforPopup("hide");
     showPopup("about");
   };
 
@@ -270,50 +270,6 @@ const MenuContent = ({
     });
   };
 
-  // const rightMenuBtnHoverIn = () => {
-  //   if (!rightBorderBtn || window.innerWidth <= BREAKPOINTS.tablet) return;
-  //   rightMenuBtnHoverInAnimation(
-  //     menuRightBtn.current,
-  //     rightBorderBtn.current,
-  //     currentTheme?.bgScheduleBtn
-  //   );
-  // };
-
-  // const rightMenuBtnHoverOut = () => {
-  //   if (!rightBorderBtn || window.innerWidth <= BREAKPOINTS.tablet) return;
-  //   rightMenuBtnHoverOutAnimation(
-  //     rightBorderBtn.current,
-  //     menuRightBtn.current,
-  //     currentTheme?.bgScheduleBtn,
-  //     () => {
-  //       setTimeout(
-  //         () =>
-  //           removeInlineStyles([rightBorderBtn.current, menuRightBtn.current]),
-  //         300
-  //       );
-  //     }
-  //   );
-  // };
-
-  // const onMouseDownScheduleHandler = (e) => {
-  //   if (!rightBorderBtn || window.innerWidth <= BREAKPOINTS.tablet) return;
-  //   rightMenuBtnMouseDownAnimation(
-  //     menuRightBtn.current,
-  //     currentTheme?.bgScheduleBtn
-  //   );
-  // };
-
-  // const onMouseUpScheduleHandler = (e) => {
-  //   if (!rightBorderBtn || window.innerWidth <= BREAKPOINTS.tablet) return;
-  //   rightMenuBtnMouseUpAnimation(
-  //     menuRightBtn.current,
-  //     currentTheme?.bgScheduleBtn,
-  //     () => {
-  //       setTimeout(() => removeInlineStyles([menuRightBtn.current]), 300);
-  //     }
-  //   );
-  // };
-
   const onScheduleClickHandler = () => {
     if (window.innerWidth <= BREAKPOINTS.tablet) {
       setMenuOpen(false);
@@ -330,12 +286,14 @@ const MenuContent = ({
         return;
       }
       case "/approach": {
+        toggleElementsforPopup("show");
         GoSectionHandler("approach");
         ReactGA.set({ page: location.pathname }); // Update the user's current page
         ReactGA.pageview(location.pathname);
         return;
       }
       case "/work": {
+        toggleElementsforPopup("show");
         GoSectionHandler("work");
         ReactGA.set({ page: location.pathname }); // Update the user's current page
         ReactGA.pageview(location.pathname);
@@ -349,6 +307,10 @@ const MenuContent = ({
   function GoSectionHandler(type) {
     if (window.innerWidth <= BREAKPOINTS.tablet) {
       setMenuOpen(false);
+    }
+    if (document.getElementsByClassName("popup").length > 0) {
+      var el = document.getElementsByClassName("popup")[0];
+      el.parentNode.removeChild(el);
     }
     if (window.engine) {
       dispatch(setCurrentSectionTitle(type));

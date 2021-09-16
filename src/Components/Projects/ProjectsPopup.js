@@ -202,7 +202,7 @@ const Header = styled.div`
     margin-right: auto;
     margin-top: 0.3em;
     letter-spacing: 0.03em;
-    color: #a1a1a6;
+    color: ${({ $color }) => ($color == "" ? "#a1a1a6" : "#fff")};
   }
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {

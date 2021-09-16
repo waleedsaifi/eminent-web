@@ -1,41 +1,36 @@
-export const toggleElementsforPopup = () => {
-  const animeElements = document.querySelectorAll(".anime");
-  const animeCalltoActionElements =
-    document.querySelectorAll(".animeCalltoAction");
-  const footerElements = document.querySelectorAll(".footer");
-  const progressBarElements = document.querySelectorAll(".progressBar");
-  const glElements = document.querySelectorAll("#glContainer");
-  // Show an element
+export const toggleElementsforPopup = (display) => {
+  //FIXME
+  const elements = document.querySelectorAll(
+    ".anime, .animeCalltoAction, .footer ,.progressBar, #glContainer, .chooseStoryWrapper, .customBlockWrapper"
+  );
+
+  // show an element
   var show = function (elem) {
     elem.style.opacity = "1";
   };
 
-  // Hide an element
+  // hide an element
   var hide = function (elem) {
     elem.style.opacity = "0";
   };
 
   var toggle = function (elem) {
-    // If the element is visible, hide it
+    // if the element is visible, hide it
     elem.forEach((item, index) => {
-      if (window.getComputedStyle(item).opacity === "1") {
+      if (display === "hide") {
         hide(item);
         console.log(item.className + " Hide: " + index);
-        return;
-      }
-
-      if (document.querySelectorAll(".popup") === null) {
-        // Otherwise, show it
+        
+      } else {
+        // otherwise, show it
         show(item);
         console.log(item.className + " Show: " + index);
       }
+      return;
     });
   };
 
-  toggle(animeElements);
-  toggle(animeCalltoActionElements);
-  toggle(footerElements);
-  toggle(progressBarElements);
-  toggle(glElements);
+  toggle(elements);
+
   return;
 };

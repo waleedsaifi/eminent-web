@@ -9,11 +9,6 @@ import { ReactComponent as OutcomeSVG } from "../../assets/images/Outcome.svg";
 import { ReactComponent as PartnersSVG } from "../../assets/images/Partners.svg";
 import { ReactComponent as VisionSVG } from "../../assets/images/Vision.svg";
 import { ReactComponent as VeteransSVG } from "../../assets/images/Veterans.svg";
-// import { ReactComponent as StrategySvg } from "../../assets/images/Strategy.svg";
-// import { ReactComponent as TransparencySvg } from "../../assets/images/Transparency.svg";
-// import { ReactComponent as FlexibilitySvg } from "../../assets/images/Flexibility.svg";
-// import { ReactComponent as SelflessSvg } from "../../assets/images/Selfless.svg";
-// import { ReactComponent as ServiceSvg } from "../../assets/images/service.svg";
 import { ReactComponent as WatchAgainSvg } from "../../assets/images/watchAgainArrow.svg";
 import { ReactComponent as RightBtnSvg } from "../../assets/images/rightBtn.svg";
 import {
@@ -1183,6 +1178,7 @@ const App = ({
               $top={getTopCustomBlock(0)}
               $left={getLeft(0)}
               $maxWidth={getMaxWidthCustomBlock(0)}
+              className="customBlockWrapper"
             >
               <CustomBlock
                 className="customBlock"
@@ -1234,6 +1230,7 @@ const App = ({
               $top={getTopCustomBlock(1)}
               $right={getRight(1)}
               $maxWidth={getMaxWidthCustomBlock(1)}
+              className="customBlockWrapper"
             >
               <CustomBlock
                 className="customBlock"
@@ -1281,6 +1278,7 @@ const App = ({
               $top={getTopCustomBlock(2)}
               $left={getLeft(2)}
               $maxWidth={getMaxWidthCustomBlock(2)}
+              className="customBlockWrapper"
             >
               <CustomBlock
                 className="customBlock"
@@ -1331,6 +1329,7 @@ const App = ({
               $top={getTopCustomBlock(3)}
               $right={getRight(3)}
               $maxWidth={getMaxWidthCustomBlock(3)}
+              className="customBlockWrapper"
             >
               <CustomBlock
                 className="customBlock"
@@ -1424,7 +1423,7 @@ const App = ({
       default:
       case 0:
         return (
-          <ChooseStoryWrapper>
+          <ChooseStoryWrapper className="chooseStoryWrapper">
             <ChooseStoryTextContainer ref={chooseStoryTextContainer}>
               <ChooseStoryText
                 className="chooseStoryText"
@@ -1633,7 +1632,6 @@ const ScheduleHeader = styled.div`
     font-size: 18px;
   }
 `;
-
 const FormHeader = styled.div`
   color: ${({ $color }) => $color};
   font-size: 45px;
@@ -1648,12 +1646,10 @@ const FormHeader = styled.div`
     font-size: 28px;
   }
 `;
-
 const AnimatedSVG = css`
   display: inline-block;
   stroke: rgba(255, 255, 255, 0);
 `;
-
 const AnimtateOutcomeText = styled(OutcomeSVG)`
   width: auto;
   height: auto;
@@ -1779,7 +1775,6 @@ const MainTextSecond = styled(MainText)`
       $lineHeight ? $lineHeight[2] : "27px"};
   }
 `;
-
 const CallActionBtn = styled.div`
   color: ${({ $color }) => $color};
   font-size: 15px;
@@ -1798,12 +1793,10 @@ const CallActionBtn = styled.div`
     opacity: 0;
   }
 `;
-
 const ScheduleBtnAnimation = keyframes`
 	0%   { stroke-dashoffset: 1000;}
 	100% { stroke-dashoffset: 0; }
 `;
-
 const ScheduleBtnBorder = styled(RightBtnSvg)`
   content: "";
   display: block;
@@ -1822,7 +1815,6 @@ const ScheduleBtnBorder = styled(RightBtnSvg)`
     stroke: transparent;
   }
 `;
-
 const ScheduleBtn = styled(CallActionBtn)`
   background: ${({ $bg }) => $bg};
   padding: 13px 15px;
@@ -1833,7 +1825,6 @@ const ScheduleBtn = styled(CallActionBtn)`
   transition: 0.2s ease-in-out;
   margin-top: 60px;
 `;
-
 const Continue = styled.div`
   color: ${({ $color }) => $color};
   position: absolute;
@@ -1855,7 +1846,6 @@ const Continue = styled.div`
     opacity: 1;
   }
 `;
-
 const ContinueBtnBorder = styled.svg`
   content: "";
   display: block;
@@ -1874,7 +1864,6 @@ const ContinueBtnBorder = styled.svg`
     display: none;
   }
 `;
-
 const ContinueBtn = styled(CallActionBtn)`
   opacity: 0;
   background: ${({ $bg }) => $bg};
@@ -1934,7 +1923,6 @@ const ContinueBtn = styled(CallActionBtn)`
     }
   }
 `;
-
 const ContinueArrow = styled.span`
   content: "\ea3c";
   font-size: 28px;
@@ -1960,7 +1948,6 @@ const ContinueArrow = styled.span`
     bottom: 78px;
   }
 `;
-
 const WatchAgain = styled.div`
   color: #fff;
   position: absolute;
