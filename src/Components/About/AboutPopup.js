@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { BREAKPOINTS } from "../../constants/constants";
 import { ReactComponent as CrossSvg } from "../../assets/images/cross.svg";
 import { useSelector } from "react-redux";
@@ -53,7 +53,7 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
       $bg={currentTheme?.schedulePopupBg[0]}
       className="popup"
     >
-    {/* <ParticleBackground currentTheme={darkTheme} /> */}
+      {/* <ParticleBackground currentTheme={darkTheme} /> */}
       <PopupContainer $border={currentTheme?.schedulePopupTextColor}>
         <Header
           ref={header}
@@ -62,7 +62,10 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
           $bg={currentTheme?.schedulePopupBg[0]}
         >
           <CloseCross onClick={closeHandlerPopup}>
-            <Cross $color={currentTheme?.schedulePopupTextColor} />{" "}
+            <a href="#">
+              {" "}
+              <Cross $color={currentTheme?.schedulePopupTextColor} />
+            </a>{" "}
           </CloseCross>{" "}
           <HeaderTextContainer>
             {/* <LogoIcon /> */}
@@ -85,7 +88,7 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
           <AboutSection>
             <AboutSectionContent $borderColor={currentTheme?.bgScheduleBtn}>
               <AboutHeadline className="headline">
-                Eminent Leadership
+                EMINENT LEADERSHIP
               </AboutHeadline>
               <p className="typography-overview-feature-copy feature-excerpt">
                 Finding the courage to lead in the face of adversity.
@@ -130,7 +133,7 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
               <AboutTextItem className="grid-1 grid-left">
                 <AboutCardContent
                   cardImage={LeAnnIMG}
-                  url={"https://www.linkedin.com/in/leann-dishart-b7676461/"} //aws s3 cp “/Users/isaacbarnes/Documents/GitHub/eminent-web/build” s3://eminentfuture.com/ aws s3 rm s3://eminentfuture.com/ --recursive
+                  url={"https://www.linkedin.com/in/leann-dishart-b7676461/"}
                 />
                 <h5>LeAnn Dishart</h5>
                 <GradientKeyline />
@@ -143,7 +146,7 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
           <AboutSection>
             <AboutSectionContent $borderColor={currentTheme?.bgScheduleBtn}>
               <AboutHeadline className="headline">
-                Eminent the Company
+                EMINENT THE COMPANY
               </AboutHeadline>
 
               <p className="typography-overview-feature-copy feature-excerpt">
@@ -167,21 +170,100 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
                 </div>
               </div>
             </AboutSectionContent>
-            {/* <AboutCardContainer>
-              <AboutTextItem className="grid-1 grid-left">
-                <AboutCardContent cardImage={IsaacIMG} />
-              </AboutTextItem>
-              <AboutTextItem className="grid-1 grid-right">
-                <AboutCardContent cardImage={IsaacIMG} />
-              </AboutTextItem>
-            </AboutCardContainer> */}
+            {
+              <Header>
+                <br />
+                <br />
+                <h4>Our values and an everlasting strive for perfection guide us.</h4>
+              </Header>
+            }
+            {
+              <AboutCardContainer>
+                <AboutValuesTextItem className="grid-1 grid-left">
+                  <h5>Racial Equity and Justice</h5>
+                  <GradientKeyline />
+                  <h6>
+                    We've established a long-term effort to help ensure more
+                    positive outcomes for communities of color. Our culture is
+                    dedicated to dismantling systems of oppression. Honest and
+                    open conversations lead to an inclusive community free of
+                    racism and intolerance.
+                  </h6>
+                </AboutValuesTextItem>
+                <AboutValuesTextItem className="grid-1 grid-right">
+                  <h5>Security</h5>
+                  <GradientKeyline />
+                  <h6>
+                    We utilize many privacy-protecting technological measures to
+                    ensure confidential data remains secure. We identify ways to
+                    ensure data will not fall into the wrong hands due to
+                    unauthorized access.
+                  </h6>
+                </AboutValuesTextItem>
+                <AboutValuesTextItem className="grid-1 grid-left">
+                  <h5>Transparency</h5>
+                  <GradientKeyline />
+                  <h6>
+                    We designed Eminent's culture to promote accountability and
+                    integrity, offering more comprehensive information and
+                    faster and easier access to that information.
+                  </h6>
+                </AboutValuesTextItem>
+                <AboutValuesTextItem className="grid-1 grid-right">
+                  <h5>Environment</h5>
+                  <GradientKeyline />
+                  <h6>
+                    We are committed to reducing the environmental impacts of
+                    our modern society by increasing the use of renewable energy
+                    and energy efficiency.{" "}
+                  </h6>
+                </AboutValuesTextItem>
+                <AboutValuesTextItem className="grid-1 grid-left">
+                  <h5>Flexibility</h5>
+                  <GradientKeyline />
+                  <h6>
+                    To make it easier to bring your unique vision of the future
+                    to life, we provide a creative, collaborative, and connected
+                    to deliver a great experience.
+                  </h6>
+                </AboutValuesTextItem>
+                <AboutValuesTextItem className="grid-1 grid-right">
+                  <h5>Excellence</h5>
+                  <GradientKeyline />
+                  <h6>
+                    We never pretend to have all the answers. We aim to set a
+                    new standard through a commitment to learning and improving.
+                    We use state-of-the-art advanced technology to deliver on
+                    our promise of high quality.
+                  </h6>
+                </AboutValuesTextItem>
+              </AboutCardContainer>
+            }
           </AboutSection>
-
-          <AboutSection>
-            <h5></h5>
-            <GradientKeyline />
-            <h6></h6>
-          </AboutSection>
+          <ContinueBtn
+            className="animeCalltoAction"
+            onClick={onScheduleClickHandler}
+            $top={"35%"}
+            $color={currentTheme?.menuBtnColor}
+            $bg={currentTheme?.bgScheduleBtn}
+          >
+            <ContinueBtnBorder
+              xmlns="http://www.w3.org/2000/svg"
+              xmlnsXlink="http://www.w3.org/1999/xlink"
+              aria-labelledby="REQUEST INFORMATION"
+              viewBox="0 0 226 43"
+              $color={currentTheme?.bgScheduleBtn}
+              id="MyButton"
+              fill="none"
+            >
+              <title>REQUEST INFORMATION</title>
+              <rect x="0.5" y="0.5" width="225" height="42" rx="21" />
+            </ContinueBtnBorder>
+            <span>
+              {" "}
+              <a href="#">REQUEST INFO </a>
+            </span>{" "}
+          </ContinueBtn>
         </AboutTextContainer>
       </PopupContainer>
     </Wrapper>
@@ -240,13 +322,12 @@ const Wrapper = styled.div`
   height: 100%;
   min-height: 80%;
   z-index: 1000;
-  ${'' /* background: rgb(5 11 17); */}
+  ${"" /* background: rgb(5 11 17); */}
   display: flex;
   justify-content: center;
   align-items: flex-start;
   color: var(--block1-text-primary);
   transition: 0.2s ease;
-  overflow-y: auto;
   opacity: 1;
 
   @media (max-width: ${mobBreakpoint}px) {
@@ -263,7 +344,7 @@ const PopupContainer = styled.div`
   max-width: 1180px;
   margin: 20px 0;
   width: 100%;
-  ${'' /* background: #071118; */}
+  ${"" /* background: #071118; */}
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {
     margin-top: 85px;
@@ -394,7 +475,7 @@ const AboutTextContainer = styled.div`
   grid-template-columns: repeat(1, 2fr);
   grid-gap: var(--grid-gutter);
   width: 100%;
-  margin: 56px auto 50px;
+  margin: 56px auto 0px;
   box-sizing: border-box;
 
   .grid-left {
@@ -444,7 +525,7 @@ const AboutTextContainer = styled.div`
 
 const AboutSection = styled.section`
   margin-top: 0;
-  margin-bottom: 150px;
+  margin-bottom: 50px;
 
   @media only screen and (max-width: 734px) {
     text-align: left;
@@ -454,7 +535,7 @@ const AboutSection = styled.section`
 
 const AboutSectionContent = styled.div`
   display: grid;
-  border: 2px dashed ${({$borderColor}) => $borderColor};
+  border: 2px dashed ${({ $borderColor }) => $borderColor};
   border-radius: 30px;
   overflow: hidden;
   position: relative;
@@ -482,7 +563,7 @@ const AboutSectionContent = styled.div`
     width: 87.5%;
     display: block;
     padding: 20px 10px;
-    border: 2px solid ${({$borderColor}) => $borderColor};
+    border: 2px solid ${({ $borderColor }) => $borderColor};
   }
 
   .feature-excerpt {
@@ -599,7 +680,7 @@ const AboutTextItem = styled.div`
     object-position: 10% 70%;
   }
   h5 {
-    font-size: 26px;
+    font-size: 32px;
     margin-top: 30px;
     margin-bottom: 10px;
     line-height: 1.1em;
@@ -630,6 +711,14 @@ const AboutTextItem = styled.div`
     h5 {
       font-size: 20px;
     }
+  }
+`;
+
+const AboutValuesTextItem = styled(AboutTextItem)`
+  min-height: 200px;
+  h6 {
+    line-height: 1.52947;
+    font-weight: 400;
   }
 `;
 
@@ -754,4 +843,115 @@ const GradientKeyline = styled.div`
   height: 2px;
   background-image: linear-gradient(to right, #77a596, #9cd8c4);
   display: none;
+`;
+
+const BtnAnimation = keyframes`
+	0%   { stroke-dashoffset: 1000;}
+	100% { stroke-dashoffset: 0; }
+`;
+
+const CallActionBtn = styled.div`
+  color: ${({ $color }) => $color};
+  font-size: 15px;
+  letter-spacing: 3px;
+  text-decoration: none;
+  justify-self: center;
+  position: relative;
+  display: block;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+
+  .letter {
+    display: inline-block;
+    line-height: 1em;
+    opacity: 0;
+  }
+`;
+
+const ContinueBtnBorder = styled.svg`
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 247px;
+  height: 100%;
+  opacity: 1;
+  stroke: ${({ $color }) => $color};
+  stroke-dashoffset: 1000;
+  stroke-dasharray: 1000;
+  stroke-width: 2px;
+
+  @media (max-width: ${BREAKPOINTS.mob}px) {
+    display: none;
+  }
+`;
+
+const ContinueBtn = styled(CallActionBtn)`
+  opacity: 1;
+  background: ${({ $bg }) => $bg};
+  padding: 13px 10px;
+  border-radius: 67px;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  position: relative;
+  transition: 0.2s ease-in-out;
+  top: ${({ $top }) => $top};
+  width: 227px;
+  margin: 0px auto;
+  text-align: center;
+
+  a,
+  a:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+  @media (min-width: ${BREAKPOINTS.tablet + 1}px) {
+    &:hover {
+      background: none;
+
+      ${ContinueBtnBorder} {
+        animation: ${BtnAnimation} 0.7s ease-in;
+        animation-direction: normal;
+        stroke: ${({ $bg }) => $bg};
+        stroke-dashoffset: 0;
+      }
+    }
+    &:active {
+      background: ${({ $bg }) => $bg};
+    }
+  }
+
+  @media (max-width: ${BREAKPOINTS.tablet}px) {
+    top: 70%;
+    opacity: 1;
+    height: 40px;
+    display: block;
+    align-self: stretch;
+    align-items: center;
+    transition: 0.3s ease;
+    background: none;
+    color: var(--block1-text-primary);
+    font-size: 21px;
+    border-radius: 0 0 45px 45px;
+    padding: 0px;
+    border-bottom: none;
+    & > span {
+      padding-left: 21px;
+    }
+  }
+
+  @media (max-width: ${BREAKPOINTS.mob}px) {
+    top: 70%;
+    height: 20px;
+    background: ${({ $bg }) => $bg};
+    border-radius: 67px;
+    font-size: 18px;
+    color: #fff;
+    padding: 15px;
+    & > span {
+      padding-left: 0px;
+    }
+  }
 `;

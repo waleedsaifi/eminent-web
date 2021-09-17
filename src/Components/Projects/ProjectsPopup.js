@@ -56,7 +56,7 @@ const ProjectsPopupContent = ({ closeHandler }) => {
           $bg={currentTheme?.schedulePopupBg[0]}
         >
           <CloseCross onClick={closeHandlerPopup}>
-            <Cross $color={currentTheme?.schedulePopupTextColor} />{" "}
+           <a href="#"> <Cross $color={currentTheme?.schedulePopupTextColor} /></a>{" "}
           </CloseCross>{" "}
           <HeaderTextContainer>
             <LogoIcon />
@@ -81,6 +81,12 @@ const ProjectsPopupContent = ({ closeHandler }) => {
             <GradientKeyline />
 
             <p>$6 Million - Remote Team - 8(a) Sole Source</p>
+            <a
+              href="https://www.defense.gov/Explore/News/Article/Article/2715857/website-informs-civilians-about-dod-opportunities/source/GovDelivery/"
+              title="Website Informs Civilians About DOD Opportunities"
+            >
+              Read More
+            </a>
           </ServicesTextItem>
           <ServicesTextItem className="grid-right">
             <h5>
@@ -89,6 +95,12 @@ const ProjectsPopupContent = ({ closeHandler }) => {
             </h5>
             <GradientKeyline />
             <p>$13.5 Billion - Remote Team - 8(a) Joint Venture</p>
+            <a
+              href="https://blog.executivebiz.com/2020/04/ecs-eminent-it-jv-wins-spot-on-134b-usaf-it-support-idiq-george-wilson-quoted/"
+              title="ECS-Eminent IT JV Wins Spot on $13.4B USAF IT Support IDIQ"
+            >
+              Read More
+            </a>
           </ServicesTextItem>
           <ServicesTextItem className="grid-left">
             <h5>
@@ -97,14 +109,23 @@ const ProjectsPopupContent = ({ closeHandler }) => {
             </h5>
             <GradientKeyline />
             <p>$2 Million - Remote Team - 8(a) Subcontract</p>
+            <a
+              href="https://www.state.gov/wp-content/uploads/2019/01/FBS_BP_UNCLASS.pdf"
+              title="Department of State Budget Public Release"
+            >
+              Read More
+            </a>
           </ServicesTextItem>
           <ServicesTextItem className="grid-right">
             <h5>
-              Empowering Walter Reed National Military Medical Center Wounded
-              Warriors
+              Using Technology to Help Navy Build a High-performing Medical
+              Force Ready
             </h5>
             <GradientKeyline />
             <p>$4.5 Million - Remote Team - 8(a) Sole Source</p>
+            <a href="https://www.dvidshub.net/news/375737/navy-medicine-restructures-leadership-training-with-nmlpdc">
+              Read More
+            </a>
           </ServicesTextItem>
         </ServicesTextContainer>
         <ContinueBtn
@@ -126,7 +147,7 @@ const ProjectsPopupContent = ({ closeHandler }) => {
             <title>REQUEST INFORMATION</title>
             <rect x="0.5" y="0.5" width="225" height="42" rx="21" />
           </ContinueBtnBorder>
-          <span> REQUEST INFO </span>{" "}
+          <span> <a href="#">REQUEST INFO </a></span>{" "}
         </ContinueBtn>
       </PopupContainer>
     </Wrapper>
@@ -144,13 +165,12 @@ const Wrapper = styled.div`
   height: 100%;
   min-height: 80%;
   z-index: 100;
-  ${'' /* background: rgb(5 11 17); */}
+  ${"" /* background: rgb(5 11 17); */}
   display: flex;
   justify-content: center;
   align-items: flex-start;
   color: var(--block1-text-primary);
   transition: 0.2s ease;
-  overflow-y: auto;
   opacity: 1;
 
   @media (max-width: ${mobBreakpoint}px) {
@@ -166,7 +186,7 @@ const PopupContainer = styled.div`
   max-width: 1180px;
   margin: 20px 0;
   width: 100%;
-  ${'' /* background: #071118; */}
+  ${"" /* background: #071118; */}
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {
     margin-top: 85px;
@@ -368,6 +388,14 @@ const ServicesTextItem = styled.div`
     font-size: 17px;
     color: #a1a1a6;
   }
+  a {
+    color: #fff;
+    margin: 20px 0px 10px;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
 
   h5 {
     font-size: 26px;
@@ -468,6 +496,12 @@ const ContinueBtn = styled(CallActionBtn)`
   width: 227px;
   margin: 0px auto;
   text-align: center;
+
+  a,
+  a:hover {
+    color: #fff;
+    text-decoration: none;
+  }
   @media (min-width: ${BREAKPOINTS.tablet + 1}px) {
     &:hover {
       background: none;

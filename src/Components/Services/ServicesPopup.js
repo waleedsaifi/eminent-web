@@ -69,7 +69,7 @@ const ServicesPopupContent = ({ closeHandler, showPopup }) => {
           $bg={currentTheme?.schedulePopupBg[0]}
         >
           <CloseCross onClick={closeHandlerPopup}>
-            <Cross $color={currentTheme?.schedulePopupTextColor} />{" "}
+            <a href="#"> <Cross $color={currentTheme?.schedulePopupTextColor} /></a>{" "}
           </CloseCross>{" "}
           <HeaderTextContainer>
             <LogoIcon />
@@ -256,7 +256,6 @@ const Wrapper = styled.div`
   align-items: flex-start;
   color: var(--block1-text-primary);
   transition: 0.2s ease;
-  overflow-y: auto;
   opacity: 1;
 
   @media (max-width: ${mobBreakpoint}px) {

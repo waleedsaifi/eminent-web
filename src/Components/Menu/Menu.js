@@ -310,7 +310,9 @@ const MenuContent = ({
     }
     if (document.getElementsByClassName("popup").length > 0) {
       var el = document.getElementsByClassName("popup")[0];
-      el.parentNode.removeChild(el);
+      if (el.contains(el)) {
+        el.parentNode.removeChild(el);
+      }
     }
     if (window.engine) {
       dispatch(setCurrentSectionTitle(type));
@@ -349,7 +351,7 @@ const MenuContent = ({
             return 0;
         }
       default:
-        return 0;
+        return 10;
     }
   };
 
@@ -395,9 +397,9 @@ const MenuContent = ({
           onClick={onServicesPopUpHandler}
         >
           <span className="menu_item" onMouseOver={menuLabelHandler}>
-            SERVICES
+            <a href="#">SERVICES</a>
           </span>{" "}
-          <span className="menu_label"> INNOVATION NOW </span>{" "}
+          <span className="menu_label"> DELIVER VALUE </span>{" "}
         </MenuBtn>
         <MenuBtn
           $open={isMenuOpen}
@@ -444,7 +446,7 @@ const MenuContent = ({
         >
           <span className="menu_item" onMouseOver={menuLabelHandler}>
             {" "}
-            ABOUT{" "}
+            <a href="#">ABOUT </a>
           </span>{" "}
           <span className="menu_label"> OUR STORY </span>
         </MenuBtn>
@@ -456,7 +458,7 @@ const MenuContent = ({
           onClick={onProjectsPopUpHandler}
         >
           <span className="menu_item" onMouseOver={menuLabelHandler}>
-            CONTRACTS
+            <a href="#"> CONTRACTS</a>
           </span>{" "}
           <span className="menu_label"> TRUSTED PARTNERS </span>{" "}
         </MenuBtn>
@@ -477,7 +479,10 @@ const MenuContent = ({
             ref={rightBorderBtn}
             $color={currentTheme?.bgScheduleBtn}
           />{" "}
-          <span> REQUEST INFO </span>{" "}
+          <span>
+            {" "}
+            <a href="#">REQUEST INFO </a>
+          </span>{" "}
         </MenuRightBtn>{" "}
       </Menu>
     </>
@@ -555,7 +560,7 @@ const Menu = styled.div`
   grid-template-columns: 185px 185px 185px 200px 185px 185px 185px;
   grid-template-rows: 75px;
   align-items: center;
-  z-index: 9;
+  z-index: 1100;
   backdrop-filter: blur(${({ $blur }) => $blur}px);
 
   ${
@@ -773,7 +778,11 @@ const MenuRightBtn = styled(MenuBtn)`
   border: 1px solid transparent;
   position: relative;
   transition: 0.2s ease-in-out;
-
+  a,
+  a:hover {
+    color: #fff;
+    text-decoration: none;
+  }
   @media (min-width: ${BREAKPOINTS.tablet + 1}px) {
     &:hover {
       background: none;

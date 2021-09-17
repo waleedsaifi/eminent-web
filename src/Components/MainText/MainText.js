@@ -417,9 +417,9 @@ const App = ({
       case "home": {
         switch (step) {
           case 0:
-            return ["34px", "26px", "18px"];
+            return ["26px", "26px", "18px"];
           case 1:
-            return ["34px", "28px", "18px"];
+            return ["26px", "28px", "18px"];
           case 2:
             return ["36px", "28px", "18px"];
           case 5:
@@ -962,7 +962,10 @@ const App = ({
                   <title>VIEW SERVICES</title>
                   <rect x="0.5" y="0.5" width="225" height="42" rx="21" />
                 </ContinueBtnBorder>
-                <span> VIEW SERVICES </span>{" "}
+                <span>
+                  {" "}
+                  <a href="#">VIEW SERVICES</a>{" "}
+                </span>{" "}
               </ContinueBtn>
             )}
           </>
@@ -1026,7 +1029,10 @@ const App = ({
                   <title>VIEW CONTRACTS</title>
                   <rect x="0.5" y="0.5" width="225" height="42" rx="21" />
                 </ContinueBtnBorder>
-                <span> VIEW CONTRACTS </span>{" "}
+                <span>
+                  {" "}
+                  <a href="#">VIEW CONTRACTS</a>{" "}
+                </span>{" "}
               </ContinueBtn>
             )}
           </>
@@ -1097,7 +1103,10 @@ const App = ({
                   $lineBg={currentTheme.bgScheduleBtn}
                 >
                   <ScheduleBtnBorder $color={currentTheme.bgScheduleBtn} />
-                  <span> REQUEST INFO </span>
+                  <span>
+                    {" "}
+                    <a href="#">REQUEST INFO</a>{" "}
+                  </span>
                 </ScheduleBtn>
               )}
           </>
@@ -1161,7 +1170,10 @@ const App = ({
                   <title>REQUEST INFO</title>
                   <rect x="0.5" y="0.5" width="210" height="52" rx="21" />
                 </ContinueBtnBorder>
-                <span> REQUEST INFO </span>{" "}
+                <span>
+                  {" "}
+                  <a href="#">REQUEST INFO</a>{" "}
+                </span>{" "}
               </ContinueBtn>
             )}
           </>
@@ -1413,7 +1425,10 @@ const App = ({
                 $lineBg={currentTheme.bgScheduleBtn}
               >
                 <ScheduleBtnBorder $color={currentTheme.bgScheduleBtn} />
-                <span> REQUEST INFO </span>
+                <span>
+                  {" "}
+                  <a href="#">REQUEST INFO</a>{" "}
+                </span>
               </ScheduleBtn>
             )}
           </>
@@ -1725,7 +1740,7 @@ const MainText = styled.div`
     $textTransform ? $textTransform : "none"};
   font-weight: ${({ $fontWeight }) => ($fontWeight ? $fontWeight : "none")};
 
-  @media (max-width: ${BREAKPOINTS.xl}px) {
+  @media (max-width: "1080px") {
     font-size: ${({ $fontSize }) => $fontSize[1]};
     max-width: ${({ $boxMaxWidth }) =>
       $boxMaxWidth.deskM ? $boxMaxWidth.deskM.t1 : $boxMaxWidth.deskXl.t1};
@@ -1749,7 +1764,7 @@ const MainTextSecond = styled(MainText)`
     "" /* max-width: ${({ $boxMaxWidth }) =>
     $boxMaxWidth.deskXl.t2 ? $boxMaxWidth.deskXl.t2 : "80%"}; */
   }
-  max-width:60%;
+  max-width:880px;
   line-height: ${({ $lineHeight }) =>
     $lineHeight ? $lineHeight[0] : ($fontSize) => $fontSize[0]};
 
@@ -1758,7 +1773,7 @@ const MainTextSecond = styled(MainText)`
       "" /* max-width: ${({ $boxMaxWidth }) =>
       $boxMaxWidth.deskM ? $boxMaxWidth.deskM.t2 : "80%"}; */
     }
-    max-width:60%;
+    max-width:880px;
     line-height: ${({ $lineHeight }) =>
       $lineHeight ? $lineHeight[0] : ($fontSize) => $fontSize[0]};
   }
@@ -1789,7 +1804,11 @@ const CallActionBtn = styled.div`
   outline: none;
   cursor: pointer;
   transition: 0.3s ease;
-
+a,
+  a:hover {
+    color: #fff;
+    text-decoration: none;
+  }
   .letter {
     display: inline-block;
     line-height: 1em;
@@ -1827,6 +1846,12 @@ const ScheduleBtn = styled(CallActionBtn)`
   position: relative;
   transition: 0.2s ease-in-out;
   margin-top: 60px;
+
+  a,
+  a:hover {
+    color: #fff;
+    text-decoration: none;
+  }
 `;
 const Continue = styled.div`
   color: ${({ $color }) => $color};
