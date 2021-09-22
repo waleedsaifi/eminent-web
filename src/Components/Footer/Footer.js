@@ -101,8 +101,8 @@ const FooterContent = ({
           case 0:
           case 1:
             return window.innerWidth < BREAKPOINTS.tablet
-              ? `Swipe right to learn more`
-              : `Scroll to learn more`;
+              ? `Swipe Up`
+              : `Scroll Down`;
           default:
             return;
         }

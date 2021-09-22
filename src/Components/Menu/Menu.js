@@ -60,8 +60,9 @@ const MenuContent = ({
   const rightBorderBtn = useRef(null);
   const introText = useRef(null);
   const dispatch = useDispatch();
-  const trackingId = "G-60F2EVTPDX"; // Replace with your Google Analytics tracking ID
+  const trackingId = "G-60F2EVTPDX"; // Our Google Analytics tracking ID
   ReactGA.initialize(trackingId);
+  const topMenu = document.getElementsByClassName("menu")[0];
 
   const menuResizer = () => {
     if (window.innerWidth > BREAKPOINTS.tablet) {
@@ -94,6 +95,7 @@ const MenuContent = ({
               first: false,
               second: false,
             });
+            document.getElementById("glContainer").style.opacity="0";
             logoTimeline(currentTheme?.logoColor, getIntroFontSize(), () => {
               window.gradient.setStep(0, currentSectionTitle);
               setLogoBtnsShow((state) => {
@@ -216,7 +218,9 @@ const MenuContent = ({
   const onServicesPopUpHandler = (e) => {
     if (window.innerWidth <= BREAKPOINTS.tablet) {
       setMenuOpen(false);
+      topMenu?.removeAttribute("style");
     }
+
     toggleElementsforPopup("hide");
     showPopup("services");
   };
@@ -224,7 +228,9 @@ const MenuContent = ({
   const onProjectsPopUpHandler = (e) => {
     if (window.innerWidth <= BREAKPOINTS.tablet) {
       setMenuOpen(false);
+      topMenu?.removeAttribute("style");
     }
+
     toggleElementsforPopup("hide");
     showPopup("projects");
   };
@@ -232,6 +238,7 @@ const MenuContent = ({
   const onAboutPopUpHandler = (e) => {
     if (window.innerWidth <= BREAKPOINTS.tablet) {
       setMenuOpen(false);
+      topMenu?.removeAttribute("style");
     }
     toggleElementsforPopup("hide");
     showPopup("about");
@@ -261,6 +268,7 @@ const MenuContent = ({
     }
     menuHandler(!isMenuOpen);
     setMenuOpen((state) => {
+      console.log(state);
       if (state) {
         menu.current.style.gridTemplateRows = `73px 0 0 0 0`;
       } else {
@@ -273,7 +281,9 @@ const MenuContent = ({
   const onScheduleClickHandler = () => {
     if (window.innerWidth <= BREAKPOINTS.tablet) {
       setMenuOpen(false);
+      topMenu?.removeAttribute("style");
     }
+    toggleElementsforPopup("hide");
     showPopup("schedule");
   };
 
@@ -287,6 +297,7 @@ const MenuContent = ({
       }
       case "/approach": {
         toggleElementsforPopup("show");
+        topMenu?.removeAttribute("style");
         GoSectionHandler("approach");
         ReactGA.set({ page: location.pathname }); // Update the user's current page
         ReactGA.pageview(location.pathname);
@@ -294,6 +305,7 @@ const MenuContent = ({
       }
       case "/work": {
         toggleElementsforPopup("show");
+        topMenu?.removeAttribute("style");
         GoSectionHandler("work");
         ReactGA.set({ page: location.pathname }); // Update the user's current page
         ReactGA.pageview(location.pathname);
@@ -355,6 +367,16 @@ const MenuContent = ({
     }
   };
 
+  const controlAudioVolume = () => {
+    var audio = document.getElementById("audio");
+    if (audio) {
+        audio.volume = 0.2;
+     audio.play();
+    
+      console.log("made it to audio volume");
+    }
+  };
+
   return (
     <>
       {currentSectionTitle === "home" && currentStep === 0 && (
@@ -365,11 +387,13 @@ const MenuContent = ({
         >
           Inspiring Excellence
           {/* <audio
-            src="https://s3.amazonaws.com/www.eminentfuture.com/Regency+intro.mp3"
+            id="audio"
+            src="https://www.scottbuckley.com.au/library/wp-content/uploads/2020/05/sb_solace.mp3"
             controls
             autoPlay
             style={{ display: "none" }}
-          /> */}
+          />
+          {controlAudioVolume()} */}
         </IntroText>
       )}{" "}
       <Menu
@@ -397,7 +421,7 @@ const MenuContent = ({
           onClick={onServicesPopUpHandler}
         >
           <span className="menu_item" onMouseOver={menuLabelHandler}>
-            <a href="#">SERVICES</a>
+            SERVICES
           </span>{" "}
           <span className="menu_label"> DELIVER VALUE </span>{" "}
         </MenuBtn>
@@ -446,7 +470,7 @@ const MenuContent = ({
         >
           <span className="menu_item" onMouseOver={menuLabelHandler}>
             {" "}
-            <a href="#">ABOUT </a>
+            ABOUT
           </span>{" "}
           <span className="menu_label"> OUR STORY </span>
         </MenuBtn>
@@ -458,7 +482,7 @@ const MenuContent = ({
           onClick={onProjectsPopUpHandler}
         >
           <span className="menu_item" onMouseOver={menuLabelHandler}>
-            <a href="#"> CONTRACTS</a>
+            CONTRACTS
           </span>{" "}
           <span className="menu_label"> TRUSTED PARTNERS </span>{" "}
         </MenuBtn>
@@ -468,10 +492,6 @@ const MenuContent = ({
           $bg={currentTheme?.bgScheduleBtn}
           $color={currentTheme?.menuBtnColor}
           id="ScheduleBtn"
-          // onMouseOver={rightMenuBtnHoverIn}
-          // onMouseLeave={rightMenuBtnHoverOut}
-          // onMouseDown={onMouseDownScheduleHandler}
-          // onMouseUp={onMouseUpScheduleHandler}
           onClick={onScheduleClickHandler}
           $show={isLogoBtnsShow.second}
         >
@@ -479,10 +499,7 @@ const MenuContent = ({
             ref={rightBorderBtn}
             $color={currentTheme?.bgScheduleBtn}
           />{" "}
-          <span>
-            {" "}
-            <a href="#">REQUEST INFO </a>
-          </span>{" "}
+          <span> REQUEST INFO</span>{" "}
         </MenuRightBtn>{" "}
       </Menu>
     </>
@@ -584,8 +601,7 @@ const Menu = styled.div`
     top: 0;
     left: 0;
     transform: none;
-    backdrop-filter: ${({ $open }) =>
-      $open ? `blur(10 px) opacity(0.8)` : ``};
+    backdrop-filter: ${({ $open }) => ($open ? `blur(10px) opacity(0.8)` : ``)};
     transition: 0.3s ease;
 
     &::after {
@@ -599,6 +615,16 @@ const Menu = styled.div`
       height: ${({ $open }) => ($open ? "100vh" : "0px")};
       opacity: ${({ $open }) => ($open ? "0.9" : "0")};
       z-index: -1;
+    }
+  }
+
+  @media (max-width: 800px) {
+    z-index: 1100;
+    grid-template-rows: 73px 0px 0px 0px 0px;
+    ${
+      "" /* backdrop-filter: ${({ $open }) =>
+      $open ? `blur(10px) opacity(0.8)` : ``};
+  } */
     }
   }
 `;
@@ -626,7 +652,7 @@ const LogoSvg = styled(Logo)`
   fill: ${({ $color }) => $color};
   opacity: ${({ $show }) => ($show ? 1 : 0)};
 `;
-const MenuBtn = styled.div`
+const MenuBtn = styled.button`
   color: ${({ $color }) => $color};
   font-size: 15px;
   letter-spacing: 3px;
@@ -638,7 +664,8 @@ const MenuBtn = styled.div`
   cursor: pointer;
   opacity: ${({ $show }) => ($show ? 1 : 0)}!important;
   transition: 0.3s ease;
-
+  background: none;
+  border: none;
   .menu_item a {
     color: ${({ $color }) => $color};
     text-decoration: none;
@@ -682,6 +709,7 @@ const MenuBtn = styled.div`
     left: 0;
     color: ${({ $color }) => $color};
     width: 200px;
+    text-align: left;
     font-size: 15px;
     letter-spacing: 0;
     text-transform: uppercase;

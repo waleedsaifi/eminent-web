@@ -4,8 +4,8 @@ import { wait } from "helpers/dev.helpers";
 import { Scene } from "../scene";
 import * as THREE from "three";
 
-class EminentIconScene extends Scene {
-  static _name = "eminent_icon";
+class EminentScene extends Scene {
+  static _name = "eminent";
 
   // perlinEnabled = true
   //
@@ -33,7 +33,7 @@ class EminentIconScene extends Scene {
     switch (currentSectionTitle) {
       case "home": {
         switch (to) {
-          case 1: {
+          case 0: {
             await wait(this.fade_config.scale_duration);
 
             this.active = true;
@@ -90,4 +90,4 @@ class EminentIconScene extends Scene {
   }
 }
 
-export { EminentIconScene };
+export { EminentScene };

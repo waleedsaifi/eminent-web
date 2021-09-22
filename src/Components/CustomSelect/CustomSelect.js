@@ -110,7 +110,7 @@ const Options = styled.div`
   width: calc(100% + 2px);
   left: -1px;
   top: 3.5rem;
-  background: ${({ $bg }) => ($bg ? $bg : "var(--popup-bg1)")};
+  background: ${({ $bg }) => ($bg ? "#0b1e28" : "var(--popup-bg1)")};
   border: 1px solid
     ${({ $color }) => ($color ? $color : "var(--block1-text-secondary)")};
   box-sizing: border-box;

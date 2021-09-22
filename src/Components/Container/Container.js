@@ -223,24 +223,13 @@ const ContainerContent = (currentData) => {
     menu.removeAttribute("style");
     setPopupOpen(false);
     setActivePopup(null);
-  };
-  //FIXME
-  const closeServicesPopup = () => {
-    mainContainer.current.style.overflowY = "auto";
-    setPopupOpen(false);
-    setActivePopup(null);
     toggleElementsforPopup("show");
   };
-  //FIXME
-  const closeProjectsPopup = () => {
+
+  const closeContentPopup = () => {
     mainContainer.current.style.overflowY = "auto";
-    setPopupOpen(false);
-    setActivePopup(null)
-    toggleElementsforPopup("show");
-  };
-  //FIXME
-  const closeAboutPopup = () => {
-    mainContainer.current.style.overflowY = "auto";
+    const menu = document.querySelector(".menu");
+    menu.removeAttribute("style");
     setPopupOpen(false);
     setActivePopup(null);
     toggleElementsforPopup("show");
@@ -349,26 +338,28 @@ const ContainerContent = (currentData) => {
     // if (!touchStart.x1 || !touchStart.y1) return;
 
     wheelHandler(e);
-    // const x2 = e.touches[0].clientX;
-    // const y2 = e.touches[0].clientY;
-    // const xDiff = x2 - touchStart.x1;
-    // const yDiff = y2 - touchStart.y1;ß
+    const x2 = e.touches[0].clientX;
+    const y2 = e.touches[0].clientY;
+    const xDiff = x2 - touchStart.x1;
+    const yDiff = y2 - touchStart.y1;
 
-    // if (Math.abs(xDiff) > Math.abs(yDiff)) {
-    //   //right-left
-    //   if (xDiff > 0) {
-    //     getNextStep(currentStep - 1); //swipe right
-    //   } else {
-    //     getNextStep(currentStep + 1); //swipe left
-    //   }
-    // } //else {
-    //top - bottom
-    // if (yDiff > 0) {
-    //   console.log('down')
-    // } else {
-    //   console.log('top')
-    // }
-    // }
+    if (document.getElementsByClassName("popup").length < 1) {
+      if (Math.abs(yDiff) > Math.abs(xDiff)) {
+        //top - bottom
+        if (yDiff > 0) {
+          getNextStep(currentStep - 1); //swipe right
+        } else {
+          getNextStep(currentStep + 1); //swipe left
+        }
+      } else {
+        //right-left
+        if (xDiff > 0) {
+          getNextStep(currentStep - 1); //swipe right
+        } else {
+          getNextStep(currentStep + 1); //swipe right 
+        }
+      }
+    }
   };
 
   const wheelHandler = (e) => {
@@ -416,11 +407,11 @@ const ContainerContent = (currentData) => {
       case "schedule":
         return <SchedulePopup closeHandler={closeSchedulePopup} />;
       case "services":
-        return <ServicesPopup closeHandler={closeServicesPopup} />;
+        return <ServicesPopup closeHandler={closeContentPopup} />;
       case "projects":
-        return <ProjectsPopup closeHandler={closeProjectsPopup} />;
+        return <ProjectsPopup closeHandler={closeContentPopup} />;
       case "about":
-        return <AboutPopup closeHandler={closeAboutPopup} />;
+        return <AboutPopup closeHandler={closeContentPopup} />;
       default:
         break;
     }

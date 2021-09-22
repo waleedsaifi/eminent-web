@@ -28,13 +28,6 @@ const ServicesPopupContent = ({ closeHandler, showPopup }) => {
     window.addEventListener("wheel", popupWheelHandler);
   };
 
-  //   const onScheduleClickHandler = () => {
-  //     if (window.innerWidth <= BREAKPOINTS.tablet) {
-  //       setMenuOpen(false);
-  //     }
-  //     showPopup("schedule");
-  //   };
-
   useEffect(() => {
     window.addEventListener("wheel", popupWheelHandler);
     return () => window.removeEventListener("wheel", popupWheelHandler);
@@ -69,15 +62,18 @@ const ServicesPopupContent = ({ closeHandler, showPopup }) => {
           $bg={currentTheme?.schedulePopupBg[0]}
         >
           <CloseCross onClick={closeHandlerPopup}>
-            <a href="#"> <Cross $color={currentTheme?.schedulePopupTextColor} /></a>{" "}
+            <Cross $color={currentTheme?.schedulePopupTextColor} />
           </CloseCross>{" "}
           <HeaderTextContainer>
             <LogoIcon />
-            <h2> SERVICES </h2>
+            <h2> Services </h2>
             <h4> Just a few of the ways we can help you make a difference. </h4>
           </HeaderTextContainer>
         </Header>
-        <AboutSectionViolatorStrip $icon={PaperWhiteIcon} $borderColor={currentTheme?.bgScheduleBtn}>
+        <AboutSectionViolatorStrip
+          $icon={PaperWhiteIcon}
+          $borderColor={currentTheme?.bgScheduleBtn}
+        >
           <div className="violator-strip-content">
             <div className="overview-copy">
               <p>
@@ -268,7 +264,7 @@ const PopupContainer = styled.div`
   position: relative;
   ${"" /* border: 1px solid ${({ $border }) => $border}; */}
   border-radius: 18px;
-  padding: 40px 78px;
+  padding: 0px;
   max-width: 1180px;
   margin: 20px 0;
   width: 100%;
@@ -281,7 +277,7 @@ const PopupContainer = styled.div`
     border-color: transparent;
   }
   @media (max-width: ${BREAKPOINTS.mob}px) {
-    margin-top: 45px;
+    margin-top: 0px;
   }
 `;
 const Header = styled.div`
@@ -315,7 +311,7 @@ const Header = styled.div`
     text-align: center;
     left: 0;
     top: 0;
-    padding: ${({ $isSmall }) => ($isSmall ? "20px 0 0 0" : "40px 0 0 0")};
+    padding: ${({ $isSmall }) => ($isSmall ? "20px 0 0 0" : "20px 0 0 0")};
     margin: 0;
     width: 100%;
     background-color: ${({ $bg }) => $bg};
@@ -332,7 +328,7 @@ const Header = styled.div`
     position: relative;
     z-index: 0;
     background-color: unset;
-
+    padding: 0px;
     h2 {
       font-size: 41px;
     }
@@ -361,16 +357,17 @@ const LogoIcon = styled(LogoIconSVG)`
   }
 `;
 
-const CloseCross = styled.div`
+const CloseCross = styled.button`
   position: absolute;
   content: "";
   right: 20px;
   top: 20px;
-  width: 20px;
+  width: 30px;
   height: 20px;
   cursor: pointer;
   transition: 0.2s ease;
-
+  background-color: unset;
+  border: none;
   @media (min-width: ${mobBreakpoint + 1}px) {
     &:hover {
       transform: rotate(90deg);
@@ -616,7 +613,7 @@ const GradientKeyline = styled.div`
 `;
 
 const AboutSectionViolatorStrip = styled.section`
-  border: 2px dashed ${({$borderColor}) => $borderColor};
+  border: 2px dashed ${({ $borderColor }) => $borderColor};
   text-align: center;
   padding: 44px;
   color: ${({ $color }) => ($color == "" ? "#9cd8c4" : "#fff")};

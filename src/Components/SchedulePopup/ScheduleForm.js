@@ -18,6 +18,7 @@ const ScheduleFormContent = ({
   validateData,
   inputFocusHandler,
   inputOnfocusoutHandler,
+  bgScheduleBtn,
 }) => {
   const scheduleForm = useRef(null);
   const dispatch = useDispatch();
@@ -338,7 +339,7 @@ const ScheduleFormContent = ({
             )}{" "}
           </StyledLabel>{" "}
         </FormRow>{" "}
-        <ScheduleSubmitBtn $color={color} type="submit">
+        <ScheduleSubmitBtn $color={color} $bg={bgScheduleBtn} type="submit">
           Submit{" "}
         </ScheduleSubmitBtn>{" "}
       </ScheduleForm>{" "}
@@ -391,7 +392,8 @@ const StyledInput = styled.input`
   width: 100%;
   min-width: 295px;
   height: 48px;
-  background: ${({ $bg }) => ($bg ? $bg : "var(--popup-bg1)")};
+  ${'' /* background: ${({ $bg }) => ($bg ? $bg : "var(--popup-bg1)")}; */}
+  background: transparent;
   border: 1px solid
     ${({ $color }) => ($color ? $color : "var(--block1-text-secondary)")};
   box-sizing: border-box;
@@ -430,7 +432,8 @@ const StyledTextarea = styled.textarea`
   font-family: "Archia", serif;
   width: 100%;
   height: 84px;
-  background: ${({ $bg }) => ($bg ? $bg : "var(--popup-bg1)")};
+  ${'' /* background: ${({ $bg }) => ($bg ? $bg : "var(--popup-bg1)")}; */}
+  background: transparent;
   border: 1px solid
     ${({ $color }) => ($color ? $color : "var(--block1-text-secondary)")};
   box-sizing: border-box;
@@ -469,9 +472,8 @@ const ScheduleSubmitBtn = styled.button`
   font-weight: normal;
   font-size: 18px;
   cursor: pointer;
-  background: transparent;
-  background: #678f7d;
-  color: #ffffff;
+  background: ${({ $bg }) => ($bg ? $bg : "var(--popup-bg1)")};
+  color: ${({ $color }) => ($color ? $color : "var(--block1-text-secondary)")};
   text-align: center;
   letter-spacing: 0.15em;
   top: -5px;

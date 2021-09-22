@@ -56,11 +56,11 @@ const ProjectsPopupContent = ({ closeHandler }) => {
           $bg={currentTheme?.schedulePopupBg[0]}
         >
           <CloseCross onClick={closeHandlerPopup}>
-           <a href="#"> <Cross $color={currentTheme?.schedulePopupTextColor} /></a>{" "}
+            <Cross $color={currentTheme?.schedulePopupTextColor} />{" "}
           </CloseCross>{" "}
           <HeaderTextContainer>
             <LogoIcon />
-            <h2> CONTRACTS </h2>
+            <h2> Contracts </h2>
             <h4> We are a small team focused on solving big problems.</h4>
           </HeaderTextContainer>
         </Header>
@@ -128,7 +128,7 @@ const ProjectsPopupContent = ({ closeHandler }) => {
             </a>
           </ServicesTextItem>
         </ServicesTextContainer>
-        <ContinueBtn
+        {/* <ContinueBtn
           className="animeCalltoAction"
           onClick={onScheduleClickHandler}
           $top={"35%"}
@@ -147,8 +147,11 @@ const ProjectsPopupContent = ({ closeHandler }) => {
             <title>REQUEST INFORMATION</title>
             <rect x="0.5" y="0.5" width="225" height="42" rx="21" />
           </ContinueBtnBorder>
-          <span> <a href="#">REQUEST INFO </a></span>{" "}
-        </ContinueBtn>
+          <span>
+            {" "}
+            <a href="#">REQUEST INFO </a>
+          </span>{" "}
+        </ContinueBtn> */}
       </PopupContainer>
     </Wrapper>
   );
@@ -182,7 +185,7 @@ const Wrapper = styled.div`
 const PopupContainer = styled.div`
   position: relative;
   border-radius: 18px;
-  padding: 40px 78px;
+  padding: 0px;
   max-width: 1180px;
   margin: 20px 0;
   width: 100%;
@@ -195,7 +198,7 @@ const PopupContainer = styled.div`
     border-color: transparent;
   }
   @media (max-width: ${BREAKPOINTS.mob}px) {
-    margin-top: 45px;
+    margin-top: 0px;
   }
 `;
 const Header = styled.div`
@@ -276,16 +279,17 @@ const LogoIcon = styled(LogoIconSVG)`
   }
 `;
 
-const CloseCross = styled.div`
+const CloseCross = styled.button`
   position: absolute;
   content: "";
   right: 20px;
   top: 20px;
-  width: 20px;
+  width: 30px;
   height: 20px;
   cursor: pointer;
   transition: 0.2s ease;
-
+  background-color: unset;
+  border: none;
   @media (min-width: ${mobBreakpoint + 1}px) {
     &:hover {
       transform: rotate(90deg);
@@ -445,7 +449,7 @@ const BtnAnimation = keyframes`
 	100% { stroke-dashoffset: 0; }
 `;
 
-const CallActionBtn = styled.div`
+const CallActionBtn = styled.button`
   color: ${({ $color }) => $color};
   font-size: 15px;
   letter-spacing: 3px;

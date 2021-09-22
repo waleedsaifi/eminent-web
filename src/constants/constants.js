@@ -6,7 +6,7 @@ import TransparencyFBX from "webgl/models/transparency.fbx";
 import ChessFBX from "webgl/models/chess.fbx";
 import FlexFBX from "webgl/models/flex.fbx";
 import HandsFBX from "webgl/models/hands.fbx";
-import EminentIconFBX from "webgl/models/eminent_icon.fbx";
+import EminentFBX from "webgl/models/eminent.fbx";
 
 export const BREAKPOINTS = {
   mob: 767,
@@ -18,20 +18,20 @@ const isMobile = window.innerWidth <= BREAKPOINTS.tablet || mob;
 
 export const MOB_LOCK_BREAKPOINT = 950;
 
-export const darkTheme = 
-  {
-    background: ["#071118", "#04060B"],
-    // textColor: "#9dd8c4",
-    textColor: "#e1e1e1",
-    footerTextColor: "#838A8E",
-    textSecondary: "#485f56",
-    logoColor: "#9dd8c4",
-    bgScheduleBtn: "#678F7D",
-    progressBorder: "#7E7E7E",
-    menuBtnColor: "#fff",
-    schedulePopupTextColor: "#9cd8c4",
-    schedulePopupBg: ["#050C11FF", "#0b1117"],
-  };
+export const darkTheme = {
+  background: ["#071118", "#04060B"],
+  // textColor: "#9dd8c4",
+  textColor: "#e1e1e1",
+  footerTextColor: "#838A8E",
+  textSecondary: "#485f56",
+  logoColor: "#9dd8c4",
+  bgScheduleBtn: "#678F7D",
+  progressBorder: "#7E7E7E",
+  menuBtnColor: "#fff",
+  schedulePopupTextColor: "#9cd8c4",
+  //schedulePopupBg: ["#050C11FF", "#0b1117"],
+  schedulePopupBg: ["#fff", "#050b12"],
+};
 
 export const homeScreens = [
   {
@@ -79,19 +79,17 @@ export const homeScreens = [
   },
 ];
 
-export const lightTheme =
-  {
-    background: ["#899BA3", "#7A8F97"],
-    textColor: "#F7F8F9",
-    footerTextColor: "#E5E9EA",
-    textSecondary: "#485f56",
-    logoColor: "#F7F8F9",
-    bgScheduleBtn: "#B3C7C4",
-    progressBorder: "#DDDDDD",
-    menuBtnColor: "#fff",
-    schedulePopupTextColor: "#FFF",
-    schedulePopupBg: ["#7E929C", "#B8C5C9"],
-
+export const lightTheme = {
+  background: ["#899BA3", "#7A8F97"],
+  textColor: "#F7F8F9",
+  footerTextColor: "#E5E9EA",
+  textSecondary: "#485f56",
+  logoColor: "#F7F8F9",
+  bgScheduleBtn: "#B3C7C4",
+  progressBorder: "#DDDDDD",
+  menuBtnColor: "#fff",
+  schedulePopupTextColor: "#FFF",
+  schedulePopupBg: ["#7E929C", "#B8C5C9"],
 };
 
 export const approachScreens = [
@@ -206,12 +204,10 @@ export const loaderScene = {
   ],
 };
 
-
-
 export const scenes = [
   {
     //asset: 'webgl/models/hands.fbx',
-    asset: EminentIconFBX,
+    asset: EminentFBX,
     hide: [],
     name: "hands",
     pointSize: 1,
@@ -223,9 +219,7 @@ export const scenes = [
       ? [-0.6760762361510282, 0.03159402398030095, -1.7213501102364468]
       : [18.380205797528756, -1.1953804911456667, -7.25673374887869],
     tablet_target: [
-      -15.884296008394596,
-      0.5182578383351341,
-      3.8278913014881506,
+      -15.884296008394596, 0.5182578383351341, 3.8278913014881506,
     ],
     tablet_campos: [3.5338347662120064, 3.0886958784314418, 63.45532775891031],
     parralax_y: true,
@@ -327,9 +321,7 @@ export const scenes = [
       ? [-0.6760762361510282, 0.03159402398030095, -1.7213501102364468]
       : [18.380205797528756, -1.1953804911456667, -7.25673374887869],
     tablet_target: [
-      -15.884296008394596,
-      0.5182578383351341,
-      3.8278913014881506,
+      -15.884296008394596, 0.5182578383351341, 3.8278913014881506,
     ],
     tablet_campos: [3.5338347662120064, 3.0886958784314418, 63.45532775891031],
     parralax_y: true,
@@ -399,6 +391,38 @@ export const scenes = [
         opacity: 1,
         colors: ["#58676e"],
       },
+    ],
+  },
+  {
+    //asset: 'webgl/models/eminent.fbx',
+    asset: EminentFBX,
+    name: "eminent",
+    pointSize: 450, //350.5,
+    animation_duration: 3,
+    parralax_y: true,
+    secondary: [],
+    // no_randomise: true,
+    target: isMobile
+      ? [7.092826082155318, -50.6896404940743883, 19.182022908504738]
+      : // : [86.6641622291196, 0.04645736737633993, -32.81238242446641],
+        // : [12.957061010336064, 0.965958399583872, 25.0187535262102014], //Left,Middle,Right
+        [20, -100, 25.018],
+    campos: isMobile
+      ? [500, 0, 500]
+      : //: [400.042946689535, 9.1545398054083, 400.94984772687513], //X,Y,Z
+        [650, 0, 650],
+    tablet_target: [-59.59702154550529, -4.951250420613689, 24.438509367374362],
+    tablet_campos: [47.78176291491011, 103.15683201741828, 308.2007395187159],
+    gradient_offset: 0.6,
+    colors: [
+      {
+        colors: ["#678F7D", "#08141d"],
+        opacity: 0.7,
+      },
+      // {
+      //     opacity: .6,
+      //     colors: ['#ffffff']
+      // },
     ],
   },
 ];

@@ -133,15 +133,24 @@ const App = ({
       });
     }
 
-    getFadeInMainText(
-      () => {
-        //   window.engine.start();
-        window.animation._name = "anime";
-        setTimeout(() => (window.stoppedAnimation = true), 700);
-      },
+    let timeout = 0;
+    if (currentSectionTitle !== "work") {
+      timeout = currentStep === 0 ? 6000 : 0;
 
-      currentSectionTitle !== "work" ? (currentStep === 0 ? 6000 : 0) : 500
-    );
+      if (currentStep === 0)
+        setTimeout(
+          () => (document.getElementById("glContainer").style.opacity = "1"),
+          6000
+        );
+    } else {
+      timeout = 500;
+    }
+    getFadeInMainText(() => {
+      //   window.engine.start();
+
+      window.animation._name = "anime";
+      setTimeout(() => (window.stoppedAnimation = true), 700);
+    }, timeout);
   }, [currentSectionTitle, currentStep]);
 
   const getTopMainText = (step) => {
@@ -149,10 +158,10 @@ const App = ({
       case "home": {
         switch (step) {
           case 0:
-            return ["30%", "40%", "20%"];
+            return ["55%", "40%", "65%"];
           //return window.innerWidth < BREAKPOINTS.tablet ? ["20%"] : ["30%"];
           case 1:
-            return ["35%", "38%", "30%"];
+            return ["35%", "40%", "29%"];
           //return window.innerWidth < BREAKPOINTS.tablet ? ["30%"] : ["35%"];
           case 2:
             return ["20%", "20%", "20%"];
@@ -162,7 +171,7 @@ const App = ({
           case 4:
             return ["15%", "15%", "15%"];
           case 5:
-            return ["30%", "40%", "22%"];
+            return ["30%", "40%", "28%"];
           // return window.innerWidth < BREAKPOINTS.tablet ? ["22%"] : ["30%"];
           default:
             return;
@@ -206,14 +215,14 @@ const App = ({
       case "home": {
         switch (currentStep) {
           case 0:
-            return window.innerWidth < BREAKPOINTS.tablet ? ["40%"] : ["48%"];
+            return window.innerWidth < BREAKPOINTS.tablet ? ["75%"] : ["75%"];
           case 1:
-            return window.innerWidth < BREAKPOINTS.tablet ? ["45%"] : ["46%"];
+            return window.innerWidth < BREAKPOINTS.tablet ? ["40%"] : ["46%"];
           case 3:
           case 4:
             return ["75%"];
           case 5:
-            return window.innerWidth < BREAKPOINTS.tablet ? ["40%"] : ["48%"];
+            return window.innerWidth < BREAKPOINTS.tablet ? ["45%"] : ["48%"];
           default:
             return ["40%"];
         }
@@ -256,16 +265,16 @@ const App = ({
       case "home": {
         switch (currentStep) {
           case 0:
-            return window.innerWidth < BREAKPOINTS.tablet ? ["62%"] : ["15%"];
+            return window.innerWidth < BREAKPOINTS.tablet ? ["55%"] : ["15%"];
           case 1:
-            return window.innerWidth < BREAKPOINTS.tablet ? ["70%"] : ["12%"];
+            return window.innerWidth < BREAKPOINTS.tablet ? ["55%"] : ["15%"];
           case 2:
             return window.innerWidth < BREAKPOINTS.tablet ? ["70%"] : ["35%"];
           case 3:
           case 4:
             return window.innerWidth < BREAKPOINTS.tablet ? ["82%"] : ["35%"];
           case 5:
-            return window.innerWidth < BREAKPOINTS.tablet ? ["64%"] : ["15%"];
+            return window.innerWidth < BREAKPOINTS.tablet ? ["64%"] : ["20%"];
           default:
             return;
         }
@@ -474,9 +483,9 @@ const App = ({
           case 2:
           case 3:
           case 4:
-            return "0.07em";
+            return "0em";
           case 5:
-            return "0.02em";
+            return "0em";
           default:
             return;
         }
@@ -484,7 +493,7 @@ const App = ({
       case "approach": {
         switch (step) {
           case 4:
-            return "0.04em";
+            return "0em";
           default:
             return;
         }
@@ -492,7 +501,7 @@ const App = ({
       case "work": {
         switch (step) {
           case 1:
-            return "0.07em";
+            return "0em";
           default:
             return;
         }
@@ -752,8 +761,8 @@ const App = ({
         switch (step) {
           case 0:
             return {
-              deskXl: { t1: "1100px" },
-              deskM: { t1: "1100px" },
+              deskXl: { t1: "880px" },
+              deskM: { t1: "880px" },
               tablet: { t1: "700px" },
               mob: { t1: "325px" },
             };
@@ -915,7 +924,7 @@ const App = ({
                 $left={getLeft(0)}
                 $letterSpacing={getLetterSpacing(0)}
                 $boxMaxWidth={getBoxMaxWidth(0)}
-                $textTransform={"uppercase"}
+                $textTransform={"initial"}
                 $fontWeight={"700"}
               >
                 {currentSection?.fields[currentStep].fields.mainText}
@@ -929,20 +938,20 @@ const App = ({
                 $top={getTopSecondText(0)}
                 $step={currentStep}
                 $fontSize={getSecondFontSize(0)}
-                $lineHeight={["50px", "31px", "28px"]}
+                $lineHeight={["30px", "31px", "28px"]}
                 $left={getLeft(0)}
                 $letterSpacing={getLetterSpacing(0)}
                 $boxMaxWidth={{
                   deskXl: { t2: "1100px" },
                   deskM: { t2: "1100px" },
                   tablet: { t2: "700px" },
-                  mob: { t2: "248px" },
+                  mob: { t2: "300px" },
                 }}
               >
                 {currentSection?.fields[currentStep].fields.subText}
               </MainTextSecond>
             )}
-            {currentSection?.fields[currentStep].fields.mainText && (
+            {/* {currentSection?.fields[currentStep].fields.mainText && (
               <ContinueBtn
                 className="animeCalltoAction"
                 onClick={onServicesPopUpHandler}
@@ -964,10 +973,10 @@ const App = ({
                 </ContinueBtnBorder>
                 <span>
                   {" "}
-                  <a href="#">VIEW SERVICES</a>{" "}
+                  VIEW SERVICES{" "}
                 </span>{" "}
               </ContinueBtn>
-            )}
+            )} */}
           </>
         );
       case 1:
@@ -983,7 +992,7 @@ const App = ({
                 $left={getLeft(0)}
                 $letterSpacing={getLetterSpacing(0)}
                 $boxMaxWidth={getBoxMaxWidth(0)}
-                $textTransform={"uppercase"}
+                $textTransform={"initial"}
                 $fontWeight={"700"}
               >
                 {currentSection.fields[currentStep].fields.mainText}
@@ -1003,7 +1012,7 @@ const App = ({
                   deskXl: { t2: "1100px" },
                   deskM: { t2: "1100px" },
                   tablet: { t2: "700px" },
-                  mob: { t2: "248px" },
+                  mob: { t2: "300px" },
                 }}
               >
                 {currentSection.fields[currentStep].fields.subText}
@@ -1029,10 +1038,7 @@ const App = ({
                   <title>VIEW CONTRACTS</title>
                   <rect x="0.5" y="0.5" width="225" height="42" rx="21" />
                 </ContinueBtnBorder>
-                <span>
-                  {" "}
-                  <a href="#">VIEW CONTRACTS</a>{" "}
-                </span>{" "}
+                <span> VIEW CONTRACTS </span>{" "}
               </ContinueBtn>
             )}
           </>
@@ -1103,10 +1109,7 @@ const App = ({
                   $lineBg={currentTheme.bgScheduleBtn}
                 >
                   <ScheduleBtnBorder $color={currentTheme.bgScheduleBtn} />
-                  <span>
-                    {" "}
-                    <a href="#">REQUEST INFO</a>{" "}
-                  </span>
+                  <span> REQUEST INFO </span>
                 </ScheduleBtn>
               )}
           </>
@@ -1124,7 +1127,7 @@ const App = ({
                 $left={getLeft(0)}
                 $letterSpacing={getLetterSpacing(0)}
                 $boxMaxWidth={getBoxMaxWidth(0)}
-                $textTransform={"uppercase"}
+                $textTransform={"initial"}
                 $fontWeight={"700"}
               >
                 {currentSection.fields[currentStep].fields.mainText}
@@ -1144,7 +1147,7 @@ const App = ({
                   deskXl: { t2: "1100px" },
                   deskM: { t2: "1100px" },
                   tablet: { t2: "700px" },
-                  mob: { t2: "248px" },
+                  mob: { t2: "300px" },
                 }}
               >
                 {currentSection.fields[currentStep].fields.subText}
@@ -1170,10 +1173,7 @@ const App = ({
                   <title>REQUEST INFO</title>
                   <rect x="0.5" y="0.5" width="210" height="52" rx="21" />
                 </ContinueBtnBorder>
-                <span>
-                  {" "}
-                  <a href="#">REQUEST INFO</a>{" "}
-                </span>{" "}
+                <span> REQUEST INFO </span>{" "}
               </ContinueBtn>
             )}
           </>
@@ -1425,10 +1425,7 @@ const App = ({
                 $lineBg={currentTheme.bgScheduleBtn}
               >
                 <ScheduleBtnBorder $color={currentTheme.bgScheduleBtn} />
-                <span>
-                  {" "}
-                  <a href="#">REQUEST INFO</a>{" "}
-                </span>
+                <span> REQUEST INFO </span>
               </ScheduleBtn>
             )}
           </>
@@ -1738,7 +1735,7 @@ const MainText = styled.div`
   line-height: ${({ $fontSize }) => $fontSize[0]};
   text-transform: ${({ $textTransform }) =>
     $textTransform ? $textTransform : "none"};
-  font-weight: ${({ $fontWeight }) => ($fontWeight ? $fontWeight : "none")};
+  font-weight: ${({ $fontWeight }) => ($fontWeight ? $fontWeight : "400")};
 
   @media (max-width: "1080px") {
     font-size: ${({ $fontSize }) => $fontSize[1]};
@@ -1764,7 +1761,7 @@ const MainTextSecond = styled(MainText)`
     "" /* max-width: ${({ $boxMaxWidth }) =>
     $boxMaxWidth.deskXl.t2 ? $boxMaxWidth.deskXl.t2 : "80%"}; */
   }
-  max-width:880px;
+  max-width:700px;
   line-height: ${({ $lineHeight }) =>
     $lineHeight ? $lineHeight[0] : ($fontSize) => $fontSize[0]};
 
@@ -1773,7 +1770,7 @@ const MainTextSecond = styled(MainText)`
       "" /* max-width: ${({ $boxMaxWidth }) =>
       $boxMaxWidth.deskM ? $boxMaxWidth.deskM.t2 : "80%"}; */
     }
-    max-width:880px;
+    max-width:700px;
     line-height: ${({ $lineHeight }) =>
       $lineHeight ? $lineHeight[0] : ($fontSize) => $fontSize[0]};
   }
@@ -1793,7 +1790,7 @@ const MainTextSecond = styled(MainText)`
       $lineHeight ? $lineHeight[2] : "27px"};
   }
 `;
-const CallActionBtn = styled.div`
+const CallActionBtn = styled.button`
   color: ${({ $color }) => $color};
   font-size: 15px;
   letter-spacing: 3px;
@@ -1804,11 +1801,7 @@ const CallActionBtn = styled.div`
   outline: none;
   cursor: pointer;
   transition: 0.3s ease;
-a,
-  a:hover {
-    color: #fff;
-    text-decoration: none;
-  }
+
   .letter {
     display: inline-block;
     line-height: 1em;
@@ -1846,12 +1839,6 @@ const ScheduleBtn = styled(CallActionBtn)`
   position: relative;
   transition: 0.2s ease-in-out;
   margin-top: 60px;
-
-  a,
-  a:hover {
-    color: #fff;
-    text-decoration: none;
-  }
 `;
 const Continue = styled.div`
   color: ${({ $color }) => $color};
@@ -1940,7 +1927,7 @@ const ContinueBtn = styled(CallActionBtn)`
 
   @media (max-width: ${BREAKPOINTS.mob}px) {
     ${"" /* top: 70%; */}
-    height: 20px;
+    height: 50px;
     background: ${({ $bg }) => $bg};
     border-radius: 67px;
     font-size: 18px;

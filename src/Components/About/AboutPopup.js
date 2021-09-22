@@ -14,18 +14,12 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
   const header = useRef(null);
   const [isHeaderSmall, setIsHeaderSmall] = useState(false);
   const { currentTheme } = useSelector((state) => state.state);
-
+  const [isMenuOpen, setMenuOpen] = useState(false);
   const closeHandlerPopup = () => {
     closeHandler();
     window.addEventListener("wheel", popupWheelHandler);
+    setMenuOpen(false);
   };
-
-  //   const onScheduleClickHandler = () => {
-  //     if (window.innerWidth <= BREAKPOINTS.tablet) {
-  //       setMenuOpen(false);
-  //     }
-  //     showPopup("schedule");
-  //   };
 
   useEffect(() => {
     window.addEventListener("wheel", popupWheelHandler);
@@ -62,14 +56,12 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
           $bg={currentTheme?.schedulePopupBg[0]}
         >
           <CloseCross onClick={closeHandlerPopup}>
-            <a href="#">
-              {" "}
-              <Cross $color={currentTheme?.schedulePopupTextColor} />
-            </a>{" "}
+            {" "}
+            <Cross $color={currentTheme?.schedulePopupTextColor} />{" "}
           </CloseCross>{" "}
           <HeaderTextContainer>
             {/* <LogoIcon /> */}
-            <h2> ABOUT </h2>
+            <h2> About </h2>
             <h4>
               We are committed individuals driven by values that inspire
               excellence.{" "}
@@ -88,7 +80,7 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
           <AboutSection>
             <AboutSectionContent $borderColor={currentTheme?.bgScheduleBtn}>
               <AboutHeadline className="headline">
-                EMINENT LEADERSHIP
+                Eminent leadership
               </AboutHeadline>
               <p className="typography-overview-feature-copy feature-excerpt">
                 Finding the courage to lead in the face of adversity.
@@ -146,7 +138,7 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
           <AboutSection>
             <AboutSectionContent $borderColor={currentTheme?.bgScheduleBtn}>
               <AboutHeadline className="headline">
-                EMINENT THE COMPANY
+                Eminent the company
               </AboutHeadline>
 
               <p className="typography-overview-feature-copy feature-excerpt">
@@ -163,18 +155,23 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
                     perspectives, and different age ranges.
                   </p>
                   <p>
-                    Together we imagine and create new ways of taking on issues
-                    we care about deeply, such as equity, security,
-                    transparency, and the environment.
+                    We share a passion for service and transformation. We don't
+                    just make things, we make things better. Together we imagine
+                    and create new ways of taking on issues we care about
+                    deeply, such as equity, security, transparency, and the
+                    environment.
                   </p>
                 </div>
               </div>
             </AboutSectionContent>
             {
               <Header>
-                <br />
-                <br />
-                <h4>Our values and an everlasting strive for perfection guide us.</h4>
+                <HeaderTextContainer>
+                  <h4 className="addPadding">
+                    Our values and an everlasting strive for perfection guide
+                    us.
+                  </h4>{" "}
+                </HeaderTextContainer>
               </Header>
             }
             {
@@ -215,7 +212,7 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
                   <h6>
                     We are committed to reducing the environmental impacts of
                     our modern society by increasing the use of renewable energy
-                    and energy efficiency.{" "}
+                    and energy efficiency.
                   </h6>
                 </AboutValuesTextItem>
                 <AboutValuesTextItem className="grid-1 grid-left">
@@ -223,8 +220,8 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
                   <GradientKeyline />
                   <h6>
                     To make it easier to bring your unique vision of the future
-                    to life, we provide a creative, collaborative, and connected
-                    to deliver a great experience.
+                    to life, we provide creativity, collaboration, and
+                    connection to deliver a simple, intuitive experience.
                   </h6>
                 </AboutValuesTextItem>
                 <AboutValuesTextItem className="grid-1 grid-right">
@@ -280,12 +277,13 @@ const AboutCardContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 2fr);
   grid-gap: var(--grid-gutter);
-  margin: 40px auto;
+  margin: 0px auto;
 
   @media (max-width: ${BREAKPOINTS.mob}px) {
     grid-template-columns: repeat(1, 2fr);
     max-width: 93.5%;
-    margin: 40px auto;
+    margin: 0px auto;
+    padding: 20px 0px 0px;
   }
 `;
 
@@ -340,7 +338,7 @@ const PopupContainer = styled.div`
   position: relative;
   ${"" /* border: 1px solid ${({ $border }) => $border}; */}
   border-radius: 18px;
-  padding: 40px 78px;
+  padding: 0px;
   max-width: 1180px;
   margin: 20px 0;
   width: 100%;
@@ -353,26 +351,26 @@ const PopupContainer = styled.div`
     border-color: transparent;
   }
   @media (max-width: ${BREAKPOINTS.mob}px) {
-    margin-top: 45px;
+    margin-top: 0px;
   }
 `;
 const Header = styled.div`
   text-align: center;
   ${"" /* transition: 0.2s ease; */}
-
+  margin-bottom: 3.5em;
   h2 {
     padding: 0;
     margin: 0 0 1rem;
     font-weight: 700;
     font-size: 66px;
-    letter-spacing: 0.1em;
+    letter-spacing: 0;
     color: ${({ $color }) => $color};
     display: inline-block;
   }
 
   h4 {
     font-size: 28px;
-    line-height: 1.1;
+    line-height: 1.4;
     font-weight: 400;
     max-width: 600px;
     text-align: center;
@@ -391,7 +389,7 @@ const Header = styled.div`
     text-align: center;
     left: 0;
     top: 0;
-    padding: ${({ $isSmall }) => ($isSmall ? "20px 0 0 0" : "40px 0 0 0")};
+    padding: ${({ $isSmall }) => ($isSmall ? "20px 0 0 0" : "20px 0 0 0")};
     margin: 0;
     width: 100%;
     background-color: ${({ $bg }) => $bg};
@@ -408,7 +406,7 @@ const Header = styled.div`
     position: relative;
     z-index: 0;
     background-color: unset;
-
+    padding: 0px;
     h2 {
       font-size: 41px;
     }
@@ -424,6 +422,11 @@ const HeaderTextContainer = styled.div`
   @media (max-width: ${BREAKPOINTS.mob}px) {
     margin-top: 20px;
   }
+
+  .addPadding {
+    padding: 20px 0px;
+    ${"" /* margin-top: 1em; */}
+  }
 `;
 
 const LogoIcon = styled(LogoIconSVG)`
@@ -437,16 +440,17 @@ const LogoIcon = styled(LogoIconSVG)`
   }
 `;
 
-const CloseCross = styled.div`
+const CloseCross = styled.button`
   position: absolute;
   content: "";
   right: 20px;
   top: 20px;
-  width: 20px;
+  width: 30px;
   height: 20px;
   cursor: pointer;
   transition: 0.2s ease;
-
+  background-color: unset;
+  border: none;
   @media (min-width: ${mobBreakpoint + 1}px) {
     &:hover {
       transform: rotate(90deg);
@@ -475,7 +479,7 @@ const AboutTextContainer = styled.div`
   grid-template-columns: repeat(1, 2fr);
   grid-gap: var(--grid-gutter);
   width: 100%;
-  margin: 56px auto 0px;
+  margin: 0px auto 0px;
   box-sizing: border-box;
 
   .grid-left {
@@ -525,7 +529,7 @@ const AboutTextContainer = styled.div`
 
 const AboutSection = styled.section`
   margin-top: 0;
-  margin-bottom: 50px;
+  margin-bottom: 3.5em;
 
   @media only screen and (max-width: 734px) {
     text-align: left;
@@ -544,7 +548,7 @@ const AboutSectionContent = styled.div`
   max-width: 1068px;
   grid-template-columns: [margin-start] 70px [violator-start headline-start excerpt-start cta-start] 1fr [media-start headline-end violator-end excerpt-end cta-end copy-start] 1fr [margin-end media-end];
   grid-template-rows: [margin-start media-start] 100px [violator-start headline-start copy-start] max-content [violator-end headline-end excerpt-start] 185px [excerpt-end copy-end cta-start] max-content [cta-end] 40px [margin-end media-end];
-
+  margin-bottom: 3.5em;
   @media only screen and (min-width: 1441px) {
     margin-left: auto;
     margin-right: auto;
@@ -560,6 +564,7 @@ const AboutSectionContent = styled.div`
   @media only screen and (max-width: 734px) {
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 1.5em;
     width: 87.5%;
     display: block;
     padding: 20px 10px;
@@ -897,7 +902,7 @@ const ContinueBtn = styled(CallActionBtn)`
   border: 1px solid transparent;
   position: relative;
   transition: 0.2s ease-in-out;
-  top: ${({ $top }) => $top};
+  ${"" /* top: ${({ $top }) => $top}; */}
   width: 227px;
   margin: 0px auto;
   text-align: center;
@@ -943,7 +948,7 @@ const ContinueBtn = styled(CallActionBtn)`
   }
 
   @media (max-width: ${BREAKPOINTS.mob}px) {
-    top: 70%;
+    top: 0%;
     height: 20px;
     background: ${({ $bg }) => $bg};
     border-radius: 67px;

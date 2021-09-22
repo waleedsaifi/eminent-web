@@ -24,6 +24,7 @@ const SchedulePopupContent = ({ closeHandler }) => {
 
   const closeHandlerPopup = () => {
     closeHandler();
+    window.addEventListener("wheel", popupWheelHandler);
   };
 
   return (
@@ -41,13 +42,14 @@ const SchedulePopupContent = ({ closeHandler }) => {
         >
           <h2> Request Information </h2>{" "}
           <CloseCross onClick={closeHandlerPopup}>
-            <a href="#"> <Cross $color={currentTheme?.schedulePopupTextColor} /></a>{" "}
+            <Cross $color={currentTheme?.schedulePopupTextColor} />{" "}
           </CloseCross>{" "}
         </Header>
         <ScheduleForm
           background={currentTheme?.schedulePopupBg[0]}
           color={currentTheme?.schedulePopupTextColor}
           closeHandlerPopup={closeHandlerPopup}
+          bgScheduleBtn={currentTheme?.bgScheduleBtn}
         />
       </PopupContainer>
     </Wrapper>
@@ -61,12 +63,12 @@ const mobBreakpoint = 900;
 const Wrapper = styled.div`
   position: absolute;
   left: 0;
-  top: 0;
+  top: 100px;
   width: 100%;
   height: 100%;
   min-height: 100%;
-  z-index: 1000;
-  background: ${({ $bg }) => $bg};
+  z-index: 9900;
+  background: transparent;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -86,7 +88,7 @@ const PopupContainer = styled.div`
   padding: 40px 78px;
   max-width: 610px;
   margin: 20px 0;
-
+  
   @media (max-width: ${BREAKPOINTS.tablet}px) {
     margin-top: 85px;
     width: 100%;
@@ -104,11 +106,12 @@ const Header = styled.div`
   h2 {
     padding: 0;
     margin: 0 0 1rem;
-    font-weight: 400;
-    font-size: 32px;
+    font-weight: 700;
+    font-size: 2.5em;
     letter-spacing: 0.1em;
-    color: ${({ $color }) => $color};
-    text-transform: uppercase;
+    ${'' /* color: ${({ $color }) => $color}; */}
+    color: #fff;
+    display: inline-block;
   }
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {
@@ -129,16 +132,17 @@ const Header = styled.div`
     }
   }
 `;
-const CloseCross = styled.div`
+const CloseCross = styled.button`
   position: absolute;
   content: "";
   right: 20px;
   top: 20px;
-  width: 20px;
+  width: 30px;
   height: 20px;
   cursor: pointer;
   transition: 0.2s ease;
-
+  background-color: unset;
+  border: none;
   @media (min-width: ${mobBreakpoint + 1}px) {
     &:hover {
       transform: rotate(90deg);

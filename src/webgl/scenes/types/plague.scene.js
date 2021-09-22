@@ -116,6 +116,7 @@ class PlagueScene extends Scene {
         //console.log(" currentSectionTitle:" + currentSectionTitle + " to:" + to);
         switch (to) {
           // eslint-disable-next-line no-fallthrough
+       
           case 2: {
             await wait(this.fade_config.scale_duration);
 

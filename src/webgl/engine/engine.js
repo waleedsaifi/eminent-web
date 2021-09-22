@@ -75,29 +75,41 @@ class WebglEngine {
   initScene() {
     this.scene = new THREE.Scene();
 
-    this.scene.fog = new THREE.FogExp2(0xffffff, 0.004);
+    // this.scene.fog = new THREE.FogExp2(0xffffff, 0.004);
+    // this.scene.fog = new THREE.FogExp2(0xffffff, 1);
   }
 
   /*------------------------------
     Init Camera
     ------------------------------*/
   initCamera() {
+    // this.camera = new THREE.PerspectiveCamera(
+    //   45,
+    //   window.innerWidth / window.innerHeight,
+    //   0.25,
+    //   500
+    // );
+    // this.camera.position.set(-50, 100, 70);
     this.camera = new THREE.PerspectiveCamera(
       45,
       window.innerWidth / window.innerHeight,
-      0.25,
-      500
+      1,
+      1200
     );
-    this.camera.position.set(0, 70, 70);
+    this.camera.position.set(-50, 0, 50);
   }
 
   /*------------------------------
     Init Light
     ------------------------------*/
   initLight() {
-    const light = new THREE.PointLight(0xfff000, 1);
+    //const light = new THREE.PointLight(0xfff000, 40, 100);
+    const light = new THREE.AmbientLight(0xffffff);
+    light.position.set(170, 30, 30);
 
-    light.position.set(15, 15, 15);
+    // const sphereSize = 20;
+    // const pointLightHelper = new THREE.PointLightHelper(light, sphereSize);
+    // this.scene.add(pointLightHelper);
 
     this.scene.add(light);
   }
@@ -128,7 +140,9 @@ class WebglEngine {
       // preserveDrawingBuffer: true
     });
 
-    // this.renderer.outputEncoding = THREE.sRGBEncoding
+    this.renderer.outputEncoding = THREE.sRGBEncoding;
+    this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    this.renderer.toneMappingExposure = 1.25;
     this.renderer.setPixelRatio(
       window.devicePixelRatio < 1 ? window.devicePixelRatio : 1
     );
@@ -171,6 +185,10 @@ class WebglEngine {
   }
 
   render = () => {
+    for (let i = 0; i < this.scene.children.length; i++) {
+      const child = this.scene.children[i];
+      child.rotation.y += 0.007;
+    }
     this.renderer.render(this.scene, this.camera);
   };
 
