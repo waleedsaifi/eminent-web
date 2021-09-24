@@ -25,7 +25,7 @@ import {
 } from "../../helpers/animations";
 import ScheduleForm from "../SchedulePopup/ScheduleForm";
 import ServicesPopupContent from "../Services/ServicesPopup";
-import ProjectsPopupContent from "../Projects/ProjectsPopup";
+import ContractsPopupContent from "../Contracts/ContractsPopup";
 import { toggleElementsforPopup } from "utils/navigation";
 
 const App = ({
@@ -53,9 +53,9 @@ const App = ({
     showPopup("services");
   };
 
-  const onProjectsPopUpHandler = (e) => {
+  const onContractsPopUpHandler = (e) => {
     toggleElementsforPopup("hide");
-    showPopup("projects");
+    showPopup("contracts");
   };
 
   useEffect(() => {
@@ -1021,7 +1021,7 @@ const App = ({
             {currentSection.fields[currentStep].fields.mainText && (
               <ContinueBtn
                 className="animeCalltoAction"
-                onClick={onProjectsPopUpHandler}
+                onClick={onContractsPopUpHandler}
                 $top={getTopContinueBtn}
                 $color={currentTheme?.menuBtnColor}
                 $bg={currentTheme?.bgScheduleBtn}
@@ -1080,7 +1080,7 @@ const App = ({
               currentStep !== 5 && (
                 <ContinueBtn
                   className="animeCalltoAction"
-                  onClick={onProjectsPopUpHandler}
+                  onClick={onContractsPopUpHandler}
                   $color={currentTheme?.menuBtnColor}
                   $bg={currentTheme?.bgScheduleBtn}
                   $top={getTopContinueBtn}
@@ -1088,16 +1088,16 @@ const App = ({
                   <ContinueBtnBorder
                     xmlns="http://www.w3.org/2000/svg"
                     xmlnsXlink="http://www.w3.org/1999/xlink"
-                    aria-labelledby="VIEW PROJECTS"
+                    aria-labelledby="VIEW CONTRACTS"
                     viewBox="0 0 226 43"
                     $color={currentTheme?.bgScheduleBtn}
                     id="MyButton"
                     fill="none"
                   >
-                    <title>VIEW PROJECTS</title>
+                    <title>VIEW CONTRACTS</title>
                     <rect x="0.5" y="0.5" width="225" height="42" rx="21" />
                   </ContinueBtnBorder>
-                  <span> VIEW PROJECTS </span>{" "}
+                  <span> VIEW CONTRACTS </span>{" "}
                 </ContinueBtn>
               )}
             {currentSection.fields[currentStep].fields.mainText &&

@@ -7,7 +7,7 @@ import FooterContent from "./../Footer/Footer";
 import HotspotsContainer from "../Hotspots/HotspotsContainer";
 import SchedulePopup from "../SchedulePopup/SchedulePopup";
 import ServicesPopup from "../Services/ServicesPopup";
-import ProjectsPopup from "../Projects/ProjectsPopup";
+import ContractsPopup from "../Contracts/ContractsPopup";
 import AboutPopup from "../About/AboutPopup";
 import { isMobileOnly } from "react-device-detect";
 import { useDispatch, useSelector } from "react-redux";
@@ -408,8 +408,8 @@ const ContainerContent = (currentData) => {
         return <SchedulePopup closeHandler={closeSchedulePopup} />;
       case "services":
         return <ServicesPopup closeHandler={closeContentPopup} />;
-      case "projects":
-        return <ProjectsPopup closeHandler={closeContentPopup} />;
+      case "contracts":
+        return <ContractsPopup closeHandler={closeContentPopup} />;
       case "about":
         return <AboutPopup closeHandler={closeContentPopup} />;
       default:

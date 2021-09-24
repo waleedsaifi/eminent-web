@@ -225,14 +225,14 @@ const MenuContent = ({
     showPopup("services");
   };
   //FIXME
-  const onProjectsPopUpHandler = (e) => {
+  const onContractsPopUpHandler = (e) => {
     if (window.innerWidth <= BREAKPOINTS.tablet) {
       setMenuOpen(false);
       topMenu?.removeAttribute("style");
     }
 
     toggleElementsforPopup("hide");
-    showPopup("projects");
+    showPopup("contracts");
   };
   //FIXME
   const onAboutPopUpHandler = (e) => {
@@ -479,7 +479,7 @@ const MenuContent = ({
           $color={currentTheme?.menuBtnColor}
           $lineBg={currentTheme?.bgScheduleBtn}
           $show={isLogoBtnsShow.second}
-          onClick={onProjectsPopUpHandler}
+          onClick={onContractsPopUpHandler}
         >
           <span className="menu_item" onMouseOver={menuLabelHandler}>
             CONTRACTS

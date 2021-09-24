@@ -25,7 +25,7 @@ class ParticleBg {
     var W,
       H,
       ctx, //ctx stands for context and is the "curso" of our canvas element.
-      particleCount = isMobileOnly ? 35 : 150,
+      particleCount = isMobileOnly ? 35 : 1050,
       particles = []; //this is an array which will hold our particles Object/Class
 
     W = () => window.innerWidth / 2;

@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { ReactComponent as LogoIconSVG } from "../../assets/images/eminent-icon.svg";
 import { toggleElementsforPopup } from "utils/navigation";
 
-const ProjectsPopupContent = ({ closeHandler }) => {
+const ContractsPopupContent = ({ closeHandler }) => {
   const wrapper = useRef(null);
   const header = useRef(null);
   const [isHeaderSmall, setIsHeaderSmall] = useState(false);
@@ -75,8 +75,7 @@ const ProjectsPopupContent = ({ closeHandler }) => {
         >
           <ServicesTextItem className="grid-left">
             <h5>
-              Helping the Pentagon recruit diverse talent and close the
-              technology skills gap
+              Helping the Pentagon recruit diverse talent and close the technology skills gap.
             </h5>
             <GradientKeyline />
 
@@ -90,8 +89,7 @@ const ProjectsPopupContent = ({ closeHandler }) => {
           </ServicesTextItem>
           <ServicesTextItem className="grid-right">
             <h5>
-              Improving Air Force and Space Force IT systems and software using
-              modern technology
+              Improving Air Force and Space Force IT systems and software using modern technology.
             </h5>
             <GradientKeyline />
             <p>$13.5 Billion - Remote Team - 8(a) Joint Venture</p>
@@ -104,8 +102,7 @@ const ProjectsPopupContent = ({ closeHandler }) => {
           </ServicesTextItem>
           <ServicesTextItem className="grid-left">
             <h5>
-              Using the Cloud to develop the $25 billion diplomatic engagement
-              budget
+              Using the cloud to develop the $25 billion diplomatic engagement budget.
             </h5>
             <GradientKeyline />
             <p>$2 Million - Remote Team - 8(a) Subcontract</p>
@@ -118,8 +115,7 @@ const ProjectsPopupContent = ({ closeHandler }) => {
           </ServicesTextItem>
           <ServicesTextItem className="grid-right">
             <h5>
-              Using Technology to Help Navy Build a High-performing Medical
-              Force Ready
+              Using technology to help navy build a high-performing medical force.
             </h5>
             <GradientKeyline />
             <p>$4.5 Million - Remote Team - 8(a) Sole Source</p>
@@ -157,7 +153,7 @@ const ProjectsPopupContent = ({ closeHandler }) => {
   );
 };
 
-export default ProjectsPopupContent;
+export default ContractsPopupContent;
 
 const mobBreakpoint = 900;
 const Wrapper = styled.div`

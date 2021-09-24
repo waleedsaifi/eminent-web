@@ -6,7 +6,7 @@ import * as THREE from "three";
 
 class EminentScene extends Scene {
   static _name = "eminent";
-
+// this.fade_config = 
   // perlinEnabled = true
   //
   // constructor(data, engine) {
@@ -49,7 +49,7 @@ class EminentScene extends Scene {
             // this.saveObjectsProperties()
 
             this.startAnimation();
-            await this.fadeOut(true);
+            await this.fadeOut(false);
             await this.fadeIn();
 
             break;
