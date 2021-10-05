@@ -187,7 +187,7 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
               <AboutTextItem className="grid-1 grid-left">
                 <AboutCardContent
                   cardImage={BobIMG}
-                  url={"https://www.linkedin.com/in/tedra-hayden-50972938"}
+                  url={"https://www.linkedin.com/in/robert-ziolkowski-569405ab/"}
                   title={"Robert Ziolkowski"}
                 />
                 <h5>Robert Ziolkowski</h5>
@@ -264,7 +264,7 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
               <AboutTextItem className="grid-1 grid-left">
                 <AboutCardContent
                   cardImage={MaloneIMG}
-                  url={"https://www.linkedin.com/in/dominique-lalu-049268160"}
+                  url={"https://www.linkedin.com/in/domeniquemalone"}
                   title={"Domenique Malone"}
                 />
                 <h5>Domenique Malone</h5>
@@ -274,7 +274,7 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
               <AboutTextItem className="grid-1 grid-left">
                 <AboutCardContent
                   cardImage={SamiIMG}
-                  url={"https://www.linkedin.com/in/dominique-lalu-049268160"}
+                  url={"https://www.linkedin.com/in/samikazan"}
                   title={"Sami"}
                 />
                 <h5>Sami Kazan</h5>

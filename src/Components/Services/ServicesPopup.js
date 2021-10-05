@@ -4,6 +4,7 @@ import { BREAKPOINTS } from "../../constants/constants";
 import { ReactComponent as CrossSvg } from "../../assets/images/cross.svg";
 import { useSelector } from "react-redux";
 import { ReactComponent as LogoIconSVG } from "../../assets/images/eminent-icon.svg";
+import  IMacIMG from "../../assets/images/services/imac.png"
 import {
   TeamCollabIMG,
   GroupWorkingIMG,
@@ -16,6 +17,7 @@ import {
 } from "../../assets/images/services/index";
 import PaperWhiteIcon from "../../assets/images/icon_paper_white.png";
 import { toggleElementsforPopup } from "utils/navigation";
+import GLContainer from "../GLContainer/GLContainer";
 
 const ServicesPopupContent = ({ closeHandler, showPopup }) => {
   const wrapper = useRef(null);
@@ -65,12 +67,26 @@ const ServicesPopupContent = ({ closeHandler, showPopup }) => {
             <Cross $color={currentTheme?.schedulePopupTextColor} />
           </CloseCross>{" "}
           <HeaderTextContainer>
-            <LogoIcon />
             <h2> Services </h2>
-            <h4> Just a few of the ways we can help you make a difference. </h4>
+            <h4> Here are a few of the ways we can help you make a difference. </h4>
           </HeaderTextContainer>
         </Header>
-        
+        {/* <SolutionsTextContainer
+          className=""
+          $color={currentTheme?.textColor}
+          $top={"50%"}
+          $fontSize={"12px"}
+          $left={"unset"}
+          $letterSpacing={"0.07em"}
+          $boxMaxWidth={getBoxMaxWidth()}
+        >
+          <ServicesTextItem className="">
+            {/* <ServiceCardContent cardImage={MomWorkingIMG} /> */}
+             {/* <h2>eminent DApps is fastest way to get high quality applications built ever.</h2> */}
+             {/* <img src={IMacIMG} title="iMac 27-inch - Apple" /> */}
+             {/* <GLContainer currentSectionTitle="approach" /> */}
+          {/* </ServicesTextItem>
+        </SolutionsTextContainer> */} 
         <AboutSectionViolatorStrip
           $icon={PaperWhiteIcon}
           $borderColor={currentTheme?.bgScheduleBtn}
@@ -78,8 +94,7 @@ const ServicesPopupContent = ({ closeHandler, showPopup }) => {
           <div className="violator-strip-content">
             <div className="overview-copy">
               <p>
-                Eminent uses design and strategy to bring your unique vision of
-                the future to life.
+               Designed to deliver impactful Apps and DApps fast.
               </p>
             </div>
             <a
@@ -348,9 +363,9 @@ const HeaderTextContainer = styled.div`
 `;
 
 const LogoIcon = styled(LogoIconSVG)`
-  display: none;
+  display: inline-block;
   stroke: rgba(255, 255, 255, 0);
-  width: 80px;
+  width: 40px;
   height: 64px;
   @media (max-width: ${BREAKPOINTS.mob}px) {
     height: 34px;
@@ -674,4 +689,9 @@ const AboutSectionViolatorStrip = styled.section`
       background-image: url(${PaperWhiteIcon});
     }
   }
+`;
+
+const SolutionsTextContainer = styled(ServicesTextContainer)`
+
+grid-template-columns: repeat(1, 1fr);
 `;

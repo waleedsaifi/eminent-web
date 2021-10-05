@@ -170,7 +170,7 @@ const App = ({
           case 3:
             return ["15%", "15%", "15%"];
           case 4:
-            return ["15%", "15%", "15%"];
+            return ["5%", "15%", "15%"];
           case 5:
             return ["30%", "40%", "28%"];
           // return window.innerWidth < BREAKPOINTS.tablet ? ["22%"] : ["30%"];
@@ -1243,7 +1243,7 @@ const App = ({
           <>
             {currentSection.fields[currentStep].fields.mainText && (
               <MainText
-                className="anime"
+                className="animeStatic"
                 // $color={currentTheme.textColor}
                 $color={"#fff"}
                 $top={getTopMainText(currentStep)}
@@ -1254,8 +1254,9 @@ const App = ({
                 $boxMaxWidth={getBoxMaxWidth(currentStep)}
                 $lineHeight={["44px", "31px", "28px"]}
               >
+                 <h2><LogoIcon />{"Suite"}</h2>
                 {/* {currentSection.fields[currentStep].fields.mainText} */}
-                {"eApps, eDApps, eContracts combined enable us to help you pioneer creative and powerful digital experiences with energy, passion, and enthusiasm."}
+                {"With eApps, eDApps, eContracts everything works together so you can deliver powerful experiences."}
               </MainText>
             )}
             {currentSection.fields[currentStep].fields.subText && (
@@ -1270,7 +1271,8 @@ const App = ({
                 $boxMaxWidth={getBoxMaxWidth(currentStep)}
                 $lineHeight={["44px", "31px", "28px"]}
               >
-                {currentSection.fields[currentStep].fields.subText}
+                {/* {currentSection.fields[currentStep].fields.subText} */}
+                {"Together we got this. We are here for you no matter how big your dream is."}
               </MainTextSecond>
             )}
             {/* {currentSection.fields[currentStep].fields.mainText &&
@@ -2091,7 +2093,7 @@ const ContinueBtnBorder = styled.svg`
   }
 `;
 const ContinueBtn = styled(CallActionBtn)`
-  opacity: 1;
+  opacity: 0;
   background: ${({ $bg }) => $bg};
   padding: 13px 10px;
   border-radius: 67px;
