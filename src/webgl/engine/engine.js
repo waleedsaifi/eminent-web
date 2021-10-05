@@ -185,10 +185,10 @@ class WebglEngine {
   }
 
   render = () => {
-    for (let i = 0; i < this.scene.children.length; i++) {
-      const child = this.scene.children[i];
-      child.rotation.y += 0.007;
-    }
+    // for (let i = 0; i < this.scene.children.length; i++) {
+    // //  const child = this.scene.children[i];
+    //   // child.rotation.y += 0.010;
+    // }
     this.renderer.render(this.scene, this.camera);
   };
 

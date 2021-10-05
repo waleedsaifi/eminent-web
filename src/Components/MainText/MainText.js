@@ -5,6 +5,7 @@ import { BREAKPOINTS } from "../../constants/constants";
 import { useDispatch } from "react-redux";
 import anime from "animejs/lib/anime.es.js";
 import { setProgress } from "../../store/actions/actionCreator";
+import { ReactComponent as LogoIconSVG } from "../../assets/images/eminent-icon.svg";
 import { ReactComponent as OutcomeSVG } from "../../assets/images/Outcome.svg";
 import { ReactComponent as PartnersSVG } from "../../assets/images/Partners.svg";
 import { ReactComponent as VisionSVG } from "../../assets/images/Vision.svg";
@@ -135,12 +136,12 @@ const App = ({
 
     let timeout = 0;
     if (currentSectionTitle !== "work") {
-      timeout = currentStep === 0 ? 6000 : 0;
+      timeout = currentStep === 0 ? 2000 : 0;
 
       if (currentStep === 0)
         setTimeout(
           () => (document.getElementById("glContainer").style.opacity = "1"),
-          6000
+          2000
         );
     } else {
       timeout = 500;
@@ -334,6 +335,12 @@ const App = ({
   };
   const getLeft = () => {
     switch (currentSectionTitle) {
+      case "home": {
+        switch (currentStep) {
+          case 0:
+            return "18%";
+        }
+      }
       case "approach": {
         switch (currentStep) {
           case 0:
@@ -375,7 +382,7 @@ const App = ({
       case "home": {
         switch (step) {
           case 0:
-            return ["70px", "36px", "32px"];
+            return ["70px", "36px", "2rem"];
           case 1:
           case 2:
           case 5:
@@ -426,7 +433,7 @@ const App = ({
       case "home": {
         switch (step) {
           case 0:
-            return ["26px", "26px", "18px"];
+            return ["26px", "26px", "1.125rem"];
           case 1:
             return ["26px", "28px", "18px"];
           case 2:
@@ -761,10 +768,10 @@ const App = ({
         switch (step) {
           case 0:
             return {
-              deskXl: { t1: "880px" },
-              deskM: { t1: "880px" },
-              tablet: { t1: "700px" },
-              mob: { t1: "325px" },
+              deskXl: { t1: "550px" },
+              deskM: { t1: "550px" },
+              tablet: { t1: "550px" },
+              mob: { t1: "255px" },
             };
           case 1:
             return {
@@ -914,169 +921,359 @@ const App = ({
       case 0:
         return (
           <>
-            {currentSection?.fields[currentStep].fields.mainText && (
-              <MainText
-                className="anime"
-                $color={currentTheme.textColor}
-                $top={getTopMainText(0)}
-                $step={currentStep}
-                $fontSize={getFontSize(0)}
-                $left={getLeft(0)}
-                $letterSpacing={getLetterSpacing(0)}
-                $boxMaxWidth={getBoxMaxWidth(0)}
-                $textTransform={"initial"}
-                $fontWeight={"700"}
-              >
-                {currentSection?.fields[currentStep].fields.mainText}
-              </MainText>
-            )}
+            <TextContainer className="textContainer">
+              {currentSection?.fields[currentStep].fields.mainText && (
+                <MainText
+                  className="anime"
+                  $color={"#fff"}
+                  $top={getTopMainText(0)}
+                  $step={currentStep}
+                  $fontSize={getFontSize(0)}
+                  $lineHeight={"auto"}
+                  $left={"unset"}
+                  $letterSpacing={getLetterSpacing(0)}
+                  $boxMaxWidth={getBoxMaxWidth(0)}
+                  $textTransform={"initial"}
+                  $fontWeight={"700"}
+                  $textAlign={"left"}
+                  $position={"unset"}
+                >
+                  {/* {currentSection.fields[currentStep].fields.mainText} */}
+                  { "High-quality apps & dapps delivered fast" }
+                </MainText>
+              )}
 
+              {currentSection?.fields[currentStep].fields.mainText && (
+                <MainTextSecond
+                  className="anime"
+                  $color={currentTheme.textColor}
+                  $top={getTopSecondText(0)}
+                  $step={currentStep}
+                  $fontSize={getSecondFontSize(0)}
+                  $lineHeight={["40px", "31px", "28px"]}
+                  $left={getLeft(0)}
+                  $letterSpacing={getLetterSpacing(0)}
+                  $boxMaxWidth={{
+                    deskXl: { t2: "1100px" },
+                    deskM: { t2: "1100px" },
+                    tablet: { t2: "700px" },
+                    mob: { t2: "300px" },
+                  }}
+                  $textAlign={"left"}
+                  $position={"unset"}
+                >
+                  {/* {currentSection?.fields[currentStep].fields.subText}  ##FIXME */}
+                  {
+                    "We are a digital product and innovation company helping passionate and proactive innovators in the public & private sector invent intuitive web, mobile, and decentralized digital experiences."
+                  }
+                </MainTextSecond>
+              )}
+        
             {currentSection?.fields[currentStep].fields.mainText && (
-              <MainTextSecond
-                className="anime"
-                $color={currentTheme.textColor}
-                $top={getTopSecondText(0)}
-                $step={currentStep}
-                $fontSize={getSecondFontSize(0)}
-                $lineHeight={["30px", "31px", "28px"]}
-                $left={getLeft(0)}
-                $letterSpacing={getLetterSpacing(0)}
-                $boxMaxWidth={{
-                  deskXl: { t2: "1100px" },
-                  deskM: { t2: "1100px" },
-                  tablet: { t2: "700px" },
-                  mob: { t2: "300px" },
-                }}
-              >
-                {currentSection?.fields[currentStep].fields.subText}
-              </MainTextSecond>
-            )}
-            {/* {currentSection?.fields[currentStep].fields.mainText && (
               <ContinueBtn
                 className="animeCalltoAction"
                 onClick={onServicesPopUpHandler}
                 $top={getTopContinueBtn}
                 $color={currentTheme?.menuBtnColor}
                 $bg={currentTheme?.bgScheduleBtn}
+                $justifySelf={"left"}
               >
                 <ContinueBtnBorder
                   xmlns="http://www.w3.org/2000/svg"
                   xmlnsXlink="http://www.w3.org/1999/xlink"
-                  aria-labelledby="VIEW OUR SERVICES"
-                  viewBox="0 0 226 43"
+                  aria-labelledby="GET A FREE STRATEGY CALL"
+                  viewBox="0 0 410 59"
                   $color={currentTheme?.bgScheduleBtn}
                   id="MyButton"
                   fill="none"
                 >
-                  <title>VIEW SERVICES</title>
-                  <rect x="0.5" y="0.5" width="225" height="42" rx="21" />
+                  <title>GET A FREE STRATEGY CALL</title>
+                  <rect x="0.5" y="0.5" width="408" height="58" rx="21" />
                 </ContinueBtnBorder>
-                <span>
-                  {" "}
-                  VIEW SERVICES{" "}
-                </span>{" "}
+                <span>GET A FREE STRATEGY CALL</span>{" "}
               </ContinueBtn>
-            )} */}
+            )}
+
+                </TextContainer>
           </>
         );
       case 1:
         return (
           <>
-            {currentSection.fields[currentStep].fields.mainText && (
-              <MainText
-                className="anime"
-                $color={currentTheme.textColor}
-                $top={getTopMainText(1)}
-                $step={currentStep}
-                $fontSize={getFontSize(0)}
-                $left={getLeft(0)}
-                $letterSpacing={getLetterSpacing(0)}
-                $boxMaxWidth={getBoxMaxWidth(0)}
-                $textTransform={"initial"}
-                $fontWeight={"700"}
-              >
-                {currentSection.fields[currentStep].fields.mainText}
-              </MainText>
-            )}
-            {currentSection.fields[currentStep].fields.subText && (
-              <MainTextSecond
-                className="anime"
-                $color={currentTheme.textColor}
-                $top={getTopSecondText(1)}
-                $step={currentStep}
-                $fontSize={getSecondFontSize(1)}
-                $lineHeight={["44px", "31px", "28px"]}
-                $left={getLeft(0)}
-                $letterSpacing={getLetterSpacing(0)}
-                $boxMaxWidth={{
-                  deskXl: { t2: "1100px" },
-                  deskM: { t2: "1100px" },
-                  tablet: { t2: "700px" },
-                  mob: { t2: "300px" },
-                }}
-              >
-                {currentSection.fields[currentStep].fields.subText}
-              </MainTextSecond>
-            )}
-            {currentSection.fields[currentStep].fields.mainText && (
-              <ContinueBtn
-                className="animeCalltoAction"
-                onClick={onContractsPopUpHandler}
-                $top={getTopContinueBtn}
-                $color={currentTheme?.menuBtnColor}
-                $bg={currentTheme?.bgScheduleBtn}
-              >
-                <ContinueBtnBorder
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlnsXlink="http://www.w3.org/1999/xlink"
-                  aria-labelledby="VIEW CONTRACTS"
-                  viewBox="0 0 226 43"
-                  $color={currentTheme?.bgScheduleBtn}
-                  id="MyButton"
-                  fill="none"
+            <TextContainer className="textContainer">
+     
+              {currentSection.fields[currentStep].fields.mainText && (
+               
+                <MainText
+                  className="animeStatic"
+                  // $color={currentTheme.textColor}
+                  $color={"#fff"}
+                  $top={getTopMainText(1)}
+                  $step={currentStep}
+                  $fontSize={getFontSize(0)}
+                  $left={"unset"}
+                  $letterSpacing={getLetterSpacing(0)}
+                  $boxMaxWidth={getBoxMaxWidth(0)}
+                  $textTransform={"initial"}
+                  $fontWeight={"700"}
+                  $textAlign={"left"}
+                  $position={"unset"}
+                  $margin={"0px auto"}
                 >
-                  <title>VIEW CONTRACTS</title>
-                  <rect x="0.5" y="0.5" width="225" height="42" rx="21" />
-                </ContinueBtnBorder>
-                <span> VIEW CONTRACTS </span>{" "}
-              </ContinueBtn>
-            )}
+                  {/* {currentSection.fields[currentStep].fields.mainText} #FIXME */}
+                         <LogoIcon />{"Apps"}
+                </MainText>
+              )}
+              {currentSection.fields[currentStep].fields.subText && (
+                <MainTextSecond
+                  className="anime"
+                  $color={currentTheme.textColor}
+                  $top={getTopSecondText(1)}
+                  $step={currentStep}
+                  $fontSize={getSecondFontSize(1)}
+                  $lineHeight={["44px", "31px", "28px"]}
+                  $left={"unset"}
+                  $letterSpacing={getLetterSpacing(0)}
+                  $boxMaxWidth={{
+                    deskXl: { t2: "1100px" },
+                    deskM: { t2: "1100px" },
+                    tablet: { t2: "700px" },
+                    mob: { t2: "300px" },
+                  }}
+                  $textAlign={"center"}
+                  $position={"unset"}
+                  $margin={"0px auto"}
+                >
+                  {/* {currentSection.fields[currentStep].fields.subText} #FIXME*/}
+                  {
+                    "Eminent Apps is a simple, no-hassle process to get your web or mobile application built fast. We handle all the hard stuff for you from start to finish. Our experienced team uses modern technology to deliver high-quality web and mobile experiences at lightning speed with minimum risks to you."
+                  }
+                </MainTextSecond>
+              )}
+
+              {currentSection.fields[currentStep].fields.mainText && (
+                <ContinueBtn
+                  className="animeCalltoAction"
+                  onClick={onContractsPopUpHandler}
+                  $top={"unset"}
+                  $color={currentTheme?.menuBtnColor}
+                  $bg={currentTheme?.bgScheduleBtn}
+                >
+                  <ContinueBtnBorder
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlnsXlink="http://www.w3.org/1999/xlink"
+                    aria-labelledby="VIEW CONTRACTS"
+                    viewBox="0 0 226 43"
+                    $color={currentTheme?.bgScheduleBtn}
+                    id="MyButton"
+                    fill="none"
+                  >
+                    <title>LEARN MORE</title>
+                    <rect x="0.5" y="0.5" width="225" height="42" rx="21" />
+                  </ContinueBtnBorder>
+                  <span> LEARN MORE </span>{" "}
+                </ContinueBtn>
+              )}
+            </TextContainer>
           </>
         );
       case 2:
+        return (
+          <>
+            <TextContainer className="textContainer">
+              {currentSection.fields[currentStep].fields.mainText && (
+                <MainText
+                  className="animeStatic"
+                  // $color={currentTheme.textColor}
+                  $color={"#fff"}
+                  $top={getTopMainText(1)}
+                  $step={currentStep}
+                  $fontSize={getFontSize(0)}
+                  $left={"unset"}
+                  $letterSpacing={getLetterSpacing(0)}
+                  $boxMaxWidth={getBoxMaxWidth(0)}
+                  $textTransform={"initial"}
+                  $fontWeight={"700"}
+                  $textAlign={"left"}
+                  $position={"unset"}
+                  $margin={"0px auto"}
+                >
+                  {/* {currentSection.fields[currentStep].fields.mainText} #FIXME */}
+                <LogoIcon />{"DApps"}
+                </MainText>
+              )}
+              {/* {currentSection.fields[currentStep].fields.subText && ( */}
+              {
+                <MainTextSecond
+                  className="anime"
+                  $color={currentTheme.textColor}
+                  $top={getTopSecondText(1)}
+                  $step={currentStep}
+                  $fontSize={getSecondFontSize(1)}
+                  $lineHeight={["44px", "31px", "28px"]}
+                  $left={"unset"}
+                  $letterSpacing={getLetterSpacing(0)}
+                  $boxMaxWidth={{
+                    deskXl: { t2: "1100px" },
+                    deskM: { t2: "1100px" },
+                    tablet: { t2: "700px" },
+                    mob: { t2: "300px" },
+                  }}
+                  $textAlign={"center"}
+                  $position={"unset"}
+                  $margin={"0px auto"}
+                >
+                  {/* {currentSection.fields[currentStep].fields.subText} #FIXME*/}
+                  {
+                    "Eminent DApps simplifies the process by giving you everything you need to deliver decentralized blockchain and token solutions in a fraction of the time at a fraction of the cost. We handle all the hard stuff for you from start to finish."
+                  }
+                </MainTextSecond>
+              }
+
+              {currentSection.fields[currentStep].fields.mainText && (
+                <ContinueBtn
+                  className="animeCalltoAction"
+                  onClick={onContractsPopUpHandler}
+                  $top={"unset"}
+                  $left={"unset"}
+                  $color={currentTheme?.menuBtnColor}
+                  $bg={currentTheme?.bgScheduleBtn}
+                >
+                  <ContinueBtnBorder
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlnsXlink="http://www.w3.org/1999/xlink"
+                    aria-labelledby="GET STARTED"
+                    viewBox="0 0 226 43"
+                    $color={currentTheme?.bgScheduleBtn}
+                    id="MyButton"
+                    fill="none"
+                  >
+                    <title>GET STARTED</title>
+                    <rect x="0.5" y="0.5" width="225" height="42" rx="21" />
+                  </ContinueBtnBorder>
+                  <span> GET STARTED </span>{" "}
+                </ContinueBtn>
+              )}
+            </TextContainer>
+          </>
+        );
       case 3:
+        return (
+          <>
+            <TextContainer className="textContainer">
+              {currentSection.fields[currentStep].fields.mainText && (
+                <MainText
+                  className="animeStatic"
+                  // $color={currentTheme.textColor}
+                  $color={"#fff"}
+                  $top={getTopMainText(1)}
+                  $step={currentStep}
+                  $fontSize={getFontSize(0)}
+                  $left={"unset"}
+                  $letterSpacing={getLetterSpacing(0)}
+                  $boxMaxWidth={getBoxMaxWidth(0)}
+                  $textTransform={"initial"}
+                  $fontWeight={"700"}
+                  $textAlign={"left"}
+                  $position={"unset"}
+                  $margin={"0px auto"}
+                >
+                  {/* {currentSection.fields[currentStep].fields.mainText} #FIXME */}
+                  <LogoIcon />{"Contracts"}
+                </MainText>
+              )}
+              {/* {currentSection.fields[currentStep].fields.subText && ( */}
+              {
+                <MainTextSecond
+                  className="anime"
+                  $color={currentTheme.textColor}
+                  $top={getTopSecondText(1)}
+                  $step={currentStep}
+                  $fontSize={getSecondFontSize(1)}
+                  $lineHeight={["44px", "31px", "28px"]}
+                  $left={"unset"}
+                  $letterSpacing={getLetterSpacing(0)}
+                  $boxMaxWidth={{
+                    deskXl: { t2: "1100px" },
+                    deskM: { t2: "1100px" },
+                    tablet: { t2: "700px" },
+                    mob: { t2: "300px" },
+                  }}
+                  $textAlign={"center"}
+                  $position={"unset"}
+                  $margin={"0px auto"}
+                >
+                  {/* {currentSection.fields[currentStep].fields.subText} #FIXME*/}
+                  {/* {
+                    "Eminent Contracts helps you and your team go digital so you can work together from anywhere. We help you implement simple but powerful cloud-based solutions to reduce your workload and help your team stay connected. Our team uses the latest cloud solutions to deliver high-quality, low code solutions, collaboration software, project management, and document management solutions."
+                  } */}
+                  { "Eminent Contracts empowers entrepreneurs, innovators, and big thinkers to bring their visions to the blockchain. Together we will accelerate the process of creating a secure and impactful solution that your target audience loves."}
+                </MainTextSecond>
+              }
+
+              {currentSection.fields[currentStep].fields.mainText && (
+                <ContinueBtn
+                  className="animeCalltoAction"
+                  onClick={onContractsPopUpHandler}
+                  $top={"unset"}
+                  $left={"unset"}
+                  $color={currentTheme?.menuBtnColor}
+                  $bg={currentTheme?.bgScheduleBtn}
+                >
+                  <ContinueBtnBorder
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlnsXlink="http://www.w3.org/1999/xlink"
+                    aria-labelledby="GET STARTED"
+                    viewBox="0 0 226 43"
+                    $color={currentTheme?.bgScheduleBtn}
+                    id="MyButton"
+                    fill="none"
+                  >
+                    <title>GET STARTED</title>
+                    <rect x="0.5" y="0.5" width="225" height="42" rx="21" />
+                  </ContinueBtnBorder>
+                  <span> GET STARTED </span>{" "}
+                </ContinueBtn>
+              )}
+            </TextContainer>
+          </>
+        );
       case 4:
         return (
           <>
             {currentSection.fields[currentStep].fields.mainText && (
               <MainText
                 className="anime"
-                $color={currentTheme.textColor}
+                // $color={currentTheme.textColor}
+                $color={"#fff"}
                 $top={getTopMainText(currentStep)}
                 $step={currentStep}
                 $fontSize={getFontSize(currentStep)}
                 $left={getLeft(currentStep)}
                 $letterSpacing={getLetterSpacing(currentStep)}
                 $boxMaxWidth={getBoxMaxWidth(currentStep)}
+                $lineHeight={["44px", "31px", "28px"]}
               >
-                {currentSection.fields[currentStep].fields.mainText}
+                {/* {currentSection.fields[currentStep].fields.mainText} */}
+                {"eApps, eDApps, eContracts combined enable us to help you pioneer creative and powerful digital experiences with energy, passion, and enthusiasm."}
               </MainText>
             )}
             {currentSection.fields[currentStep].fields.subText && (
               <MainTextSecond
                 className="anime2"
-                $color={currentTheme.textColor}
+                $color={"#fff"}
                 $top={getTopSecondText(currentStep)}
                 $step={currentStep}
                 $fontSize={getFontSize(currentStep)}
                 $left={getLeft(currentStep)}
                 $letterSpacing={getLetterSpacing(currentStep)}
                 $boxMaxWidth={getBoxMaxWidth(currentStep)}
+                $lineHeight={["44px", "31px", "28px"]}
               >
                 {currentSection.fields[currentStep].fields.subText}
               </MainTextSecond>
             )}
-            {currentSection.fields[currentStep].fields.mainText &&
+            {/* {currentSection.fields[currentStep].fields.mainText &&
               currentStep !== 5 && (
                 <ContinueBtn
                   className="animeCalltoAction"
@@ -1099,10 +1296,11 @@ const App = ({
                   </ContinueBtnBorder>
                   <span> VIEW CONTRACTS </span>{" "}
                 </ContinueBtn>
-              )}
+              )} */}
             {currentSection.fields[currentStep].fields.mainText &&
               currentStep == 5 && (
                 <ScheduleBtn
+                  className="animeCalltoAction"
                   $bg={currentTheme.bgScheduleBtn}
                   $color={currentTheme.menuBtnColor}
                   onClick={onScheduleClickHandler}
@@ -1117,65 +1315,74 @@ const App = ({
       case 5:
         return (
           <>
-            {currentSection.fields[currentStep].fields.mainText && (
-              <MainText
-                className="anime"
-                $color={currentTheme.textColor}
-                $top={getTopMainText(5)}
-                $step={currentStep}
-                $fontSize={getFontSize(0)}
-                $left={getLeft(0)}
-                $letterSpacing={getLetterSpacing(0)}
-                $boxMaxWidth={getBoxMaxWidth(0)}
-                $textTransform={"initial"}
-                $fontWeight={"700"}
-              >
-                {currentSection.fields[currentStep].fields.mainText}
-              </MainText>
-            )}
-            {currentSection.fields[currentStep].fields.subText && (
-              <MainTextSecond
-                className="anime"
-                $color={currentTheme.textColor}
-                $top={getTopSecondText(0)}
-                $step={currentStep}
-                $fontSize={getSecondFontSize(5)}
-                $lineHeight={["44px", "31px", "28px"]}
-                $left={getLeft(0)}
-                $letterSpacing={getLetterSpacing(0)}
-                $boxMaxWidth={{
-                  deskXl: { t2: "1100px" },
-                  deskM: { t2: "1100px" },
-                  tablet: { t2: "700px" },
-                  mob: { t2: "300px" },
-                }}
-              >
-                {currentSection.fields[currentStep].fields.subText}
-              </MainTextSecond>
-            )}
-            {currentSection.fields[currentStep].fields.mainText && (
-              <ContinueBtn
-                className="animeCalltoAction"
-                onClick={onScheduleClickHandler}
-                $top={getTopContinueBtn}
-                $color={currentTheme?.menuBtnColor}
-                $bg={currentTheme?.bgScheduleBtn}
-              >
-                <ContinueBtnBorder
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlnsXlink="http://www.w3.org/1999/xlink"
-                  aria-labelledby="REQUEST INFO"
-                  viewBox="0 0 211 53"
-                  $color={currentTheme?.bgScheduleBtn}
-                  id="MyButton"
-                  fill="none"
+            <TextContainer className="textContainer">
+              {currentSection.fields[currentStep].fields.mainText && (
+                <MainText
+                  className="anime"
+                  $color={"#fff"}
+                  $top={"unset"}
+                  $step={currentStep}
+                  $fontSize={getFontSize(0)}
+                  $left={getLeft(0)}
+                  $letterSpacing={getLetterSpacing(0)}
+                  $boxMaxWidth={getBoxMaxWidth(5)}
+                  $textTransform={"initial"}
+                  $fontWeight={"700"}
+                  $textAlign={"center"}
+                  $position={"unset"}
+                  $margin={"0px auto"}
                 >
-                  <title>REQUEST INFO</title>
-                  <rect x="0.5" y="0.5" width="210" height="52" rx="21" />
-                </ContinueBtnBorder>
-                <span> REQUEST INFO </span>{" "}
-              </ContinueBtn>
-            )}
+                  {currentSection.fields[currentStep].fields.mainText}
+                </MainText>
+              )}
+              {currentSection.fields[currentStep].fields.subText && (
+                <MainTextSecond
+                  className="anime"
+                  $color={currentTheme.textColor}
+                  $top={"unset"}
+                  $step={currentStep}
+                  $fontSize={getSecondFontSize(5)}
+                  $lineHeight={["44px", "31px", "28px"]}
+                  $left={getLeft(0)}
+                  $letterSpacing={getLetterSpacing(0)}
+                  $boxMaxWidth={{
+                    deskXl: { t2: "1100px" },
+                    deskM: { t2: "1100px" },
+                    tablet: { t2: "700px" },
+                    mob: { t2: "300px" },
+                  }}
+                  $textAlign={"center"}
+                  $position={"unset"}
+                  $margin={"0px auto"}
+                >
+                  {currentSection.fields[currentStep].fields.subText}
+                </MainTextSecond>
+              )}
+
+              {currentSection.fields[currentStep].fields.mainText && (
+                <ContinueBtn
+                  className="animeCalltoAction"
+                  onClick={onScheduleClickHandler}
+                  $top={getTopContinueBtn}
+                  $color={currentTheme?.menuBtnColor}
+                  $bg={currentTheme?.bgScheduleBtn}
+                >
+                  <ContinueBtnBorder
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlnsXlink="http://www.w3.org/1999/xlink"
+                    aria-labelledby="REQUEST INFO"
+                    viewBox="0 0 211 53"
+                    $color={currentTheme?.bgScheduleBtn}
+                    id="MyButton"
+                    fill="none"
+                  >
+                    <title>REQUEST INFO</title>
+                    <rect x="0.5" y="0.5" width="210" height="52" rx="21" />
+                  </ContinueBtnBorder>
+                  <span> REQUEST INFO </span>{" "}
+                </ContinueBtn>
+              )}
+            </TextContainer>
           </>
         );
       default:
@@ -1419,6 +1626,7 @@ const App = ({
 
             {currentSection.fields[currentStep].fields.mainText && (
               <ScheduleBtn
+                className="animeCalltoAction"
                 $bg={currentTheme.bgScheduleBtn}
                 $color={currentTheme.menuBtnColor}
                 onClick={onScheduleClickHandler}
@@ -1723,7 +1931,7 @@ const AnimatedVeteransText = styled(VeteransSVG)`
 `;
 const MainText = styled.div`
   opacity: 0;
-  position: fixed;
+  position: ${({ $position }) => ($position ? $position : "fixed")};
   color: ${({ $color }) => $color};
   font-size: ${({ $fontSize }) => $fontSize[0]};
   top: ${({ $top }) => ($top ? $top[0] : "30%")};
@@ -1732,10 +1940,10 @@ const MainText = styled.div`
   max-width: ${({ $boxMaxWidth }) => $boxMaxWidth.deskXl.t1};
   white-space: pre-line;
   letter-spacing: ${({ $letterSpacing }) => $letterSpacing};
-  line-height: ${({ $fontSize }) => $fontSize[0]};
-  text-transform: ${({ $textTransform }) =>
-    $textTransform ? $textTransform : "none"};
+  line-height: ${({ $lineHeight, $fontSize }) => $lineHeight ? $lineHeight : $fontSize[0]};
+  text-transform: ${({ $textTransform }) => $textTransform ? $textTransform : "none"};
   font-weight: ${({ $fontWeight }) => ($fontWeight ? $fontWeight : "400")};
+  margin: ${({ $margin }) => ($margin ? $margin : "unset")};
 
   @media (max-width: "1080px") {
     font-size: ${({ $fontSize }) => $fontSize[1]};
@@ -1764,6 +1972,8 @@ const MainTextSecond = styled(MainText)`
   max-width:700px;
   line-height: ${({ $lineHeight }) =>
     $lineHeight ? $lineHeight[0] : ($fontSize) => $fontSize[0]};
+  margin: ${({ $margin }) => ($margin ? $margin : "unset")};
+  padding: 10px 0px;
 
   @media (max-width: ${BREAKPOINTS.xl}px) {
     ${
@@ -1795,7 +2005,8 @@ const CallActionBtn = styled.button`
   font-size: 15px;
   letter-spacing: 3px;
   text-decoration: none;
-  justify-self: center;
+  justify-self: ${({ $justifySelf }) =>
+      $justifySelf ? $justifySelf : "center"};;
   position: relative;
   display: block;
   outline: none;
@@ -1880,7 +2091,7 @@ const ContinueBtnBorder = styled.svg`
   }
 `;
 const ContinueBtn = styled(CallActionBtn)`
-  opacity: 0;
+  opacity: 1;
   background: ${({ $bg }) => $bg};
   padding: 13px 10px;
   border-radius: 67px;
@@ -1889,6 +2100,7 @@ const ContinueBtn = styled(CallActionBtn)`
   position: relative;
   transition: 0.2s ease-in-out;
   top: ${({ $top }) => $top};
+  display: block;
 
   @media (min-width: ${BREAKPOINTS.tablet + 1}px) {
     &:hover {
@@ -2342,5 +2554,30 @@ const CustomID = styled.div`
   @media (max-width: ${BREAKPOINTS.mob}px) {
     grid-row-start: 1;
     font-size: 28px;
+  }
+`;
+
+const TextContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px 0px;
+  justify-content: start;
+  align-content: center;
+  justify-items: start;
+  min-width: 1180px;
+  @media (max-width: ${BREAKPOINTS.mob}px) {
+    min-width: unset;
+  }
+`;
+
+
+const LogoIcon = styled(LogoIconSVG)`
+  display: "inline-block";
+  stroke: rgba(255, 255, 255, 0);
+  width: 55px;
+  height: 55px;
+  @media (max-width: ${BREAKPOINTS.mob}px) {
+    height: 34px;
+    width: 40px;
   }
 `;

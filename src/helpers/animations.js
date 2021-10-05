@@ -6,7 +6,7 @@ export const getAnimationTimeout = (currentStep, currentSectionTitle) => {
     case "home": {
       switch (currentStep) {
         case 0:
-          return 6000;
+          return 1000;
         case 1:
         case 2:
           return 1000;
@@ -147,7 +147,7 @@ export const logoTimeline = (logoColor, introTextFontSize, callback) => {
       targets: ".menuLogoSvg path",
       strokeDashoffset: [anime.setDashoffset, 0],
       easing: "easeInCirc",
-      duration: 6000,
+      duration: 1000,
       direction: "alternate",
     })
     .add(
@@ -339,7 +339,19 @@ export const getFadeInMainText = (callback, mainDelay = 0) => {
        
       },
       `+=${300}`
-    );
+    ).add(
+      {
+        targets: [".animeStatic"],
+        translateX: [40, 0],
+        translateZ: 0,
+        opacity: [0, 1],
+        easing: "easeOutQuad",
+        duration: 50,
+       // delay: (el, i) => 40 + 30 * i,
+       
+      },
+      `+=${300}`
+    );;
 };
 
 export const getFadeOutMainText = (callback) => {
@@ -377,6 +389,12 @@ export const getFadeOutMainText = (callback) => {
     })
     .add({
       targets: ".animeCalltoAction",
+      opacity: [1, 0],
+      duration: 10,
+      complete: () => callback(),
+    })
+    .add({
+      targets: ".animeStatic",
       opacity: [1, 0],
       duration: 10,
       complete: () => callback(),
@@ -535,7 +553,7 @@ export const desktopMenuLabelAnimation = (letters, textWrapper) => {
     translateY: [-100, 0],
     easing: "easeOutExpo",
     duration: 500,
-    delay: (el, i) => 30 * i,
+    delay: (el, i) => 20 * i,
   });
   anime({
     targets: textWrapper,

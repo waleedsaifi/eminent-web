@@ -99,6 +99,7 @@ const ContainerContent = (currentData) => {
       const allowedContainers = [
         "mainContainer",
         "anime",
+        "animeStatic",
         "letter",
         "blurredBackground",
         "custom_anime",

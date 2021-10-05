@@ -47,7 +47,6 @@ class EminentScene extends Scene {
             // await wait(100)
 
             // this.saveObjectsProperties()
-
             this.startAnimation();
             await this.fadeOut(false);
             await this.fadeIn();
@@ -57,7 +56,7 @@ class EminentScene extends Scene {
 
           default: {
             if (this.active) {
-              await this.fadeOut();
+              await this.fadeOut(true);
               this.active = false;
             }
             break;

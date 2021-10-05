@@ -26,6 +26,7 @@ export default function App(props) {
   return (
     <Container
       id="glContainer"
+      className="test"
       ref={node}
       $step={currentStep}
       $section={currentSectionTitle}

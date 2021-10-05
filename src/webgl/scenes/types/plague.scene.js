@@ -42,7 +42,7 @@ class PlagueScene extends Scene {
         },
       });
     } else {
-      this.noise ? this.noise.noiseTransAlpha = value: this.initNoise();
+      this.noise ? (this.noise.noiseTransAlpha = value) : this.initNoise();
     }
   }
 
@@ -116,7 +116,16 @@ class PlagueScene extends Scene {
         //console.log(" currentSectionTitle:" + currentSectionTitle + " to:" + to);
         switch (to) {
           // eslint-disable-next-line no-fallthrough
-       
+          case 1: {
+            await wait(this.fade_config.scale_duration);
+
+            changeColor("main");
+            open(true);
+            await sphread(true);
+            turbo(true);
+            break;
+          }
+
           case 2: {
             await wait(this.fade_config.scale_duration);
 
@@ -125,7 +134,7 @@ class PlagueScene extends Scene {
 
             break;
           }
-          case 1:
+
           case 3: {
             const friendly = [2, 4, 5];
             const fromFriendly = friendly.includes(from);
@@ -158,7 +167,7 @@ class PlagueScene extends Scene {
 
             break;
           }
-          
+
           case 5: {
             const friendly = [4];
             const fromFriendly = friendly.includes(from);

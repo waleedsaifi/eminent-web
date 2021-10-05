@@ -70,6 +70,7 @@ const ServicesPopupContent = ({ closeHandler, showPopup }) => {
             <h4> Just a few of the ways we can help you make a difference. </h4>
           </HeaderTextContainer>
         </Header>
+        
         <AboutSectionViolatorStrip
           $icon={PaperWhiteIcon}
           $borderColor={currentTheme?.bgScheduleBtn}
@@ -82,7 +83,7 @@ const ServicesPopupContent = ({ closeHandler, showPopup }) => {
               </p>
             </div>
             <a
-              href="/privacy/docs/Building_a_Trusted_Ecosystem_for_Millions_of_Apps.pdf"
+              href="https://s3.amazonaws.com/www.eminentfuture.com/Eminent_CapabilitiesStatement_V1+(1).pdf"
               data-analytics-title="view capabilities statement"
               aria-label=" View Capabilities Statement (PDF)"
               className="icon-wrapper violator-strip-link-outlined"

@@ -4,7 +4,23 @@ import { BREAKPOINTS } from "../../constants/constants";
 import { ReactComponent as CrossSvg } from "../../assets/images/cross.svg";
 import { useSelector } from "react-redux";
 import { ReactComponent as LogoIconSVG } from "../../assets/images/eminent-icon.svg";
-import { RisiIMG, IsaacIMG, LeAnnIMG } from "../../assets/images/about/index";
+import {
+  RisiIMG,
+  IsaacIMG,
+  LeAnnIMG,
+  GrantIMG,
+  RaquelIMG,
+  TedraIMG,
+  BobIMG,
+  RicardoIMG,
+  AnushaIMG,
+  KevinIMG,
+  ParraIMG,
+  GeorgeIMG,
+  LaluIMG,
+  SamiIMG,
+  MaloneIMG,
+} from "../../assets/images/about/index";
 import { ParticleBackground } from "Components/ParticleBackground";
 import { darkTheme, lightTheme } from "constants/constants";
 import { toggleElementsforPopup } from "utils/navigation";
@@ -88,24 +104,25 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
               <div className="typography-overview-feature-copy feature-copy">
                 <div className="feature-copy-columns">
                   <p>
-                    With a shared ambition to make the future of work
-                    extraordinary, Mr. José "Tech" Risi and Mr. Isaac Barnes
-                    joined forces in 2009.
+                    With a shared ambition to make the future extraordinary, Mr.
+                    José "Tech" Risi and Mr. Isaac Barnes joined forces in 2009
+                    to found Eminent.
                   </p>
                   <p>
                     Despite being from disadvantaged backgrounds, the founders
                     of Eminent formed a risky partnership – one forged from a
-                    shared passion for software engineering and a desire to
-                    create the Best Innovation Company in the world.
+                    shared passion for software engineering and a desire to work
+                    with the most innovative people in the world.
                   </p>
                 </div>
               </div>
             </AboutSectionContent>
-            <AboutCardContainer>
+            <AboutCardContainerImage>
               <AboutTextItem className="grid-1 grid-left">
                 <AboutCardContent
                   cardImage={RisiIMG}
                   url={"https://www.linkedin.com/in/joserisi/"}
+                  title={"José 'Tech' Risi"}
                 />
                 <h5>José "Tech" Risi</h5>
                 <GradientKeyline />
@@ -116,6 +133,7 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
                 <AboutCardContent
                   cardImage={IsaacIMG}
                   url={"https://www.linkedin.com/in/isaacbarnes/"}
+                  title={"Isaac Barnes"}
                 />
                 <h5>Isaac Barnes</h5>
                 <GradientKeyline />
@@ -126,13 +144,144 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
                 <AboutCardContent
                   cardImage={LeAnnIMG}
                   url={"https://www.linkedin.com/in/leann-dishart-b7676461/"}
+                  title={"LeAnn Dishart"}
                 />
                 <h5>LeAnn Dishart</h5>
                 <GradientKeyline />
                 <h6>Chief Human Resources Officer</h6>
                 {/* <a href="" title="View Profile">View Profile</a> */}
               </AboutTextItem>
-            </AboutCardContainer>
+              <AboutTextItem className="grid-1 grid-left">
+                <AboutCardContent
+                  cardImage={GrantIMG}
+                  url={"https://www.linkedin.com/in/grant-t-047340a"}
+                  title={"Grant Thomas"}
+                />
+                <h5>Grant Thomas</h5>
+                <GradientKeyline />
+                <h6>Top Secret Facility Security Officer</h6>
+                {/* <a href="" title="View Profile">View Profile</a> */}
+              </AboutTextItem>
+              <AboutTextItem className="grid-1 grid-left">
+                <AboutCardContent
+                  cardImage={RaquelIMG}
+                  url={"https://www.linkedin.com/in/raquel-risi-5b80a2196/"}
+                  title={"Raquel Risi"}
+                />
+                <h5>Raquel Risi</h5>
+                <GradientKeyline />
+                <h6>Quality & Compliance</h6>
+                {/* <a href="" title="View Profile">View Profile</a> */}
+              </AboutTextItem>
+              <AboutTextItem className="grid-1 grid-left">
+                <AboutCardContent
+                  cardImage={TedraIMG}
+                  url={"https://www.linkedin.com/in/tedra-hayden-50972938"}
+                  title={"Tedra Hayden"}
+                />
+                <h5>Tedra Hayden</h5>
+                <GradientKeyline />
+                <h6>Business Development</h6>
+                {/* <a href="" title="View Profile">View Profile</a> */}
+              </AboutTextItem>
+              <AboutTextItem className="grid-1 grid-left">
+                <AboutCardContent
+                  cardImage={BobIMG}
+                  url={"https://www.linkedin.com/in/tedra-hayden-50972938"}
+                  title={"Robert Ziolkowski"}
+                />
+                <h5>Robert Ziolkowski</h5>
+                <GradientKeyline />
+                <h6>Decentralized Engineering</h6>
+                {/* <a href="" title="View Profile">View Profile</a> */}
+              </AboutTextItem>
+
+              <AboutTextItem className="grid-1 grid-left">
+                <AboutCardContent
+                  cardImage={AnushaIMG}
+                  url={
+                    "https://www.linkedin.com/in/anusha-nakirikanti-572b14b9/"
+                  }
+                  title={"Anusha Nakirikanti"}
+                />
+                <h5>Anusha Nakirikanti</h5>
+                <GradientKeyline />
+                <h6>Decentralized Engineering</h6>
+                {/* <a href="" title="View Profile">View Profile</a> */}
+              </AboutTextItem>
+              <AboutTextItem className="grid-1 grid-left">
+                <AboutCardContent
+                  cardImage={RicardoIMG}
+                  url={"https://www.linkedin.com/in/ricardohernandez722"}
+                  title={"Ricardo Hernandez"}
+                />
+                <h5>Ricardo Hernandez</h5>
+                <GradientKeyline />
+                <h6>Marketing</h6>
+                {/* <a href="" title="View Profile">View Profile</a> */}
+              </AboutTextItem>
+              <AboutTextItem className="grid-1 grid-left">
+                <AboutCardContent
+                  cardImage={KevinIMG}
+                  url={"https://www.linkedin.com/in/ricardohernandez722"}
+                  title={"Kevin Torres"}
+                />
+                <h5>Kevin Torres</h5>
+                <GradientKeyline />
+                <h6>Centralized Engineering</h6>
+                {/* <a href="" title="View Profile">View Profile</a> */}
+              </AboutTextItem>
+              <AboutTextItem className="grid-1 grid-left">
+                <AboutCardContent
+                  cardImage={ParraIMG}
+                  url={"https://www.linkedin.com/in/jonathan-parra-2793ba95/"}
+                  title={"Jon Parra"}
+                />
+                <h5>Jon Parra</h5>
+                <GradientKeyline />
+                <h6>System Administration</h6>
+              </AboutTextItem>
+              <AboutTextItem className="grid-1 grid-left">
+                <AboutCardContent
+                  cardImage={GeorgeIMG}
+                  url={"https://www.linkedin.com/in/george-portillo-172531178/"}
+                  title={"George Portillo"}
+                />
+                <h5>George Portillo</h5>
+                <GradientKeyline />
+                <h6>System Administration</h6>
+              </AboutTextItem>
+              <AboutTextItem className="grid-1 grid-left">
+                <AboutCardContent
+                  cardImage={LaluIMG}
+                  url={"https://www.linkedin.com/in/dominique-lalu-049268160"}
+                  title={"Dominique Lalu"}
+                />
+                <h5>Dominique Lalu</h5>
+                <GradientKeyline />
+                <h6>Customer Support</h6>
+              </AboutTextItem>
+              <AboutTextItem className="grid-1 grid-left">
+                <AboutCardContent
+                  cardImage={MaloneIMG}
+                  url={"https://www.linkedin.com/in/dominique-lalu-049268160"}
+                  title={"Domenique Malone"}
+                />
+                <h5>Domenique Malone</h5>
+                <GradientKeyline />
+                <h6>Centralized Engineering</h6>
+              </AboutTextItem>
+              <AboutTextItem className="grid-1 grid-left">
+                <AboutCardContent
+                  cardImage={SamiIMG}
+                  url={"https://www.linkedin.com/in/dominique-lalu-049268160"}
+                  title={"Sami"}
+                />
+                <h5>Sami Kazan</h5>
+                <GradientKeyline />
+                <h6>Customer Support</h6>
+              </AboutTextItem>
+            </AboutCardContainerImage>
           </AboutSection>
 
           <AboutSection>
@@ -237,7 +386,7 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
               </AboutCardContainer>
             }
           </AboutSection>
-          <ContinueBtn
+          {/* <ContinueBtn
             className="animeCalltoAction"
             onClick={onScheduleClickHandler}
             $top={"35%"}
@@ -260,7 +409,7 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
               {" "}
               <a href="#">REQUEST INFO </a>
             </span>{" "}
-          </ContinueBtn>
+          </ContinueBtn> */}
         </AboutTextContainer>
       </PopupContainer>
     </Wrapper>
@@ -276,7 +425,7 @@ const AboutCardContainer = styled.div`
   max-width: 1080px;
   display: grid;
   grid-template-columns: repeat(2, 2fr);
-  grid-gap: var(--grid-gutter);
+  grid-gap: 20px;
   margin: 0px auto;
 
   @media (max-width: ${BREAKPOINTS.mob}px) {
@@ -287,12 +436,27 @@ const AboutCardContainer = styled.div`
   }
 `;
 
-const AboutCardContent = ({ cardImage, url }) => {
+const AboutCardContainerImage = styled.div`
+  max-width: 1080px;
+  display: grid;
+  grid-template-columns: repeat(3, 3fr);
+  grid-gap: 20px;
+  margin: 0px auto;
+
+  @media (max-width: ${BREAKPOINTS.mob}px) {
+    grid-template-columns: repeat(1, 2fr);
+    max-width: 93.5%;
+    margin: 0px auto;
+    padding: 20px 0px 0px;
+  }
+`;
+
+const AboutCardContent = ({ cardImage, url, title }) => {
   //const src = Object.values(cardImage);
   const src = cardImage;
   return (
     <AboutCard className="card-1">
-      <img src={src} alt="Logo" />
+      <img src={src} alt="Logo" title={title} />
       <div className="content">
         <h3>Want to Know More?</h3>
         <h4>Click the link below</h4>
@@ -476,30 +640,34 @@ const AboutTextContainer = styled.div`
     $textTransform ? $textTransform : "none"};
   font-weight: ${({ $fontWeight }) => ($fontWeight ? $fontWeight : "none")};
   display: grid;
-  grid-template-columns: repeat(1, 2fr);
-  grid-gap: var(--grid-gutter);
+  grid-template-columns: repeat(1, 3fr);
+  grid-gap: 16px;
   width: 100%;
   margin: 0px auto 0px;
   box-sizing: border-box;
 
-  .grid-left {
+  ${
+    "" /* .grid-left {
     margin-right: 10px;
   }
 
   .grid-right {
     margin-left: 10px;
+  } */
   }
 
   @media (max-width: ${BREAKPOINTS.xl}px) {
     font-size: ${({ $fontSize }) => $fontSize[1]};
     max-width: 100%;
 
-    .grid-left {
+    ${
+      "" /* .grid-left {
       margin-right: 10px;
     }
 
     .grid-right {
       margin-left: 10px;
+    } */
     }
   }
   @media (max-width: ${BREAKPOINTS.tablet}px) {
@@ -528,8 +696,7 @@ const AboutTextContainer = styled.div`
 `;
 
 const AboutSection = styled.section`
-  margin-top: 0;
-  margin-bottom: 3.5em;
+  margin: 0px auto 3.5em;
 
   @media only screen and (max-width: 734px) {
     text-align: left;
@@ -667,22 +834,21 @@ const AboutTextItem = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  min-height: 530px;
+  min-height: 350px;
   height: auto;
   box-sizing: border-box;
   overflow: hidden;
   transition: transform 1s cubic-bezier(0.5, 1, 0.89, 1);
   transition-delay: 0.25s;
-  margin-bottom: 20px;
   border-radius: 18px;
   background: #282e33f0;
 
   img {
-    max-height: 500px;
+    max-height: 350px;
     width: 100%;
-    height: 440px;
+    height: 350px;
     object-fit: cover;
-    object-position: 10% 70%;
+    object-position: 10% 10%;
   }
   h5 {
     font-size: 32px;

@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+.test {
+  background: URL("https://img.wallpapersafari.com/desktop/1920/1080/99/90/IwYgSQ.jpg");
+  background-repeat: repeat;
+  background-position-y: 80%;
+  opacity: 0.8;
+}

@@ -270,7 +270,7 @@ const MenuContent = ({
     setMenuOpen((state) => {
       console.log(state);
       if (state) {
-        menu.current.style.gridTemplateRows = `73px 0 0 0 0`;
+        menu.current.style.gridTemplateRows = `43px 0 0 0 0`;
       } else {
         menu.current.style.gridTemplateRows = `93px 64px 64px 64px 64px 64px 94px`;
       }
@@ -432,9 +432,11 @@ const MenuContent = ({
           $show={isLogoBtnsShow.second}
         >
           <span className="menu_item" onMouseOver={menuLabelHandler}>
-            <Link to="/approach"> APPROACH </Link>
+          APPROACH
+            {/* <Link to="/approach"> APPROACH </Link> */}
           </span>{" "}
-          <span className="menu_label"> COMPLIANT DISRUPTION </span>{" "}
+          {/*<span className="menu_label"> COMPLIANT DISRUPTION </span>{" "} */}
+          <span className="menu_label"> COMING SOON </span>{" "} 
         </MenuBtn>
         <MenuBtn
           $open={isMenuOpen}
@@ -444,9 +446,11 @@ const MenuContent = ({
         >
           <span className="menu_item" onMouseOver={menuLabelHandler}>
             {" "}
-            <Link to="/work"> QUOTE </Link>{" "}
+            PRICING
+            {/* <Link to="/work"> QUOTE </Link>{" "} */}
           </span>{" "}
-          <span className="menu_label"> THINK BETTER </span>{" "}
+          {/* <span className="menu_label"> THINK BETTER </span>{" "} */}
+          <span className="menu_label"> COMING SOON </span>{" "} 
         </MenuBtn>
         <MenuLogoBtn className="logo" $open={isMenuOpen}>
           <span>
@@ -482,7 +486,7 @@ const MenuContent = ({
           onClick={onContractsPopUpHandler}
         >
           <span className="menu_item" onMouseOver={menuLabelHandler}>
-            CONTRACTS
+            PROJECTS
           </span>{" "}
           <span className="menu_label"> TRUSTED PARTNERS </span>{" "}
         </MenuBtn>
@@ -620,7 +624,7 @@ const Menu = styled.div`
 
   @media (max-width: 800px) {
     z-index: 1100;
-    grid-template-rows: 73px 0px 0px 0px 0px;
+    grid-template-rows: 43px 0px 0px 0px 0px;
     ${
       "" /* backdrop-filter: ${({ $open }) =>
       $open ? `blur(10px) opacity(0.8)` : ``};
