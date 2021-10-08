@@ -59,6 +59,11 @@ const App = ({
     showPopup("contracts");
   };
 
+  const onEminentAppsHandler = (e) => {
+    toggleElementsforPopup("hide");
+    showPopup("eminentApps");
+  }
+
   useEffect(() => {
     const progressSvgArray = document.querySelectorAll(
       `.styledProgress_${currentStep}`
@@ -239,7 +244,7 @@ const App = ({
           case 3:
             return ["50%"];
           case 4:
-            return ["55%"];
+            return ["28%"];
           default:
             return ["40%"];
         }
@@ -1054,7 +1059,7 @@ const App = ({
               {currentSection.fields[currentStep].fields.mainText && (
                 <ContinueBtn
                   className="animeCalltoAction"
-                  onClick={onContractsPopUpHandler}
+                  onClick={onEminentAppsHandler}
                   $top={"unset"}
                   $color={currentTheme?.menuBtnColor}
                   $bg={currentTheme?.bgScheduleBtn}
@@ -1169,10 +1174,11 @@ const App = ({
                   $top={getTopMainText(1)}
                   $step={currentStep}
                   $fontSize={getFontSize(0)}
-                  $left={"unset"}
+                  
                   $letterSpacing={getLetterSpacing(0)}
                   $boxMaxWidth={getBoxMaxWidth(0)}
                   $textTransform={"initial"}
+                  $left={"unset"}
                   $fontWeight={"700"}
                   $textAlign={"left"}
                   $position={"unset"}
@@ -1597,16 +1603,23 @@ const App = ({
       case 4:
         return (
           <>
+          <TextContainer className="textContainer">
             {currentSection.fields[currentStep].fields.mainText && (
               <MainText
                 className="anime"
                 $color={currentTheme.textColor}
-                $top={getTopMainText(4)}
+               
                 $step={currentStep}
-                $fontSize={getFontSize(4)}
-                $left={getLeft(4)}
+                $fontSize={getFontSize(0)}
+                
                 $letterSpacing={getLetterSpacing(4)}
                 $boxMaxWidth={getBoxMaxWidth(4)}
+                $fontWeight={"700"}
+                     $left={"unset"}
+                  $fontWeight={"700"}
+                  $textAlign={"center"}
+                  $position={"unset"}
+                  $margin={"0px auto"}
               >
                 {currentSection.fields[currentStep].fields.mainText}
               </MainText>
@@ -1615,12 +1628,17 @@ const App = ({
               <MainTextSecond
                 className="anime2"
                 $color={currentTheme.textColor}
-                $top={getTopSecondText(4)}
+              
                 $step={currentStep}
                 $fontSize={getFontSize(4)}
-                $left={getLeft(4)}
+              
                 $letterSpacing={getLetterSpacing(4)}
                 $boxMaxWidth={getBoxMaxWidth(4)}
+                     $left={"unset"}
+                  $fontWeight={"700"}
+                  $textAlign={"center"}
+                  $position={"unset"}
+                  $margin={"0px auto"}
               >
                 {currentSection.fields[currentStep].fields.subText}
               </MainTextSecond>
@@ -1638,6 +1656,7 @@ const App = ({
                 <span> REQUEST INFO </span>
               </ScheduleBtn>
             )}
+            </TextContainer>
           </>
         );
     }
@@ -2051,7 +2070,7 @@ const ScheduleBtn = styled(CallActionBtn)`
   border: 1px solid transparent;
   position: relative;
   transition: 0.2s ease-in-out;
-  margin-top: 60px;
+  ${'' /* margin-top: 60px; */}
 `;
 const Continue = styled.div`
   color: ${({ $color }) => $color};

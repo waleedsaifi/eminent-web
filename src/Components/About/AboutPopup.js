@@ -297,8 +297,8 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
               <div className="typography-overview-feature-copy feature-copy">
                 <div className="feature-copy-columns">
                   <p>
-                    Eminent is a truly remote-first organization with a
-                    distributed team of 20+ people across the United States. We
+                    Eminent is a fully remote and distributed company based in Arlington, VA 
+                    with a distributed team of 20+ people across the United States. We
                     have a diverse and inclusive culture with people from all
                     over the world offering different expertise, cultural
                     perspectives, and different age ranges.

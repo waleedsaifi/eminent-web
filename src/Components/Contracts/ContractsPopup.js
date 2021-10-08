@@ -147,7 +147,7 @@ const ContractsPopupContent = ({ closeHandler }) => {
           </ServicesTextItem>
           <ServicesTextItem className="grid-left">
             <h5>
-              The first 100% renewable energy decentralized mining network
+              xMooney: The first 100% renewable energy decentralized mining network
             </h5>
             <GradientKeyline />
              <LogoIcon />

@@ -95,7 +95,7 @@ const MenuContent = ({
               first: false,
               second: false,
             });
-            document.getElementById("glContainer").style.opacity="0";
+            document.getElementById("glContainer").style.opacity = "0";
             logoTimeline(currentTheme?.logoColor, getIntroFontSize(), () => {
               window.gradient.setStep(0, currentSectionTitle);
               setLogoBtnsShow((state) => {
@@ -370,9 +370,9 @@ const MenuContent = ({
   const controlAudioVolume = () => {
     var audio = document.getElementById("audio");
     if (audio) {
-        audio.volume = 0.2;
-     audio.play();
-    
+      audio.volume = 0.2;
+      audio.play();
+
       console.log("made it to audio volume");
     }
   };
@@ -432,11 +432,11 @@ const MenuContent = ({
           $show={isLogoBtnsShow.second}
         >
           <span className="menu_item" onMouseOver={menuLabelHandler}>
-          APPROACH
-            {/* <Link to="/approach"> APPROACH </Link> */}
+            {/* APPROACH */}
+            <Link to="/approach"> APPROACH </Link>
           </span>{" "}
-          {/*<span className="menu_label"> COMPLIANT DISRUPTION </span>{" "} */}
-          <span className="menu_label"> COMING SOON </span>{" "} 
+          <span className="menu_label"> COMPLIANT DISRUPTION </span>{" "}
+          {/* <span className="menu_label"> COMING SOON </span>{" "} */}
         </MenuBtn>
         <MenuBtn
           $open={isMenuOpen}
@@ -450,7 +450,7 @@ const MenuContent = ({
             {/* <Link to="/work"> QUOTE </Link>{" "} */}
           </span>{" "}
           {/* <span className="menu_label"> THINK BETTER </span>{" "} */}
-          <span className="menu_label"> COMING SOON </span>{" "} 
+          <span className="menu_label"> COMING SOON </span>{" "}
         </MenuBtn>
         <MenuLogoBtn className="logo" $open={isMenuOpen}>
           <span>

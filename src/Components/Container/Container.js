@@ -6,6 +6,7 @@ import MainText from "./../MainText/MainText";
 import FooterContent from "./../Footer/Footer";
 import HotspotsContainer from "../Hotspots/HotspotsContainer";
 import SchedulePopup from "../SchedulePopup/SchedulePopup";
+import EminentApps from "../Services/EminentApps";
 import ServicesPopup from "../Services/ServicesPopup";
 import ContractsPopup from "../Contracts/ContractsPopup";
 import AboutPopup from "../About/AboutPopup";
@@ -357,7 +358,7 @@ const ContainerContent = (currentData) => {
         if (xDiff > 0) {
           getNextStep(currentStep - 1); //swipe right
         } else {
-          getNextStep(currentStep + 1); //swipe right 
+          getNextStep(currentStep + 1); //swipe right
         }
       }
     }
@@ -413,6 +414,8 @@ const ContainerContent = (currentData) => {
         return <ContractsPopup closeHandler={closeContentPopup} />;
       case "about":
         return <AboutPopup closeHandler={closeContentPopup} />;
+      case "eminentApps":
+        return <EminentApps closeHandler={closeContentPopup} />;
       default:
         break;
     }
