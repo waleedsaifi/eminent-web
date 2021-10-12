@@ -71,22 +71,6 @@ const ServicesPopupContent = ({ closeHandler, showPopup }) => {
             <h4> Here are a few of the ways we can help you make a difference. </h4>
           </HeaderTextContainer>
         </Header>
-        {/* <SolutionsTextContainer
-          className=""
-          $color={currentTheme?.textColor}
-          $top={"50%"}
-          $fontSize={"12px"}
-          $left={"unset"}
-          $letterSpacing={"0.07em"}
-          $boxMaxWidth={getBoxMaxWidth()}
-        >
-          <ServicesTextItem className="">
-            {/* <ServiceCardContent cardImage={MomWorkingIMG} /> */}
-             {/* <h2>eminent DApps is fastest way to get high quality applications built ever.</h2> */}
-             {/* <img src={IMacIMG} title="iMac 27-inch - Apple" /> */}
-             {/* <GLContainer currentSectionTitle="approach" /> */}
-          {/* </ServicesTextItem>
-        </SolutionsTextContainer> */} 
         <AboutSectionViolatorStrip
           $icon={PaperWhiteIcon}
           $borderColor={currentTheme?.bgScheduleBtn}

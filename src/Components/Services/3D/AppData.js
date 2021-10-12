@@ -1,3 +1,11 @@
+export const BREAKPOINTS = {
+  mob: 767,
+  tablet: 1180,
+  xl: 1600,
+};
+
+// const isMobile = window.innerWidth <= BREAKPOINTS.tablet || mob;
+
 export const AppData = {
 	"metadata": {
 		"type": "App"
@@ -244,7 +252,7 @@ export const AppData = {
 		"5FC9ACA9-2A93-474D-AA32-FACC76551914": [
 			{
 				"name": "",
-				"source": "function update( event ) {var time = event.time * 0.0005;scene.children[0].rotation.z = Math.cos( time ) * 2;} scene.background = new THREE.Color('rgba(40, 46, 51)');"
+				 "source": "function update( event ) {var time = event.time * 0.0005;scene.children[0].rotation.z = Math.cos( time ) * 2;} scene.background = new THREE.Color('rgba(7, 17, 24)');"
 			}]
 	}
 }

@@ -43,3 +43,7 @@
   background-position-y: 80%;
   opacity: 0.8;
 }
+
+html {
+  scroll-behavior: smooth;
+}

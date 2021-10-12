@@ -3,9 +3,10 @@ import * as THREE from "three";
 
 var APP = {
   Player: function () {
-    var renderer = new THREE.WebGLRenderer({ antialias: true });
+    var renderer = new THREE.WebGLRenderer({ alpha: true  });
     renderer.setPixelRatio(window.devicePixelRatio); // TODO: Use player.setPixelRatio()
     renderer.outputEncoding = THREE.sRGBEncoding;
+    renderer.setClearColor( 0x000000, 0 ); // the default
 
     var loader = new THREE.ObjectLoader();
     var camera, scene;
