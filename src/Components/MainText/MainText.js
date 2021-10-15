@@ -28,6 +28,7 @@ import ScheduleForm from "../SchedulePopup/ScheduleForm";
 import ServicesPopupContent from "../Services/ServicesPopup";
 import ContractsPopupContent from "../Contracts/ContractsPopup";
 import { toggleElementsforPopup } from "utils/navigation";
+import { useHistory } from "react-router-dom";
 
 const App = ({
   showPopup,
@@ -44,7 +45,7 @@ const App = ({
   const storyItem2 = useRef(null);
   const storyItem3 = useRef(null);
   const storyItem4 = useRef(null);
-
+  const history = useHistory();
   const onScheduleClickHandler = (e) => {
     document.getElementById("ScheduleBtn").click();
   };
@@ -60,9 +61,11 @@ const App = ({
   };
 
   const onEminentAppsHandler = (e) => {
-    toggleElementsforPopup("hide");
-    showPopup("eminentApps");
-  }
+    // window.location="/"
+    // toggleElementsforPopup("hide");
+    // showPopup("eminentApps");
+    history.push("/eminent-apps");
+  };
 
   useEffect(() => {
     const progressSvgArray = document.querySelectorAll(
@@ -944,7 +947,7 @@ const App = ({
                   $position={"unset"}
                 >
                   {/* {currentSection.fields[currentStep].fields.mainText} */}
-                  { "High-quality apps & dapps delivered fast" }
+                  {"High-quality apps & dapps delivered fast"}
                 </MainText>
               )}
 
@@ -969,46 +972,43 @@ const App = ({
                 >
                   {/* {currentSection?.fields[currentStep].fields.subText}  ##FIXME */}
                   {
-                    "We are a digital product and innovation company helping passionate and proactive innovators in the public & private sector invent intuitive web, mobile, and decentralized digital experiences."
+                    "We are a digital product and innovation company. We help passionate and proactive leaders in the public & private sector invent intuitive web, mobile, and decentralized digital experiences."
                   }
                 </MainTextSecond>
               )}
-        
-            {currentSection?.fields[currentStep].fields.mainText && (
-              <ContinueBtn
-                className="animeCalltoAction"
-                onClick={onServicesPopUpHandler}
-                $top={getTopContinueBtn}
-                $color={currentTheme?.menuBtnColor}
-                $bg={currentTheme?.bgScheduleBtn}
-                $justifySelf={"left"}
-              >
-                <ContinueBtnBorder
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlnsXlink="http://www.w3.org/1999/xlink"
-                  aria-labelledby="GET A FREE STRATEGY CALL"
-                  viewBox="0 0 410 59"
-                  $color={currentTheme?.bgScheduleBtn}
-                  id="MyButton"
-                  fill="none"
-                >
-                  <title>GET A FREE STRATEGY CALL</title>
-                  <rect x="0.5" y="0.5" width="408" height="58" rx="21" />
-                </ContinueBtnBorder>
-                <span>GET A FREE STRATEGY CALL</span>{" "}
-              </ContinueBtn>
-            )}
 
-                </TextContainer>
+              {currentSection?.fields[currentStep].fields.mainText && (
+                <ContinueBtn
+                  className="animeCalltoAction"
+                  onClick={onServicesPopUpHandler}
+                  $top={getTopContinueBtn}
+                  $color={currentTheme?.menuBtnColor}
+                  $bg={currentTheme?.bgScheduleBtn}
+                  $justifySelf={"left"}
+                >
+                  <ContinueBtnBorder
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlnsXlink="http://www.w3.org/1999/xlink"
+                    aria-labelledby="GET A FREE STRATEGY CALL"
+                    viewBox="0 0 410 59"
+                    $color={currentTheme?.bgScheduleBtn}
+                    id="MyButton"
+                    fill="none"
+                  >
+                    <title>GET A FREE STRATEGY CALL</title>
+                    <rect x="0.5" y="0.5" width="408" height="58" rx="21" />
+                  </ContinueBtnBorder>
+                  <span>GET A FREE STRATEGY CALL</span>{" "}
+                </ContinueBtn>
+              )}
+            </TextContainer>
           </>
         );
       case 1:
         return (
           <>
             <TextContainer className="textContainer">
-     
               {currentSection.fields[currentStep].fields.mainText && (
-               
                 <MainText
                   className="animeStatic"
                   // $color={currentTheme.textColor}
@@ -1026,7 +1026,8 @@ const App = ({
                   $margin={"0px auto"}
                 >
                   {/* {currentSection.fields[currentStep].fields.mainText} #FIXME */}
-                         <LogoIcon />{"Apps"}
+                  <LogoIcon />
+                  {"Apps"}
                 </MainText>
               )}
               {currentSection.fields[currentStep].fields.subText && (
@@ -1051,7 +1052,7 @@ const App = ({
                 >
                   {/* {currentSection.fields[currentStep].fields.subText} #FIXME*/}
                   {
-                    "Eminent Apps is a simple, no-hassle process to get your web or mobile application built fast. We handle all the hard stuff for you from start to finish. Our experienced team uses modern technology to deliver high-quality web and mobile experiences at lightning speed with minimum risks to you."
+                    "Eminent Apps is a simple, no-hassle process to get your web or mobile application built fast. We handle all the hard stuff for you from start to finish. Our experienced team uses modern technology to deliver high-quality web and mobile experiences at lightning speed with minimal risks to you."
                   }
                 </MainTextSecond>
               )}
@@ -1104,7 +1105,8 @@ const App = ({
                   $margin={"0px auto"}
                 >
                   {/* {currentSection.fields[currentStep].fields.mainText} #FIXME */}
-                <LogoIcon />{"DApps"}
+                  <LogoIcon />
+                  {"DApps"}
                 </MainText>
               )}
               {/* {currentSection.fields[currentStep].fields.subText && ( */}
@@ -1174,7 +1176,6 @@ const App = ({
                   $top={getTopMainText(1)}
                   $step={currentStep}
                   $fontSize={getFontSize(0)}
-                  
                   $letterSpacing={getLetterSpacing(0)}
                   $boxMaxWidth={getBoxMaxWidth(0)}
                   $textTransform={"initial"}
@@ -1185,7 +1186,8 @@ const App = ({
                   $margin={"0px auto"}
                 >
                   {/* {currentSection.fields[currentStep].fields.mainText} #FIXME */}
-                  <LogoIcon />{"Contracts"}
+                  <LogoIcon />
+                  {"Contracts"}
                 </MainText>
               )}
               {/* {currentSection.fields[currentStep].fields.subText && ( */}
@@ -1213,7 +1215,9 @@ const App = ({
                   {/* {
                     "Eminent Contracts helps you and your team go digital so you can work together from anywhere. We help you implement simple but powerful cloud-based solutions to reduce your workload and help your team stay connected. Our team uses the latest cloud solutions to deliver high-quality, low code solutions, collaboration software, project management, and document management solutions."
                   } */}
-                  { "Eminent Contracts empowers entrepreneurs, innovators, and big thinkers to bring their visions to the blockchain. Together we will accelerate the process of creating a secure and impactful solution that your target audience loves."}
+                  {
+                    "Eminent Contracts empowers entrepreneurs, innovators, and big thinkers to bring their visions to the blockchain. Together we will accelerate the process of creating a secure and impactful solution that your target audience loves."
+                  }
                 </MainTextSecond>
               }
 
@@ -1260,9 +1264,14 @@ const App = ({
                 $boxMaxWidth={getBoxMaxWidth(currentStep)}
                 $lineHeight={["44px", "31px", "28px"]}
               >
-                 <h2><LogoIcon />{"Suite"}</h2>
+                <h2>
+                  <LogoIcon />
+                  {"Suite"}
+                </h2>
                 {/* {currentSection.fields[currentStep].fields.mainText} */}
-                {"With eApps, eDApps, eContracts everything works together so you can deliver powerful experiences."}
+                {
+                  "With eApps, eDApps, eContracts everything works together so you can deliver powerful experiences."
+                }
               </MainText>
             )}
             {currentSection.fields[currentStep].fields.subText && (
@@ -1278,7 +1287,9 @@ const App = ({
                 $lineHeight={["44px", "31px", "28px"]}
               >
                 {/* {currentSection.fields[currentStep].fields.subText} */}
-                {"Together we got this. We are here for you no matter how big your dream is."}
+                {
+                  "Together we got this. We are here for you no matter how big your dream is."
+                }
               </MainTextSecond>
             )}
             {/* {currentSection.fields[currentStep].fields.mainText &&
@@ -1603,59 +1614,55 @@ const App = ({
       case 4:
         return (
           <>
-          <TextContainer className="textContainer">
-            {currentSection.fields[currentStep].fields.mainText && (
-              <MainText
-                className="anime"
-                $color={currentTheme.textColor}
-               
-                $step={currentStep}
-                $fontSize={getFontSize(0)}
-                
-                $letterSpacing={getLetterSpacing(4)}
-                $boxMaxWidth={getBoxMaxWidth(4)}
-                $fontWeight={"700"}
-                     $left={"unset"}
+            <TextContainer className="textContainer">
+              {currentSection.fields[currentStep].fields.mainText && (
+                <MainText
+                  className="anime"
+                  $color={currentTheme.textColor}
+                  $step={currentStep}
+                  $fontSize={getFontSize(0)}
+                  $letterSpacing={getLetterSpacing(4)}
+                  $boxMaxWidth={getBoxMaxWidth(4)}
+                  $fontWeight={"700"}
+                  $left={"unset"}
                   $fontWeight={"700"}
                   $textAlign={"center"}
                   $position={"unset"}
                   $margin={"0px auto"}
-              >
-                {currentSection.fields[currentStep].fields.mainText}
-              </MainText>
-            )}
-            {currentSection.fields[currentStep].fields.subText && (
-              <MainTextSecond
-                className="anime2"
-                $color={currentTheme.textColor}
-              
-                $step={currentStep}
-                $fontSize={getFontSize(4)}
-              
-                $letterSpacing={getLetterSpacing(4)}
-                $boxMaxWidth={getBoxMaxWidth(4)}
-                     $left={"unset"}
+                >
+                  {currentSection.fields[currentStep].fields.mainText}
+                </MainText>
+              )}
+              {currentSection.fields[currentStep].fields.subText && (
+                <MainTextSecond
+                  className="anime2"
+                  $color={currentTheme.textColor}
+                  $step={currentStep}
+                  $fontSize={getFontSize(4)}
+                  $letterSpacing={getLetterSpacing(4)}
+                  $boxMaxWidth={getBoxMaxWidth(4)}
+                  $left={"unset"}
                   $fontWeight={"700"}
                   $textAlign={"center"}
                   $position={"unset"}
                   $margin={"0px auto"}
-              >
-                {currentSection.fields[currentStep].fields.subText}
-              </MainTextSecond>
-            )}
+                >
+                  {currentSection.fields[currentStep].fields.subText}
+                </MainTextSecond>
+              )}
 
-            {currentSection.fields[currentStep].fields.mainText && (
-              <ScheduleBtn
-                className="animeCalltoAction"
-                $bg={currentTheme.bgScheduleBtn}
-                $color={currentTheme.menuBtnColor}
-                onClick={onScheduleClickHandler}
-                $lineBg={currentTheme.bgScheduleBtn}
-              >
-                <ScheduleBtnBorder $color={currentTheme.bgScheduleBtn} />
-                <span> REQUEST INFO </span>
-              </ScheduleBtn>
-            )}
+              {currentSection.fields[currentStep].fields.mainText && (
+                <ScheduleBtn
+                  className="animeCalltoAction"
+                  $bg={currentTheme.bgScheduleBtn}
+                  $color={currentTheme.menuBtnColor}
+                  onClick={onScheduleClickHandler}
+                  $lineBg={currentTheme.bgScheduleBtn}
+                >
+                  <ScheduleBtnBorder $color={currentTheme.bgScheduleBtn} />
+                  <span> REQUEST INFO </span>
+                </ScheduleBtn>
+              )}
             </TextContainer>
           </>
         );
@@ -1961,8 +1968,10 @@ const MainText = styled.div`
   max-width: ${({ $boxMaxWidth }) => $boxMaxWidth.deskXl.t1};
   white-space: pre-line;
   letter-spacing: ${({ $letterSpacing }) => $letterSpacing};
-  line-height: ${({ $lineHeight, $fontSize }) => $lineHeight ? $lineHeight : $fontSize[0]};
-  text-transform: ${({ $textTransform }) => $textTransform ? $textTransform : "none"};
+  line-height: ${({ $lineHeight, $fontSize }) =>
+    $lineHeight ? $lineHeight : $fontSize[0]};
+  text-transform: ${({ $textTransform }) =>
+    $textTransform ? $textTransform : "none"};
   font-weight: ${({ $fontWeight }) => ($fontWeight ? $fontWeight : "400")};
   margin: ${({ $margin }) => ($margin ? $margin : "unset")};
 
@@ -2027,7 +2036,7 @@ const CallActionBtn = styled.button`
   letter-spacing: 3px;
   text-decoration: none;
   justify-self: ${({ $justifySelf }) =>
-      $justifySelf ? $justifySelf : "center"};;
+    $justifySelf ? $justifySelf : "center"};
   position: relative;
   display: block;
   outline: none;
@@ -2070,7 +2079,7 @@ const ScheduleBtn = styled(CallActionBtn)`
   border: 1px solid transparent;
   position: relative;
   transition: 0.2s ease-in-out;
-  ${'' /* margin-top: 60px; */}
+  ${"" /* margin-top: 60px; */}
 `;
 const Continue = styled.div`
   color: ${({ $color }) => $color};
@@ -2590,7 +2599,6 @@ const TextContainer = styled.div`
     min-width: unset;
   }
 `;
-
 
 const LogoIcon = styled(LogoIconSVG)`
   display: "inline-block";

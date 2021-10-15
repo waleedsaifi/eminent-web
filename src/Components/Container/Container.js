@@ -443,6 +443,41 @@ const ContainerContent = (currentData) => {
     );
   }
 
+  if (currentData.showApps) {
+    return (
+      <Container
+        id="app"
+        ref={mainContainer}
+        $section={currentSection}
+        $step={currentStep}
+        $isMenuOpen={isMenuOpen}
+        className="mainContainer"
+        $overflow={getOverflow()}
+      >
+        {activePopup && popupManager()}
+        <Menu
+          showPopup={setActivePopup}
+          menuHandler={menuHandler}
+          currentStep={currentStep}
+          currentSectionTitle={currentSectionTitle}
+          currentSection={currentSection}
+          currentTheme={currentTheme}
+        />
+        {currentData.showApps && (
+        <EminentApps />
+        )}
+        {isBgBlur && (
+          <BlurredBackground
+            ref={blurredBackground}
+            className="blurredBackground"
+            $blur={getBlur()}
+          />
+        )}
+        <HotspotsContainer />
+      </Container>
+    );
+  }
+
   return (
     <Container
       id="app"

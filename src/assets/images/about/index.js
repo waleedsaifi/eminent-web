@@ -13,6 +13,9 @@ import GeorgeIMG from "./george.png";
 import LaluIMG from "./lalu.png";
 import SamiIMG from "./sami.png";
 import MaloneIMG from "./malone.png";
+import KristinIMG from "./kristin.png";
+import EarlIMG from "./earl.png";
+import ArunaIMG from "./aruna.png";
 export {
   IsaacIMG,
   RisiIMG,
@@ -29,4 +32,7 @@ export {
   LaluIMG,
   SamiIMG,
   MaloneIMG,
+  KristinIMG,
+  EarlIMG,
+  ArunaIMG,
 };

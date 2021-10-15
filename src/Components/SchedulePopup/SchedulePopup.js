@@ -88,7 +88,7 @@ const PopupContainer = styled.div`
   padding: 40px 78px;
   max-width: 610px;
   margin: 20px 0;
-  
+
   @media (max-width: ${BREAKPOINTS.tablet}px) {
     margin-top: 85px;
     width: 100%;
@@ -96,7 +96,8 @@ const PopupContainer = styled.div`
     border-color: transparent;
   }
   @media (max-width: ${BREAKPOINTS.mob}px) {
-    margin-top: 45px;
+    margin-top: 0px;
+    padding: 0px 20px;
   }
 `;
 const Header = styled.div`
@@ -109,7 +110,7 @@ const Header = styled.div`
     font-weight: 700;
     font-size: 2.5em;
     letter-spacing: 0.1em;
-    ${'' /* color: ${({ $color }) => $color}; */}
+    ${"" /* color: ${({ $color }) => $color}; */}
     color: #fff;
     display: inline-block;
   }
@@ -128,8 +129,15 @@ const Header = styled.div`
     h2 {
       font-size: 21px;
       text-transform: uppercase;
-      padding: 0 0.5rem;
+      color: #fff;
+      padding: 20px 0.5rem 0px;
     }
+  }
+
+  @media (max-width: ${BREAKPOINTS.mob}px) {
+    position: relative;
+    background-color: transparent;
+    margin-top: 0px;
   }
 `;
 const CloseCross = styled.button`

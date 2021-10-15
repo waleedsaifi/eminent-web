@@ -418,12 +418,11 @@ const MenuContent = ({
           $color={currentTheme?.menuBtnColor}
           $lineBg={currentTheme?.bgScheduleBtn}
           $show={isLogoBtnsShow.second}
-          onClick={onServicesPopUpHandler}
         >
           <span className="menu_item" onMouseOver={menuLabelHandler}>
-            SERVICES
-          </span>{" "}
-          <span className="menu_label"> DELIVER VALUE </span>{" "}
+            <Link to="/eminent-apps"> SOLUTIONS </Link>
+          </span>
+          <span className="menu_label"> STARTS HERE </span>{" "}
         </MenuBtn>
         <MenuBtn
           $open={isMenuOpen}
@@ -443,14 +442,12 @@ const MenuContent = ({
           $color={currentTheme?.menuBtnColor}
           $lineBg={currentTheme?.bgScheduleBtn}
           $show={isLogoBtnsShow.first}
+          onClick={onServicesPopUpHandler}
         >
           <span className="menu_item" onMouseOver={menuLabelHandler}>
-            {" "}
-            PRICING
-            {/* <Link to="/work"> QUOTE </Link>{" "} */}
+            SERVICES
           </span>{" "}
-          {/* <span className="menu_label"> THINK BETTER </span>{" "} */}
-          <span className="menu_label"> COMING SOON </span>{" "}
+          <span className="menu_label"> DELIVER VALUE </span>{" "}
         </MenuBtn>
         <MenuLogoBtn className="logo" $open={isMenuOpen}>
           <span>
@@ -469,19 +466,6 @@ const MenuContent = ({
           $open={isMenuOpen}
           $color={currentTheme?.menuBtnColor}
           $lineBg={currentTheme?.bgScheduleBtn}
-          $show={isLogoBtnsShow.first}
-          onClick={onAboutPopUpHandler}
-        >
-          <span className="menu_item" onMouseOver={menuLabelHandler}>
-            {" "}
-            ABOUT
-          </span>{" "}
-          <span className="menu_label"> OUR STORY </span>
-        </MenuBtn>
-        <MenuBtn
-          $open={isMenuOpen}
-          $color={currentTheme?.menuBtnColor}
-          $lineBg={currentTheme?.bgScheduleBtn}
           $show={isLogoBtnsShow.second}
           onClick={onContractsPopUpHandler}
         >
@@ -489,6 +473,18 @@ const MenuContent = ({
             PROJECTS
           </span>{" "}
           <span className="menu_label"> TRUSTED PARTNERS </span>{" "}
+        </MenuBtn>
+        <MenuBtn
+          $open={isMenuOpen}
+          $color={currentTheme?.menuBtnColor}
+          $lineBg={currentTheme?.bgScheduleBtn}
+          $show={isLogoBtnsShow.first}
+          onClick={onAboutPopUpHandler}
+        >
+          <span className="menu_item" onMouseOver={menuLabelHandler}>
+            ABOUT
+          </span>
+          <span className="menu_label"> OUR STORY </span>
         </MenuBtn>
         <MenuRightBtn
           ref={menuRightBtn}
@@ -582,7 +578,7 @@ const Menu = styled.div`
   grid-template-rows: 75px;
   align-items: center;
   z-index: 1100;
-  backdrop-filter: blur(${({ $blur }) => $blur}px);
+  backdrop-filter: blur(10px);
 
   ${
     "" /* @media (max-width: 1650px) {

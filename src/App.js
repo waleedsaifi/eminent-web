@@ -4,7 +4,6 @@ import Container from "Components/Container/Container";
 import { ParticleBackground } from "Components/ParticleBackground";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { darkTheme, lightTheme } from "constants/constants";
-import EminentApps from "Components/Services/EminentApps";
 
 function App() {
   return (
@@ -25,14 +24,18 @@ function App() {
             />
           </Route>
           <Route exact path="/work">
-             <ParticleBackground currentTheme={darkTheme} />
+            <ParticleBackground currentTheme={darkTheme} />
             <GLContainer currentSectionTitle="work" />
-           <Container currentSectionTitle="work" currentTheme={darkTheme} />
+            <Container currentSectionTitle="work" currentTheme={darkTheme} />
           </Route>
           <Route exact path="/eminent-apps">
-           <ParticleBackground currentTheme={darkTheme} />
-            <GLContainer currentSectionTitle="eminent-apps" />
-           <EminentApps />
+            <ParticleBackground currentTheme={darkTheme} />
+            <GLContainer currentSectionTitle="work" />
+            <Container
+              currentSectionTitle="work"
+              currentTheme={darkTheme}
+              showApps={true}
+            />
           </Route>
         </Switch>
       </Router>

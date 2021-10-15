@@ -130,8 +130,8 @@ const ContractsPopupContent = ({ closeHandler }) => {
           </ServicesTextItem>
           <ServicesTextItem className="grid-right">
             <h5>
-              Using technology to help navy build a high-performing medical
-              force
+              Using technology to help Navy provide training to build a high-performing medical force
+
             </h5>
             <GradientKeyline />
              <LogoIcon />
@@ -261,7 +261,6 @@ const Header = styled.div`
     margin: 0 0 1rem;
     font-weight: 700;
     font-size: 66px;
-    letter-spacing: 0.1em;
     color: ${({ $color }) => $color};
     display: inline-block;
   }

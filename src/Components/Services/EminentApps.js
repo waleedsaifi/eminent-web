@@ -23,13 +23,19 @@ import { APP } from "./3D/app";
 import { VRButton } from "./3D/VRButton";
 import { AppData } from "./3D/AppData";
 import { isMobileOnly as mob } from "react-device-detect";
+import Menu from "../Menu/Menu";
+import { popupManager } from "../../helpers/popups";
 
 const EminentAppsContent = ({ closeHandler, showPopup }) => {
   const wrapper = useRef(null);
   const header = useRef(null);
   const [isHeaderSmall, setIsHeaderSmall] = useState(false);
   const { currentTheme } = useSelector((state) => state.state);
-
+  const [activePopup, setActivePopup] = useState(null);
+  const [isMenuOpen, setMenuOpen] = useState(true);
+  const menuHandler = (flag) => setMenuOpen(flag);
+  const [isBgBlur, setBgBlur] = useState(false);
+  const blurredBackground = useRef(null);
   const closeHandlerPopup = () => {
     try {
       closeHandler();
@@ -86,10 +92,16 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
   }, []);
 
   return (
+    // <PageContainer>
+    // {activePopup && popupManager(activePopup)}
+    //   <Menu showPopup={setActivePopup} menuHandler={menuHandler} currentSectionTitle={"home"}
+    //     currentSection={"home"}
+    //     currentTheme={currentTheme} />
+
     <Wrapper
       ref={wrapper}
       $bg={currentTheme?.schedulePopupBg[0]}
-      className="popup"
+      className="eminent-apps"
     >
       <PopupContainer $border={currentTheme?.schedulePopupTextColor}>
         <Header
@@ -98,9 +110,9 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
           $color={currentTheme.textColor}
           $bg={currentTheme?.schedulePopupBg[0]}
         >
-          <CloseCross onClick={closeHandlerPopup}>
-            <Cross $color={currentTheme?.schedulePopupTextColor} />
-          </CloseCross>{" "}
+          {/* <CloseCross onClick={closeHandlerPopup}>
+              <Cross $color={currentTheme?.schedulePopupTextColor} />
+            </CloseCross>{" "} */}
           <HeaderTextContainer $color={"#fff"}>
             <h2>
               <LogoIcon />
@@ -109,8 +121,8 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
             <h4>The future of website & app development</h4>
             <h5>
               You don't want to invest in high costs and low-quality developers
-              who will just abandon your project halfway through. Stop wasting
-              so much energy and let our experts handle everything!{" "}
+              who will abandon your project halfway through. Stop wasting your
+              energy and let our experts handle everything!{" "}
             </h5>
           </HeaderTextContainer>
         </Header>
@@ -151,7 +163,7 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
             <p className="strip-sub-copy">
               Easier said than done? Eminent Apps simplifies everything in the
               app-building process letting you focus on great experiences rather
-              than heavy lifting. No joke. Forget using complicated software to
+              than heavy lifting. Forget using complicated software to
               create an app - our team of experts does that for you!
             </p>
           </div>
@@ -162,7 +174,7 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
             className="header-container"
           >
             <h6 className="center-text">How Eminent Apps Works</h6>
-            <h2 className="center-text">3 steps to high-quality apps, Fast.</h2>
+            <h2 className="center-text">3 steps to high-quality apps, fast.</h2>
           </div>
           <SolutionsProcessTextItem>
             <svg
@@ -192,8 +204,8 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
             </svg>
             <h2>Share your vision</h2>
             <p>
-              We chat to better understand your vision, current team structure
-              and existing skills. We also investigate the long-term app needs
+              We meet to listen and better understand your vision, current team structure
+              and existing environment. We also investigate the long-term app needs
               of you or your company so that we can provide a solution tailored
               just for you!
             </p>
@@ -503,18 +515,18 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
               Save time & cost of building your own backend infrastructure and
               use our fully managed, infinitely scalable enterprise-grade
               infrastructure. Choose one of our flexible plans. We offer three
-              different types: Personal Plan (for smaller projects), Business
+              different types: Starter Plan (for smaller projects), Business
               Plan (to serve many clients) and Enterprise Packages which can be
               tailored specifically for large organizations like yours at no
               extra cost. You can count on enterprise-class quality support and
-              help whenever you need us.
+              help when you need us.
             </h6>
           </PricingTextContainer>
           <PricingPlanContainer>
             <PricingPlanWrapper>
               <div className="plan-wrapper">
                 <div className="pricing-plan-header-wrapper">
-                  <h5 className="green-text">Personal Plan</h5>
+                  <h5 className="green-text">Starter Plan</h5>
                   <div className="div-block-3021">
                     <div
                       id="w-node-f46277a3-da4b-0cd6-a3ec-fc3b8377c593-8377c58e"
@@ -539,10 +551,10 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
                   onClick={onScheduleClickHandler}
                   className="button green w-button"
                 >
-                  Sign up →
+                  Book a Demo →
                 </SignUpButton>
                 <div className="plan-text-summary money-back">
-                  Get the 12th month for free
+                  Get the 12th month free when you commit to two years or more
                 </div>
                 <h5 className="pricing-heading">Includes:</h5>
                 <div className="pricing-plan-features-wrapper">
@@ -755,10 +767,10 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
                   onClick={onScheduleClickHandler}
                   className="button green w-button"
                 >
-                  Sign up →
+                  Book a Demo →
                 </SignUpButton>
                 <div className="plan-text-summary money-back">
-                  Get the 12th month for free
+                  Get the 12th month free when you commit to two years or more
                 </div>
                 <h5 className="pricing-heading">Includes:</h5>
                 <div className="pricing-plan-features-wrapper">
@@ -989,7 +1001,7 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
                     >
                       $
                     </div>
-                    <h1 className="price-number">89k</h1>
+                    <h1 className="price-number">69k</h1>
                     <div
                       id="w-node-f46277a3-da4b-0cd6-a3ec-fc3b8377c597-8377c58e"
                       className="_8px-bottom-margin bottom-right"
@@ -1006,10 +1018,10 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
                   onClick={onScheduleClickHandler}
                   className="button green w-button"
                 >
-                  Sign up →
+                  Book a Demo →
                 </SignUpButton>
                 <div className="plan-text-summary money-back">
-                  Get the 12th month for free
+                  Get the 12th month free when you commit to two years or more
                 </div>
                 <h5 className="pricing-heading">Includes: </h5>
                 <div className="pricing-plan-features-wrapper">
@@ -1200,7 +1212,7 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
                       className="green-check"
                     />
                     <div data-w-id="f46277a3-da4b-0cd6-a3ec-fc3b8377c5cd">
-                      Tailored SLA
+                      Tailored Service Agreements (SLA)
                     </div>
                   </div>
                   <div className="feature">
@@ -1277,9 +1289,9 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
                 Our process is designed to eliminate all waste and keep this
                 hassle-free for you, our customer. You will work exclusively
                 with your dedicated project managers and will not need to have
-                any face time with the dedicated designers. For some
-                subscription plans you will have a monthly meeting with your
-                dedicated art director or creative director.
+                any face time with the dedicated team. For some subscription
+                plans you will have a monthly meeting with your dedicated
+                program manager or project manager.
               </p>
             </FAQTextItem>
             <FAQTextItem>
@@ -1341,20 +1353,53 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
             <p className="strip-sub-copy">
               Eminent Apps is ready to create your most innovative apps ever.
             </p>
-            <a className="button green w-button">Sign up →</a>
+            <a
+              className="button green w-button"
+              onClick={onScheduleClickHandler}
+            >
+              Book a Demo →
+            </a>
           </div>
         </AboutSectionViolatorStrip>
       </PopupContainer>
     </Wrapper>
+    // {
+    //   <BlurredBackground
+    //     ref={blurredBackground}
+    //     className="blurredBackground"
+    //   />
+    // }
+    // </PageContainer>
   );
 };
 
 export default EminentAppsContent;
 
+const PageContainer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  z-index: 3;
+  justify-content: center;
+  transition: 0.3s ease;
+  overflow-x: hidden;
+  overflow-y: auto;
+  ${
+    "" /* ${({ $isMenuOpen, $overflow }) =>
+    $isMenuOpen ? "hidden" : $overflow}; */
+  }
+  touch-action: pan-y;
+`;
+
 const SignUpButton = styled.a``;
 
 const onScheduleClickHandler = (e) => {
   document.getElementById("ScheduleBtn").click();
+  document.getElementById("app").scrollTo(0, 0);
 };
 
 const ServiceCardContent = (cardImage) => {
@@ -1388,7 +1433,7 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   min-height: 80%;
-  z-index: 1000;
+  z-index: 1;
   ${"" /* background: rgb(5 11 17); */}
   display: flex;
   justify-content: center;
@@ -1400,7 +1445,7 @@ const Wrapper = styled.div`
   @media (max-width: ${mobBreakpoint}px) {
     align-items: flex-start;
     top: 65px;
-    z-index: 1000;
+    z-index: 1;
   }
 `;
 const PopupContainer = styled.div`
@@ -1432,7 +1477,6 @@ const Header = styled.div`
     margin: 0 0 1rem;
     font-weight: 700;
     font-size: 66px;
-    letter-spacing: 0.1em;
     color: #fff;
     display: inline-block;
   }
@@ -1574,6 +1618,17 @@ const ServicesTextContainer = styled.div`
   will-change: transform;
   scroll-snap-type: x mandatory;
   overflow: scroll;
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  scrollbar-height: none;
 
   h2 {
     margin: 0px auto;
@@ -1988,8 +2043,7 @@ const SolutionsTextContainer = styled.div`
   grid-template-columns: repeat(1, 1fr);
   margin: 100px auto;
 
-  @media (max-width: ${BREAKPOINTS.mob}px)
-  {
+  @media (max-width: ${BREAKPOINTS.mob}px) {
     margin: 50px auto;
   }
 `;
@@ -2150,7 +2204,7 @@ const SolutionsProcessTextItem = styled.div`
     }
     h2 {
       text-align: left;
-      padding:0px;
+      padding: 0px;
     }
   }
 `;
@@ -2479,4 +2533,14 @@ const FAQTextItem = styled(SolutionsProcessTextItem)`
       font-size: 16px;
     }
   }
+`;
+
+const BlurredBackground = styled.div`
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  backdrop-filter: blur(10px);
 `;

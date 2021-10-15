@@ -1,17 +1,19 @@
 export const toggleElementsforPopup = (display) => {
   //FIXME
   const elements = document.querySelectorAll(
-    ".anime, .animeStatic, .animeCalltoAction, .footer ,.progressBar, #glContainer, .chooseStoryWrapper, .customBlockWrapper, .anime2"
+    ".anime, .animeStatic, .animeCalltoAction, .footer ,.progressBar, #glContainer, .chooseStoryWrapper, .customBlockWrapper, .anime2, .eminent-apps"
   );
 
   // show an element
   var show = function (elem) {
     elem.style.opacity = "1";
+    elem.style.removeProperty("display");
   };
 
   // hide an element
   var hide = function (elem) {
     elem.style.opacity = "0";
+    elem.style.display = "none";
   };
 
   var toggle = function (elem) {

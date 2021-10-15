@@ -4,7 +4,7 @@ import { BREAKPOINTS } from "../../constants/constants";
 import { ReactComponent as CrossSvg } from "../../assets/images/cross.svg";
 import { useSelector } from "react-redux";
 import { ReactComponent as LogoIconSVG } from "../../assets/images/eminent-icon.svg";
-import  IMacIMG from "../../assets/images/services/imac.png"
+import IMacIMG from "../../assets/images/services/imac.png";
 import {
   TeamCollabIMG,
   GroupWorkingIMG,
@@ -68,7 +68,10 @@ const ServicesPopupContent = ({ closeHandler, showPopup }) => {
           </CloseCross>{" "}
           <HeaderTextContainer>
             <h2> Services </h2>
-            <h4> Here are a few of the ways we can help you make a difference. </h4>
+            <h4>
+              {" "}
+              Here are a few of the ways we can help you make a difference.{" "}
+            </h4>
           </HeaderTextContainer>
         </Header>
         <AboutSectionViolatorStrip
@@ -77,9 +80,7 @@ const ServicesPopupContent = ({ closeHandler, showPopup }) => {
         >
           <div className="violator-strip-content">
             <div className="overview-copy">
-              <p>
-               Designed to deliver impactful Apps and DApps fast.
-              </p>
+              <p>Designed to deliver impactful Apps and DApps fast.</p>
             </div>
             <a
               href="https://s3.amazonaws.com/www.eminentfuture.com/Eminent_CapabilitiesStatement_V1+(1).pdf"
@@ -204,6 +205,31 @@ const ServicesPopupContent = ({ closeHandler, showPopup }) => {
             </h6>
           </ServicesTextItem>
         </ServicesTextContainer>
+
+        <EminentAppsSectionViolatorStrip
+          $icon={PaperWhiteIcon}
+          $borderColor={currentTheme?.bgScheduleBtn}
+        >
+          <div className="violator-strip-content">
+            <div className="overview-copy">
+              <p>Get Started</p>
+            </div>
+            <p className="strip-copy">
+              Are you ready to bring <br />
+              your app idea to life?
+            </p>
+
+            <p className="strip-sub-copy">
+              Eminent Apps is ready to create your most innovative apps ever.
+            </p>
+            <a
+              className="button green w-button"
+              onClick={onScheduleClickHandler}
+            >
+              Book a Demo →
+            </a>
+          </div>
+        </EminentAppsSectionViolatorStrip>
       </PopupContainer>
     </Wrapper>
   );
@@ -288,7 +314,6 @@ const Header = styled.div`
     margin: 0 0 1rem;
     font-weight: 700;
     font-size: 66px;
-    letter-spacing: 0.1em;
     color: ${({ $color }) => $color};
     display: inline-block;
   }
@@ -675,7 +700,153 @@ const AboutSectionViolatorStrip = styled.section`
   }
 `;
 
-const SolutionsTextContainer = styled(ServicesTextContainer)`
+const EminentAppsSectionViolatorStrip = styled.section`
+  border: 2px dashed ${({ $borderColor }) => $borderColor};
+  text-align: center;
+  padding: 44px;
+  color: ${({ $color }) => ($color == "" ? "#9cd8c4" : "#fff")};
+  border-radius: 30px;
+  font-weight: 500;
+  font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica",
+    "Arial", sans-serif;
 
-grid-template-columns: repeat(1, 1fr);
+  .overview-copy {
+    font-size: 2em;
+  }
+
+  .violator-strip-link-outlined {
+    display: inline-block;
+    position: relative;
+    margin-top: 1.35em;
+    border: 1px solid #06c;
+    border-radius: 16px;
+    padding: 8px 16px 8px 28px;
+    color: ${({ $color }) => ($color == "" ? "#9cd8c4" : "#fff")};
+    border-color: #fff;
+  }
+
+  a.icon-wrapper {
+    text-decoration: none;
+  }
+
+  a.icon-wrapper:hover {
+    text-decoration: underline;
+  }
+
+  .strip-copy {
+    padding-left: 8px;
+    font-size: 4em;
+    background-image: linear-gradient(
+      225deg,
+      #affaff,
+      #678f7d 20%,
+      #9cd8c4 70%,
+      #00a8b3
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 50px auto;
+  }
+
+  .strip-sub-copy {
+    padding-left: 8px;
+    font-size: 22px;
+    max-width: 700px;
+    margin: 0px auto;
+  }
+
+  .violator-strip-link-outlined:before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 8px;
+    left: 14px;
+  }
+
+  .violator-strip-link-outlined:before {
+    width: 13px;
+    height: 18px;
+    background-size: 13px 18px;
+    background-repeat: no-repeat;
+    background-image: url(${PaperWhiteIcon});
+  }
+
+  .button.green {
+    border-style: none;
+    background-color: #3cf7a2;
+    background-image: none;
+    color: #060606;
+    text-shadow: none;
+    width: 280px;
+    margin: 50px auto;
+  }
+
+  .button {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    min-height: 48px;
+    margin: 0;
+    padding: 0.8em 2em;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-radius: 32px;
+    background-color: #fff;
+    background-image: none;
+    -webkit-transition-property: all;
+    transition-property: all;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    color: #060606;
+    font-size: 1em;
+    line-height: 1;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: none;
+    background-clip: border-box;
+    -webkit-text-fill-color: inherit;
+  }
+  .button:hover {
+    color: #fff;
+  }
+
+  @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+    only screen and (min-resolution: 1.5dppx),
+    (-webkit-min-device-pixel-ratio: 1.5),
+    (min-resolution: 144dpi) {
+    .violator-strip-link-outlined:before {
+      background-image: url(${PaperWhiteIcon});
+    }
+  }
+
+  @media (max-width: ${BREAKPOINTS.mob}px) {
+    .strip-copy {
+      font-size: 1.6em;
+    }
+    .strip-sub-copy {
+      font-size: 18px;
+    }
+    .overview-copy {
+      font-size: 1.3em;
+    }
+    padding: 20px;
+    margin: 0px 20px;
+
+    .button.green {
+      width: 200px;
+    }
+  }
+`;
+
+const SolutionsTextContainer = styled(ServicesTextContainer)`
+  grid-template-columns: repeat(1, 1fr);
 `;

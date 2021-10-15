@@ -20,6 +20,9 @@ import {
   LaluIMG,
   SamiIMG,
   MaloneIMG,
+  KristinIMG,
+  EarlIMG,
+  ArunaIMG,
 } from "../../assets/images/about/index";
 import { ParticleBackground } from "Components/ParticleBackground";
 import { darkTheme, lightTheme } from "constants/constants";
@@ -281,6 +284,36 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
                 <GradientKeyline />
                 <h6>Customer Support</h6>
               </AboutTextItem>
+               <AboutTextItem className="grid-1 grid-left">
+                <AboutCardContent
+                  cardImage={KristinIMG}
+                  url={"https://www.linkedin.com/in/kristin-zuller-83b72b5a"}
+                  title={"Kristin Zuller"}
+                />
+                <h5>Kristin Zuller</h5>
+                <GradientKeyline />
+                <h6>Marketing and Design</h6>
+              </AboutTextItem>
+              <AboutTextItem className="grid-1 grid-left">
+                <AboutCardContent
+                  cardImage={EarlIMG}
+                  url={"https://www.linkedin.com/in/earl-sain-1a8a7113b/"}
+                  title={"Earl Sain"}
+                />
+                <h5>Earl Sain</h5>
+                <GradientKeyline />
+                <h6>Centralized Engineer</h6>
+              </AboutTextItem>
+              <AboutTextItem className="grid-1 grid-left">
+                <AboutCardContent
+                  cardImage={ArunaIMG}
+                  url={"https://www.linkedin.com/in/aruna-kedarshetty-4388445"}
+                  title={"Aruna Kedarshetty"}
+                />
+                <h5>Aruna Kedarshetty</h5>
+                <GradientKeyline />
+                <h6>Quality & Content Management</h6>
+              </AboutTextItem>
             </AboutCardContainerImage>
           </AboutSection>
 
@@ -520,8 +553,8 @@ const PopupContainer = styled.div`
 `;
 const Header = styled.div`
   text-align: center;
-  ${"" /* transition: 0.2s ease; */}
   margin-bottom: 3.5em;
+  
   h2 {
     padding: 0;
     margin: 0 0 1rem;
