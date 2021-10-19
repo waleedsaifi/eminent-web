@@ -16,6 +16,8 @@ import MaloneIMG from "./malone.png";
 import KristinIMG from "./kristin.png";
 import EarlIMG from "./earl.png";
 import ArunaIMG from "./aruna.png";
+import SteveIMG from "./steve.png";
+import DillegoIMG from "./dillego.png";
 export {
   IsaacIMG,
   RisiIMG,
@@ -35,4 +37,6 @@ export {
   KristinIMG,
   EarlIMG,
   ArunaIMG,
+  SteveIMG,
+  DillegoIMG,
 };

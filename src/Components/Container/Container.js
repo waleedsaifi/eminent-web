@@ -7,9 +7,9 @@ import FooterContent from "./../Footer/Footer";
 import HotspotsContainer from "../Hotspots/HotspotsContainer";
 import SchedulePopup from "../SchedulePopup/SchedulePopup";
 import EminentApps from "../Services/EminentApps";
-import ServicesPopup from "../Services/ServicesPopup";
-import ContractsPopup from "../Contracts/ContractsPopup";
-import AboutPopup from "../About/AboutPopup";
+import Services from "../Services/Services";
+import Projects from "../Projects/Projects";
+import About from "../About/About";
 import { isMobileOnly } from "react-device-detect";
 import { useDispatch, useSelector } from "react-redux";
 import { addDevGUIConfig } from "../../helpers/dev.helpers";
@@ -30,8 +30,10 @@ import {
   stepBack,
   stepForward,
   setProgress,
+  setCurrentThemeData,
 } from "../../store/actions/actionCreator";
 import { toggleElementsforPopup } from "utils/navigation";
+
 
 const ContainerContent = (currentData) => {
   const [isLandscape, setLandscape] = useState(
@@ -52,7 +54,7 @@ const ContainerContent = (currentData) => {
   useEffect(() => {
     getThemeContent(dispatch);
     //First load it will show the home page
-
+    dispatch(setCurrentThemeData(currentData.currentTheme));
     getSectionContent(currentData.currentSectionTitle, dispatch);
   }, [currentData.currentSectionTitle]);
 
@@ -409,11 +411,11 @@ const ContainerContent = (currentData) => {
       case "schedule":
         return <SchedulePopup closeHandler={closeSchedulePopup} />;
       case "services":
-        return <ServicesPopup closeHandler={closeContentPopup} />;
-      case "contracts":
-        return <ContractsPopup closeHandler={closeContentPopup} />;
+        return <Services closeHandler={closeContentPopup} />;
+      case "projects":
+        return <Projects closeHandler={closeContentPopup} />;
       case "about":
-        return <AboutPopup closeHandler={closeContentPopup} />;
+        return <About closeHandler={closeContentPopup} />;
       case "eminentApps":
         return <EminentApps closeHandler={closeContentPopup} />;
       default:
@@ -443,7 +445,8 @@ const ContainerContent = (currentData) => {
     );
   }
 
-  if (currentData.showApps) {
+  if (currentData.showApps || currentData.showServices || currentData.showProjects || currentData.showAbout) {
+    console.log(currentData);
     return (
       <Container
         id="app"
@@ -463,9 +466,10 @@ const ContainerContent = (currentData) => {
           currentSection={currentSection}
           currentTheme={currentTheme}
         />
-        {currentData.showApps && (
-        <EminentApps />
-        )}
+        {currentData.showApps && <EminentApps />}
+        {currentData.showServices && <Services />}
+        {currentData.showProjects && <Projects />}
+        {currentData.showAbout && <About />}
         {isBgBlur && (
           <BlurredBackground
             ref={blurredBackground}

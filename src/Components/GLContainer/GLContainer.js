@@ -31,7 +31,7 @@ export default function App(props) {
       $step={currentStep}
       $section={currentSectionTitle}
     >
-      {currentStep <= 3 && props.currentSectionTitle === "home" ? (
+      {(currentStep <= 3 && props.currentSectionTitle === "home") || props.currentSectionTitle === "other" ? (
         <GradientWrapper></GradientWrapper>
       ) : null}
     </Container>

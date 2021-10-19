@@ -1,10 +1,7 @@
 import {
-  getFadeOutCustomText,
   getFadeOutFormTen,
-  getFadeOutMainText,
   getFadeOutProgressSvg,
 } from "./animations";
-import { setProgress } from "../store/actions/actionCreator";
 
 export const getNextStepFromForm = (progressSvgArray) => {
   getFadeOutProgressSvg(progressSvgArray, () => {

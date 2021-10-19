@@ -165,6 +165,7 @@ class GradientController {
           default:
             return;
         }
+        
         break;
       }
       default:

@@ -102,7 +102,6 @@ export const getSectionContent = (currentSectionTitle, dispatch) => {
             dispatch(setCurrentSection(sectionItems));
             dispatch(setCurrentSectionTitle(currentSectionTitle));
             dispatch(setCurrentThemeData(lightTheme));
-        
           }
         })
         .catch(console.error);
@@ -130,6 +129,7 @@ export const getSectionContent = (currentSectionTitle, dispatch) => {
             dispatch(setCurrentSectionTitle(currentSectionTitle));
             dispatch(setCurrentThemeData(darkTheme));
             console.log("Theme Dark");
+            console.log(darkTheme);
           }
         })
         .catch(console.error);

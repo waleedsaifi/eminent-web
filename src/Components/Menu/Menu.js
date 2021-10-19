@@ -225,14 +225,14 @@ const MenuContent = ({
     showPopup("services");
   };
   //FIXME
-  const onContractsPopUpHandler = (e) => {
+  const onProjectsPopUpHandler = (e) => {
     if (window.innerWidth <= BREAKPOINTS.tablet) {
       setMenuOpen(false);
       topMenu?.removeAttribute("style");
     }
 
     toggleElementsforPopup("hide");
-    showPopup("contracts");
+    showPopup("projects");
   };
   //FIXME
   const onAboutPopUpHandler = (e) => {
@@ -307,6 +307,38 @@ const MenuContent = ({
         toggleElementsforPopup("show");
         topMenu?.removeAttribute("style");
         GoSectionHandler("work");
+        ReactGA.set({ page: location.pathname }); // Update the user's current page
+        ReactGA.pageview(location.pathname);
+        return;
+      }
+      case "/eminent-apps": {
+        toggleElementsforPopup("show");
+        topMenu?.removeAttribute("style");
+        GoSectionHandler("other");
+        ReactGA.set({ page: location.pathname }); // Update the user's current page
+        ReactGA.pageview(location.pathname);
+        return;
+      }
+      case "/services": {
+        toggleElementsforPopup("show");
+        topMenu?.removeAttribute("style");
+        GoSectionHandler("other");
+        ReactGA.set({ page: location.pathname }); // Update the user's current page
+        ReactGA.pageview(location.pathname);
+        return;
+      }
+      case "/projects": {
+        toggleElementsforPopup("show");
+        topMenu?.removeAttribute("style");
+        GoSectionHandler("other");
+        ReactGA.set({ page: location.pathname }); // Update the user's current page
+        ReactGA.pageview(location.pathname);
+        return;
+      }
+      case "/about": {
+        toggleElementsforPopup("show");
+        topMenu?.removeAttribute("style");
+        GoSectionHandler("other");
         ReactGA.set({ page: location.pathname }); // Update the user's current page
         ReactGA.pageview(location.pathname);
         return;
@@ -435,17 +467,16 @@ const MenuContent = ({
             <Link to="/approach"> APPROACH </Link>
           </span>{" "}
           <span className="menu_label"> COMPLIANT DISRUPTION </span>{" "}
-          {/* <span className="menu_label"> COMING SOON </span>{" "} */}
         </MenuBtn>
         <MenuBtn
           $open={isMenuOpen}
           $color={currentTheme?.menuBtnColor}
           $lineBg={currentTheme?.bgScheduleBtn}
           $show={isLogoBtnsShow.first}
-          onClick={onServicesPopUpHandler}
+          // onClick={onServicesPopUpHandler}
         >
           <span className="menu_item" onMouseOver={menuLabelHandler}>
-            SERVICES
+            <Link to="/services">SERVICES</Link>
           </span>{" "}
           <span className="menu_label"> DELIVER VALUE </span>{" "}
         </MenuBtn>
@@ -467,10 +498,10 @@ const MenuContent = ({
           $color={currentTheme?.menuBtnColor}
           $lineBg={currentTheme?.bgScheduleBtn}
           $show={isLogoBtnsShow.second}
-          onClick={onContractsPopUpHandler}
+         
         >
           <span className="menu_item" onMouseOver={menuLabelHandler}>
-            PROJECTS
+            <Link to="/projects">PROJECTS</Link>
           </span>{" "}
           <span className="menu_label"> TRUSTED PARTNERS </span>{" "}
         </MenuBtn>
@@ -479,10 +510,10 @@ const MenuContent = ({
           $color={currentTheme?.menuBtnColor}
           $lineBg={currentTheme?.bgScheduleBtn}
           $show={isLogoBtnsShow.first}
-          onClick={onAboutPopUpHandler}
+          // onClick={onAboutPopUpHandler}
         >
           <span className="menu_item" onMouseOver={menuLabelHandler}>
-            ABOUT
+            <Link to="/about">ABOUT</Link>
           </span>
           <span className="menu_label"> OUR STORY </span>
         </MenuBtn>
@@ -499,7 +530,7 @@ const MenuContent = ({
             ref={rightBorderBtn}
             $color={currentTheme?.bgScheduleBtn}
           />{" "}
-          <span> REQUEST INFO</span>{" "}
+          <span> REQUEST INFO </span>{" "}
         </MenuRightBtn>{" "}
       </Menu>
     </>
@@ -633,13 +664,13 @@ const MenuLogoBtn = styled.div`
   width: 175px;
   height: 34px;
   justify-self: center;
-  margin-left: ${({ $open }) => ($open ? "20px" : "60px")};
+  margin-left: ${({ $open }) => ($open ? "0px" : "60px")};
   @media (max-width: ${BREAKPOINTS.tablet}px) {
     grid-row-start: 1;
     width: 124px;
     height: 24px;
     margin-top: 20px;
-    margin-left: ${({ $open }) => ($open ? "20px" : "0px")};
+    margin-left: ${({ $open }) => ($open ? "0px" : "0px")};
     align-self: start;
     transition: 0.3s ease;
   }

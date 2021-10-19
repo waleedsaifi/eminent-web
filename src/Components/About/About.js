@@ -23,12 +23,14 @@ import {
   KristinIMG,
   EarlIMG,
   ArunaIMG,
+  SteveIMG,
+  DillegoIMG,
 } from "../../assets/images/about/index";
 import { ParticleBackground } from "Components/ParticleBackground";
 import { darkTheme, lightTheme } from "constants/constants";
 import { toggleElementsforPopup } from "utils/navigation";
 
-const AboutPopupContent = ({ closeHandler, showPopup }) => {
+const AboutContent = ({ closeHandler, showPopup }) => {
   const wrapper = useRef(null);
   const header = useRef(null);
   const [isHeaderSmall, setIsHeaderSmall] = useState(false);
@@ -64,7 +66,7 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
     <Wrapper
       ref={wrapper}
       $bg={currentTheme?.schedulePopupBg[0]}
-      className="popup"
+      className="about"
     >
       {/* <ParticleBackground currentTheme={darkTheme} /> */}
       <PopupContainer $border={currentTheme?.schedulePopupTextColor}>
@@ -74,10 +76,10 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
           $color={currentTheme?.textColor}
           $bg={currentTheme?.schedulePopupBg[0]}
         >
-          <CloseCross onClick={closeHandlerPopup}>
+          {/* <CloseCross onClick={closeHandlerPopup}>
             {" "}
             <Cross $color={currentTheme?.schedulePopupTextColor} />{" "}
-          </CloseCross>{" "}
+          </CloseCross>{" "} */}
           <HeaderTextContainer>
             {/* <LogoIcon /> */}
             <h2> About </h2>
@@ -314,6 +316,26 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
                 <GradientKeyline />
                 <h6>Quality & Content Management</h6>
               </AboutTextItem>
+              <AboutTextItem className="grid-1 grid-left">
+                <AboutCardContent
+                  cardImage={SteveIMG}
+                  url={"https://www.linkedin.com/in/steven-trapp/"}
+                  title={"Steve Trapp"}
+                />
+                <h5>Steve Trapp</h5>
+                <GradientKeyline />
+                <h6>Marketing</h6>
+              </AboutTextItem>
+              <AboutTextItem className="grid-1 grid-left">
+                <AboutCardContent
+                  cardImage={DillegoIMG}
+                  url={"https://www.linkedin.com/in/"}
+                  title={"Dillego Duran"}
+                />
+                <h5>Dillego Duran</h5>
+                <GradientKeyline />
+                <h6>Centralized Engineering</h6>
+              </AboutTextItem>
             </AboutCardContainerImage>
           </AboutSection>
 
@@ -449,7 +471,7 @@ const AboutPopupContent = ({ closeHandler, showPopup }) => {
   );
 };
 
-export default AboutPopupContent;
+export default AboutContent;
 
 const onScheduleClickHandler = (e) => {
   document.getElementById("ScheduleBtn").click();

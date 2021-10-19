@@ -1,7 +1,7 @@
 export const toggleElementsforPopup = (display) => {
   //FIXME
   const elements = document.querySelectorAll(
-    ".anime, .animeStatic, .animeCalltoAction, .footer ,.progressBar, #glContainer, .chooseStoryWrapper, .customBlockWrapper, .anime2, .eminent-apps"
+    ".anime, .animeStatic, .animeCalltoAction, .footer ,.progressBar, #glContainer, .chooseStoryWrapper, .customBlockWrapper, .anime2, .eminent-apps, .services, .about, .projects"
   );
 
   // show an element

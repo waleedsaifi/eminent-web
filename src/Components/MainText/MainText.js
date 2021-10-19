@@ -25,8 +25,8 @@ import {
   getFadeOutMainText,
 } from "../../helpers/animations";
 import ScheduleForm from "../SchedulePopup/ScheduleForm";
-import ServicesPopupContent from "../Services/ServicesPopup";
-import ContractsPopupContent from "../Contracts/ContractsPopup";
+
+import ProjectsContent from "../Projects/Projects";
 import { toggleElementsforPopup } from "utils/navigation";
 import { useHistory } from "react-router-dom";
 
@@ -55,9 +55,9 @@ const App = ({
     showPopup("services");
   };
 
-  const onContractsPopUpHandler = (e) => {
+  const onProjectsPopUpHandler = (e) => {
     toggleElementsforPopup("hide");
-    showPopup("contracts");
+    showPopup("projects");
   };
 
   const onEminentAppsHandler = (e) => {
@@ -946,8 +946,8 @@ const App = ({
                   $textAlign={"left"}
                   $position={"unset"}
                 >
-                  {/* {currentSection.fields[currentStep].fields.mainText} */}
-                  {"High-quality apps & dapps delivered fast"}
+                  {currentSection.fields[currentStep].fields.mainText}
+                  {/* {"High-quality apps & dapps delivered fast"} */}
                 </MainText>
               )}
 
@@ -970,10 +970,10 @@ const App = ({
                   $textAlign={"left"}
                   $position={"unset"}
                 >
-                  {/* {currentSection?.fields[currentStep].fields.subText}  ##FIXME */}
-                  {
+                  {currentSection?.fields[currentStep].fields.subText} 
+                  {/* {
                     "We are a digital product and innovation company. We help passionate and proactive leaders in the public & private sector invent intuitive web, mobile, and decentralized digital experiences."
-                  }
+                  } */}
                 </MainTextSecond>
               )}
 
@@ -1030,7 +1030,7 @@ const App = ({
                   {"Apps"}
                 </MainText>
               )}
-              {currentSection.fields[currentStep].fields.subText && (
+              {currentSection.fields[currentStep].fields.longSubText && (
                 <MainTextSecond
                   className="anime"
                   $color={currentTheme.textColor}
@@ -1050,10 +1050,7 @@ const App = ({
                   $position={"unset"}
                   $margin={"0px auto"}
                 >
-                  {/* {currentSection.fields[currentStep].fields.subText} #FIXME*/}
-                  {
-                    "Eminent Apps is a simple, no-hassle process to get your web or mobile application built fast. We handle all the hard stuff for you from start to finish. Our experienced team uses modern technology to deliver high-quality web and mobile experiences at lightning speed with minimal risks to you."
-                  }
+                  {currentSection.fields[currentStep].fields.longSubText}
                 </MainTextSecond>
               )}
 
@@ -1068,7 +1065,7 @@ const App = ({
                   <ContinueBtnBorder
                     xmlns="http://www.w3.org/2000/svg"
                     xmlnsXlink="http://www.w3.org/1999/xlink"
-                    aria-labelledby="VIEW CONTRACTS"
+                    aria-labelledby="VIEW PROJECTS"
                     viewBox="0 0 226 43"
                     $color={currentTheme?.bgScheduleBtn}
                     id="MyButton"
@@ -1109,8 +1106,8 @@ const App = ({
                   {"DApps"}
                 </MainText>
               )}
-              {/* {currentSection.fields[currentStep].fields.subText && ( */}
-              {
+              {currentSection.fields[currentStep].fields.longSubText && (
+              
                 <MainTextSecond
                   className="anime"
                   $color={currentTheme.textColor}
@@ -1130,17 +1127,17 @@ const App = ({
                   $position={"unset"}
                   $margin={"0px auto"}
                 >
-                  {/* {currentSection.fields[currentStep].fields.subText} #FIXME*/}
-                  {
+                  {currentSection.fields[currentStep].fields.longSubText}
+                  {/* {
                     "Eminent DApps simplifies the process by giving you everything you need to deliver decentralized blockchain and token solutions in a fraction of the time at a fraction of the cost. We handle all the hard stuff for you from start to finish."
-                  }
+                  } */}
                 </MainTextSecond>
-              }
+              )}
 
               {currentSection.fields[currentStep].fields.mainText && (
                 <ContinueBtn
                   className="animeCalltoAction"
-                  onClick={onContractsPopUpHandler}
+                  onClick={onProjectsPopUpHandler}
                   $top={"unset"}
                   $left={"unset"}
                   $color={currentTheme?.menuBtnColor}
@@ -1190,8 +1187,8 @@ const App = ({
                   {"Contracts"}
                 </MainText>
               )}
-              {/* {currentSection.fields[currentStep].fields.subText && ( */}
-              {
+              {currentSection.fields[currentStep].fields.longSubText && (
+              
                 <MainTextSecond
                   className="anime"
                   $color={currentTheme.textColor}
@@ -1211,20 +1208,15 @@ const App = ({
                   $position={"unset"}
                   $margin={"0px auto"}
                 >
-                  {/* {currentSection.fields[currentStep].fields.subText} #FIXME*/}
-                  {/* {
-                    "Eminent Contracts helps you and your team go digital so you can work together from anywhere. We help you implement simple but powerful cloud-based solutions to reduce your workload and help your team stay connected. Our team uses the latest cloud solutions to deliver high-quality, low code solutions, collaboration software, project management, and document management solutions."
-                  } */}
-                  {
-                    "Eminent Contracts empowers entrepreneurs, innovators, and big thinkers to bring their visions to the blockchain. Together we will accelerate the process of creating a secure and impactful solution that your target audience loves."
-                  }
+                  {currentSection.fields[currentStep].fields.longSubText}
+                
                 </MainTextSecond>
-              }
+              )}
 
               {currentSection.fields[currentStep].fields.mainText && (
                 <ContinueBtn
                   className="animeCalltoAction"
-                  onClick={onContractsPopUpHandler}
+                  onClick={onProjectsPopUpHandler}
                   $top={"unset"}
                   $left={"unset"}
                   $color={currentTheme?.menuBtnColor}
@@ -1268,10 +1260,8 @@ const App = ({
                   <LogoIcon />
                   {"Suite"}
                 </h2>
-                {/* {currentSection.fields[currentStep].fields.mainText} */}
-                {
-                  "With eApps, eDApps, eContracts everything works together so you can deliver powerful experiences."
-                }
+                {currentSection.fields[currentStep].fields.mainText}
+                
               </MainText>
             )}
             {currentSection.fields[currentStep].fields.subText && (
@@ -1286,10 +1276,10 @@ const App = ({
                 $boxMaxWidth={getBoxMaxWidth(currentStep)}
                 $lineHeight={["44px", "31px", "28px"]}
               >
-                {/* {currentSection.fields[currentStep].fields.subText} */}
-                {
+                {currentSection.fields[currentStep].fields.subText}
+                {/* {
                   "Together we got this. We are here for you no matter how big your dream is."
-                }
+                } */}
               </MainTextSecond>
             )}
             {/* {currentSection.fields[currentStep].fields.mainText &&

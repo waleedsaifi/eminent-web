@@ -30,11 +30,38 @@ function App() {
           </Route>
           <Route exact path="/eminent-apps">
             <ParticleBackground currentTheme={darkTheme} />
-            <GLContainer currentSectionTitle="work" />
+            {/* <GLContainer currentSectionTitle="work" /> */}
             <Container
               currentSectionTitle="work"
               currentTheme={darkTheme}
               showApps={true}
+            />
+          </Route>
+          <Route exact path="/services">
+            <ParticleBackground currentTheme={darkTheme} />
+            {/* <GLContainer currentSectionTitle="work" /> */}
+            <Container
+              currentSectionTitle="other"
+              currentTheme={darkTheme}
+              showServices={true}
+            />
+          </Route>
+          <Route exact path="/projects">
+            <ParticleBackground currentTheme={darkTheme} />
+            {/* <GLContainer currentSectionTitle="work" /> */}
+            <Container
+              currentSectionTitle="other"
+              currentTheme={darkTheme}
+              showProjects={true}
+            />
+          </Route>
+          <Route exact path="/about">
+            <ParticleBackground currentTheme={darkTheme} />
+            {/* <GLContainer currentSectionTitle="other" /> */}
+            <Container
+              currentSectionTitle="other"
+              currentTheme={darkTheme}
+              showAbout={true}
             />
           </Route>
         </Switch>

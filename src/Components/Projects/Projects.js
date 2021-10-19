@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { ReactComponent as LogoIconSVG } from "../../assets/images/eminent-icon.svg";
 import { toggleElementsforPopup } from "utils/navigation";
 
-const ContractsPopupContent = ({ closeHandler }) => {
+const ProjectsContent = ({ closeHandler }) => {
   const wrapper = useRef(null);
   const header = useRef(null);
   const [isHeaderSmall, setIsHeaderSmall] = useState(false);
@@ -46,7 +46,7 @@ const ContractsPopupContent = ({ closeHandler }) => {
     <Wrapper
       ref={wrapper}
       $bg={currentTheme?.schedulePopupBg[0]}
-      className="popup"
+      className="projects"
     >
       <PopupContainer $border={currentTheme?.schedulePopupTextColor}>
         <Header
@@ -55,9 +55,6 @@ const ContractsPopupContent = ({ closeHandler }) => {
           $color={currentTheme.textColor}
           $bg={currentTheme?.schedulePopupBg[0]}
         >
-          <CloseCross onClick={closeHandlerPopup}>
-            <Cross $color={currentTheme?.schedulePopupTextColor} />{" "}
-          </CloseCross>{" "}
           <HeaderTextContainer>
             <LogoIcon />
             <h2> Projects </h2>
@@ -208,7 +205,7 @@ const ContractsPopupContent = ({ closeHandler }) => {
   );
 };
 
-export default ContractsPopupContent;
+export default ProjectsContent;
 
 const mobBreakpoint = 900;
 const Wrapper = styled.div`

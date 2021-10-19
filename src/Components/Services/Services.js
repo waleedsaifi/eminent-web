@@ -19,7 +19,7 @@ import PaperWhiteIcon from "../../assets/images/icon_paper_white.png";
 import { toggleElementsforPopup } from "utils/navigation";
 import GLContainer from "../GLContainer/GLContainer";
 
-const ServicesPopupContent = ({ closeHandler, showPopup }) => {
+const ServicesContent = ({ closeHandler, showPopup }) => {
   const wrapper = useRef(null);
   const header = useRef(null);
   const [isHeaderSmall, setIsHeaderSmall] = useState(false);
@@ -54,7 +54,7 @@ const ServicesPopupContent = ({ closeHandler, showPopup }) => {
     <Wrapper
       ref={wrapper}
       $bg={currentTheme?.schedulePopupBg[0]}
-      className="popup"
+      className="services"
     >
       <PopupContainer $border={currentTheme?.schedulePopupTextColor}>
         <Header
@@ -63,9 +63,9 @@ const ServicesPopupContent = ({ closeHandler, showPopup }) => {
           $color={currentTheme.textColor}
           $bg={currentTheme?.schedulePopupBg[0]}
         >
-          <CloseCross onClick={closeHandlerPopup}>
+          {/* <CloseCross onClick={closeHandlerPopup}>
             <Cross $color={currentTheme?.schedulePopupTextColor} />
-          </CloseCross>{" "}
+          </CloseCross>{" "} */}
           <HeaderTextContainer>
             <h2> Services </h2>
             <h4>
@@ -235,7 +235,7 @@ const ServicesPopupContent = ({ closeHandler, showPopup }) => {
   );
 };
 
-export default ServicesPopupContent;
+export default ServicesContent;
 
 const onScheduleClickHandler = (e) => {
   document.getElementById("ScheduleBtn").click();

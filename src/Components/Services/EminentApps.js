@@ -270,9 +270,9 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
                 </linearGradient>
               </defs>
             </svg>
-            <h2>Assemble the Team</h2>
+            <h2>Assemble the team</h2>
             <p>
-              We are not just an IT company. We build custom teams of top
+              We build custom teams (with clearances if needed) of expert
               software designers, engineers, and project managers based on your
               needs. You’ll have access to one point of contact who can take
               care of all the details for you!
