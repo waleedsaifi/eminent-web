@@ -304,7 +304,7 @@ const AboutContent = ({ closeHandler, showPopup }) => {
                 />
                 <h5>Earl Sain</h5>
                 <GradientKeyline />
-                <h6>Centralized Engineer</h6>
+                <h6>Centralized Engineering</h6>
               </AboutTextItem>
               <AboutTextItem className="grid-1 grid-left">
                 <AboutCardContent

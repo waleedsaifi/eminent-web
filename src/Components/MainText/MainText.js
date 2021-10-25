@@ -51,13 +51,15 @@ const App = ({
   };
 
   const onServicesPopUpHandler = (e) => {
-    toggleElementsforPopup("hide");
-    showPopup("services");
+    // toggleElementsforPopup("hide");
+    // showPopup("services");
+    history.push("/services");
   };
 
   const onProjectsPopUpHandler = (e) => {
-    toggleElementsforPopup("hide");
-    showPopup("projects");
+    // toggleElementsforPopup("hide");
+    // showPopup("projects");
+    history.push("/projects");
   };
 
   const onEminentAppsHandler = (e) => {
