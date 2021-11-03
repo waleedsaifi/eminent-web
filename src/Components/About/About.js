@@ -25,6 +25,7 @@ import {
   ArunaIMG,
   SteveIMG,
   DillegoIMG,
+  TonyIMG,
 } from "../../assets/images/about/index";
 import { ParticleBackground } from "Components/ParticleBackground";
 import { darkTheme, lightTheme } from "constants/constants";
@@ -329,10 +330,20 @@ const AboutContent = ({ closeHandler, showPopup }) => {
               <AboutTextItem className="grid-1 grid-left">
                 <AboutCardContent
                   cardImage={DillegoIMG}
-                  url={"https://www.linkedin.com/in/"}
+                  url={"https://www.linkedin.com/in/dillego-duran-340a40223/"}
                   title={"Dillego Duran"}
                 />
                 <h5>Dillego Duran</h5>
+                <GradientKeyline />
+                <h6>Centralized Engineering</h6>
+              </AboutTextItem>
+              <AboutTextItem className="grid-1 grid-left">
+                <AboutCardContent
+                  cardImage={TonyIMG}
+                  url={"https://www.linkedin.com/in/anthony-kelly-0b295939"}
+                  title={"Tony Kelly"}
+                />
+                <h5>Tony Kelly</h5>
                 <GradientKeyline />
                 <h6>Centralized Engineering</h6>
               </AboutTextItem>
