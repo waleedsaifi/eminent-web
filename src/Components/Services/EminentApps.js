@@ -118,12 +118,25 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
               <LogoIcon />
               Apps
             </h2>
-            <h4>The future of website & app development</h4>
+            {/* <h4>Get compliant, secure and modern federal websites</h4> */}
+            <h4>Secure, compliant & modern FedRAMP websites for DOD</h4>
             <h5>
-              You don't want to invest in high costs and low-quality developers
-              who will abandon your project halfway through. Stop wasting your
-              energy and let our experts handle everything!{" "}
+              With so many choices, it's hard to define your requirements and
+              know who you can trust to improve your old website. With our
+              experience and expertise in FedRAMP compliance, DOD IL5, web
+              development, and cloud hosting - as well as quality design at an
+              affordable price - neither of those are a problem anymore! You
+              won't regret choosing Eminent Apps for your website transformation: we're
+              here to help you get a website that people actually want to use.{" "}
             </h5>
+
+            <SignUpButton
+              onClick={onScheduleClickHandler}
+              className="button green w-button"
+            >
+              Book a Demo →
+            </SignUpButton>
+            <span>SCROLL DOWN</span>
           </HeaderTextContainer>
         </Header>
 
@@ -156,15 +169,17 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
               <p>What is Eminent Apps?</p>
             </div>
             <p className="strip-copy">
-              Everything you need to build, host and scale web & mobile apps
-              without the hassle
+              Everything you need to build, host and scale FedRAMP websites
             </p>
 
             <p className="strip-sub-copy">
               Easier said than done? Eminent Apps simplifies everything in the
-              app-building process letting you focus on great experiences rather
-              than heavy lifting. Forget using complicated software to
-              create an app - our team of experts does that for you!
+              website-building process from FedRAMP to 508 compliance letting
+              you focus on great experiences rather than heavy lifting. Forget
+              using complicated software to create a website - our team of
+              experts does that for you! We provide your organization with a
+              System Security Plan (SSP) and the evidence that you require to
+              grant an Authority to Operate(ATO) for your new website.
             </p>
           </div>
         </AboutSectionViolatorStrip>
@@ -174,7 +189,9 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
             className="header-container"
           >
             <h6 className="center-text">How Eminent Apps Works</h6>
-            <h2 className="center-text">3 steps to high-quality apps, fast.</h2>
+            <h2 className="center-text">
+              3 steps to high-quality websites, fast.
+            </h2>
           </div>
           <SolutionsProcessTextItem>
             <svg
@@ -204,10 +221,10 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
             </svg>
             <h2>Share your vision</h2>
             <p>
-              We meet to listen and better understand your vision, current team structure
-              and existing environment. We also investigate the long-term app needs
-              of you or your company so that we can provide a solution tailored
-              just for you!
+              We meet to listen and better understand your vision, current team
+              structure and existing environment. We also investigate the
+              long-term website needs of you or your company so that we can
+              provide a solution tailored just for you!
             </p>
           </SolutionsProcessTextItem>
           <SolutionsProcessTextItem>
@@ -274,8 +291,8 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
             <p>
               We build custom teams (with clearances if needed) of expert
               software designers, engineers, and project managers based on your
-              needs. You’ll have access to one point of contact who can take
-              care of all the details for you!
+              needs. You’ll have access to a point of contact who can take care
+              of all the details for you!
             </p>
           </SolutionsProcessTextItem>
         </SolutionsProcessContainer>
@@ -314,7 +331,7 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
               <h6>
                 We chat to understand your vision better, current team
                 structure, and existing skills. We also investigate the
-                long-term app needs of you or your company so that we can
+                long-term website needs of you or your company so that we can
                 provide a solution tailored just for you!
               </h6>
             </ServicesTextItem>
@@ -543,8 +560,7 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
                     </div>
                   </div>
                   <div className="plan-text-summary">
-                    Turn your idea into an amazing website or mobile app that
-                    people love.
+                    Turn your idea into an amazing website that people love.
                   </div>
                 </div>
                 <SignUpButton
@@ -617,7 +633,7 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
                       className="green-check"
                     />
                     <div>
-                      App Development Support
+                      Website Development Support
                       <br />
                       <span className="blue-text">Up to 100 hours</span>
                     </div>
@@ -1010,8 +1026,8 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
                     </div>
                   </div>
                   <div className="plan-text-summary">
-                    Get tailored services from our app and service team to meet
-                    all of your business needs.
+                    Get tailored services from our website and service team to
+                    meet all of your business needs.
                   </div>
                 </div>
                 <SignUpButton
@@ -1347,11 +1363,11 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
             </div>
             <p className="strip-copy">
               Are you ready to bring <br />
-              your app idea to life?
+              your modern website idea to life?
             </p>
 
             <p className="strip-sub-copy">
-              Eminent Apps is ready to create your most innovative apps ever.
+              Eminent Apps is ready to create your most innovative website ever.
             </p>
             <a
               className="button green w-button"
@@ -1459,7 +1475,6 @@ const PopupContainer = styled.div`
   ${"" /* background: #071118; */}
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {
-    margin-top: 85px;
     width: 100%;
     padding: 18px;
     border-color: transparent;
@@ -1471,6 +1486,7 @@ const PopupContainer = styled.div`
 `;
 const Header = styled.div`
   text-align: center;
+  margin: 100px 0px;
 
   h2 {
     padding: 0;
@@ -1482,10 +1498,10 @@ const Header = styled.div`
   }
 
   h4 {
-   font-size: 65px;
+   font-size: 60px;
     line-height: 1.3;
     font-weight: 500;
-    max-width: 820px;
+    max-width: 900px;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -1508,25 +1524,23 @@ const Header = styled.div`
     font-size: 22px;
     color: #fff;
     font-weight: 400;
-    max-width: 600px;
+    max-width:900px;
     margin: 0px auto 40px;
     line-height: 30px;
   }
 
   @media (max-width: ${BREAKPOINTS.tablet}px) {
-    position: fixed;
+    
     text-align: center;
     left: 0;
     top: 0;
     padding: ${({ $isSmall }) => ($isSmall ? "20px 0 0 0" : "20px 0 0 0")};
     margin: 0;
     width: 100%;
-    background-color: ${({ $bg }) => $bg};
-    z-index: 10;
+    z-index: 9000;
 
     h2 {
-      font-size: 21px;
-
+      font-size: 3rem;
       padding: 0 0.5rem;
     }
   }
@@ -1548,6 +1562,53 @@ const Header = styled.div`
     font-size: 18px;
     }
   }
+
+   .button.green {
+    border-style: none;
+    background-color: #3cf7a2;
+    background-image: none;
+    color: #060606;
+    text-shadow: none;
+    width: 280px;
+    margin: 50px auto;
+  }
+
+  .button {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    min-height: 48px;
+    margin: 0;
+    padding: 0.8em 2em;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-radius: 32px;
+    background-color: #fff;
+    background-image: none;
+    -webkit-transition-property: all;
+    transition-property: all;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    color: #060606;
+    font-size: 1em;
+    line-height: 1;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: none;
+    background-clip: border-box;
+    -webkit-text-fill-color: inherit;
+  }
+  .button:hover {
+    color: #4F5050;
+  }
 `;
 
 const HeaderTextContainer = styled.div`
@@ -1560,7 +1621,7 @@ const HeaderTextContainer = styled.div`
 const LogoIcon = styled(LogoIconSVG)`
   display: inline-block;
   stroke: rgba(255, 255, 255, 0);
-  width: 70px;
+  width: 44px;
   height: 44px;
   @media (max-width: ${BREAKPOINTS.mob}px) {
     height: 34px;
@@ -1756,7 +1817,7 @@ const ServicesTextItem = styled.div`
   h6 {
     display: none;
     padding: 0px;
-    font-size: 17px;
+    font-size: 22px;
     line-height: 1.52947;
     font-weight: 400;
     letter-spacing: 0.011em;
@@ -1813,7 +1874,7 @@ const ServiceCard = styled.div`
 
   .btn:hover {
     background: #081119;
-    color: #fff;
+    color: #4f5050;
   }
 
   .content {
@@ -1944,7 +2005,7 @@ const AboutSectionViolatorStrip = styled.section`
   .strip-sub-copy {
     padding-left: 8px;
     font-size: 22px;
-    max-width: 700px;
+    max-width: 800px;
     margin: 0px auto;
   }
 
@@ -2008,7 +2069,7 @@ const AboutSectionViolatorStrip = styled.section`
     -webkit-text-fill-color: inherit;
   }
   .button:hover {
-    color: #fff;
+    color: #4f5050;
   }
 
   @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
@@ -2236,7 +2297,7 @@ const PricingTextContainer = styled.div`
   }
 
   h6 {
-    font-size: 17px;
+    font-size: 22px;
     line-height: 1.52947;
     font-weight: 400;
     -webkit-letter-spacing: 0.011em;

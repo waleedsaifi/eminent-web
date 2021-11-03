@@ -454,7 +454,7 @@ const MenuContent = ({
           <span className="menu_item" onMouseOver={menuLabelHandler}>
             <Link to="/eminent-apps"> SOLUTIONS </Link>
           </span>
-          <span className="menu_label"> STARTS HERE </span>{" "}
+          <span className="menu_label"> START HERE </span>{" "}
         </MenuBtn>
         <MenuBtn
           $open={isMenuOpen}
@@ -530,7 +530,7 @@ const MenuContent = ({
             ref={rightBorderBtn}
             $color={currentTheme?.bgScheduleBtn}
           />{" "}
-          <span> REQUEST INFO </span>{" "}
+          <span> BOOK DEMO </span>{" "}
         </MenuRightBtn>{" "}
       </Menu>
     </>
@@ -627,7 +627,7 @@ const Menu = styled.div`
     grid-template-columns: 1fr;
     ${"" /* grid-template-rows: 73px 0 0 0 0 0 0; */}
     grid-template-rows: ${({ $open }) =>
-      $open ? `93px 64px 64px 64px 64px 64px 94px` : `73 px 0 0 0 0 `};
+      $open ? `93px 64px 64px 64px 64px 64px 94px` : `73px 0 0 0 0 0 0`};
     width: 100%;
     top: 0;
     left: 0;

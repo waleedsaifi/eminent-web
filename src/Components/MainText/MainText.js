@@ -1318,7 +1318,7 @@ const App = ({
                   $lineBg={currentTheme.bgScheduleBtn}
                 >
                   <ScheduleBtnBorder $color={currentTheme.bgScheduleBtn} />
-                  <span> REQUEST INFO </span>
+                  <span> BOOK DEMO </span>
                 </ScheduleBtn>
               )}
           </>
@@ -1381,16 +1381,16 @@ const App = ({
                   <ContinueBtnBorder
                     xmlns="http://www.w3.org/2000/svg"
                     xmlnsXlink="http://www.w3.org/1999/xlink"
-                    aria-labelledby="REQUEST INFO"
+                    aria-labelledby="BOOK DEMO"
                     viewBox="0 0 211 53"
                     $color={currentTheme?.bgScheduleBtn}
                     id="MyButton"
                     fill="none"
                   >
-                    <title>REQUEST INFO</title>
+                    <title>BOOK DEMO</title>
                     <rect x="0.5" y="0.5" width="210" height="52" rx="21" />
                   </ContinueBtnBorder>
-                  <span> REQUEST INFO </span>{" "}
+                  <span> BOOK DEMO </span>{" "}
                 </ContinueBtn>
               )}
             </TextContainer>
@@ -1652,7 +1652,7 @@ const App = ({
                   $lineBg={currentTheme.bgScheduleBtn}
                 >
                   <ScheduleBtnBorder $color={currentTheme.bgScheduleBtn} />
-                  <span> REQUEST INFO </span>
+                  <span> BOOK DEMO </span>
                 </ScheduleBtn>
               )}
             </TextContainer>
