@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import styled, { css, keyframes } from "styled-components";
-import _ from "lodash";
+import each from "lodash/each";
+import throttle from "lodash/throttle";
 import { BREAKPOINTS } from "../../constants/constants";
 import { useDispatch } from "react-redux";
 import anime from "animejs/lib/anime.es.js";
@@ -673,7 +674,7 @@ const App = ({
       chooseStoryTextContainer.current.querySelector(".storyBlur");
     chooseStoryTextContainer.current.style.opacity = 1;
     blurTextEl.style.opacity = 0;
-    _.each(storyItems, (item) => {
+    each(storyItems, (item) => {
       const blurEl = item.querySelector(".storyBlur");
       item.style.opacity = 1;
       blurEl.style.opacity = 0;
@@ -710,7 +711,7 @@ const App = ({
       "deg)";
   };
 
-  const mouseMoveHandlerStoryThrottle = _.throttle(
+  const mouseMoveHandlerStoryThrottle = throttle(
     (e) => mouseMoveHandlerStory(e),
     17
   );
@@ -1824,7 +1825,6 @@ const App = ({
     }
   };
 
-  const getAboutContent = () => {};
 
   switch (currentSectionTitle) {
     case "home": {
@@ -2578,7 +2578,6 @@ const CustomID = styled.div`
     font-size: 28px;
   }
 `;
-
 const TextContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;
@@ -2591,7 +2590,6 @@ const TextContainer = styled.div`
     min-width: unset;
   }
 `;
-
 const LogoIcon = styled(LogoIconSVG)`
   display: "inline-block";
   stroke: rgba(255, 255, 255, 0);

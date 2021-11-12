@@ -1,4 +1,4 @@
-import _ from "lodash";
+import debounce from "lodash/debounce";
 import { isMobileOnly } from "react-device-detect";
 
 class ParticleBg {
@@ -241,7 +241,7 @@ class ParticleBg {
 
     window.addEventListener(
       "orientationchange",
-      _.debounce(() => {
+      debounce(() => {
         this.canvas.width = W();
         this.canvas.height = H();
       }, 100)

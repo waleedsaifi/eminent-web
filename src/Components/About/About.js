@@ -126,7 +126,8 @@ const AboutContent = ({ closeHandler, showPopup }) => {
             <AboutCardContainerImage>
               <AboutTextItem className="grid-1 grid-left">
                 <AboutCardContent
-                  cardImage={RisiIMG}
+                  // cardImage={RisiIMG}
+                  cardImage={"https://eminent-web.s3.amazonaws.com/images/about/jose.png"}
                   url={"https://www.linkedin.com/in/joserisi/"}
                   title={"José 'Tech' Risi"}
                 />
@@ -137,7 +138,8 @@ const AboutContent = ({ closeHandler, showPopup }) => {
               </AboutTextItem>
               <AboutTextItem className="grid-1 grid-right">
                 <AboutCardContent
-                  cardImage={IsaacIMG}
+                  // cardImage={IsaacIMG}
+                  cardImage={"https://eminent-web.s3.amazonaws.com/images/about/isaac.png"}
                   url={"https://www.linkedin.com/in/isaacbarnes/"}
                   title={"Isaac Barnes"}
                 />
@@ -148,7 +150,8 @@ const AboutContent = ({ closeHandler, showPopup }) => {
               </AboutTextItem>
               <AboutTextItem className="grid-1 grid-left">
                 <AboutCardContent
-                  cardImage={LeAnnIMG}
+                  // cardImage={LeAnnIMG}
+                  cardImage={"https://eminent-web.s3.amazonaws.com/images/about/leann.png"}
                   url={"https://www.linkedin.com/in/leann-dishart-b7676461/"}
                   title={"LeAnn Dishart"}
                 />
@@ -159,7 +162,8 @@ const AboutContent = ({ closeHandler, showPopup }) => {
               </AboutTextItem>
               <AboutTextItem className="grid-1 grid-left">
                 <AboutCardContent
-                  cardImage={GrantIMG}
+                  // cardImage={GrantIMG}
+                  cardImage={"https://eminent-web.s3.amazonaws.com/images/about/grant.png"}
                   url={"https://www.linkedin.com/in/grant-t-047340a"}
                   title={"Grant Thomas"}
                 />
@@ -170,7 +174,8 @@ const AboutContent = ({ closeHandler, showPopup }) => {
               </AboutTextItem>
               <AboutTextItem className="grid-1 grid-left">
                 <AboutCardContent
-                  cardImage={RaquelIMG}
+                  // cardImage={RaquelIMG}
+                  cardImage={"https://eminent-web.s3.amazonaws.com/images/about/raquel.png"}
                   url={"https://www.linkedin.com/in/raquel-risi-5b80a2196/"}
                   title={"Raquel Risi"}
                 />
@@ -181,7 +186,8 @@ const AboutContent = ({ closeHandler, showPopup }) => {
               </AboutTextItem>
               <AboutTextItem className="grid-1 grid-left">
                 <AboutCardContent
-                  cardImage={TedraIMG}
+                  // cardImage={TedraIMG}
+                  cardImage={"https://eminent-web.s3.amazonaws.com/images/about/tedra.png"}
                   url={"https://www.linkedin.com/in/tedra-hayden-50972938"}
                   title={"Tedra Hayden"}
                 />
@@ -192,7 +198,8 @@ const AboutContent = ({ closeHandler, showPopup }) => {
               </AboutTextItem>
               <AboutTextItem className="grid-1 grid-left">
                 <AboutCardContent
-                  cardImage={BobIMG}
+                  // cardImage={BobIMG}
+                  cardImage={"https://eminent-web.s3.amazonaws.com/images/about/bob.png"}
                   url={"https://www.linkedin.com/in/robert-ziolkowski-569405ab/"}
                   title={"Robert Ziolkowski"}
                 />
@@ -204,7 +211,8 @@ const AboutContent = ({ closeHandler, showPopup }) => {
 
               <AboutTextItem className="grid-1 grid-left">
                 <AboutCardContent
-                  cardImage={AnushaIMG}
+                  // cardImage={AnushaIMG}
+                  cardImage={"https://eminent-web.s3.amazonaws.com/images/about/anusha.png"}
                   url={
                     "https://www.linkedin.com/in/anusha-nakirikanti-572b14b9/"
                   }
@@ -217,7 +225,8 @@ const AboutContent = ({ closeHandler, showPopup }) => {
               </AboutTextItem>
               <AboutTextItem className="grid-1 grid-left">
                 <AboutCardContent
-                  cardImage={RicardoIMG}
+                  // cardImage={RicardoIMG}
+                  cardImage={"https://eminent-web.s3.amazonaws.com/images/about/ricardo.png"}
                   url={"https://www.linkedin.com/in/ricardohernandez722"}
                   title={"Ricardo Hernandez"}
                 />
@@ -228,7 +237,8 @@ const AboutContent = ({ closeHandler, showPopup }) => {
               </AboutTextItem>
               <AboutTextItem className="grid-1 grid-left">
                 <AboutCardContent
-                  cardImage={KevinIMG}
+                  // cardImage={KevinIMG}
+                  cardImage={"https://eminent-web.s3.amazonaws.com/images/about/kevin.png"}
                   url={"https://www.linkedin.com/in/ricardohernandez722"}
                   title={"Kevin Torres"}
                 />
@@ -239,7 +249,8 @@ const AboutContent = ({ closeHandler, showPopup }) => {
               </AboutTextItem>
               <AboutTextItem className="grid-1 grid-left">
                 <AboutCardContent
-                  cardImage={ParraIMG}
+                  // cardImage={ParraIMG}
+                  cardImage={"https://eminent-web.s3.amazonaws.com/images/about/parra.png"}
                   url={"https://www.linkedin.com/in/jonathan-parra-2793ba95/"}
                   title={"Jon Parra"}
                 />
@@ -249,7 +260,8 @@ const AboutContent = ({ closeHandler, showPopup }) => {
               </AboutTextItem>
               <AboutTextItem className="grid-1 grid-left">
                 <AboutCardContent
-                  cardImage={GeorgeIMG}
+                  // cardImage={GeorgeIMG}
+                  cardImage={"https://eminent-web.s3.amazonaws.com/images/about/george.png"}
                   url={"https://www.linkedin.com/in/george-portillo-172531178/"}
                   title={"George Portillo"}
                 />
@@ -259,7 +271,8 @@ const AboutContent = ({ closeHandler, showPopup }) => {
               </AboutTextItem>
               <AboutTextItem className="grid-1 grid-left">
                 <AboutCardContent
-                  cardImage={LaluIMG}
+                  // cardImage={LaluIMG}
+                  cardImage={"https://eminent-web.s3.amazonaws.com/images/about/lalu.png"}
                   url={"https://www.linkedin.com/in/dominique-lalu-049268160"}
                   title={"Dominique Lalu"}
                 />
@@ -269,7 +282,8 @@ const AboutContent = ({ closeHandler, showPopup }) => {
               </AboutTextItem>
               <AboutTextItem className="grid-1 grid-left">
                 <AboutCardContent
-                  cardImage={MaloneIMG}
+                  // cardImage={MaloneIMG}
+                  cardImage={"https://eminent-web.s3.amazonaws.com/images/about/malone.png"}
                   url={"https://www.linkedin.com/in/domeniquemalone"}
                   title={"Domenique Malone"}
                 />
@@ -279,7 +293,8 @@ const AboutContent = ({ closeHandler, showPopup }) => {
               </AboutTextItem>
               <AboutTextItem className="grid-1 grid-left">
                 <AboutCardContent
-                  cardImage={SamiIMG}
+                  // cardImage={SamiIMG}
+                  cardImage={"https://eminent-web.s3.amazonaws.com/images/about/sami.png"}
                   url={"https://www.linkedin.com/in/samikazan"}
                   title={"Sami"}
                 />
@@ -289,7 +304,8 @@ const AboutContent = ({ closeHandler, showPopup }) => {
               </AboutTextItem>
                <AboutTextItem className="grid-1 grid-left">
                 <AboutCardContent
-                  cardImage={KristinIMG}
+                  // cardImage={KristinIMG}
+                  cardImage={"https://eminent-web.s3.amazonaws.com/images/about/kristin.png"}
                   url={"https://www.linkedin.com/in/kristin-zuller-83b72b5a"}
                   title={"Kristin Zuller"}
                 />
@@ -299,7 +315,8 @@ const AboutContent = ({ closeHandler, showPopup }) => {
               </AboutTextItem>
               <AboutTextItem className="grid-1 grid-left">
                 <AboutCardContent
-                  cardImage={EarlIMG}
+                  // cardImage={EarlIMG}
+                  cardImage={"https://eminent-web.s3.amazonaws.com/images/about/earl.png"}
                   url={"https://www.linkedin.com/in/earl-sain-1a8a7113b/"}
                   title={"Earl Sain"}
                 />
@@ -309,7 +326,8 @@ const AboutContent = ({ closeHandler, showPopup }) => {
               </AboutTextItem>
               <AboutTextItem className="grid-1 grid-left">
                 <AboutCardContent
-                  cardImage={ArunaIMG}
+                  // cardImage={ArunaIMG}
+                  cardImage={"https://eminent-web.s3.amazonaws.com/images/about/aruna.png"}
                   url={"https://www.linkedin.com/in/aruna-kedarshetty-4388445"}
                   title={"Aruna Kedarshetty"}
                 />
@@ -319,7 +337,8 @@ const AboutContent = ({ closeHandler, showPopup }) => {
               </AboutTextItem>
               <AboutTextItem className="grid-1 grid-left">
                 <AboutCardContent
-                  cardImage={SteveIMG}
+                  // cardImage={SteveIMG}
+                  cardImage={"https://eminent-web.s3.amazonaws.com/images/about/steve.png"}
                   url={"https://www.linkedin.com/in/steven-trapp/"}
                   title={"Steve Trapp"}
                 />
@@ -329,7 +348,8 @@ const AboutContent = ({ closeHandler, showPopup }) => {
               </AboutTextItem>
               <AboutTextItem className="grid-1 grid-left">
                 <AboutCardContent
-                  cardImage={DillegoIMG}
+                  // cardImage={DillegoIMG}
+                  cardImage={"https://eminent-web.s3.amazonaws.com/images/about/dillego.png"}
                   url={"https://www.linkedin.com/in/dillego-duran-340a40223/"}
                   title={"Dillego Duran"}
                 />
@@ -339,7 +359,8 @@ const AboutContent = ({ closeHandler, showPopup }) => {
               </AboutTextItem>
               <AboutTextItem className="grid-1 grid-left">
                 <AboutCardContent
-                  cardImage={TonyIMG}
+                  // cardImage={TonyIMG}
+                  cardImage={"https://eminent-web.s3.amazonaws.com/images/about/tony.png"}
                   url={"https://www.linkedin.com/in/anthony-kelly-0b295939"}
                   title={"Tony Kelly"}
                 />

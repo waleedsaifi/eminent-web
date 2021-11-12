@@ -1,5 +1,5 @@
 import validator from "validator";
-import _ from "lodash";
+import every from "lodash/every";
 import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
@@ -96,7 +96,7 @@ const ScheduleFormContent = ({
       }),
     };
     return {
-      isValid: _.every(result, Boolean),
+      isValid: every(result, Boolean),
       result,
     };
   };
