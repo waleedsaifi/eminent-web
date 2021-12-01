@@ -1,4 +1,4 @@
-import * as THREE from "three";
+import {Scene, PerspectiveCamera, Vector2, sRGBEncoding, AmbientLight, WebGLRenderer, ACESFilmicToneMapping } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import AnimationProcessor from "./engine.animation";
 import gsap from "gsap";
@@ -73,7 +73,7 @@ class WebglEngine {
   }
 
   initScene() {
-    this.scene = new THREE.Scene();
+    this.scene = new Scene();
 
     // this.scene.fog = new THREE.FogExp2(0xffffff, 0.004);
     // this.scene.fog = new THREE.FogExp2(0xffffff, 1);
@@ -90,7 +90,7 @@ class WebglEngine {
     //   500
     // );
     // this.camera.position.set(-50, 100, 70);
-    this.camera = new THREE.PerspectiveCamera(
+    this.camera = new PerspectiveCamera(
       45,
       window.innerWidth / window.innerHeight,
       1,
@@ -104,7 +104,7 @@ class WebglEngine {
     ------------------------------*/
   initLight() {
     //const light = new THREE.PointLight(0xfff000, 40, 100);
-    const light = new THREE.AmbientLight(0xffffff);
+    const light = new AmbientLight(0xffffff);
     light.position.set(170, 30, 30);
 
     // const sphereSize = 20;
@@ -134,14 +134,14 @@ class WebglEngine {
     Init Renderer
     ------------------------------*/
   initRenderer() {
-    this.renderer = new THREE.WebGLRenderer({
+    this.renderer = new WebGLRenderer({
       antialias: true,
       alpha: true,
       // preserveDrawingBuffer: true
     });
 
-    this.renderer.outputEncoding = THREE.sRGBEncoding;
-    this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    this.renderer.outputEncoding = sRGBEncoding;
+    this.renderer.toneMapping = ACESFilmicToneMapping;
     this.renderer.toneMappingExposure = 1.25;
     this.renderer.setPixelRatio(
       window.devicePixelRatio < 1 ? window.devicePixelRatio : 1
@@ -234,7 +234,7 @@ class WebglEngine {
     }
   }
 
-  pointer = new THREE.Vector2();
+  pointer = new Vector2();
   onMouseMove = (e) => {
     const [w, h] = [window.innerWidth, window.innerHeight];
 

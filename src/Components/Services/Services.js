@@ -4,7 +4,6 @@ import { BREAKPOINTS } from "../../constants/constants";
 import { ReactComponent as CrossSvg } from "../../assets/images/cross.svg";
 import { useSelector } from "react-redux";
 import { ReactComponent as LogoIconSVG } from "../../assets/images/eminent-icon.svg";
-import IMacIMG from "../../assets/images/services/imac.png";
 import {
   TeamCollabIMG,
   GroupWorkingIMG,
@@ -16,8 +15,6 @@ import {
   CloudIMG,
 } from "../../assets/images/services/index";
 import PaperWhiteIcon from "../../assets/images/icon_paper_white.png";
-import { toggleElementsforPopup } from "utils/navigation";
-import GLContainer from "../GLContainer/GLContainer";
 
 const ServicesContent = ({ closeHandler, showPopup }) => {
   const wrapper = useRef(null);
@@ -253,9 +250,9 @@ const ServiceCardContent = (cardImage) => {
           onClick={onScheduleClickHandler}
           href="#"
           className="btn"
-          title="Request Quote"
+          title="Book a Demo"
         >
-          REQUEST QUOTE
+          BOOK DEMO
         </a>
       </div>
       <div className="overlay red"></div>

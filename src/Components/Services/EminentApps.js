@@ -4,24 +4,24 @@ import { BREAKPOINTS } from "../../constants/constants";
 import { ReactComponent as CrossSvg } from "../../assets/images/cross.svg";
 import { useSelector } from "react-redux";
 import { ReactComponent as LogoIconSVG } from "../../assets/images/eminent-icon.svg";
-import IMacIMG from "../../assets/images/services/imac.png";
-import {
-  TeamCollabIMG,
-  GroupWorkingIMG,
-  MomWorkingIMG,
-  TwoWorkingTogetherIMG,
-  WireframingCollaborationIMG,
-  WomanWorkerIMG,
-  WorkersIMG,
-  CloudIMG,
-} from "../../assets/images/services/index";
+// import IMacIMG from "../../assets/images/services/imac.png";
+// import {
+//   TeamCollabIMG,
+//   GroupWorkingIMG,
+//   MomWorkingIMG,
+//   TwoWorkingTogetherIMG,
+//   WireframingCollaborationIMG,
+//   WomanWorkerIMG,
+//   WorkersIMG,
+//   CloudIMG,
+// } from "../../assets/images/services/index";
 import PaperWhiteIcon from "../../assets/images/icon_paper_white.png";
 import { toggleElementsforPopup } from "utils/navigation";
 import GLContainer from "../GLContainer/GLContainer";
-import * as THREE from "three";
-import { APP } from "./3D/app";
-import { VRButton } from "./3D/VRButton";
-import { AppData } from "./3D/AppData";
+// import * as THREE from "three";
+// import { APP } from "./3D/app";
+// import { VRButton } from "./3D/VRButton";
+// import { AppData } from "./3D/AppData";
 import { isMobileOnly as mob } from "react-device-detect";
 import Menu from "../Menu/Menu";
 import { popupManager } from "../../helpers/popups";
@@ -65,31 +65,31 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
     };
   };
 
-  window.THREE = THREE; // Used by APP Scripts.
-  window.VRButton = VRButton; // Used by APP Scripts.
+  // window.THREE = THREE; // Used by APP Scripts.
+  // window.VRButton = VRButton; // Used by APP Scripts.
 
-  useEffect(() => {
-    var servicesText = document.getElementById("servicesText");
+  // useEffect(() => {
+  //   var servicesText = document.getElementById("servicesText");
 
-    const player = new APP.Player();
-    player.load(AppData);
+  //   const player = new APP.Player();
+  //   player.load(AppData);
 
-    let style = getComputedStyle(servicesText);
+  //   let style = getComputedStyle(servicesText);
 
-    const isMobile = window.innerWidth <= BREAKPOINTS.tablet || mob;
-    var width = isMobile
-      ? servicesText.offsetWidth
-      : servicesText.offsetWidth / 2;
-    player.setSize(width, servicesText.offsetHeight);
-    player.play();
-    if (!servicesText.classList.contains("3DPlayer")) {
-      servicesText.appendChild(player.dom);
-      servicesText.classList.add("3DPlayer");
-      window.addEventListener("resize", function () {
-        player.setSize(width, servicesText.offsetHeight);
-      });
-    }
-  }, []);
+  //   const isMobile = window.innerWidth <= BREAKPOINTS.tablet || mob;
+  //   var width = isMobile
+  //     ? servicesText.offsetWidth
+  //     : servicesText.offsetWidth / 2;
+  //   player.setSize(width, servicesText.offsetHeight);
+  //   player.play();
+  //   if (!servicesText.classList.contains("3DPlayer")) {
+  //     servicesText.appendChild(player.dom);
+  //     servicesText.classList.add("3DPlayer");
+  //     window.addEventListener("resize", function () {
+  //       player.setSize(width, servicesText.offsetHeight);
+  //     });
+  //   }
+  // }, []);
 
   return (
     // <PageContainer>
@@ -319,7 +319,7 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
         >
           <ServicesGrid>
             <ServicesTextItem>
-              <ServiceCardContent cardImage={MomWorkingIMG} />
+              <ServiceCardContent cardImage={"https://eminent-web.s3.amazonaws.com/images/eminentapps/mom_working.jpg"} />
               <h5>Apps, UI/UX and Frameworks</h5>
               <GradientKeyline />
               {/* <h6>
@@ -336,7 +336,7 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
               </h6>
             </ServicesTextItem>
             <ServicesTextItem>
-              <ServiceCardContent cardImage={TeamCollabIMG} />
+              <ServiceCardContent cardImage={"https://eminent-web.s3.amazonaws.com/images/eminentapps/team_collab.jpg"} />
               <h5>Cloud and Infrastructure</h5>
               <GradientKeyline />
               {/* <h6>
@@ -355,7 +355,7 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
               </h6>
             </ServicesTextItem>
             <ServicesTextItem>
-              <ServiceCardContent cardImage={CloudIMG} />
+              <ServiceCardContent cardImage={"https://eminent-web.s3.amazonaws.com/images/eminentapps/cloud.jpg"} />
               <h5>DevOps and Site Reliability</h5>
               <GradientKeyline />
               {/* <h6>
@@ -376,7 +376,7 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
               </h6>
             </ServicesTextItem>
             <ServicesTextItem>
-              <ServiceCardContent cardImage={TwoWorkingTogetherIMG} />
+              <ServiceCardContent cardImage={"https://eminent-web.s3.amazonaws.com/images/eminentapps/two_working_together.jpg"} />
               <h5>Project Management</h5>
               <GradientKeyline />
               <h6>
@@ -387,7 +387,7 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
               </h6>
             </ServicesTextItem>
             <ServicesTextItem>
-              <ServiceCardContent cardImage={WireframingCollaborationIMG} />
+              <ServiceCardContent cardImage={"https://eminent-web.s3.amazonaws.com/images/eminentapps/wireframing_collaboration.jpg"} />
               <h5>Information Systems and Technology</h5>
               <GradientKeyline />
               <h6>
@@ -402,7 +402,7 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
               </h6>
             </ServicesTextItem>
             <ServicesTextItem>
-              <ServiceCardContent cardImage={WomanWorkerIMG} />
+              <ServiceCardContent cardImage={"https://eminent-web.s3.amazonaws.com/images/eminentapps/woman_worker.jpg"} />
               <h5>Machine Learning and AI</h5>
               <GradientKeyline />
               <h6>
@@ -414,7 +414,7 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
               </h6>
             </ServicesTextItem>
             <ServicesTextItem>
-              <ServiceCardContent cardImage={WorkersIMG} />
+              <ServiceCardContent cardImage={"https://eminent-web.s3.amazonaws.com/images/eminentapps/workers.jpg"} />
               <h5>Defi and Blockchain</h5>
               <GradientKeyline />
               <h6>
@@ -427,7 +427,7 @@ const EminentAppsContent = ({ closeHandler, showPopup }) => {
               </h6>
             </ServicesTextItem>
             <ServicesTextItem>
-              <ServiceCardContent cardImage={GroupWorkingIMG} />
+              <ServiceCardContent cardImage={"https://eminent-web.s3.amazonaws.com/images/eminentapps/group_working.jpg"} />
               <h5>Quality, Automation, and Tools</h5>
               <GradientKeyline />
               <h6>

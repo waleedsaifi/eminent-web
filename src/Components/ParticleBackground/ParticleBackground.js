@@ -3,7 +3,7 @@ import { GradientController } from "./gradient";
 import { ParticleBg } from "./view";
 import { useState, useEffect } from "react";
 
-const ParticleBackground = () => {
+const ParticleBackgroundContent = () => {
   const _canvas = React.useRef(null);
   const _root = React.useRef(null);
   const size = useWindowSize();
@@ -51,7 +51,7 @@ const ParticleBackground = () => {
   );
 };
 
-export { ParticleBackground };
+export default  ParticleBackgroundContent;
 
 // Hook
 function useWindowSize() {

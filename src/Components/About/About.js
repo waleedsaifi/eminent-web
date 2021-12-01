@@ -4,32 +4,32 @@ import { BREAKPOINTS } from "../../constants/constants";
 import { ReactComponent as CrossSvg } from "../../assets/images/cross.svg";
 import { useSelector } from "react-redux";
 import { ReactComponent as LogoIconSVG } from "../../assets/images/eminent-icon.svg";
-import {
-  RisiIMG,
-  IsaacIMG,
-  LeAnnIMG,
-  GrantIMG,
-  RaquelIMG,
-  TedraIMG,
-  BobIMG,
-  RicardoIMG,
-  AnushaIMG,
-  KevinIMG,
-  ParraIMG,
-  GeorgeIMG,
-  LaluIMG,
-  SamiIMG,
-  MaloneIMG,
-  KristinIMG,
-  EarlIMG,
-  ArunaIMG,
-  SteveIMG,
-  DillegoIMG,
-  TonyIMG,
-} from "../../assets/images/about/index";
-import { ParticleBackground } from "Components/ParticleBackground";
-import { darkTheme, lightTheme } from "constants/constants";
-import { toggleElementsforPopup } from "utils/navigation";
+// import {
+//   RisiIMG,
+//   IsaacIMG,
+//   LeAnnIMG,
+//   GrantIMG,
+//   RaquelIMG,
+//   TedraIMG,
+//   BobIMG,
+//   RicardoIMG,
+//   AnushaIMG,
+//   KevinIMG,
+//   ParraIMG,
+//   GeorgeIMG,
+//   LaluIMG,
+//   SamiIMG,
+//   MaloneIMG,
+//   KristinIMG,
+//   EarlIMG,
+//   ArunaIMG,
+//   SteveIMG,
+//   DillegoIMG,
+//   TonyIMG,
+// } from "../../assets/images/about/index";
+// import { ParticleBackground } from "Components/ParticleBackground";
+// import { darkTheme, lightTheme } from "constants/constants";
+// import { toggleElementsforPopup } from "utils/navigation";
 
 const AboutContent = ({ closeHandler, showPopup }) => {
   const wrapper = useRef(null);
@@ -69,7 +69,6 @@ const AboutContent = ({ closeHandler, showPopup }) => {
       $bg={currentTheme?.schedulePopupBg[0]}
       className="about"
     >
-      {/* <ParticleBackground currentTheme={darkTheme} /> */}
       <PopupContainer $border={currentTheme?.schedulePopupTextColor}>
         <Header
           ref={header}
@@ -680,16 +679,16 @@ const HeaderTextContainer = styled.div`
   }
 `;
 
-const LogoIcon = styled(LogoIconSVG)`
-  display: none;
-  stroke: rgba(255, 255, 255, 0);
-  width: 80px;
-  height: 64px;
-  @media (max-width: ${BREAKPOINTS.mob}px) {
-    height: 34px;
-    width: 40px;
-  }
-`;
+// const LogoIcon = styled(LogoIconSVG)`
+//   display: none;
+//   stroke: rgba(255, 255, 255, 0);
+//   width: 80px;
+//   height: 64px;
+//   @media (max-width: ${BREAKPOINTS.mob}px) {
+//     height: 34px;
+//     width: 40px;
+//   }
+// `;
 
 const CloseCross = styled.button`
   position: absolute;

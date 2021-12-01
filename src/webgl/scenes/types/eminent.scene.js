@@ -2,7 +2,7 @@ import anime from "animejs";
 import { wait } from "helpers/dev.helpers";
 
 import { Scene } from "../scene";
-import * as THREE from "three";
+import {LoopRepeat} from "three";
 
 class EminentScene extends Scene {
   static _name = "eminent";
@@ -78,7 +78,7 @@ class EminentScene extends Scene {
     this.initNoise();
 
     this.clips.forEach((clip) => {
-      clip.loop = THREE.LoopRepeat;
+      clip.loop = LoopRepeat;
 
       clip.clampWhenFinished = false;
     });

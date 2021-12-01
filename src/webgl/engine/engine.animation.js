@@ -1,10 +1,10 @@
-import * as THREE from "three";
+import {Clock} from "three";
 
 class AnimationProcessor {
   animations = [];
   active = false;
   FRAME = 0;
-  clock = new THREE.Clock();
+  clock = new Clock();
 
   static STATUSES = {
     ACTIVE: 0,

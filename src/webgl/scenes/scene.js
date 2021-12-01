@@ -1,6 +1,5 @@
 import anime from "animejs";
-import * as THREE from "three";
-import { Vector3 } from "three";
+import { Vector3, Group, MathUtils, AnimationMixer,LoopOnce} from "three";
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
 import { BREAKPOINTS } from "constants/constants";
 
@@ -28,7 +27,7 @@ const animate = (targets, duration, properties = {}) => {
 };
 
 class Scene {
-  group = new THREE.Group();
+  group = new Group();
   materials = {};
   fade_config = fade_config;
   enabled = false;
@@ -119,7 +118,7 @@ class Scene {
 
     this.engine.animationProcessor.add(
       this.render,
-      THREE.MathUtils.generateUUID()
+      MathUtils.generateUUID()
     );
 
     this.loadPromise = this.load();
@@ -140,7 +139,7 @@ class Scene {
 
           this.cameraProps = {};
 
-          this.cameraProps.target = new THREE.Vector3().fromArray(
+          this.cameraProps.target = new Vector3().fromArray(
             this.data.target || [0, 0, 0]
           );
 
@@ -161,8 +160,8 @@ class Scene {
 
           if (this.data.tablet_campos) {
             this.cameraPropsTablet = {
-              position: new THREE.Vector3().fromArray(this.data.tablet_campos),
-              target: new THREE.Vector3().fromArray(this.data.tablet_target),
+              position: new Vector3().fromArray(this.data.tablet_campos),
+              target: new Vector3().fromArray(this.data.tablet_target),
             };
           }
 
@@ -182,11 +181,11 @@ class Scene {
   initAnimations() {
     const { object } = this;
 
-    this.mixer = new THREE.AnimationMixer(object);
+    this.mixer = new AnimationMixer(object);
     this.clips = object.animations.map((action) => {
       const clip = this.mixer.clipAction(action);
 
-      clip.loop = THREE.LoopOnce;
+      clip.loop = LoopOnce;
       clip.clampWhenFinished = true;
 
       clip.setDuration(this.data.animation_duration);
@@ -196,7 +195,7 @@ class Scene {
 
     this.engine.animationProcessor.add((d) => {
       this.mixer.update(d);
-    }, THREE.MathUtils.generateUUID());
+    }, MathUtils.generateUUID());
   }
 
   startAnimation(dir = 1, noAnim = false) {

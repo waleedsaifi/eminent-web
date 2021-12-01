@@ -392,7 +392,8 @@ const state = (state = initState, action) => {
 
   switch (type) {
     case ACTIONS.SET_PROGRESS: {
-      if (window.engine.ready) {
+      if(window.engine)
+        if (window.engine.ready) {
         if (currentStep !== state.currentStep) {
           window.engine.setCurrentStep(currentStep);
           window.gradient.setStep(currentStep === 0 ? -1 : currentStep, currentSectionTitle);

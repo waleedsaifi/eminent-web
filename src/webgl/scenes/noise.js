@@ -1,5 +1,4 @@
-import * as THREE from "three";
-import { Vector3 } from "three";
+import { Vector2, Vector3, MathUtils, Points, CanvasTexture, NearestFilter, RepeatWrapping, MeshPhysicalMaterial, Mesh, SphereBufferGeometry, BackSide } from "three";
 import { createShader } from "../model/shaders/shader";
 import noise from "./../lib/noise";
 
@@ -72,7 +71,7 @@ class Noise {
 
     this.scene.engine.animationProcessor.add(
       this.render,
-      THREE.MathUtils.generateUUID()
+      MathUtils.generateUUID()
     );
   }
 
@@ -113,7 +112,7 @@ class Noise {
           ? 1
           : 0;
 
-        var newObj = new THREE.Points(geometry);
+        var newObj = new Points(geometry);
 
         newObj.userData = {
           main: data.colors,
@@ -143,7 +142,7 @@ class Noise {
 
         this.scene.engine.animationProcessor.add(
           this.updateObj(newObj, obj),
-          THREE.MathUtils.generateUUID()
+          MathUtils.generateUUID()
         );
 
         //inc += 1
@@ -153,15 +152,15 @@ class Noise {
     if (this.scene.data.name === "eminent") {
       var obj = object.children.filter((obj) => obj.name === "Eminent-Icon")[0];
 
-      const texture = new THREE.CanvasTexture(generateFillTexture());
-      texture.magFilter = THREE.NearestFilter;
-      texture.wrapT = THREE.RepeatWrapping;
-      texture.wrapS = THREE.RepeatWrapping;
+      const texture = new CanvasTexture(generateFillTexture());
+      texture.magFilter = NearestFilter;
+      texture.wrapT = RepeatWrapping;
+      texture.wrapS = RepeatWrapping;
       texture.repeat.x = 10;
       texture.repeat.y = 6;
       texture.anisotropy = 16;
 
-      const material = new THREE.MeshPhysicalMaterial({
+      const material = new  MeshPhysicalMaterial({
         // metalness: 1,
         // roughness: 0,
         // // alphaMap: texture,
@@ -173,17 +172,17 @@ class Noise {
         // // transmission: 1, // use material.transmission for glass materials
         // // opacity: 1, // set material.opacity to 1 when material.transmission is non-zero
         // transparent: false,
-        // color: new THREE.Color(0x7dab9e),
+        // color: new Color(0x7dab9e),
         clearcoat: 1.0,
         clearcoatRoughness: 0.1,
         metalness: 0.6,
         roughness: 0.5,
         color: 0x678f7d,
         normalMap: texture,
-        normalScale: new THREE.Vector2(0.15, 0.15),
+        normalScale: new Vector2(0.15, 0.15),
       });
 
-      var newObj = new THREE.Mesh(obj.geometry, material);
+      var newObj = new Mesh(obj.geometry, material);
       newObj.userData = {
         main: data.colors,
         extra: data.extra_colors,
@@ -193,21 +192,21 @@ class Noise {
       this.scene.objects.push(newObj);
       this.scene.engine.animationProcessor.add(
         this.updateObj(newObj, obj),
-        THREE.MathUtils.generateUUID()
+      MathUtils.generateUUID()
       );
     }
 
     if (data.addTransparency) {
-      const geo = new THREE.SphereBufferGeometry(70, 32, 32);
+      const geo = new SphereBufferGeometry(70, 32, 32);
 
-      const texture = new THREE.CanvasTexture(generateTexture());
+      const texture = new CanvasTexture(generateTexture());
 
-      texture.magFilter = THREE.NearestFilter;
-      texture.wrapT = THREE.RepeatWrapping;
-      texture.wrapS = THREE.RepeatWrapping;
+      texture.magFilter = NearestFilter;
+      texture.wrapT = RepeatWrapping;
+      texture.wrapS = RepeatWrapping;
       texture.repeat.set(1, 3.5);
 
-      const material = new THREE.MeshPhysicalMaterial({
+      const material = new MeshPhysicalMaterial({
         metalness: 0,
         roughness: 0,
         alphaMap: texture,
@@ -220,14 +219,14 @@ class Noise {
         transparent: true,
       });
 
-      const mat1 = new THREE.MeshPhysicalMaterial().copy(material);
+      const mat1 = new MeshPhysicalMaterial().copy(material);
 
-      const mat1b = new THREE.MeshPhysicalMaterial().copy(material);
+      const mat1b = new MeshPhysicalMaterial().copy(material);
       // mat1b.premultipliedAlpha = true
-      mat1b.side = THREE.BackSide;
+      mat1b.side = BackSide;
 
-      const mesh1 = new THREE.Mesh(geo, mat1);
-      const mesh1b = new THREE.Mesh(geo, mat1b);
+      const mesh1 = new Mesh(geo, mat1);
+      const mesh1b = new Mesh(geo, mat1b);
       mesh1b.renderOrder = -1;
 
       this.someMaterials.push(mat1b);
@@ -238,7 +237,7 @@ class Noise {
 
         mesh1.rotation.x = t * 0.0002;
         mesh1.rotation.z = -t * 0.0002;
-      }, new THREE.MathUtils.generateUUID());
+      }, new MathUtils.generateUUID());
 
       this.scene.group.add(mesh1);
       mesh1.add(mesh1b);
@@ -249,7 +248,7 @@ class Noise {
     }
   }
 
-  pointer = new THREE.Vector2();
+  pointer = new Vector2();
   render = (_, time) => {
     if (this.scene.enabled) {
       this._shaders.forEach((i) => i.update(time, this.scene.engine.pointer));

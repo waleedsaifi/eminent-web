@@ -1,5 +1,5 @@
 import gsap from "gsap";
-import * as THREE from "three";
+import {Vector2} from "three";
 
 const gradients = [
   {
@@ -81,7 +81,7 @@ class Gradient {
 }
 
 class GradientController {
-  pointer = new THREE.Vector2();
+  pointer = new Vector2();
 
   constructor(dom) {
     this.dom = dom;

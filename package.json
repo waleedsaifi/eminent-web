@@ -8,7 +8,6 @@
         "@testing-library/user-event": "^12.8.3",
         "animejs": "^3.2.1",
         "axios": "^0.21.1",
-        "babel-preset-react-app": "^10.0.0",
         "connected-react-router": "^6.9.1",
         "contentful": "^8.4.2",
         "contentful-management": "^7.34.0",
@@ -18,7 +17,6 @@
         "hoist-non-react-statics": "^3.3.2",
         "lodash": "^4.17.21",
         "object-assign": "^4.1.1",
-        "process": "^0.11.10",
         "prop-types": "^15.7.2",
         "react": "^17.0.2",
         "react-device-detect": "^1.17.0",
@@ -30,21 +28,16 @@
         "react-scripts": "4.0.3",
         "redux": "^4.1.0",
         "redux-devtools-extension": "^2.13.9",
-        "regenerator-runtime": "^0.13.7",
-        "scheduler": "^0.20.2",
-        "shallowequal": "^1.1.0",
         "source-map-explorer": "^2.5.2",
         "styled-components": "^5.3.0",
-        "symbol-observable": "^4.0.0",
-        "three": "^0.130.0",
-        "ua-parser-js": "^0.7.28",
+        "three": "^0.130.1",
         "validator": "^13.6.0",
         "web-vitals": "^1.1.2"
     },
     "scripts": {
         "analyze": "source-map-explorer 'build/static/js/*.js'",
         "start": "react-scripts start",
-        "build": "react-scripts build",
+        "build": "react-scripts build && compress-cra",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
     },
@@ -67,6 +60,7 @@
         ]
     },
     "devDependencies": {
-        "@svgr/webpack": "^5.5.0"
+        "@svgr/webpack": "^5.5.0",
+        "compress-create-react-app": "^1.2.1"
     }
 }

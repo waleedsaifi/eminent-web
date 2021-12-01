@@ -93,7 +93,7 @@ const Selected = styled.div`
       $color ? $color : "var(--block1-text-secondary)"};
   }
 `;
-const Chevron = styled(ChevronSvg)`
+const Chevron = styled("https://eminent-web.s3.amazonaws.com/images/approach/Chevron.svg")`
   display: inline-block;
   position: absolute;
   right: 0.5rem;

@@ -1,20 +1,20 @@
-import * as THREE from 'three'
+import { Raycaster,TextureLoader, ShaderMaterial, UniformsUtils, UniformsLib, Vector3, Color} from 'three'
 import {
     fragmentShader
 } from './fragmentShader'
 import {
     vertexShader
 } from './vertexShader'
-import _ from 'lodash'
-import gsap from 'gsap/all'
+import random from 'lodash/random'
+import gsap from "gsap";
 import point_texture from '../../../assets/images/point_texture.png';
 
-const texture = new THREE.TextureLoader().load(point_texture);
+const texture = new TextureLoader().load(point_texture);
 
-window.THREE = THREE
+// window.THREE = THREE
 
 class Shader {
-    raycaster = new THREE.Raycaster()
+    raycaster = new Raycaster()
 
     constructor(props) {
         this.engine = props.engine
@@ -29,7 +29,7 @@ class Shader {
 
         if (!props.buffer) {} else {
 
-            const random = () => _.random(.75, 1.1, true)
+            const randomValues = () => random(.75, 1.1, true)
 
             //const verticesCount = geometry.getAttribute('position').count
             const vertices = geometry.getAttribute('position')
@@ -66,7 +66,7 @@ class Shader {
                     randomness.setXYZ(i, ...has.r)
 
                 } else {
-                    const r = [random(), random(), random()]
+                    const r = [randomValues(), randomValues(), randomValues()]
 
                     stack.push({
                         pos,
@@ -86,7 +86,7 @@ class Shader {
         const color1 = props.colorData.colors[0]
         const color2 = props.colorData.colors[1] || color1
 
-        this.material = new THREE.ShaderMaterial({
+        this.material = new ShaderMaterial({
             fragmentShader,
             vertexShader,
             transparent: true,
@@ -95,10 +95,10 @@ class Shader {
             fog: true,
             // opacity: props.colorData.opacity,
 
-            // blending: THREE.NormalBlending,
-            uniforms: THREE.UniformsUtils.merge([
-                THREE.UniformsLib.points,
-                THREE.UniformsLib.fog,
+            // blending: NormalBlending,
+            uniforms: UniformsUtils.merge([
+                UniformsLib.points,
+                UniformsLib.fog,
                 {
                     // tranparency: {
                     //     value: props.colorData.opacity
@@ -113,7 +113,7 @@ class Shader {
                         value: props.buffer
                     },
                     dir: {
-                        value: new THREE.Vector3(_.random(1, Math.PI * 2), _.random(1, Math.PI * 2), _.random(1, Math.PI * 2))
+                        value: new Vector3(random(1, Math.PI * 2), random(1, Math.PI * 2), random(1, Math.PI * 2))
                     },
                     floatingAlpha: {
                         value: 0
@@ -127,13 +127,13 @@ class Shader {
                         value: texture
                     },
                     uColor1: {
-                        value: new THREE.Color(color1)
+                        value: new Color(color1)
                     },
                     uColor2: {
-                        value: new THREE.Color(color2)
+                        value: new Color(color2)
                     },
                     mousePos: {
-                        value: new THREE.Vector3()
+                        value: new Vector3()
                     },
                     uTime: {
                         value: performance.now()
@@ -146,7 +146,7 @@ class Shader {
             ], )
 
 
-            // th   is.material.uniforms.diffuse.value = new THREE.Color(0xff0000)
+            // th   is.material.uniforms.diffuse.value = new Color(0xff0000)
         })
 
         // this.material.needsUpdate = true
@@ -158,8 +158,8 @@ class Shader {
             uniforms
         } = this.material
 
-        const color1 = new THREE.Color(_color1)
-        const color2 = new THREE.Color(_color2)
+        const color1 = new Color(_color1)
+        const color2 = new Color(_color2)
 
         uniforms.uColor1.value = color1
         uniforms.uColor2.value = color2
@@ -173,7 +173,7 @@ class Shader {
         this.material.uniforms.scale.value = size
     }
 
-    // debugMesh = new THREE.Mesh(new THREE.SphereGeometry(2, 32, 32), new THREE.MeshBasicMaterial({color: 0xff0000, transparent: true, opacity: .3}))
+    // debugMesh = new Mesh(new SphereGeometry(2, 32, 32), new MeshBasicMaterial({color: 0xff0000, transparent: true, opacity: .3}))
     particlesHoverUpdate(v) {
 
         // this.raycaster.setFromCamera(v, this.engine.camera)

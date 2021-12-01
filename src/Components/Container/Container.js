@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState, lazy, Suspense } from "react";
 import styled from "styled-components";
 import Menu from "./../Menu/Menu";
 import ProgressBar from "../ProgressBar/ProgressBar";
@@ -6,17 +6,13 @@ import MainText from "./../MainText/MainText";
 import FooterContent from "./../Footer/Footer";
 import HotspotsContainer from "../Hotspots/HotspotsContainer";
 import SchedulePopup from "../SchedulePopup/SchedulePopup";
-import EminentApps from "../Services/EminentApps";
-import Services from "../Services/Services";
-import Projects from "../Projects/Projects";
-import About from "../About/About";
 import { isMobileOnly } from "react-device-detect";
 import { useDispatch, useSelector } from "react-redux";
 import { addDevGUIConfig } from "../../helpers/dev.helpers";
 import {
   getFadeOutFormTen,
   getFadeOutProgressSvg,
-  stopChooseStoryTitleAnimation,
+stopChooseStoryTitleAnimation,
   stopCustomAnimationSvg,
   stopFormTenAnimation,
   stopMainTextAnimation,
@@ -50,6 +46,10 @@ const ContainerContent = (currentData) => {
   const mainContainer = useRef(null);
   const dispatch = useDispatch();
   const [activePopup, setActivePopup] = useState(null);
+  const EminentApps = lazy(() => import("../Services/EminentApps"));
+  const About = lazy(() => import("../About/About"));
+  const Services = lazy(() => import("../Services/Services"));
+  const Projects = lazy(() => import("../Projects/Projects"));
 
   useEffect(() => {
     getThemeContent(dispatch);
@@ -466,10 +466,10 @@ const ContainerContent = (currentData) => {
           currentSection={currentSection}
           currentTheme={currentTheme}
         />
-        {currentData.showApps && <EminentApps />}
-        {currentData.showServices && <Services />}
-        {currentData.showProjects && <Projects />}
-        {currentData.showAbout && <About />}
+        {currentData.showApps && <Suspense fallback={<div>Loading...</div>}><EminentApps /></Suspense>}
+        {currentData.showServices && <Suspense fallback={<div>Loading...</div>}><Services /></Suspense>}
+        {currentData.showProjects && <Suspense fallback={<div>Loading...</div>}><Projects /></Suspense>}
+        {currentData.showAbout && <Suspense fallback={<div>Loading...</div>}><About /></Suspense>}
         {isBgBlur && (
           <BlurredBackground
             ref={blurredBackground}

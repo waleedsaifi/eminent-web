@@ -1,5 +1,5 @@
 import { Scene } from "../scene";
-import * as THREE from "three";
+import {LoopRepeat} from "three";
 import { wait } from "helpers/dev.helpers";
 
 class Transparency extends Scene {
@@ -53,7 +53,7 @@ class Transparency extends Scene {
     this.initNoise();
 
     this.clips.forEach((clip) => {
-      clip.loop = THREE.LoopRepeat;
+      clip.loop = LoopRepeat;
 
       clip.clampWhenFinished = false;
     });

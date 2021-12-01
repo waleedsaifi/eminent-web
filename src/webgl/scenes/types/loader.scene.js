@@ -6,7 +6,7 @@ import {
 import {
     Scene
 } from "../scene";
-import * as THREE from 'three'
+//import * as THREE from 'three'
 
 class LoaderScene extends Scene {
     static _name = 'loader'
@@ -54,7 +54,7 @@ class LoaderScene extends Scene {
         this.initNoise()
 
         this.clips.forEach(clip => {
-            clip.loop = THREE.LoopRepeat
+            //clip.loop = THREE.LoopRepeat
 
             clip.clampWhenFinished = false
         })

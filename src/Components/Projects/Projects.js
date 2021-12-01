@@ -85,6 +85,7 @@ const ProjectsContent = ({ closeHandler }) => {
               href="https://www.defense.gov/Explore/News/Article/Article/2715857/website-informs-civilians-about-dod-opportunities/source/GovDelivery/"
               title="Website Informs Civilians About DOD Opportunities"
               target="_blank"
+              rel="noreferrer"
             >
               Read More
             </a>
@@ -102,8 +103,9 @@ const ProjectsContent = ({ closeHandler }) => {
             <p>8(a) Joint Venture</p>
             <a
               href="https://blog.executivebiz.com/2020/04/ecs-eminent-it-jv-wins-spot-on-134b-usaf-it-support-idiq-george-wilson-quoted/"
-              title="ECS-Eminent IT JV Wins Spot on $13.4B USAF IT Support IDIQ"
+              title="ECS-Eminent JV Wins Spot on $13.4B USAF IT Support IDIQ"
               target="_blank"
+              rel="noreferrer"
             >
               Read More
             </a>
@@ -121,6 +123,7 @@ const ProjectsContent = ({ closeHandler }) => {
               href="https://www.state.gov/wp-content/uploads/2019/01/FBS_BP_UNCLASS.pdf"
               title="Department of State Budget Public Release"
               target="_blank"
+              rel="noreferrer"
             >
               Read More
             </a>
@@ -138,6 +141,7 @@ const ProjectsContent = ({ closeHandler }) => {
               href="https://www.dvidshub.net/news/375737/navy-medicine-restructures-leadership-training-with-nmlpdc"
               title="Using technology to help navy build a high-performing medical force."
               target="_blank"
+              rel="noreferrer"
             >
               Read More
             </a>
@@ -154,6 +158,7 @@ const ProjectsContent = ({ closeHandler }) => {
               href="https://www.xmooneytoken.com/"
               title="The first 100% renewable energy decentralized mining network"
               target="_blank"
+              rel="noreferrer"
             >
               Read More
             </a>
@@ -171,6 +176,7 @@ const ProjectsContent = ({ closeHandler }) => {
               href="https://lizlegrande4.wixsite.com/my-site-5"
               title="Global Village: A charity token focused on creating a free global education system"
               target="_blank"
+              rel="noreferrer"
             >
               Read More
             </a>

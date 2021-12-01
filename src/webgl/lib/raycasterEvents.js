@@ -1,10 +1,10 @@
-import * as THREE from "three";
+import {Raycaster,Vector2, Vector3, MathUtils } from "three";
 import throttle from "lodash/throttle";
 
 class RaycasterEvents {
-  _raycaster = new THREE.Raycaster();
+  _raycaster = new Raycaster();
 
-  pointer = new THREE.Vector2();
+  pointer = new Vector2();
 
   _listeners = [];
 
@@ -124,7 +124,7 @@ class RaycasterEvents {
           cb({
             ...data,
             pointer: this.pointer,
-            point: new THREE.Vector3(),
+            point: new Vector3(),
             type,
             id,
           });
@@ -141,7 +141,7 @@ class RaycasterEvents {
       recursive: false,
     }
   ) {
-    const id = THREE.MathUtils.generateUUID();
+    const id = MathUtils.generateUUID();
 
     if (!Array.isArray(objects)) {
       objects = [objects];
@@ -190,7 +190,7 @@ class RaycasterEvents {
   static transformMousePosition(
     domElement,
     event,
-    pointer = new THREE.Vector2()
+    pointer = new Vector2()
   ) {
     pointer.x = (event.layerX / domElement.offsetWidth) * 2 - 1;
     pointer.y = -(event.layerY / domElement.offsetHeight) * 2 + 1;
@@ -201,7 +201,7 @@ class RaycasterEvents {
   static transformMousePositionByV2(
     domElement,
     v2,
-    pointer = new THREE.Vector2()
+    pointer = new Vector2()
   ) {
     pointer.x = (v2.x / domElement.offsetWidth) * 2 - 1;
     pointer.y = -(v2.y / domElement.offsetHeight) * 2 + 1;

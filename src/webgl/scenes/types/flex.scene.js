@@ -1,6 +1,6 @@
 import { wait } from "helpers/dev.helpers";
 import { Scene } from "../scene";
-import * as THREE from "three";
+import {LoopRepeat} from "three";
 
 class FlexScene extends Scene {
   static _name = "flex";
@@ -46,7 +46,7 @@ class FlexScene extends Scene {
 
     this.clips.forEach((clip) => {
       clip.clampWhenFinished = false;
-      clip.loop = THREE.LoopRepeat;
+      clip.loop = LoopRepeat;
     });
   }
 

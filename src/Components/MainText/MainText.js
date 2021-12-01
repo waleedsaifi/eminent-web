@@ -146,12 +146,13 @@ const App = ({
     }
 
     let timeout = 0;
+    let container = document.getElementById("glContainer");
     if (currentSectionTitle !== "work") {
       timeout = currentStep === 0 ? 2000 : 0;
 
-      if (currentStep === 0)
+      if (currentStep === 0 && container != null )
         setTimeout(
-          () => (document.getElementById("glContainer").style.opacity = "1"),
+          () => ( container.style.opacity = "1"),
           2000
         );
     } else {
@@ -998,10 +999,10 @@ const App = ({
                     id="MyButton"
                     fill="none"
                   >
-                    <title>GET A FREE STRATEGY CALL</title>
+                    <title>LEARN MORE</title>
                     <rect x="0.5" y="0.5" width="408" height="58" rx="21" />
                   </ContinueBtnBorder>
-                  <span>GET A FREE STRATEGY CALL</span>{" "}
+                  <span>LEARN MORE</span>{" "}
                 </ContinueBtn>
               )}
             </TextContainer>

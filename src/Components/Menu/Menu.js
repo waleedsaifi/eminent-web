@@ -95,9 +95,13 @@ const MenuContent = ({
               first: false,
               second: false,
             });
-            document.getElementById("glContainer").style.opacity = "0";
+            if (document.getElementById("glContainer"))
+              document.getElementById("glContainer").style.opacity = "0";
             logoTimeline(currentTheme?.logoColor, getIntroFontSize(), () => {
-              window.gradient.setStep(0, currentSectionTitle);
+              if (window.gradient)
+                window.gradient.setStep(0, currentSectionTitle);
+              else window.gradient = new Object();
+
               setLogoBtnsShow((state) => {
                 return {
                   ...state,
@@ -498,7 +502,6 @@ const MenuContent = ({
           $color={currentTheme?.menuBtnColor}
           $lineBg={currentTheme?.bgScheduleBtn}
           $show={isLogoBtnsShow.second}
-         
         >
           <span className="menu_item" onMouseOver={menuLabelHandler}>
             <Link to="/projects">PROJECTS</Link>

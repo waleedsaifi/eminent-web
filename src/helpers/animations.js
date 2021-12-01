@@ -127,13 +127,13 @@ export const logoTimeline = (logoColor, introTextFontSize, callback) => {
       delay: 0,
     })
     .add({
-      targets: ".introText",
+      targets: ".introText1",
       // translateX: 0,
       opacity: 1,
       duration: 1,
     })
     .add({
-      targets: ".menuLogoSvg",
+      targets: ".menuLogoSvg1",
       translateY: ["46vh", "46vh"],
       translateX: window.innerWidth <= BREAKPOINTS.tablet ? -10 : 0,
       scale: [2.7, 2.7],
@@ -144,7 +144,7 @@ export const logoTimeline = (logoColor, introTextFontSize, callback) => {
       delay: 0,
     })
     .add({
-      targets: ".menuLogoSvg path",
+      targets: ".menuLogoSvg1 path",
       strokeDashoffset: [anime.setDashoffset, 0],
       easing: "easeInCirc",
       duration: 1000,
@@ -152,7 +152,7 @@ export const logoTimeline = (logoColor, introTextFontSize, callback) => {
     })
     .add(
       {
-        targets: ".introText",
+        targets: ".introText1",
         opacity: [0, 1],
         // scale: [1.1, 0.92],
         fontSize: [introTextFontSize, (introTextFontSize / 100) * 90],
@@ -184,7 +184,7 @@ export const logoTimeline = (logoColor, introTextFontSize, callback) => {
     )
     .add(
       {
-        targets: ".introText",
+        targets: ".introText1",
         opacity: [1, 0],
         // scale: [0.92, 0.2],
         fontSize: [(introTextFontSize / 100) * 90, 5],
