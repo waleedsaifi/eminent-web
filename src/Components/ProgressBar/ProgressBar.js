@@ -13,10 +13,6 @@ import {
   getFadeOutCustomText,
   getFadeOutMainText,
 } from "../../helpers/animations";
-import {
-  getNextStepFromForm,
-  getStandardNextStep,
-} from "../../helpers/next_step";
 
 const ProgressBarContent = ({
   currentSectionTitle,
@@ -30,8 +26,7 @@ const ProgressBarContent = ({
   useEffect(() => {
     dispatch(setProgress(currentStep));
     currentSection.fields.forEach((i) => (i.active = false));
-    if(currentSection.fields[currentStep])
-    {
+    if (currentSection.fields[currentStep]) {
       currentSection.fields[currentStep].active = true;
     }
   }, [currentStep, _root, currentSection, dispatch]);

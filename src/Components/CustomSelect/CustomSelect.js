@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { ReactComponent as ChevronSvg } from "../../assets/images/Chevron.svg";
 import { useEffect, useState } from "react";
 import { BREAKPOINTS } from "../../constants/constants";
 import { useSelector } from "react-redux";
@@ -13,7 +12,6 @@ export const CustomSelect = ({
 }) => {
   const [selected, setSelected] = useState(options[0]);
   const [isOpen, setIsOpen] = useState(false);
-  const { currentTheme } = useSelector((state) => state.state);
 
   useEffect(() => {
     setOptionHandler(selected);

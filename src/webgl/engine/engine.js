@@ -1,4 +1,12 @@
-import {Scene, PerspectiveCamera, Vector2, sRGBEncoding, AmbientLight, WebGLRenderer, ACESFilmicToneMapping } from "three";
+import {
+  Scene,
+  PerspectiveCamera,
+  Vector2,
+  sRGBEncoding,
+  AmbientLight,
+  WebGLRenderer,
+  ACESFilmicToneMapping,
+} from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import AnimationProcessor from "./engine.animation";
 import gsap from "gsap";
@@ -169,10 +177,26 @@ class WebglEngine {
   ready = false;
   async initScenes() {
     this.scenes = scenes.map((sceneData) => {
-      const scene = createScene(sceneData, this);
+      let scene = new Object();
 
-      return scene;
+      switch (this.currentSectionTitle) {
+        case "home": {
+          if (sceneData.name == "hands" || sceneData.name == "eminent")
+            scene = createScene(sceneData, this);
+
+          return scene;
+        }
+        case "approach": {
+          scene = createScene(sceneData, this);
+
+          return scene;
+        }
+        default:
+          scene = createScene(sceneData, this);
+          return scene;
+      }
     });
+
 
     await Promise.all([
       ...this.scenes.map((scene) => scene.loadPromise),

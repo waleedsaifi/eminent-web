@@ -1,8 +1,15 @@
-import React, { useCallback, useEffect, useRef, useState, lazy, Suspense } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  lazy,
+  Suspense,
+} from "react";
 import styled from "styled-components";
-import Menu from "./../Menu/Menu";
+
 import ProgressBar from "../ProgressBar/ProgressBar";
-import MainText from "./../MainText/MainText";
+import Menu from "./../Menu/Menu";
 import FooterContent from "./../Footer/Footer";
 import HotspotsContainer from "../Hotspots/HotspotsContainer";
 import SchedulePopup from "../SchedulePopup/SchedulePopup";
@@ -12,7 +19,7 @@ import { addDevGUIConfig } from "../../helpers/dev.helpers";
 import {
   getFadeOutFormTen,
   getFadeOutProgressSvg,
-stopChooseStoryTitleAnimation,
+  stopChooseStoryTitleAnimation,
   stopCustomAnimationSvg,
   stopFormTenAnimation,
   stopMainTextAnimation,
@@ -29,7 +36,6 @@ import {
   setCurrentThemeData,
 } from "../../store/actions/actionCreator";
 import { toggleElementsforPopup } from "utils/navigation";
-
 
 const ContainerContent = (currentData) => {
   const [isLandscape, setLandscape] = useState(
@@ -50,6 +56,7 @@ const ContainerContent = (currentData) => {
   const About = lazy(() => import("../About/About"));
   const Services = lazy(() => import("../Services/Services"));
   const Projects = lazy(() => import("../Projects/Projects"));
+  const MainText = lazy(() => import("./../MainText/MainText"));
 
   useEffect(() => {
     getThemeContent(dispatch);
@@ -445,7 +452,12 @@ const ContainerContent = (currentData) => {
     );
   }
 
-  if (currentData.showApps || currentData.showServices || currentData.showProjects || currentData.showAbout) {
+  if (
+    currentData.showApps ||
+    currentData.showServices ||
+    currentData.showProjects ||
+    currentData.showAbout
+  ) {
     console.log(currentData);
     return (
       <Container
@@ -466,10 +478,26 @@ const ContainerContent = (currentData) => {
           currentSection={currentSection}
           currentTheme={currentTheme}
         />
-        {currentData.showApps && <Suspense fallback={<div>Loading...</div>}><EminentApps /></Suspense>}
-        {currentData.showServices && <Suspense fallback={<div>Loading...</div>}><Services /></Suspense>}
-        {currentData.showProjects && <Suspense fallback={<div>Loading...</div>}><Projects /></Suspense>}
-        {currentData.showAbout && <Suspense fallback={<div>Loading...</div>}><About /></Suspense>}
+        {currentData.showApps && (
+          <Suspense fallback={<div>Loading...</div>}>
+            <EminentApps />
+          </Suspense>
+        )}
+        {currentData.showServices && (
+          <Suspense fallback={<div>Loading...</div>}>
+            <Services />
+          </Suspense>
+        )}
+        {currentData.showProjects && (
+          <Suspense fallback={<div>Loading...</div>}>
+            <Projects />
+          </Suspense>
+        )}
+        {currentData.showAbout && (
+          <Suspense fallback={<div>Loading...</div>}>
+            <About />
+          </Suspense>
+        )}
         {isBgBlur && (
           <BlurredBackground
             ref={blurredBackground}
@@ -514,13 +542,15 @@ const ContainerContent = (currentData) => {
         />
       )}
       {currentSection && (
-        <MainText
-          showPopup={setActivePopup}
-          currentSectionTitle={currentSectionTitle}
-          currentStep={currentStep}
-          currentSection={currentSection}
-          currentTheme={currentTheme}
-        />
+        <Suspense fallback="Loading Content">
+          <MainText
+            showPopup={setActivePopup}
+            currentSectionTitle={currentSectionTitle}
+            currentStep={currentStep}
+            currentSection={currentSection}
+            currentTheme={currentTheme}
+          />
+        </Suspense>
       )}
       {currentSection && (
         <FooterContent

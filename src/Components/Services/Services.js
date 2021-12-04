@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { BREAKPOINTS } from "../../constants/constants";
-import { ReactComponent as CrossSvg } from "../../assets/images/cross.svg";
+// import { ReactComponent as CrossSvg } from "../../assets/images/cross.svg";
 import { useSelector } from "react-redux";
-import { ReactComponent as LogoIconSVG } from "../../assets/images/eminent-icon.svg";
+// import { ReactComponent as LogoIconSVG } from "../../assets/images/eminent-icon.svg";
 import {
   TeamCollabIMG,
   GroupWorkingIMG,
@@ -22,10 +22,10 @@ const ServicesContent = ({ closeHandler, showPopup }) => {
   const [isHeaderSmall, setIsHeaderSmall] = useState(false);
   const { currentTheme } = useSelector((state) => state.state);
 
-  const closeHandlerPopup = () => {
-    closeHandler();
-    window.addEventListener("wheel", popupWheelHandler);
-  };
+  // const closeHandlerPopup = () => {
+  //   closeHandler();
+  //   window.addEventListener("wheel", popupWheelHandler);
+  // };
 
   useEffect(() => {
     window.addEventListener("wheel", popupWheelHandler);
@@ -219,12 +219,12 @@ const ServicesContent = ({ closeHandler, showPopup }) => {
             <p className="strip-sub-copy">
               Eminent Apps is ready to create your most innovative apps ever.
             </p>
-            <a
+            <button
               className="button green w-button"
               onClick={onScheduleClickHandler}
             >
               Book a Demo →
-            </a>
+            </button>
           </div>
         </EminentAppsSectionViolatorStrip>
       </PopupContainer>
@@ -246,14 +246,13 @@ const ServiceCardContent = (cardImage) => {
       <div className="content">
         <h3>Need a Quote?</h3>
         <h4>Let's work together.</h4>
-        <a
+        <button
           onClick={onScheduleClickHandler}
-          href="#"
           className="btn"
           title="Book a Demo"
         >
           BOOK DEMO
-        </a>
+        </button>
       </div>
       <div className="overlay red"></div>
       <div className="overlay blue"></div>
@@ -368,38 +367,38 @@ const HeaderTextContainer = styled.div`
   }
 `;
 
-const LogoIcon = styled(LogoIconSVG)`
-  display: inline-block;
-  stroke: rgba(255, 255, 255, 0);
-  width: 40px;
-  height: 64px;
-  @media (max-width: ${BREAKPOINTS.mob}px) {
-    height: 34px;
-    width: 40px;
-  }
-`;
+// const LogoIcon = styled(LogoIconSVG)`
+//   display: inline-block;
+//   stroke: rgba(255, 255, 255, 0);
+//   width: 40px;
+//   height: 64px;
+//   @media (max-width: ${BREAKPOINTS.mob}px) {
+//     height: 34px;
+//     width: 40px;
+//   }
+// `;
 
-const CloseCross = styled.button`
-  position: absolute;
-  content: "";
-  right: 20px;
-  top: 20px;
-  width: 30px;
-  height: 20px;
-  cursor: pointer;
-  transition: 0.2s ease;
-  background-color: unset;
-  border: none;
-  @media (min-width: ${mobBreakpoint + 1}px) {
-    &:hover {
-      transform: rotate(90deg);
-    }
-  }
-`;
-const Cross = styled(CrossSvg)`
-  stroke: ${({ $color }) => $color};
-  fill: ${({ $color }) => $color};
-`;
+// const CloseCross = styled.button`
+//   position: absolute;
+//   content: "";
+//   right: 20px;
+//   top: 20px;
+//   width: 30px;
+//   height: 20px;
+//   cursor: pointer;
+//   transition: 0.2s ease;
+//   background-color: unset;
+//   border: none;
+//   @media (min-width: ${mobBreakpoint + 1}px) {
+//     &:hover {
+//       transform: rotate(90deg);
+//     }
+//   }
+// `;
+// const Cross = styled(CrossSvg)`
+//   stroke: ${({ $color }) => $color};
+//   fill: ${({ $color }) => $color};
+// `;
 
 const ServicesTextContainer = styled.div`
   color: ${({ $color }) => $color};
@@ -844,6 +843,6 @@ const EminentAppsSectionViolatorStrip = styled.section`
   }
 `;
 
-const SolutionsTextContainer = styled(ServicesTextContainer)`
-  grid-template-columns: repeat(1, 1fr);
-`;
+// const SolutionsTextContainer = styled(ServicesTextContainer)`
+//   grid-template-columns: repeat(1, 1fr);
+// `;

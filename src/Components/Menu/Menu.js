@@ -17,9 +17,7 @@ import {
   mobMenuOpenAnimation,
   removeInlineStyles,
   getFadeOutCustomText,
-  getFadeOutFormTen,
   getFadeOutMainText,
-  getFadeOutProgressSvg,
 } from "../../helpers/animations";
 import { Link, useLocation } from "react-router-dom";
 import {
@@ -219,34 +217,34 @@ const MenuContent = ({
   }, [isMenuOpen]);
 
   //FIXME
-  const onServicesPopUpHandler = (e) => {
-    if (window.innerWidth <= BREAKPOINTS.tablet) {
-      setMenuOpen(false);
-      topMenu?.removeAttribute("style");
-    }
+  // const onServicesPopUpHandler = (e) => {
+  //   if (window.innerWidth <= BREAKPOINTS.tablet) {
+  //     setMenuOpen(false);
+  //     topMenu?.removeAttribute("style");
+  //   }
 
-    toggleElementsforPopup("hide");
-    showPopup("services");
-  };
+  //   toggleElementsforPopup("hide");
+  //   showPopup("services");
+  // };
   //FIXME
-  const onProjectsPopUpHandler = (e) => {
-    if (window.innerWidth <= BREAKPOINTS.tablet) {
-      setMenuOpen(false);
-      topMenu?.removeAttribute("style");
-    }
+  // const onProjectsPopUpHandler = (e) => {
+  //   if (window.innerWidth <= BREAKPOINTS.tablet) {
+  //     setMenuOpen(false);
+  //     topMenu?.removeAttribute("style");
+  //   }
 
-    toggleElementsforPopup("hide");
-    showPopup("projects");
-  };
+  //   toggleElementsforPopup("hide");
+  //   showPopup("projects");
+  // };
   //FIXME
-  const onAboutPopUpHandler = (e) => {
-    if (window.innerWidth <= BREAKPOINTS.tablet) {
-      setMenuOpen(false);
-      topMenu?.removeAttribute("style");
-    }
-    toggleElementsforPopup("hide");
-    showPopup("about");
-  };
+  // const onAboutPopUpHandler = (e) => {
+  //   if (window.innerWidth <= BREAKPOINTS.tablet) {
+  //     setMenuOpen(false);
+  //     topMenu?.removeAttribute("style");
+  //   }
+  //   toggleElementsforPopup("hide");
+  //   showPopup("about");
+  // };
 
   const menuLabelHandler = (e) => {
     e.preventDefault();
@@ -403,15 +401,15 @@ const MenuContent = ({
     }
   };
 
-  const controlAudioVolume = () => {
-    var audio = document.getElementById("audio");
-    if (audio) {
-      audio.volume = 0.2;
-      audio.play();
+  // const controlAudioVolume = () => {
+  //   var audio = document.getElementById("audio");
+  //   if (audio) {
+  //     audio.volume = 0.2;
+  //     audio.play();
 
-      console.log("made it to audio volume");
-    }
-  };
+  //     console.log("made it to audio volume");
+  //   }
+  // };
 
   return (
     <>

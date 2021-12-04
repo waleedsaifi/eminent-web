@@ -18,8 +18,8 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Suspense fallback={"Loading"}>
-              <ParticleBackground currentTheme={darkTheme} />
-              <GLContainer currentSectionTitle="home" />
+              {/* <ParticleBackground currentTheme={darkTheme} /> */}
+              {/* <GLContainer currentSectionTitle="home" /> */}
             </Suspense>
             <Container currentSectionTitle="home" currentTheme={darkTheme} />
           </Route>
@@ -41,7 +41,9 @@ function App() {
             <Container currentSectionTitle="work" currentTheme={darkTheme} />
           </Route>
           <Route exact path="/eminent-apps">
-            <ParticleBackground currentTheme={darkTheme} />
+            <Suspense fallback={"Loading"}>
+              <ParticleBackground currentTheme={darkTheme} />
+            </Suspense>
             {/* <GLContainer currentSectionTitle="work" /> */}
             <Container
               currentSectionTitle="work"
@@ -50,7 +52,9 @@ function App() {
             />
           </Route>
           <Route exact path="/services">
+           <Suspense fallback={"Loading"}>
             <ParticleBackground currentTheme={darkTheme} />
+            </Suspense>
             {/* <GLContainer currentSectionTitle="work" /> */}
             <Container
               currentSectionTitle="other"
@@ -59,7 +63,9 @@ function App() {
             />
           </Route>
           <Route exact path="/projects">
+            <Suspense fallback={"Loading"}>
             <ParticleBackground currentTheme={darkTheme} />
+            </Suspense>
             {/* <GLContainer currentSectionTitle="work" /> */}
             <Container
               currentSectionTitle="other"
@@ -68,7 +74,9 @@ function App() {
             />
           </Route>
           <Route exact path="/about">
+            <Suspense fallback={"Loading"}>
             <ParticleBackground currentTheme={darkTheme} />
+            </Suspense>
             {/* <GLContainer currentSectionTitle="other" /> */}
             <Container
               currentSectionTitle="other"

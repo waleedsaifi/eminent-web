@@ -1,47 +1,13 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { BREAKPOINTS } from "../../constants/constants";
-import { ReactComponent as CrossSvg } from "../../assets/images/cross.svg";
 import { useSelector } from "react-redux";
-import { ReactComponent as LogoIconSVG } from "../../assets/images/eminent-icon.svg";
-// import {
-//   RisiIMG,
-//   IsaacIMG,
-//   LeAnnIMG,
-//   GrantIMG,
-//   RaquelIMG,
-//   TedraIMG,
-//   BobIMG,
-//   RicardoIMG,
-//   AnushaIMG,
-//   KevinIMG,
-//   ParraIMG,
-//   GeorgeIMG,
-//   LaluIMG,
-//   SamiIMG,
-//   MaloneIMG,
-//   KristinIMG,
-//   EarlIMG,
-//   ArunaIMG,
-//   SteveIMG,
-//   DillegoIMG,
-//   TonyIMG,
-// } from "../../assets/images/about/index";
-// import { ParticleBackground } from "Components/ParticleBackground";
-// import { darkTheme, lightTheme } from "constants/constants";
-// import { toggleElementsforPopup } from "utils/navigation";
 
 const AboutContent = ({ closeHandler, showPopup }) => {
   const wrapper = useRef(null);
   const header = useRef(null);
   const [isHeaderSmall, setIsHeaderSmall] = useState(false);
   const { currentTheme } = useSelector((state) => state.state);
-  const [isMenuOpen, setMenuOpen] = useState(false);
-  const closeHandlerPopup = () => {
-    closeHandler();
-    window.addEventListener("wheel", popupWheelHandler);
-    setMenuOpen(false);
-  };
 
   useEffect(() => {
     window.addEventListener("wheel", popupWheelHandler);
@@ -504,9 +470,7 @@ const AboutContent = ({ closeHandler, showPopup }) => {
 
 export default AboutContent;
 
-const onScheduleClickHandler = (e) => {
-  document.getElementById("ScheduleBtn").click();
-};
+
 const AboutCardContainer = styled.div`
   max-width: 1080px;
   display: grid;
@@ -690,27 +654,27 @@ const HeaderTextContainer = styled.div`
 //   }
 // `;
 
-const CloseCross = styled.button`
-  position: absolute;
-  content: "";
-  right: 20px;
-  top: 20px;
-  width: 30px;
-  height: 20px;
-  cursor: pointer;
-  transition: 0.2s ease;
-  background-color: unset;
-  border: none;
-  @media (min-width: ${mobBreakpoint + 1}px) {
-    &:hover {
-      transform: rotate(90deg);
-    }
-  }
-`;
-const Cross = styled(CrossSvg)`
-  stroke: ${({ $color }) => $color};
-  fill: ${({ $color }) => $color};
-`;
+// const CloseCross = styled.button`
+//   position: absolute;
+//   content: "";
+//   right: 20px;
+//   top: 20px;
+//   width: 30px;
+//   height: 20px;
+//   cursor: pointer;
+//   transition: 0.2s ease;
+//   background-color: unset;
+//   border: none;
+//   @media (min-width: ${mobBreakpoint + 1}px) {
+//     &:hover {
+//       transform: rotate(90deg);
+//     }
+//   }
+// `;
+// const Cross = styled(CrossSvg)`
+//   stroke: ${({ $color }) => $color};
+//   fill: ${({ $color }) => $color};
+// `;
 
 const AboutTextContainer = styled.div`
   color: ${({ $color }) => $color};
@@ -1102,113 +1066,113 @@ const GradientKeyline = styled.div`
   display: none;
 `;
 
-const BtnAnimation = keyframes`
-	0%   { stroke-dashoffset: 1000;}
-	100% { stroke-dashoffset: 0; }
-`;
+// const BtnAnimation = keyframes`
+// 	0%   { stroke-dashoffset: 1000;}
+// 	100% { stroke-dashoffset: 0; }
+// `;
 
-const CallActionBtn = styled.div`
-  color: ${({ $color }) => $color};
-  font-size: 15px;
-  letter-spacing: 3px;
-  text-decoration: none;
-  justify-self: center;
-  position: relative;
-  display: block;
-  outline: none;
-  cursor: pointer;
-  transition: 0.3s ease;
+// const CallActionBtn = styled.div`
+//   color: ${({ $color }) => $color};
+//   font-size: 15px;
+//   letter-spacing: 3px;
+//   text-decoration: none;
+//   justify-self: center;
+//   position: relative;
+//   display: block;
+//   outline: none;
+//   cursor: pointer;
+//   transition: 0.3s ease;
 
-  .letter {
-    display: inline-block;
-    line-height: 1em;
-    opacity: 0;
-  }
-`;
+//   .letter {
+//     display: inline-block;
+//     line-height: 1em;
+//     opacity: 0;
+//   }
+// `;
 
-const ContinueBtnBorder = styled.svg`
-  content: "";
-  display: block;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 247px;
-  height: 100%;
-  opacity: 1;
-  stroke: ${({ $color }) => $color};
-  stroke-dashoffset: 1000;
-  stroke-dasharray: 1000;
-  stroke-width: 2px;
+// const ContinueBtnBorder = styled.svg`
+//   content: "";
+//   display: block;
+//   position: absolute;
+//   left: 0;
+//   top: 0;
+//   width: 247px;
+//   height: 100%;
+//   opacity: 1;
+//   stroke: ${({ $color }) => $color};
+//   stroke-dashoffset: 1000;
+//   stroke-dasharray: 1000;
+//   stroke-width: 2px;
 
-  @media (max-width: ${BREAKPOINTS.mob}px) {
-    display: none;
-  }
-`;
+//   @media (max-width: ${BREAKPOINTS.mob}px) {
+//     display: none;
+//   }
+// `;
 
-const ContinueBtn = styled(CallActionBtn)`
-  opacity: 1;
-  background: ${({ $bg }) => $bg};
-  padding: 13px 10px;
-  border-radius: 67px;
-  white-space: nowrap;
-  border: 1px solid transparent;
-  position: relative;
-  transition: 0.2s ease-in-out;
-  ${"" /* top: ${({ $top }) => $top}; */}
-  width: 227px;
-  margin: 0px auto;
-  text-align: center;
+// const ContinueBtn = styled(CallActionBtn)`
+//   opacity: 1;
+//   background: ${({ $bg }) => $bg};
+//   padding: 13px 10px;
+//   border-radius: 67px;
+//   white-space: nowrap;
+//   border: 1px solid transparent;
+//   position: relative;
+//   transition: 0.2s ease-in-out;
+//   ${"" /* top: ${({ $top }) => $top}; */}
+//   width: 227px;
+//   margin: 0px auto;
+//   text-align: center;
 
-  a,
-  a:hover {
-    color: #fff;
-    text-decoration: none;
-  }
-  @media (min-width: ${BREAKPOINTS.tablet + 1}px) {
-    &:hover {
-      background: none;
+//   a,
+//   a:hover {
+//     color: #fff;
+//     text-decoration: none;
+//   }
+//   @media (min-width: ${BREAKPOINTS.tablet + 1}px) {
+//     &:hover {
+//       background: none;
 
-      ${ContinueBtnBorder} {
-        animation: ${BtnAnimation} 0.7s ease-in;
-        animation-direction: normal;
-        stroke: ${({ $bg }) => $bg};
-        stroke-dashoffset: 0;
-      }
-    }
-    &:active {
-      background: ${({ $bg }) => $bg};
-    }
-  }
+//       ${ContinueBtnBorder} {
+//         animation: ${BtnAnimation} 0.7s ease-in;
+//         animation-direction: normal;
+//         stroke: ${({ $bg }) => $bg};
+//         stroke-dashoffset: 0;
+//       }
+//     }
+//     &:active {
+//       background: ${({ $bg }) => $bg};
+//     }
+//   }
 
-  @media (max-width: ${BREAKPOINTS.tablet}px) {
-    top: 70%;
-    opacity: 1;
-    height: 40px;
-    display: block;
-    align-self: stretch;
-    align-items: center;
-    transition: 0.3s ease;
-    background: none;
-    color: var(--block1-text-primary);
-    font-size: 21px;
-    border-radius: 0 0 45px 45px;
-    padding: 0px;
-    border-bottom: none;
-    & > span {
-      padding-left: 21px;
-    }
-  }
+//   @media (max-width: ${BREAKPOINTS.tablet}px) {
+//     top: 70%;
+//     opacity: 1;
+//     height: 40px;
+//     display: block;
+//     align-self: stretch;
+//     align-items: center;
+//     transition: 0.3s ease;
+//     background: none;
+//     color: var(--block1-text-primary);
+//     font-size: 21px;
+//     border-radius: 0 0 45px 45px;
+//     padding: 0px;
+//     border-bottom: none;
+//     & > span {
+//       padding-left: 21px;
+//     }
+//   }
 
-  @media (max-width: ${BREAKPOINTS.mob}px) {
-    top: 0%;
-    height: 20px;
-    background: ${({ $bg }) => $bg};
-    border-radius: 67px;
-    font-size: 18px;
-    color: #fff;
-    padding: 15px;
-    & > span {
-      padding-left: 0px;
-    }
-  }
-`;
+//   @media (max-width: ${BREAKPOINTS.mob}px) {
+//     top: 0%;
+//     height: 20px;
+//     background: ${({ $bg }) => $bg};
+//     border-radius: 67px;
+//     font-size: 18px;
+//     color: #fff;
+//     padding: 15px;
+//     & > span {
+//       padding-left: 0px;
+//     }
+//   }
+// `;

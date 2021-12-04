@@ -206,38 +206,6 @@ export const loaderScene = {
 
 export const scenes = [
   {
-    //asset: 'webgl/models/hands.fbx',
-    asset: EminentFBX,
-    hide: [],
-    name: "hands",
-    pointSize: 1,
-    animation_duration: 7,
-    campos: isMobile
-      ? [10.99925293972559, 3.3535135951720014, 78.47635100024775]
-      : [37.79833657213544, 1.3750575489506531, 52.370702708543746],
-    target: isMobile
-      ? [-0.6760762361510282, 0.03159402398030095, -1.7213501102364468]
-      : [18.380205797528756, -1.1953804911456667, -7.25673374887869],
-    tablet_target: [
-      -15.884296008394596, 0.5182578383351341, 3.8278913014881506,
-    ],
-    tablet_campos: [3.5338347662120064, 3.0886958784314418, 63.45532775891031],
-    parralax_y: true,
-    gradient_offset: 1.5,
-    secondary: ["secondary"],
-    no_randomise: true,
-    colors: [
-      {
-        colors: ["#ffffff"],
-        opacity: 1,
-      },
-      {
-        opacity: 1,
-        colors: ["#58676e"],
-      },
-    ],
-  },
-  {
     //asset: isMobile ? 'webgl/models/plague_mobile.fbx' : 'webgl/models/plague.fbx',
     asset: isMobile ? PlagueMobileFBX : PlagueFBX,
     name: "plague",
