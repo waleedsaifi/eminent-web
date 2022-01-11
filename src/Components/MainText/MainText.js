@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
-// import styled from "styled-components";
+import styled from "styled-components";
 // import { BREAKPOINTS } from "../../constants/constants";
-// import { useDispatch } from "react-redux";
 import anime from "animejs/lib/anime.es.js";
 // import { setProgress } from "../../store/actions/actionCreator";
 // import { ReactComponent as LogoIconSVG } from "../../assets/images/eminent-icon.svg";
@@ -25,7 +24,7 @@ const App = ({
   currentSection,
   currentTheme,
 }) => {
-  // const dispatch = useDispatch();
+  //
 
   useEffect(() => {
     const progressSvgArray = document.querySelectorAll(
@@ -34,7 +33,7 @@ const App = ({
     const progressBorderDefault = document.querySelector(
       `.progressBorderDefault__${currentStep}`
     );
-    getFadeInProgressSvg([progressSvgArray, progressBorderDefault], () => "");
+    // getFadeInProgressSvg([progressSvgArray, progressBorderDefault], () => "");
 
     if (currentSectionTitle === "approach" && currentStep === 0) {
       window.animation = anime;
@@ -113,45 +112,25 @@ const App = ({
       timeout = 500;
     }
     getFadeInMainText(() => {
-      //   window.engine.start();
+      // window.engine.start();
 
       window.animation._name = "anime";
       setTimeout(() => (window.stoppedAnimation = true), 700);
     }, timeout);
   }, [currentSectionTitle, currentStep]);
 
-  // const getNextStep = () => {
-  //   const progressSvgArray = document.querySelectorAll(
-  //     `.styledProgress_${currentStep}`
-  //   );
-  //   //getNextStepFromForm(currentStep + 1, progressSvgArray, dispatch);
-  //   // if (getNextStepFromForm(progressSvgArray)) {
-  //   //   setTimeout(
-  //   //     () => dispatch(setProgress(currentStep + 1, currentSectionTitle)),
-  //   //     500
-  //   //   );
-  //   // }
-  //   getFadeOutProgressSvg(progressSvgArray, () => {
-  //     getFadeOutFormTen([".footer"], 0, () => null);
-  //     getFadeOutFormTen([".formTen"], 100, () => {
-  //       setTimeout(
-  //         () => dispatch(setProgress(currentStep + 1, currentSectionTitle)),
-  //         500
-  //       );
-  //     });
-  //   });
-  // };
-
   switch (currentSectionTitle) {
     case "home": {
       const HomeContent = React.lazy(() => import("./HomeContent"));
       return (
-        <HomeContent
-          currentSectionTitle={currentSectionTitle}
-          currentStep={currentStep}
-          currentSection={currentSection}
-          currentTheme={currentTheme}
-        />
+      
+          <HomeContent
+            currentSectionTitle={currentSectionTitle}
+            currentStep={currentStep}
+            currentSection={currentSection}
+            currentTheme={currentTheme}
+          />
+
       );
     }
     case "approach": {
@@ -182,6 +161,8 @@ const App = ({
 };
 
 export default App;
+
+
 
 // const AnimatedSVG = css`
 //   display: inline-block;

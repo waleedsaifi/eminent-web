@@ -518,10 +518,10 @@ const ContainerContent = (currentData) => {
       $step={currentStep}
       $isMenuOpen={isMenuOpen}
       className="mainContainer"
-      onClick={stopAnimation}
-      onTouchStart={touchstartHandler}
-      onTouchMove={touchmoveHandler}
-      onWheel={wheelHandler}
+      // onClick={stopAnimation}
+      // onTouchStart={touchstartHandler}
+      // onTouchMove={touchmoveHandler}
+      // onWheel={wheelHandler}
       $overflow={getOverflow()}
     >
       {activePopup && popupManager()}
@@ -533,14 +533,14 @@ const ContainerContent = (currentData) => {
         currentSection={currentSection}
         currentTheme={currentTheme}
       />
-      {currentSection && (
+      {/* {currentSection && (
         <ProgressBar
           currentSectionTitle={currentSectionTitle}
           currentStep={currentStep}
           currentSection={currentSection}
           currentTheme={currentTheme}
         />
-      )}
+      )} */}
       {currentSection && (
         <Suspense fallback="Loading Content">
           <MainText
@@ -582,7 +582,7 @@ const Container = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
+  display: block;
   align-items: center;
   z-index: 3;
   justify-content: center;

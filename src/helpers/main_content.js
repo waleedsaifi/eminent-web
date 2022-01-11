@@ -6,20 +6,20 @@ export const onScheduleClickHandler = (e) => {
 export const onServicesPopUpHandler = (history) => {
   // toggleElementsforPopup("hide");
   // showPopup("services");
-  //history.push("/services");
+  history.push("/services");
 };
 
 export const onProjectsPopUpHandler = (history) => {
   // toggleElementsforPopup("hide");
   // showPopup("projects");
-  //history.push("/projects");
+  history.push("/projects");
 };
 
 export const onEminentAppsHandler = (history) => {
   // window.location="/"
   // toggleElementsforPopup("hide");
   // showPopup("eminentApps");
- // history.push("/eminent-apps");
+  history.push("/eminent-apps");
 };
 
 export const getBoxMaxWidth = (currentStep, currentSectionTitle) => {

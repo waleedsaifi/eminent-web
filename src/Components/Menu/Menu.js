@@ -96,7 +96,7 @@ const MenuContent = ({
             if (document.getElementById("glContainer"))
               document.getElementById("glContainer").style.opacity = "0";
             logoTimeline(currentTheme?.logoColor, getIntroFontSize(), () => {
-              if (window.gradient)
+              if (window.gradient != null)
                 window.gradient.setStep(0, currentSectionTitle);
               else window.gradient = new Object();
 
@@ -192,16 +192,19 @@ const MenuContent = ({
           mobMenuCloseAnimation(btn);
         }
       });
-      if (
-        currentSectionTitle === "home" &&
-        window
-          .getComputedStyle(document.querySelector(".anime"))
-          .getPropertyValue("opacity") != 0
-      )
-        mobLogoCloseAnimation(".logo");
-      else if (currentSectionTitle !== "home") {
-        mobLogoCloseAnimation(".logo");
-      }
+      
+      mobLogoCloseAnimation(".logo");
+      // if (
+      //   currentSectionTitle === "home" &&
+      //   document.querySelector(".anime") != null &&
+      //   window
+      //     .getComputedStyle(document.querySelector(".anime"))
+      //     .getPropertyValue("opacity") != 0
+      // )
+      //   mobLogoCloseAnimation(".logo");
+      // else if (currentSectionTitle !== "home") {
+      //   mobLogoCloseAnimation(".logo");
+      // }
     } else if (isMenuOpen) {
       burgerChildren[0].classList.add("open");
       mobBurgerOpenAnimation(burgerChildren);

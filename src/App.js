@@ -18,7 +18,7 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Suspense fallback={"Loading"}>
-              {/* <ParticleBackground currentTheme={darkTheme} /> */}
+              <ParticleBackground currentTheme={darkTheme} />
               {/* <GLContainer currentSectionTitle="home" /> */}
             </Suspense>
             <Container currentSectionTitle="home" currentTheme={darkTheme} />
@@ -53,7 +53,7 @@ function App() {
           </Route>
           <Route exact path="/services">
            <Suspense fallback={"Loading"}>
-            <ParticleBackground currentTheme={darkTheme} />
+            {/* <ParticleBackground currentTheme={darkTheme} /> */}
             </Suspense>
             {/* <GLContainer currentSectionTitle="work" /> */}
             <Container

@@ -127,18 +127,6 @@ const AboutContent = ({ closeHandler, showPopup }) => {
               </AboutTextItem>
               <AboutTextItem className="grid-1 grid-left">
                 <AboutCardContent
-                  // cardImage={GrantIMG}
-                  cardImage={"https://eminent-web.s3.amazonaws.com/images/about/grant.png"}
-                  url={"https://www.linkedin.com/in/grant-t-047340a"}
-                  title={"Grant Thomas"}
-                />
-                <h5>Grant Thomas</h5>
-                <GradientKeyline />
-                <h6>Top Secret Facility Security Officer</h6>
-                {/* <a href="" title="View Profile">View Profile</a> */}
-              </AboutTextItem>
-              <AboutTextItem className="grid-1 grid-left">
-                <AboutCardContent
                   // cardImage={RaquelIMG}
                   cardImage={"https://eminent-web.s3.amazonaws.com/images/about/raquel.png"}
                   url={"https://www.linkedin.com/in/raquel-risi-5b80a2196/"}
@@ -159,6 +147,18 @@ const AboutContent = ({ closeHandler, showPopup }) => {
                 <h5>Tedra Hayden</h5>
                 <GradientKeyline />
                 <h6>Business Development</h6>
+                {/* <a href="" title="View Profile">View Profile</a> */}
+              </AboutTextItem>
+              <AboutTextItem className="grid-1 grid-left">
+                <AboutCardContent
+                  // cardImage={GrantIMG}
+                  cardImage={"https://eminent-web.s3.amazonaws.com/images/about/liz.png"}
+                  url={"https://www.linkedin.com/in/liz-legrande-a271a5183/"}
+                  title={"Liz LeGrande"}
+                />
+                <h5>Liz LeGrande</h5>
+                <GradientKeyline />
+                <h6>Marketing and Branding</h6>
                 {/* <a href="" title="View Profile">View Profile</a> */}
               </AboutTextItem>
               <AboutTextItem className="grid-1 grid-left">

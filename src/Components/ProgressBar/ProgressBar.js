@@ -77,9 +77,9 @@ const ProgressBarContent = ({
 
   const getNextStep = (nextStep) => {
     if (nextStep === currentStep) return;
-
+    //Needed for Animations on the home page
     if (window.animation && !window.animation.completed) {
-      return;
+      //return;
     }
     switch (currentSectionTitle) {
       case "work": {

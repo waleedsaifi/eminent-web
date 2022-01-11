@@ -22,7 +22,7 @@ export const darkTheme = {
   background: ["#071118", "#04060B"],
   // textColor: "#9dd8c4",
   textColor: "#acc8c8",
-  footerTextColor: "#838A8E",
+  footerTextColor: "#fff",
   textSecondary: "#485f56",
   logoColor: "#9dd8c4",
   bgScheduleBtn: "#678F7D",

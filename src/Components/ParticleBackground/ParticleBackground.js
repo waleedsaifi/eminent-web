@@ -25,7 +25,7 @@ const ParticleBackgroundContent = () => {
       ref={_root}
       id="particles"
       style={{
-        zIndex: 1,
+        zIndex: 4,
         position: "fixed",
         left: 0,
         top: 0,
@@ -37,7 +37,7 @@ const ParticleBackgroundContent = () => {
         ref={_canvas}
         id="ParticleCanvas"
         style={{
-          zIndex: 2,
+          zIndex: 4,
           opacity: 0,
           position: "fixed",
           left: 0,
@@ -45,6 +45,7 @@ const ParticleBackgroundContent = () => {
           width: "100%",
           height: "100%",
           transition: "all 2s",
+          //background: "url('https://eminent-web.s3.amazonaws.com/images/home/bg.jpg') left top / cover no-repeat",
         }}
       ></canvas>{" "}
     </div>
