@@ -18,7 +18,7 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Suspense fallback={"Loading"}>
-              <ParticleBackground currentTheme={darkTheme} />
+              {/* <ParticleBackground currentTheme={darkTheme} /> */}
               {/* <GLContainer currentSectionTitle="home" /> */}
             </Suspense>
             <Container currentSectionTitle="home" currentTheme={darkTheme} />
@@ -52,8 +52,8 @@ function App() {
             />
           </Route>
           <Route exact path="/services">
-           <Suspense fallback={"Loading"}>
-            {/* <ParticleBackground currentTheme={darkTheme} /> */}
+            <Suspense fallback={"Loading"}>
+              {/* <ParticleBackground currentTheme={darkTheme} /> */}
             </Suspense>
             {/* <GLContainer currentSectionTitle="work" /> */}
             <Container
@@ -64,7 +64,7 @@ function App() {
           </Route>
           <Route exact path="/projects">
             <Suspense fallback={"Loading"}>
-            <ParticleBackground currentTheme={darkTheme} />
+              <ParticleBackground currentTheme={darkTheme} />
             </Suspense>
             {/* <GLContainer currentSectionTitle="work" /> */}
             <Container
@@ -75,7 +75,7 @@ function App() {
           </Route>
           <Route exact path="/about">
             <Suspense fallback={"Loading"}>
-            <ParticleBackground currentTheme={darkTheme} />
+              <ParticleBackground currentTheme={darkTheme} />
             </Suspense>
             {/* <GLContainer currentSectionTitle="other" /> */}
             <Container

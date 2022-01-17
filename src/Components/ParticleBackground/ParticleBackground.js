@@ -25,7 +25,7 @@ const ParticleBackgroundContent = () => {
       ref={_root}
       id="particles"
       style={{
-        zIndex: 4,
+        // zIndex: 4,
         position: "fixed",
         left: 0,
         top: 0,
@@ -52,7 +52,7 @@ const ParticleBackgroundContent = () => {
   );
 };
 
-export default  ParticleBackgroundContent;
+export default ParticleBackgroundContent;
 
 // Hook
 function useWindowSize() {
