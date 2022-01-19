@@ -96,7 +96,7 @@ const FooterContent = ({
 
   const getFooterText = () => {
     switch (currentSectionTitle) {
-      case "home": {
+      case "Approach": {
         switch (currentStep) {
           case 0:
           case 1:
