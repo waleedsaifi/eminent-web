@@ -27,10 +27,7 @@ import {
 } from "@mui/material";
 
 import HeroElements from "../../assets/images/hero_elements.png";
-// import HeroCircles from "../../assets/images/hero-circles.png";
-// import HeroNoise from "../../assets/images/hero-noise.png";
 import HeroNoiseCircles from "../../assets/images/noise-circles-hero.png";
-// import HeroDarkOverlay from "../../assets/images/hero-dark-overlay.png";
 
 import PhotoAI from "../../assets/images/photo-ai.png";
 import PhotoTeam from "../../assets/images/photo-team.png";
@@ -43,7 +40,6 @@ import DataProtection from "../../assets/images/data-protection.png";
 import QuickConnectivity from "../../assets/images/quick-connectivity.png";
 import WorksSeamlessly from "../../assets/images/works-seamlessly.png";
 import WorldPic from "../../assets/images/world-pic2.png";
-// import WorldPicNoise from "../../assets/images/world-pic-noise.png";
 
 import Medium from "../../assets/images/medium.png";
 import FastCompany from "../../assets/images/fast-company.png";
