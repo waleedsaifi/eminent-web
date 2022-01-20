@@ -488,6 +488,10 @@ body {
   width: 45%;
 }
 
+.form-input-field input {
+  color: #d7d3d3 !important;
+}
+
 .form-input-field ::placeholder {
   color: white !important;
   opacity: 0.7;
