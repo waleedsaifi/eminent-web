@@ -41,6 +41,9 @@ import QuickConnectivity from "../../assets/images/quick-connectivity.png";
 import WorksSeamlessly from "../../assets/images/works-seamlessly.png";
 import WorldPic from "../../assets/images/world-pic2.png";
 
+import NewImg1 from "../../assets/images/newimg1.jpg";
+import NewImg2 from "../../assets/images/newimg2.jpg";
+
 import Medium from "../../assets/images/medium.png";
 import FastCompany from "../../assets/images/fast-company.png";
 import Wired from "../../assets/images/wired.png";
@@ -447,6 +450,7 @@ const HomeContent = (
           <Grid item md={3}>
             <Box className="services-photo-section services-ai-section">
               <img src={PhotoAI} alt="photo-ai" />
+              {/* <img src={NewImg1} alt="photo-ai" /> */}
               <img
                 src={NoiseCirclesTeam}
                 alt="noise-circles-team"
@@ -1005,6 +1009,7 @@ const HomeContent = (
       <Container maxWidth="xl">
         <Box className="team-section">
           <Box className="team-image-section">
+            {/* <img src={NewImg2} alt="world-pic" /> */}
             <img src={WorldPic} alt="world-pic" />
             {/* <img
               src={WorldPicNoise}
@@ -1059,13 +1064,17 @@ const HomeContent = (
               © 2022 Eminent Company. Contact Us
             </Typography>
           </Box>
-          <Box className="footer-links-section">
-            <Typography className="footer-link">Privacy & Legal</Typography>
-            <Typography className="footer-link">Solutions</Typography>
-            <Typography className="footer-link">Approach</Typography>
-            <Typography className="footer-link">Services</Typography>
-            <Typography className="footer-link">Project</Typography>
-            <Typography className="footer-link">About</Typography>
+          <Box className="footer-links-box">
+            <Box className="footer-links-section">
+              <Typography className="footer-link">Privacy & Legal</Typography>
+              <Typography className="footer-link">Solutions</Typography>
+              <Typography className="footer-link">Approach</Typography>
+            </Box>
+            <Box className="footer-links-section">
+              <Typography className="footer-link">Services</Typography>
+              <Typography className="footer-link">Project</Typography>
+              <Typography className="footer-link">About</Typography>
+            </Box>
           </Box>
           <Box className="footer-social-section">
             <Box>
