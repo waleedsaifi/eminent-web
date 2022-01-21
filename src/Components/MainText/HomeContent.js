@@ -1060,10 +1060,10 @@ const HomeContent = (
         <Box className="stay-updated-section">
           <Container maxWidth="lg">
             <Typography className="stay-updated-heading">
-              Stay Updated
+              Start Building
             </Typography>
             <Typography className="stay-updated-subheading">
-              Sign up to stay up to date on Eminent developments.
+              Don’t rely on internal resources, innovate today
             </Typography>
             <Box className="stay-updated-form" component="form">
               <TextField
@@ -1095,9 +1095,10 @@ const HomeContent = (
             /> */}
           </Box>
           <Box className="team-text-section">
-            <Typography className="team-heading">Projects</Typography>
+            <Typography className="team-heading">Eminent Future</Typography>
             <Typography className="team-subheading">
-              Federal software as easy as purchasing <br /> plane tickets
+             Making building federal software <br /> as easy as ordering a new car
+              {/* Buying personalized federal software as easy as purchasing <br /> plane tickets */}
             </Typography>
             <Button className="team-btn">
               <Link to="/Projects"> See More → </Link>
