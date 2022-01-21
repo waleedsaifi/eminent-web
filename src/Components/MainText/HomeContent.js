@@ -1153,7 +1153,7 @@ const HomeContent = (
               <Link to="/eminent-apps">Solutions</Link>
             </Typography>
             <Typography className="footer-link">
-              <Link to="/approach">Approach</Link>
+              <Link to="/">Why Choose Us?</Link>
             </Typography>
             <Typography className="footer-link">
               <Link to="/services">Services</Link>
