@@ -152,7 +152,13 @@ const HomeContent = (
           region: "na1",
           portalId: "5233745",
           formId: "7407c046-4267-4084-82d8-9aa72eb964d5",
-          target: "#hubspotForm",
+          target: "#hubspotForm1",
+        });
+        window.hbspt.forms.create({
+          region: "na1",
+          portalId: "5233745",
+          formId: "7407c046-4267-4084-82d8-9aa72eb964d5",
+          target: "#hubspotForm2",
         });
       }
     });
@@ -247,7 +253,7 @@ const HomeContent = (
                 </Typography>
               </Box>
               <Button variant="outlined" className="learn-more-btn">
-                <div id="hubspotForm"></div>
+                <div id="hubspotForm1"></div>
 
                 {/* <Link to="/eminent-apps">Learn More →</Link> */}
               </Button>
@@ -1060,13 +1066,13 @@ const HomeContent = (
         <Box className="stay-updated-section">
           <Container maxWidth="lg">
             <Typography className="stay-updated-heading">
-              Start Building
+              Start building
             </Typography>
             <Typography className="stay-updated-subheading">
               Don’t rely on internal resources, innovate today
             </Typography>
             <Box className="stay-updated-form" component="form">
-              <TextField
+              {/* <TextField
                 variant="outlined"
                 placeholder="Full Name"
                 className="form-input-field"
@@ -1078,7 +1084,8 @@ const HomeContent = (
               />
               <Button className="form-submit-btn">
                 <Link to="/"> Submit → </Link>
-              </Button>
+              </Button> */}
+              <div id="hubspotForm2"></div>
             </Box>
           </Container>
         </Box>

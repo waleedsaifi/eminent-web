@@ -411,6 +411,11 @@ body {
   text-transform: capitalize !important;
 }
 
+.suite-demo-btn a, .more-services-btn a, .process-demo-btn a, .team-btn a{
+  color: #000000 !important;
+  text-decoration: none;
+}
+
 .suite-overlay-section {
   height: 423px;
   background: linear-gradient(0deg, #000000 34.02%, rgba(0, 0, 0, 0) 96.15%);
