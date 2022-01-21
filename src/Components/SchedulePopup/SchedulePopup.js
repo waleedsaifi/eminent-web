@@ -30,7 +30,8 @@ const SchedulePopupContent = ({ closeHandler }) => {
   return (
     <Wrapper
       ref={wrapper}
-      $bg={currentTheme?.schedulePopupBg[0]}
+      // $bg={currentTheme?.schedulePopupBg[0]}
+      $bg={"#000"}
       className="popup"
     >
       <PopupContainer $border={currentTheme?.schedulePopupTextColor}>
@@ -68,7 +69,7 @@ const Wrapper = styled.div`
   height: 100%;
   min-height: 100%;
   z-index: 9900;
-  background: transparent;
+  background: #000;
   display: flex;
   justify-content: center;
   align-items: flex-start;

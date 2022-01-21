@@ -96,9 +96,9 @@ const MenuContent = ({
             if (document.getElementById("glContainer"))
               document.getElementById("glContainer").style.opacity = "0";
             logoTimeline(currentTheme?.logoColor, getIntroFontSize(), () => {
-              if (window.gradient != null)
-                window.gradient.setStep(0, currentSectionTitle);
-              else window.gradient = new Object();
+              // if (window.gradient != null)
+              //   window.gradient.setStep(0, currentSectionTitle);
+              // else window.gradient = new Object();
 
               setLogoBtnsShow((state) => {
                 return {
@@ -468,10 +468,10 @@ const MenuContent = ({
           $show={isLogoBtnsShow.second}
         >
           <span className="menu_item" onMouseOver={menuLabelHandler}>
-            {/* APPROACH */}
-            <Link to="/approach"> APPROACH </Link>
+            WHY CHOOSE US?
+            {/* <Link to="/approach"> APPROACH </Link> */}
           </span>{" "}
-          <span className="menu_label"> COMPLIANT DISRUPTION </span>{" "}
+          <span className="menu_label"> COMING SOON </span>{" "}
         </MenuBtn>
         <MenuBtn
           $open={isMenuOpen}
@@ -689,7 +689,7 @@ const LogoSvg = styled(Logo)`
 `;
 const MenuBtn = styled.button`
   color: ${({ $color }) => $color};
-  font-size: 15px;
+  font-size: 12px;
   letter-spacing: 3px;
   text-decoration: none;
   justify-self: center;
@@ -745,7 +745,7 @@ const MenuBtn = styled.button`
     color: ${({ $color }) => $color};
     width: 200px;
     text-align: left;
-    font-size: 15px;
+    font-size: 12px;
     letter-spacing: 0;
     text-transform: uppercase;
     overflow: hidden;

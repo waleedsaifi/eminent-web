@@ -29,7 +29,8 @@ export const CustomSelect = ({
   return (
     <SelectWrapper $color={color} $bg={bg} $focus={focus} $open={isOpen}>
       <Selected $color={color} onClick={selectClickHandler}>
-        <p> {selected} </p> <Chevron $color={color} $open={isOpen} />{" "}
+        <p> {selected} </p> 
+        {/* <Chevron $color={color} $open={isOpen} />{" "} */}
       </Selected>{" "}
       <Options $open={isOpen} $color={color} $bg={bg}>
         {" "}
@@ -91,18 +92,18 @@ const Selected = styled.div`
       $color ? $color : "var(--block1-text-secondary)"};
   }
 `;
-const Chevron = styled("https://eminent-web.s3.amazonaws.com/images/approach/Chevron.svg")`
-  display: inline-block;
-  position: absolute;
-  right: 0.5rem;
-  top: 0.8rem;
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-  stroke: ${({ $color }) => ($color ? $color : "var(--block1-text-secondary)")};
-  transform: rotate(${({ $open }) => ($open ? "180deg" : 0)});
-  transition: 0.2s ease;
-`;
+// const Chevron = styled("https://eminent-web.s3.amazonaws.com/images/approach/Chevron.svg")`
+//   display: inline-block;
+//   position: absolute;
+//   right: 0.5rem;
+//   top: 0.8rem;
+//   width: 20px;
+//   height: 20px;
+//   cursor: pointer;
+//   stroke: ${({ $color }) => ($color ? $color : "var(--block1-text-secondary)")};
+//   transform: rotate(${({ $open }) => ($open ? "180deg" : 0)});
+//   transition: 0.2s ease;
+// `;
 const Options = styled.div`
   position: absolute;
   width: calc(100% + 2px);

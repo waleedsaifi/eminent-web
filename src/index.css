@@ -91,11 +91,20 @@ body {
 /* New Code Goes Here */
 
 .home-page {
-  margin-top: 170px;
+  max-width: 2200px;
+  margin: 170px auto 0px;
+}
+
+.home-page a {
+  color: white;
 }
 
 .d-flex {
   display: flex;
+}
+
+.hero-section {
+  margin-bottom: 200px;
 }
 
 .hero-heading {
@@ -142,6 +151,24 @@ body {
 .main-products {
   margin-bottom: 200px;
   position: relative;
+}
+
+.main-products-heading-section {
+  border-radius: 8px;
+  /* opacity: 0.8; */
+  padding: 0px 81px 90px 106px;
+}
+
+.main-products-heading-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-products-large-heading {
+  font-size: 63px !important;
+  font-weight: 900 !important;
+  line-height: 76px !important;
 }
 
 .products-gradient {
@@ -395,8 +422,8 @@ body {
   margin-bottom: 102px;
 }
 
-.blog-item {
-}
+/* .blog-item {
+} */
 
 .blog-image-section {
   border-radius: 85px;
@@ -486,6 +513,7 @@ body {
   border-radius: 8px;
   height: 58px;
   width: 45%;
+  color: #fff;
 }
 
 .form-input-field ::placeholder {
@@ -659,6 +687,10 @@ body {
   max-width: 100%;
 }
 
+.footer-logo-section path {
+  color: #3cf7a2;
+}
+
 .trademark-section {
   margin-left: 42px;
 }
@@ -673,9 +705,10 @@ body {
 
 .footer-links-section {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: space-between;
   margin-left: 89px;
+  flex-wrap: wrap;
 }
 
 .footer-link {
@@ -698,6 +731,7 @@ body {
 }
 
 .hero-heading,
+.main-products-large-heading,
 .main-products-heading,
 .process-heading,
 .services-heading,
@@ -735,6 +769,7 @@ body {
 .hero-heading,
 .hero-text,
 .learn-more-btn,
+.main-products-large-heading,
 .main-products-heading,
 .main-products-text,
 .process-heading,
@@ -773,7 +808,11 @@ body {
   text-align: end;
 }
 
+
+
 @media (max-width: 1536px) {
+ 
+
   .hero-heading {
     font-size: 46px !important;
     line-height: 58px !important;
@@ -1039,5 +1078,9 @@ body {
   .media-press-text {
     font-size: 20px !important;
     line-height: 24px !important;
+  }
+
+  .footer-social-section {
+    margin-left: 0px;
   }
 }
