@@ -37,29 +37,33 @@ import { Link, useLocation } from "react-router-dom";
 import { ReactComponent as FooterLogo } from "../../assets/images/logo.svg";
 
 const HomeContent = ({}) => {
-  
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://js.hsforms.net/forms/v2.js";
-    document.body.appendChild(script);
+  // useEffect(() => {
+  //   const script = document.createElement("script");
+  //   script.src = "https://js.hsforms.net/forms/v2.js";
+  //   document.body.appendChild(script);
 
-    script.addEventListener("load", () => {
-      if (window.hbspt) {
-        window.hbspt.forms.create({
-          region: "na1",
-          portalId: "5233745",
-          formId: "7407c046-4267-4084-82d8-9aa72eb964d5",
-          target: "#hubspotForm1",
-        });
-        window.hbspt.forms.create({
-          region: "na1",
-          portalId: "5233745",
-          formId: "7407c046-4267-4084-82d8-9aa72eb964d5",
-          target: "#hubspotForm2",
-        });
-      }
-    });
-  }, [Medium]);
+  //   script.addEventListener("load", () => {
+  //     if (!document.querySelector(hs_email)) {
+  //       if (window.hbspt) {
+  //         window.hbspt.forms.create({
+  //           region: "na1",
+  //           portalId: "5233745",
+  //           formId: "7407c046-4267-4084-82d8-9aa72eb964d5",
+  //           target: "#hubspotForm1",
+  //         });
+  //         window.hbspt.forms.create({
+  //           region: "na1",
+  //           portalId: "5233745",
+  //           formId: "7407c046-4267-4084-82d8-9aa72eb964d5",
+  //           target: "#hubspotForm2",
+  //         });
+  //       }
+  //     }
+  //   });
+  // }, []);
+  const onScheduleClickHandler = (e) => {
+    document.getElementById("ScheduleBtn").click();
+  };
 
   return (
     <Box className="home-page">
@@ -88,8 +92,12 @@ const HomeContent = ({}) => {
                   </span>
                 </Typography>
               </Box>
-              <Button variant="outlined" className="learn-more-btn">
-                <div id="hubspotForm1"></div>
+              <Button
+                variant="outlined"
+                className="learn-more-btn"
+                onClick={onScheduleClickHandler}
+              >
+                Schedule a Demo
               </Button>
             </Box>
           </Container>
@@ -938,8 +946,7 @@ const HomeContent = ({}) => {
           <Box className="team-text-section">
             <Typography className="team-heading">Eminent Future</Typography>
             <Typography className="team-subheading">
-              Making building federal software as easy as ordering a new
-              car
+              Making building federal software as easy as ordering a new car
               {/* Buying personalized federal software as easy as purchasing <br /> plane tickets */}
             </Typography>
             <Button className="team-btn">

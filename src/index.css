@@ -229,7 +229,7 @@ body {
   text-align: center;
 }
 
-.process-heading-box {
+.process-heading-box, .main-products-heading-box {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -596,6 +596,7 @@ body {
   font-size: 40px !important;
   font-weight: 700 !important;
   line-height: 49px !important;
+  width: 600px;
 }
 
 .team-btn {
@@ -867,11 +868,11 @@ body {
     display: none;
   }
 
-  .process-heading-box {
+  .process-heading-box, .main-products-heading-box {
     flex-direction: column;
   }
 
-  .process-heading {
+  .process-heading, .main-products-heading {
     font-size: 44px !important;
     line-height: 42px !important;
   }
