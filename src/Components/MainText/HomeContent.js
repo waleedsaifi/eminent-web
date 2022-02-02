@@ -979,13 +979,13 @@ const HomeContent = (
                     <br /> things differently
                   </Typography>
                   <Typography className="blog-text">
-                    <br /> The Pentagon sidestepped the 
-                    <br /> usual fight for approvals, 
+                    <br /> The Pentagon sidestepped the
+                    <br /> usual fight for approvals,
                     <br /> budget and IT resources. They
-                    <br /> used our platform to create  
-                    <br /> an enterprise-grade ecommerce 
-                    <br /> solution together modernize their 
-                    <br /> global approach to recruiting. 
+                    <br /> used our platform to create
+                    <br /> an enterprise-grade ecommerce
+                    <br /> solution together modernize their
+                    <br /> global approach to recruiting.
                   </Typography>
                 </Box>
               </Box>
@@ -1033,13 +1033,13 @@ const HomeContent = (
                     <br /> without the wait
                   </Typography>
                   <Typography className="blog-text">
-                    Around 500 features make up 
-                    <br /> 80% of all software (features 
-                    <br /> that you use everyday, like login, 
-                    <br /> secure payments or shopping cart). 
-                    <br /> And we've coded those already. We 
-                    <br /> call them building blocks and you 
-                    <br /> can fit them together however you like. 
+                    Around 500 features make up
+                    <br /> 80% of all software (features
+                    <br /> that you use everyday, like login,
+                    <br /> secure payments or shopping cart).
+                    <br /> And we've coded those already. We
+                    <br /> call them building blocks and you
+                    <br /> can fit them together however you like.
                     <br /> What will we build for you?
                   </Typography>
                 </Box>
@@ -1104,7 +1104,8 @@ const HomeContent = (
           <Box className="team-text-section">
             <Typography className="team-heading">Eminent Future</Typography>
             <Typography className="team-subheading">
-             Making building federal software <br /> as easy as ordering a new car
+              Making building federal software <br /> as easy as ordering a new
+              car
               {/* Buying personalized federal software as easy as purchasing <br /> plane tickets */}
             </Typography>
             <Button className="team-btn">
@@ -1174,7 +1175,7 @@ const HomeContent = (
             </Typography>
           </Box>
           <Box className="footer-social-section">
-            <Link to="/eminent-apps">
+            <Link to="https://www.linkedin.com/" target="_blank">
               <Box>
                 <svg
                   width="25"
@@ -1194,7 +1195,7 @@ const HomeContent = (
                 </svg>
               </Box>
             </Link>
-            <Link to="/eminent-apps">
+            <Link to="https://instagram.com/" target="_blank">
               <Box>
                 <svg
                   width="22"
@@ -1214,7 +1215,7 @@ const HomeContent = (
                 </svg>
               </Box>
             </Link>
-            <Link to="/eminent-apps">
+            <Link to="https://twitter.com/" target="_blank">
               <Box>
                 <svg
                   width="24"
@@ -1230,7 +1231,7 @@ const HomeContent = (
                 </svg>
               </Box>
             </Link>
-            <Link to="/eminent-apps">
+            <Link to="https://www.youtube.com/" target="_blank">
               <Box>
                 <svg
                   width="26"
@@ -1246,7 +1247,7 @@ const HomeContent = (
                 </svg>
               </Box>
             </Link>
-            <Link to="/eminent-apps">
+            <Link to="https://medium.com/" target="_blank">
               <Box>
                 <svg
                   width="22"
